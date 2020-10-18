@@ -20,10 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0dbf0e37-e059-4312-91e8-be49a0b3f71e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Index.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MyStarsApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment 2020-21S1.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MyStars.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +95,7 @@
       <updated>1603008404081</updated>
       <workItem from="1603008406071" duration="1553000" />
       <workItem from="1603009993735" duration="7000" />
-      <workItem from="1603013678284" duration="3186000" />
+      <workItem from="1603013678284" duration="3306000" />
     </task>
     <servers />
   </component>
@@ -127,22 +127,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="130" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603008462284" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603019948513">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1603019968544">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603019948513" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603019948513">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603019968544" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1603019968544">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603019948513" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603019948513">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603019968544" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1603019968544">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603019948513" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603019948513">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603019968544" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1603019968544">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603019948513" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603019968544" />
+    <state x="559" y="115" key="RollbackChangesDialog" timestamp="1603020071478">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="559" y="115" key="RollbackChangesDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603020071478" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1603008712709">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
