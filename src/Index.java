@@ -12,9 +12,15 @@ public class Index {
     }
 
     public void printWaitList() {
+        // System.out.println();
         for (int i = 0; i < waitlist.length; i++) {
-//            System.out.println();
             waitlist[i].printStudentInfo();
+        }
+    }
+
+    public void printStudentList() {
+        for (int i = 0; i < studentList.length; i++) {
+            studentList[i].printStudentInfo();
         }
     }
 
@@ -26,7 +32,5 @@ public class Index {
         this.vacancy = vacancy;
     }
 
-//    public printStudentList() {
-//        return studentList;
-//    }
+
 }

@@ -20,10 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0dbf0e37-e059-4312-91e8-be49a0b3f71e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assignment 2020-21S1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MyStars.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Index.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyStars.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +94,7 @@
       <updated>1603008404081</updated>
       <workItem from="1603008406071" duration="1553000" />
       <workItem from="1603009993735" duration="7000" />
-      <workItem from="1603013678284" duration="3306000" />
+      <workItem from="1603013678284" duration="3691000" />
     </task>
     <servers />
   </component>
