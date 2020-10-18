@@ -20,10 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0dbf0e37-e059-4312-91e8-be49a0b3f71e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/db/users" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/excel/users.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CZ2002.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CZ2002.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CZ2002/Index.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CZ2002/Index.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CZ2002/MyStarsApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CZ2002/MyStarsApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CZ2002/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CZ2002/Student.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyStarsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyStarsApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,12 +48,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1j2i57dOzmTSv8TOvFw1pVLcNZq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -57,17 +69,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Wei Xing\IdeaProjects\CZ2002\src\resources\db" />
       <recent name="C:\Users\ash\Desktop\OODP\CZ2002\src" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="MyStarsApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MyStarsApp" />
-      <module name="CZ2002" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -79,13 +85,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MyStarsApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MyStarsApp" />
+      <module name="CZ2002" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MyStarsApp" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0dbf0e37-e059-4312-91e8-be49a0b3f71e" name="Default Changelist" comment="" />
@@ -114,46 +130,64 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="249" y="0" key="#Project_Structure" timestamp="1603008725568">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="#Project_Structure/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603008725568" />
+    <state x="1169" y="576" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603032961353">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1169" y="576" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1603032961353" />
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1603015308866">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603015308866" />
-    <state x="549" y="130" key="FileChooserDialogImpl" timestamp="1603008462284">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="1282" y="721" key="FileChooserDialogImpl" timestamp="1603042397867">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="549" y="130" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603008462284" />
-    <state width="1493" height="259" key="GridCell.Tab.0.bottom" timestamp="1603022536187">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="1282" y="721" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1603042397867" />
+    <state width="1997" height="228" key="GridCell.Tab.0.bottom" timestamp="1603042646704">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
-    <state width="1493" height="259" key="GridCell.Tab.0.center" timestamp="1603022536187">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1997" height="228" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1603042646704" />
+    <state width="1997" height="228" key="GridCell.Tab.0.center" timestamp="1603042646704">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
-    <state width="1493" height="259" key="GridCell.Tab.0.left" timestamp="1603022536186">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1997" height="228" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1603042646704" />
+    <state width="1997" height="228" key="GridCell.Tab.0.left" timestamp="1603042646703">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536186" />
-    <state width="1493" height="259" key="GridCell.Tab.0.right" timestamp="1603022536187">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1997" height="228" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1603042646703" />
+    <state width="1997" height="228" key="GridCell.Tab.0.right" timestamp="1603042646704">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
+    <state width="1997" height="228" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1603042646704" />
     <state x="559" y="115" key="RollbackChangesDialog" timestamp="1603020071478">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="559" y="115" key="RollbackChangesDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603020071478" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1603008712709">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="904" y="443" key="SettingsEditor" timestamp="1603042882193">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603008712709" />
-    <state x="360" y="33" key="new project wizard" timestamp="1603008572071">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="904" y="443" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1603042882193" />
+    <state x="458" y="641" key="new project wizard" timestamp="1603040330122">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="360" y="33" key="new project wizard/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603008572071" />
+    <state x="458" y="641" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1603040330122" />
+    <state x="1206" y="720" key="search.everywhere.popup" timestamp="1603040199478">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1206" y="720" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1603040199478" />
   </component>
 </project>

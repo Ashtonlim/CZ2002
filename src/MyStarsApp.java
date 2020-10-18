@@ -1,14 +1,22 @@
+import java.net.URISyntaxException;
 import java.util.*;
 import java.io.*;
 
 public class MyStarsApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, URISyntaxException {
         Scanner sc = new Scanner(System.in);
         int choice;
         final int maxStudents = 5;
         Student[] Students = new Student[maxStudents];
 
-        initStudents(Students);
+
+        //Instantiate the database object
+        System.out.println("----------");
+        System.out.println("Testing file -> objects");
+        Database db = new Database();
+        db.printStudentInfo(); //Testing
+        System.out.println("----------");
+//        initStudents(Students);
 
 //        for (int i = 0; i < 5; i++) {
 //            S[i].printStudentInfo();
@@ -65,9 +73,9 @@ public class MyStarsApp {
     }
 
 
-    public static void initStudents(Student[] S) {
-        for (int i = 0; i < S.length; i++) {
-            S[i] = new Student(Integer.toString(i), "SCSE", "2", 10);
-        }
-    }
+//    public static void initStudents(Student[] S) {
+//        for (int i = 0; i < S.length; i++) {
+//            S[i] = new Student(Integer.toString(i), "SCSE", "2", 10);
+//        }
+//    }
 }
