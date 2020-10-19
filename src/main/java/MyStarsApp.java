@@ -10,22 +10,29 @@ public class MyStarsApp {
         Student[] Students = new Student[maxStudents];
 
 
-        //Testing of database object.
+        /** Testing of RecordManager. */
         try{
             System.out.println("----------");
             System.out.println("Testing file -> objects");
-            Database db = new Database();
-//            db.printStudentInfo(); //Testing
+            RecordManager RM = new RecordManager();
 
-            User user1 = db.getUser("weixing");
+            //Search a user
+            User user1 = RM.getUser("weixing");
             ((Student) user1).printStudentInfo();
 
-            User add = new Student("weixing2", "112233", "WX", "male", "U1234", "CSC", "118-118-190", 0, 0);
-            System.out.println("Status of add user: " + db.addUser(add));
-            db.save("users");
+            //Get all users in a list
+            User[] users = RM.getUsers();
+
+            //Add a user
+            User add = new Student("weixing3", "112233", "WX", "male", "U1234", "CSC", "118-118-190", 0, 0);
+            System.out.println("Status of add user: " + RM.addUser(add));
+
+            //Saving to file
+            RM.save("users");
             System.out.println("----------");
+
         } catch (Exception e){
-            System.out.println("Error encountered: " + e);
+            System.out.println("Error encountered at main: " + e);
             System.exit(1);
         }
 

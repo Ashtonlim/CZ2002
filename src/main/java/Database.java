@@ -11,28 +11,23 @@ import java.nio.file.Paths;
 import java.util.StringTokenizer;
 
 public class Database {
-    private ArrayList<Object> users;
-//    private ArrayList<Course> courses;
+
     private static final String SEPARATOR = ",";
 
-    public Database() throws Exception {
-        users = readFile(getFilePath("db/users"), "users");
-    }
-    
-    public void printStudentInfo(){
-        for (int i = 0; i < users.size(); i++){
+    public Database() {
 
-            Object user = users.get(i);
-            if (user instanceof Student){
-                ((Student) user).printStudentInfo();
-            }else{
-                System.out.println("Not student!");
-            }
+        /** Check if db files are accessible */
+        try{
+            getFilePath("db/users");
+//            getFilePath("db/courses");
+//            getFilePath("db/indexes");
+        }catch (Exception e){
+           System.out.println("Unable to load text-based database file: " + e);
         }
     }
 
     /** Get absolute path. */
-    private String getFilePath(String fileName) throws Exception {
+    public String getFilePath(String fileName) throws Exception {
         URL res = getClass().getClassLoader().getResource(fileName);
 
         if (res != null) {
@@ -69,9 +64,10 @@ public class Database {
         }
     }
 
-    /** Converts String to objects/entities */
-    private static ArrayList<Object> readFile(String fileName, String type) throws IOException{
-        ArrayList<String> stringArray = (ArrayList<String>)read(fileName);
+    /** Convert String to objects/entities */
+    public ArrayList<Object> load(String fileName, String type) throws Exception {
+        String filePath = getFilePath(fileName);
+        ArrayList<String> stringArray = (ArrayList<String>)read(filePath);
         ArrayList<Object> itemList = new ArrayList<>() ;
 
         for (String st : stringArray) {
@@ -99,60 +95,17 @@ public class Database {
         return itemList ;
     }
 
-    public void save(String type) throws Exception {
-        List<String> writeList = new ArrayList<>();
-        String fullPath;
-        switch(type){
-            case "users":
-                for (int i = 0; i < users.size(); i++){
-                    User user = (User) users.get(i);
-                    writeList.add(user.formatDBRow());
-                }
-                fullPath = getFilePath("db/users");
-                write(fullPath, writeList);
-                break;
-            case "course":
-                break;
-            default:
-                break;
+    /** Convert objects/entities back to text file*/
+    public boolean save(List writeList, String fileName) throws Exception {
+        try{
+            String fullPath = getFilePath(fileName);
+            write(fullPath, writeList);
+            return true;
+        } catch (Exception e){
+            System.out.println("Critical error while saving to db file: " + e + " Your file has not been saved.");
+            return false;
         }
 
     }
 
-
-    /** Query specific user by username */
-    public User getUser(String username){
-        User user = null;
-
-        for (int  i = 0; i < this.users.size(); i++){
-            User temp = (User) users.get(i);
-            if (temp.getUserName().equals(username)){
-                user = temp;
-                break;
-            }
-        }
-        return user;
-    }
-
-    /** return all users */
-    public User[] getUsers(){
-        User[] users = new User[this.users.size()];
-
-        for (int i = 0; i < this.users.size(); i++){
-            users[i] = (User) this.users.get(i);
-        }
-
-        return users;
-    }
-
-    public boolean addUser(User user){
-        for (int  i = 0; i < this.users.size(); i++){
-            User temp = (User) users.get(i);
-            if (temp.getUserName().equals(user.getUserName())){
-                return false;
-            }
-        }
-        users.add(user);
-        return true;
-    }
 }
