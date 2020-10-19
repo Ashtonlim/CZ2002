@@ -7,11 +7,11 @@ public class Student extends User{
     private String indexes;
     private int regAU;
 
-    public Student(String username, String password, String fullName, String gender, String matricNum, String major, String indexes, String yearOfStudy, int regAU) {
+    public Student(String username, String password, String fullName, String gender, String matricNum, String major, String indexes, int yearOfStudy, int regAU) {
         super(username, password, fullName, gender);
         this.matricNum = matricNum;
         this.major = major;
-        this.yearOfStudy = Integer.parseInt(yearOfStudy);
+        this.yearOfStudy = yearOfStudy;
         this.regAU = regAU;
     }
 
@@ -23,4 +23,8 @@ public class Student extends User{
         this.yearOfStudy = 3;
     }
 
+    @Override
+    public String formatDBRow() {
+        return username + "," + password + "," + fullName + "," + gender + "," + matricNum + "," + major + "," + indexes + "," + yearOfStudy + "," + regAU +",0";
+    }
 }
