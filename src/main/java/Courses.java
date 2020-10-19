@@ -24,6 +24,9 @@ public class Courses {
     public void setVacancy(int vacancy) {
         this.courseVacancy = vacancy;
     }
+    public void printVacancy(){
+        System.out.println("This course has" + getVacancy());
+    }
 }
 
 
