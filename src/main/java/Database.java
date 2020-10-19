@@ -16,7 +16,7 @@ public class Database {
     private static final String SEPARATOR = ",";
 
     public Database() throws Exception {
-        users = readFile(getFileFromURL("db/users"), "users");
+        users = readFile(getFilePath("db/users"), "users");
     }
     
     public void printStudentInfo(){
@@ -32,7 +32,7 @@ public class Database {
     }
 
     /** Get absolute path. */
-    private String getFileFromURL(String fileName) throws Exception {
+    private String getFilePath(String fileName) throws Exception {
         URL res = getClass().getClassLoader().getResource(fileName);
 
         if (res != null) {
@@ -55,6 +55,20 @@ public class Database {
         return data;
     }
 
+    /** Write fixed content to the given file. */
+    private static void write(String fileName, List data) throws IOException  {
+        PrintWriter out = new PrintWriter(new FileWriter(fileName));
+
+        try {
+            for (int i =0; i < data.size() ; i++) {
+                out.println((String)data.get(i));
+            }
+        }
+        finally {
+            out.close();
+        }
+    }
+
     /** Converts String to objects/entities */
     private static ArrayList<Object> readFile(String fileName, String type) throws IOException{
         ArrayList<String> stringArray = (ArrayList<String>)read(fileName);
@@ -68,7 +82,7 @@ public class Database {
                     //fields for user table: username,password,fullname,gender,matric,major,indexes,yearOfStudy,AU,admin_access
                     if (tokens[9].equals("0")) {
                         //Student
-                        toAdd = new Student(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], Integer.parseInt(tokens[8]));
+                        toAdd = new Student(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], Integer.parseInt(tokens[7]), Integer.parseInt(tokens[8]));
                     } else {
                         //Admin
                         toAdd = new Admin(tokens[0], tokens[1], tokens[2], tokens[3]);
@@ -85,9 +99,26 @@ public class Database {
         return itemList ;
     }
 
-    private void saveFile(String fileName){
+    public void save(String type) throws Exception {
+        List<String> writeList = new ArrayList<>();
+        String fullPath;
+        switch(type){
+            case "users":
+                for (int i = 0; i < users.size(); i++){
+                    User user = (User) users.get(i);
+                    writeList.add(user.formatDBRow());
+                }
+                fullPath = getFilePath("db/users");
+                write(fullPath, writeList);
+                break;
+            case "course":
+                break;
+            default:
+                break;
+        }
 
     }
+
 
     /** Query specific user by username */
     public User getUser(String username){
@@ -115,10 +146,13 @@ public class Database {
     }
 
     public boolean addUser(User user){
-
-
-        this.users.add(user);
-
+        for (int  i = 0; i < this.users.size(); i++){
+            User temp = (User) users.get(i);
+            if (temp.getUserName().equals(user.getUserName())){
+                return false;
+            }
+        }
+        users.add(user);
         return true;
     }
 }

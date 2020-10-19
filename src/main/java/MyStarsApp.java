@@ -10,7 +10,7 @@ public class MyStarsApp {
         Student[] Students = new Student[maxStudents];
 
 
-        //Instantiate the database object
+        //Testing of database object.
         try{
             System.out.println("----------");
             System.out.println("Testing file -> objects");
@@ -19,6 +19,10 @@ public class MyStarsApp {
 
             User user1 = db.getUser("weixing");
             ((Student) user1).printStudentInfo();
+
+            User add = new Student("weixing2", "112233", "WX", "male", "U1234", "CSC", "118-118-190", 0, 0);
+            System.out.println("Status of add user: " + db.addUser(add));
+            db.save("users");
             System.out.println("----------");
         } catch (Exception e){
             System.out.println("Error encountered: " + e);
