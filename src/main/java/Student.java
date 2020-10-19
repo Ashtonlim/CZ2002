@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Student extends User{
     private String matricNum;
     private String major;
-    private String yearOfStudy;
+    private int yearOfStudy;
     private String indexes;
     private int regAU;
 
@@ -11,12 +11,16 @@ public class Student extends User{
         super(username, password, fullName, gender);
         this.matricNum = matricNum;
         this.major = major;
-        this.yearOfStudy = yearOfStudy;
+        this.yearOfStudy = Integer.parseInt(yearOfStudy);
         this.regAU = regAU;
     }
 
     public void printStudentInfo() {
         System.out.println(matricNum + " taking " + major+ " in year " + yearOfStudy);
+    }
+
+    public void updateYearOfStudy(){
+        this.yearOfStudy = 3;
     }
 
 }

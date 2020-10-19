@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class MyStarsApp {
-    public static void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         int choice;
         final int maxStudents = 5;
@@ -11,11 +11,21 @@ public class MyStarsApp {
 
 
         //Instantiate the database object
-        System.out.println("----------");
-        System.out.println("Testing file -> objects");
-        Database db = new Database();
-        db.printStudentInfo(); //Testing
-        System.out.println("----------");
+        try{
+            System.out.println("----------");
+            System.out.println("Testing file -> objects");
+            Database db = new Database();
+//            db.printStudentInfo(); //Testing
+
+            User user1 = db.getUser("weixing");
+            ((Student) user1).printStudentInfo();
+            System.out.println("----------");
+        } catch (Exception e){
+            System.out.println("Error encountered: " + e);
+            System.exit(1);
+        }
+
+
 //        initStudents(Students);
 
 //        for (int i = 0; i < 5; i++) {
