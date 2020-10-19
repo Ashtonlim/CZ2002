@@ -1,7 +1,7 @@
 public class Courses {
-    private Index[] indexLst;
-    private String courseCode;
-    private String school;
+    protected Index[] indexLst;
+    protected String courseCode;
+    protected String school;
     private String subjectType;
     private String classType;
     private int AU;
