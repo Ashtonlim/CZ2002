@@ -7,7 +7,7 @@ public class MyStarsApp {
         Scanner sc = new Scanner(System.in);
         int choice;
         final int maxStudents = 5;
-        Student[] Students = new Student[maxStudents];
+        ArrayList<Student> Students = new ArrayList<Student>();
 
 
         /** Testing of RecordManager. */
@@ -37,11 +37,11 @@ public class MyStarsApp {
         }
 
 
-//        initStudents(Students);
+        initStudents(Students);
 
-//        for (int i = 0; i < 5; i++) {
-//            S[i].printStudentInfo();
-//        }
+        for (int i = 0; i < 5; i++) {
+            Students.get(i).printStudentInfo();
+        }
 
 //        Index x = new Index("1", 100, Students, Students);
 //        x.printWaitList();
@@ -94,9 +94,9 @@ public class MyStarsApp {
     }
 
 
-//    public static void initStudents(Student[] S) {
-//        for (int i = 0; i < S.length; i++) {
-//            S[i] = new Student(Integer.toString(i), "SCSE", "2", 10);
-//        }
-//    }
+    public static void initStudents(ArrayList<Student> S) {
+        for (int i = 0; i < 5; i++) {
+            S.add(new Student("ash1", "pass", "ash", "3", Integer.toString(i), "SCSE", "2", 1, 50));
+        }
+    }
 }

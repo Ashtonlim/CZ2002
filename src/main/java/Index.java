@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 public class Index {
     private String index;
     private int vacancy;
-    private Student[] waitlist;
-    private Student[] studentList;
+    private ArrayList<Student> waitlist;
+    private ArrayList<Student> studentList;
 
-    public Index(String index, int vacancy, Student[] waitlist, Student[] studentList) {
+    public Index(String index, int vacancy, ArrayList<Student> waitlist, ArrayList<Student> studentList) {
         this.index = index;
         this.vacancy = vacancy;
         this.waitlist = waitlist;
@@ -13,14 +15,14 @@ public class Index {
 
     public void printWaitList() {
         // System.out.println();
-        for (int i = 0; i < waitlist.length; i++) {
-            waitlist[i].printStudentInfo();
+        for (int i = 0; i < waitlist.size(); i++) {
+            waitlist.get(i).printStudentInfo();
         }
     }
 
     public void printStudentList() {
-        for (int i = 0; i < studentList.length; i++) {
-            studentList[i].printStudentInfo();
+        for (int i = 0; i < studentList.size(); i++) {
+            studentList.get(i).printStudentInfo();
         }
     }
 
