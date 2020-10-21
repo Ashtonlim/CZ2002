@@ -8,13 +8,12 @@ import java.util.ArrayList;
 import java.net.*;
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.StringTokenizer;
 
 public class Database {
 
     private static final String SEPARATOR = ",";
 
-    public Database() {
+    public Database() throws Exception {
 
         /** Check if db files are accessible */
         try{
@@ -24,6 +23,8 @@ public class Database {
         }catch (Exception e){
            System.out.println("Unable to load text-based database file: " + e);
         }
+
+
     }
 
     /** Get absolute path. */
@@ -70,11 +71,11 @@ public class Database {
         ArrayList<String> stringArray = (ArrayList<String>)read(filePath);
         ArrayList<Object> itemList = new ArrayList<>() ;
 
+        Object toAdd;
         for (String st : stringArray) {
             String[] tokens = st.split(SEPARATOR);
             switch (type) {
-                case "users":
-                    User toAdd;
+                case "user":
                     //fields for user table: username,password,fullname,gender,matric,major,indexes,yearOfStudy,AU,admin_access
                     if (tokens[9].equals("0")) {
                         //Student
@@ -85,8 +86,10 @@ public class Database {
                     }
                     itemList.add(toAdd);
                     break;
-//                case "course":
-//                    Course toAdd;
+                case "course":
+                    toAdd = new Course(tokens[0], tokens[1], tokens[2], tokens[4], Integer.parseInt(tokens[5]));
+                    itemList.add(toAdd);
+                    break;
                 default:
                     break;
             }

@@ -1,20 +1,22 @@
-public class Courses {
+public class Course {
     protected Index[] indexLst;
     protected String courseCode;
+    protected String courseName;
     protected String school;
     private String subjectType;
-    private String classType;
+//    private String classType;
     private int AU;
     private int courseVacancy;
 
-    public Courses(Index[] indexLst, String courseCode, String school, String subjectType, String classType, int AU, int courseVacancy) {
-        this.indexLst = indexLst;
+    public Course(String courseCode, String courseName, String school, String subjectType, int AU) {
+//        this.indexLst = indexLst;
         this.courseCode = courseCode;
+        this.courseName = courseName;
         this.school = school;
         this.subjectType = subjectType;
-        this.classType = classType;
+//        this.classType = classType;
         this.AU = AU;
-        this.courseVacancy = courseVacancy;
+//        this.courseVacancy = courseVacancy;
     }
 
     public int getVacancy() {
@@ -26,6 +28,10 @@ public class Courses {
     }
     public void printVacancy(){
         System.out.println("This course has" + getVacancy());
+    }
+
+    public String getCourseCode(){
+        return courseCode;
     }
 }
 
