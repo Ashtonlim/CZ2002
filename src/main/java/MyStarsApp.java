@@ -1,6 +1,4 @@
-import java.net.URISyntaxException;
 import java.util.*;
-import java.io.*;
 
 public class MyStarsApp {
     public static void main(String[] args) throws Exception {
@@ -11,7 +9,7 @@ public class MyStarsApp {
 
 
         /** Testing of RecordManager. */
-        try{
+//        try{
             System.out.println("----------");
             System.out.println("Testing file -> objects");
             RecordManager RM = new RecordManager();
@@ -21,20 +19,22 @@ public class MyStarsApp {
             ((Student) user1).printStudentInfo();
 
             //Get all users in a list
-            User[] users = RM.getUsers();
+            User[] users = RM.getAllUsers();
 
             //Add a user
-            User add = new Student("weixing3", "112233", "WX", "male", "U1234", "CSC", "118-118-190", 0, 0);
+            User add = new Student("weixing5", "112233", "WX", "male", "U1234", "CSC", "118-118-190", 0, 0);
             System.out.println("Status of add user: " + RM.addUser(add));
 
+            Course c1 = RM.getCourse("CZ2001");
+            System.out.println(c1.getCourseCode());
             //Saving to file
-            RM.save("users");
+//            RM.save("users");
             System.out.println("----------");
 
-        } catch (Exception e){
-            System.out.println("Error encountered at main: " + e);
-            System.exit(1);
-        }
+//        } catch (Exception e){
+//            System.out.println("Error encountered at main: " + e);
+//            System.exit(1);
+//        }
 
 
 //        initStudents(Students);

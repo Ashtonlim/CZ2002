@@ -1,6 +1,3 @@
-import java.io.File;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,25 +8,53 @@ public class RecordManager {
 
     public RecordManager() throws Exception {
         db = new Database();
-        users = db.load("db/users", "users");
+        users = db.load("db/users", "user");
+        courses = db.load("db/courses", "course");
+    }
+
+    /** search a course by course code */
+    public Course getCourse(String courseCode){
+        Course course = null;
+
+        for (int  i = 0; i < courses.size(); i++){
+            Course temp = (Course) courses.get(i);
+            if (temp.getCourseCode().equals(courseCode)){
+                course = temp;
+                break;
+            }
+        }
+        return course;
+    }
+
+    /** return all courses */
+    public Course[] getAllCourses(){
+        Course[] courses = new Course[this.courses.size()];
+
+        for (int i = 0; i < this.courses.size(); i++){
+            courses[i] = (Course) this.courses.get(i);
+        }
+
+        return courses;
     }
 
     /** search a user by username */
     public User getUser(String username){
         User user = null;
 
-        for (int  i = 0; i < this.users.size(); i++){
+        for (int  i = 0; i < users.size(); i++){
+
             User temp = (User) users.get(i);
             if (temp.getUserName().equals(username)){
                 user = temp;
                 break;
             }
         }
+
         return user;
     }
 
     /** return all users */
-    public User[] getUsers(){
+    public User[] getAllUsers(){
         User[] users = new User[this.users.size()];
 
         for (int i = 0; i < this.users.size(); i++){
