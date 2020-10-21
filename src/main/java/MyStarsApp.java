@@ -22,7 +22,7 @@ public class MyStarsApp {
             User[] users = RM.getAllUsers();
 
             //Add a user
-            User add = new Student("weixing5", "112233", "WX", "male", "U1234", "CSC", "118-118-190", 0, 0);
+            User add = new Student("weixing5", "112233", "WX", "male", "U1234", "CSC", new ArrayList<Index>(), 0, 0);
             System.out.println("Status of add user: " + RM.addUser(add));
 
             Course c1 = RM.getCourse("CZ2001");
@@ -96,7 +96,7 @@ public class MyStarsApp {
 
     public static void initStudents(ArrayList<Student> S) {
         for (int i = 0; i < 5; i++) {
-            S.add(new Student("ash1", "pass", "ash", "3", Integer.toString(i), "SCSE", "2", 1, 50));
+            S.add(new Student("ash1", "pass", "ash", "3", Integer.toString(i), "SCSE", new ArrayList<Index>(), 1, 50));
         }
     }
 }

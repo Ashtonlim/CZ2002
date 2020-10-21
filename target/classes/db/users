@@ -1,5 +1,4 @@
-﻿weixing,null,null,null,U1921133E,cs,null,2,22,0
-weixing3,null,null,null,U1921133E,cs,null,2,22,0
-weixing2,null,null,null,U1921134E,Business,null,3,22,0
-zheming,null,null,null,null,null,null,0,0,1
-weixing5,null,null,null,U1234,CSC,null,0,0,0
+weixing,abc123,Wei Xing,male,U1921133E,cs,CZ2001|CZ2002,2,22,0
+weixing3,abc123,Wei Xing,male,U1921133E,cs,CZ2001|CZ2002,2,22,0
+weixing2,abc123,Wei Xing,male,U1921134E,Business,1101-3102-9103-4104,3,22,0
+zheming,1234568,null,null,null,null,null,null,null,1

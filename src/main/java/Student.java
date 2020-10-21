@@ -4,10 +4,10 @@ public class Student extends User{
     private String matricNum;
     private String major;
     private int yearOfStudy;
-    private String indexes;
+    private ArrayList<Index> indexes;
     private int regAU;
 
-    public Student(String username, String password, String fullName, String gender, String matricNum, String major, String indexes, int yearOfStudy, int regAU) {
+    public Student(String username, String password, String fullName, String gender, String matricNum, String major, Object indexes, int yearOfStudy, int regAU) {
         super(username, password, fullName, gender);
         this.matricNum = matricNum;
         this.major = major;
