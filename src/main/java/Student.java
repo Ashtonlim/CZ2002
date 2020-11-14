@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student extends User{
+public class Student extends User implements Serializable {
     private String matricNum;
     private String major;
     private int yearOfStudy;
@@ -20,11 +21,7 @@ public class Student extends User{
     }
 
     public void updateYearOfStudy(){
-        this.yearOfStudy = 3;
+        this.yearOfStudy = 10;
     }
 
-    @Override
-    public String formatDBRow() {
-        return username + "," + password + "," + fullName + "," + gender + "," + matricNum + "," + major + "," + indexes + "," + yearOfStudy + "," + regAU +",0";
-    }
 }

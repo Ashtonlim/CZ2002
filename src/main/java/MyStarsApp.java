@@ -7,36 +7,6 @@ public class MyStarsApp {
         final int maxStudents = 5;
         ArrayList<Student> Students = new ArrayList<Student>();
 
-
-        /** Testing of RecordManager. */
-//        try{
-            System.out.println("----------");
-            System.out.println("Testing file -> objects");
-            RecordManager RM = new RecordManager();
-
-            //Search a user
-            User user1 = RM.getUser("weixing");
-            ((Student) user1).printStudentInfo();
-
-            //Get all users in a list
-            User[] users = RM.getAllUsers();
-
-            //Add a user
-            User add = new Student("weixing5", "112233", "WX", "male", "U1234", "CSC", new ArrayList<Index>(), 0, 0);
-            System.out.println("Status of add user: " + RM.addUser(add));
-
-            Course c1 = RM.getCourse("CZ2001");
-            System.out.println(c1.getCourseCode());
-            //Saving to file
-//            RM.save("users");
-            System.out.println("----------");
-
-//        } catch (Exception e){
-//            System.out.println("Error encountered at main: " + e);
-//            System.exit(1);
-//        }
-
-
         initStudents(Students);
 
         for (int i = 0; i < 5; i++) {
