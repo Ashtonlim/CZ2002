@@ -24,7 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d87434b4-cd92-408d-aaa1-35a19395d41b" name="Default Changelist" comment="Add FileManager for direct file rw via binary.Re-implemented RecordManager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RecordManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RecordManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/todo" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/todo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +207,8 @@
     <MESSAGE value="added Courses" />
     <MESSAGE value="Implemented RecordManager for users, pending courses." />
     <MESSAGE value="Add FileManager for direct file rw via binary.Re-implemented RecordManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add FileManager for direct file rw via binary.Re-implemented RecordManager" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/RecordManager.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/RecordManager.java" />
   </component>
   <component name="WindowStateProjectService">
     <state x="745" y="431" key="#Notifications" timestamp="1605371161609">
@@ -279,11 +280,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1205" y="699" key="VCS.ChangelistChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1603043410729" />
-    <state x="569" y="381" width="513" height="304" key="Vcs.Push.Dialog.v2" timestamp="1605370056321">
+    <state x="569" y="381" width="513" height="304" key="Vcs.Push.Dialog.v2" timestamp="1605372210052">
       <screen x="0" y="23" width="1536" height="882" />
     </state>
     <state x="949" y="569" width="816" height="482" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1603106398464" />
-    <state x="569" y="381" width="513" height="304" key="Vcs.Push.Dialog.v2/0.23.1536.882@0.23.1536.882" timestamp="1605370056321" />
+    <state x="569" y="381" width="513" height="304" key="Vcs.Push.Dialog.v2/0.23.1536.882@0.23.1536.882" timestamp="1605372210052" />
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603246433766">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
