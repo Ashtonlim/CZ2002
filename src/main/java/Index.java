@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Index {
+public class Index implements Serializable {
     private String index;
     private int vacancy;
     private ArrayList<Student> waitlist;

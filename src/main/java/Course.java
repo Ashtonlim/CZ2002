@@ -1,5 +1,8 @@
-public class Course {
-    protected Index[] indexLst;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Course implements Serializable {
+    protected ArrayList<Index> indexList;
     protected String courseCode;
     protected String courseName;
     protected String school;
@@ -8,7 +11,7 @@ public class Course {
     private int AU;
     private int courseVacancy;
 
-    public Course(String courseCode, String courseName, String school, String subjectType, int AU) {
+    public Course(String courseCode, String courseName, String school, String subjectType, int AU, ArrayList<Index> indexList) {
 //        this.indexLst = indexLst;
         this.courseCode = courseCode;
         this.courseName = courseName;
@@ -16,6 +19,7 @@ public class Course {
         this.subjectType = subjectType;
 //        this.classType = classType;
         this.AU = AU;
+        this.indexList = indexList;
 //        this.courseVacancy = courseVacancy;
     }
 
@@ -33,6 +37,7 @@ public class Course {
     public String getCourseCode(){
         return courseCode;
     }
+
 }
 
 

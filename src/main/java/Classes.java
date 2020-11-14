@@ -1,4 +1,6 @@
-public class Classes {
+import java.io.Serializable;
+
+public class Classes implements Serializable {
 
 	private String type;
 	private String timeStart;
