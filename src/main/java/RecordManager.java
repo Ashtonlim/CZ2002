@@ -29,7 +29,7 @@ public class RecordManager {
         //Courses
         courses.clear();
         ArrayList<Index> indexList1 = new ArrayList<>();
-        ArrayList<Student> studentList1 = new ArrayList<Student>();
+        ArrayList<Student> studentList1 = new ArrayList<>();
         studentList1.add( (Student) getUser("weixing") );
         studentList1.add( (Student) getUser("zheming") );
 
@@ -98,7 +98,7 @@ public class RecordManager {
         return true;
     }
 
-    public void save() {
+    private void save() {
         ArrayList<Object> temp = new ArrayList<>();
         temp.add(users);
         temp.add(courses);
