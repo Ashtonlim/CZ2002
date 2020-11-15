@@ -40,6 +40,9 @@ public class RecordManager {
         courses.add(add1);
         courses.add(add2);
         save();
+
+        System.out.println("Dummy data loaded into target/classes/db/database");
+        System.out.println("You should copy this file into src/main/java/resources/db");
     }
 
     /** search a course by course code */

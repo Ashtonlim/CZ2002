@@ -13,20 +13,26 @@ public class FileManager
         DBPath = getFilePath("db/database");
     }
 
-    public static List readSerializedObject(String filename) {
+    public static List readSerializedObject(String filename) throws IOException, ClassNotFoundException {
         List pDetails = null;
         FileInputStream fis = null;
         ObjectInputStream in = null;
-        try {
-            fis = new FileInputStream(filename);
-            in = new ObjectInputStream(fis);
-            pDetails = (ArrayList) in.readObject();
-            in.close();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
+        fis = new FileInputStream(filename);
+        in = new ObjectInputStream(fis);
+        pDetails = (ArrayList) in.readObject();
+        in.close();
+//        try {
+//            fis = new FileInputStream(filename);
+//            in = new ObjectInputStream(fis);
+//            pDetails = (ArrayList) in.readObject();
+//            in.close();
+//        } catch (InvalidClassException ex){
+//
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        } catch (ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
 
         return pDetails;
     }
@@ -98,7 +104,7 @@ public class FileManager
             store.add( loadUsers( (List) temp.get(0) ) );
             store.add( loadCourses( (List) temp.get(1) ) );
         } catch(Exception e){
-            System.out.println("Error trying to load DB.");
+            System.out.println("Critical: Error trying to load DB, returning empty database. You should run loadDummyData() again.");
             store.add( new ArrayList<>());
             store.add( new ArrayList<>());
         }

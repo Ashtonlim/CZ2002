@@ -7,6 +7,7 @@ public class MyStarsApp {
         final int maxStudents = 5;
         ArrayList<Student> Students = new ArrayList<Student>();
 
+
         initStudents(Students);
 
         for (int i = 0; i < 5; i++) {
