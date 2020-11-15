@@ -4,12 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginManager {
-	
-	//added salt to improve hashing
-	public static final String SALT = "CZ2007";
-//	Map DB = new HashMap();
-	
-	
+
 	public String generateHash(String password) {
 		StringBuilder hash = new StringBuilder();
 
@@ -31,54 +26,12 @@ public class LoginManager {
 		return hash.toString();
 	}
 	
-	
-//	public void signup(String username, String password) {
-//		String saltedPassword = SALT + password;
-//		String hashedPassword = generateHash(saltedPassword);
-//		//store new user and pw into hashmap
-//		DB.put(username, hashedPassword);
-//	}
 
-	
-//	public boolean verifyAdminLogin(String username, String password) {
-//		boolean isAuthenticated = false;
-//		// convert user input password into hashed password
-//		String saltedInputPW = SALT + password;
-//		String hashedInputPW = generateHash(saltedInputPW);
-//
-//		boolean found = false;
-//		int index = 0;
-//		
-//		//find user
-//		for (int i=0; i<listOfAdmins.size(); i++){
-//			String storedUser = listOfAdmins.get(i).getUsername();
-//			if(username.equals(storedUser)){
-//				index = i;
-//				found = true;
-//				break;
-//			}
-//			System.out.println("Login failed. The user does not exist.");
-//		}
-//		//check password
-//		if (found == true) {
-//			String storedPW = listOfAdmins.get(index).getPassword();
-//			if (hashedInputPW.equals(storedPW)) {
-//				System.out.println("Login successful.");
-//				isAuthenticated = true;
-//			} else {
-//				System.out.println("Login failed. Password is incorrect.");
-//			}
-//		}
-//		return isAuthenticated;
-//	}
-	
-	
 	public boolean verifyLogin(String username, String password) throws Exception {
 		boolean isAuthenticated = false;
 		boolean found = false;
 		// convert user input password into hashed password
-		String saltedInputPW = SALT + password;
-		String hashedInputPW = generateHash(saltedInputPW);
+		String hashedInputPW = generateHash(password);
 		
 		//find user
 		RecordManager rm = new RecordManager();
@@ -97,6 +50,7 @@ public class LoginManager {
 		//check password
 		if (found == true) {
 			String storedPW = user.getPassword();
+//			System.out.println(storedPW + "    " + hashedInputPW);
 			if (hashedInputPW.equals(storedPW)) {
 				System.out.println("Login successful.");
 				isAuthenticated = true;
@@ -107,5 +61,39 @@ public class LoginManager {
 		
 		return isAuthenticated;
 	}
+	
+	
+//	public boolean verifyAdminLogin(String username, String password) {
+//	boolean isAuthenticated = false;
+//	// convert user input password into hashed password
+//	String saltedInputPW = SALT + password;
+//	String hashedInputPW = generateHash(saltedInputPW);
+//
+//	boolean found = false;
+//	int index = 0;
+//	
+//	//find user
+//	for (int i=0; i<listOfAdmins.size(); i++){
+//		String storedUser = listOfAdmins.get(i).getUsername();
+//		if(username.equals(storedUser)){
+//			index = i;
+//			found = true;
+//			break;
+//		}
+//		System.out.println("Login failed. The user does not exist.");
+//	}
+//	//check password
+//	if (found == true) {
+//		String storedPW = listOfAdmins.get(index).getPassword();
+//		if (hashedInputPW.equals(storedPW)) {
+//			System.out.println("Login successful.");
+//			isAuthenticated = true;
+//		} else {
+//			System.out.println("Login failed. Password is incorrect.");
+//		}
+//	}
+//	return isAuthenticated;
+//}
+	
 	
 }

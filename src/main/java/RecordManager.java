@@ -18,10 +18,12 @@ public class RecordManager {
      */
     public void loadDummyData() throws Exception {
         //Users
+    	LoginManager lm = new LoginManager();
+    	String password = lm.generateHash("abc123");
         users.clear();
-        Student s1 = new Student("weixing", "abc123", "WeiXing", "M", "U123", "CS", "123",2, 20);
-        Student s2 = new Student("zheming", "abc123", "ZheMing", "M", "U321", "CS", "123",2, 20);
-        Admin s3 = new Admin("guat", "abc123", "Guat", "Male");
+        Student s1 = new Student("weixing", password, "WeiXing", "M", "U123", "CS", "123",2, 20);
+        Student s2 = new Student("zheming", password, "ZheMing", "M", "U321", "CS", "123",2, 20);
+        Admin s3 = new Admin("guat", password, "Guat", "Male");
         users.add(s1);
         users.add(s2);
         users.add(s3);
