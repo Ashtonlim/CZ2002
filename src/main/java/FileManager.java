@@ -104,7 +104,7 @@ public class FileManager
             store.add( loadUsers( (List) temp.get(0) ) );
             store.add( loadCourses( (List) temp.get(1) ) );
         } catch(Exception e){
-            System.out.println("Critical: Error trying to load DB, returning empty database. You should run loadDummyData() again.");
+            System.out.println("Critical: Error trying to load DB, returning empty database. You should run loadDummyData() once.");
             store.add( new ArrayList<>());
             store.add( new ArrayList<>());
         }
