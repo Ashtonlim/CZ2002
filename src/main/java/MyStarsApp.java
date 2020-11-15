@@ -1,3 +1,4 @@
+import javax.crypto.spec.RC2ParameterSpec;
 import java.util.*;
 
 public class MyStarsApp {
@@ -6,7 +7,25 @@ public class MyStarsApp {
         int choice;
         final int maxStudents = 5;
         ArrayList<Student> Students = new ArrayList<Student>();
+        RecordManager RM = new RecordManager();
 
+        //Load dummy data
+        while(true){
+            System.out.println("Load dummy data?");
+            System.out.println("1: Yes | 2: No");
+            try{
+                int c = sc.nextInt();
+                if (c < 1 || c > 2){
+                    throw new Exception();
+                }
+
+                if (c == 1){ RM.loadDummyData(); }
+                break;
+            } catch (Exception e){
+                System.out.println("Invalid entry");
+                continue;
+            }
+        }
 
         initStudents(Students);
 

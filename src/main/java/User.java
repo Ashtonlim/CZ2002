@@ -8,6 +8,7 @@ public abstract class User implements Serializable {
     public User(String username, String password, String fullName, String gender){
 
         this.username = username;
+        this.password = password;
         if (gender.equalsIgnoreCase("m") || gender.equalsIgnoreCase("f")) {
             this.gender = gender.toUpperCase();
         } else {
