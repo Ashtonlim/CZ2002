@@ -10,7 +10,7 @@ public class TestLogin {
 		
 		Scanner sc = new Scanner(System.in);
 		LoginManager login = new LoginManager();
-		
+		RecordManager RM = new RecordManager();
 //		for terminal
 //		Console cons = System.console();
 //		
@@ -39,9 +39,17 @@ public class TestLogin {
 			String loginPassword = sc.nextLine();
 			
 //			System.out.println(loginUsername +" "+ loginPassword);
-			System.out.println("Logging in........");
-			success = login.verifyLogin(loginUsername, loginPassword);
-			System.out.println("");
+
+
+			User user = RM.getUser(loginUsername);
+			if (user == null){
+				System.out.println("User does not exist");
+			} else {
+				System.out.println("Logging in........");
+				success = login.verifyLogin(user, loginPassword);
+				System.out.println("");
+			}
+
 		}		
 	}
 }

@@ -27,38 +27,21 @@ public class LoginManager {
 	}
 	
 
-	public boolean verifyLogin(String username, String password) throws Exception {
+	public boolean verifyLogin(User user, String password) throws Exception {
 		boolean isAuthenticated = false;
-		boolean found = false;
 		// convert user input password into hashed password
 		String hashedInputPW = generateHash(password);
-		
-		//find user
-		RecordManager rm = new RecordManager();
-		User user = rm.getUser(username);
-		if (user == null) {
-			System.out.println("Login failed. The user does not exist.");
-		//} else if (user instanceof Student) {
-				//if outside access period
-				//  	print cannot access during this period
-				//else
-				//		found = true
-		} else {
-			found = true;
-		}
-		
+
 		//check password
-		if (found == true) {
-			String storedPW = user.getPassword();
+		String storedPW = user.getPassword();
 //			System.out.println(storedPW + "    " + hashedInputPW);
-			if (hashedInputPW.equals(storedPW)) {
-				System.out.println("Login successful.");
-				isAuthenticated = true;
-			} else {
-				System.out.println("Login failed. Password is incorrect.");
-			}
+		if (hashedInputPW.equals(storedPW)) {
+			System.out.println("Login successful.");
+			isAuthenticated = true;
+		} else {
+			System.out.println("Login failed. Password is incorrect.");
 		}
-		
+
 		return isAuthenticated;
 	}
 	
