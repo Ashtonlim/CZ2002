@@ -7,7 +7,7 @@ public class LoginManager {
 	
 	//added salt to improve hashing
 	public static final String SALT = "CZ2007";
-	Map DB = new HashMap();
+//	Map DB = new HashMap();
 	
 	
 	public String generateHash(String password) {
@@ -32,35 +32,80 @@ public class LoginManager {
 	}
 	
 	
-	public void signup(String username, String password) {
-		String saltedPassword = SALT + password;
-		String hashedPassword = generateHash(saltedPassword);
-		//store new user and pw into hashmap
-		DB.put(username, hashedPassword);
-	}
+//	public void signup(String username, String password) {
+//		String saltedPassword = SALT + password;
+//		String hashedPassword = generateHash(saltedPassword);
+//		//store new user and pw into hashmap
+//		DB.put(username, hashedPassword);
+//	}
+
+	
+//	public boolean verifyAdminLogin(String username, String password) {
+//		boolean isAuthenticated = false;
+//		// convert user input password into hashed password
+//		String saltedInputPW = SALT + password;
+//		String hashedInputPW = generateHash(saltedInputPW);
+//
+//		boolean found = false;
+//		int index = 0;
+//		
+//		//find user
+//		for (int i=0; i<listOfAdmins.size(); i++){
+//			String storedUser = listOfAdmins.get(i).getUsername();
+//			if(username.equals(storedUser)){
+//				index = i;
+//				found = true;
+//				break;
+//			}
+//			System.out.println("Login failed. The user does not exist.");
+//		}
+//		//check password
+//		if (found == true) {
+//			String storedPW = listOfAdmins.get(index).getPassword();
+//			if (hashedInputPW.equals(storedPW)) {
+//				System.out.println("Login successful.");
+//				isAuthenticated = true;
+//			} else {
+//				System.out.println("Login failed. Password is incorrect.");
+//			}
+//		}
+//		return isAuthenticated;
+//	}
 	
 	
-	public Boolean login(String username, String password) {
-		Boolean isAuthenticated = false;
+	public boolean verifyLogin(String username, String password) throws Exception {
+		boolean isAuthenticated = false;
+		boolean found = false;
 		// convert user input password into hashed password
-		String saltedPassword = SALT + password;
-		String hashedPassword = generateHash(saltedPassword);
+		String saltedInputPW = SALT + password;
+		String hashedInputPW = generateHash(saltedInputPW);
 		
-		//retrieve user's stored password
-		String storedPasswordHash = (String) DB.get(username);
-		if (storedPasswordHash == null) {
+		//find user
+		RecordManager rm = new RecordManager();
+		User user = rm.getUser(username);
+		if (user == null) {
 			System.out.println("Login failed. The user does not exist.");
+		//} else if (user instanceof Student) {
+				//if outside access period
+				//  	print cannot access during this period
+				//else
+				//		found = true
 		} else {
-			if(hashedPassword.equals(storedPasswordHash)){
+			found = true;
+		}
+		
+		//check password
+		if (found == true) {
+			String storedPW = user.getPassword();
+			if (hashedInputPW.equals(storedPW)) {
 				System.out.println("Login successful.");
 				isAuthenticated = true;
 			} else {
 				System.out.println("Login failed. Password is incorrect.");
-				isAuthenticated = false;
 			}
 		}
+		
 		return isAuthenticated;
 	}
-	
 	
 }
