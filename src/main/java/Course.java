@@ -2,25 +2,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Course implements Serializable {
-    protected ArrayList<Index> indexList;
     protected String courseCode;
     protected String courseName;
-    protected String school;
-    private String subjectType;
-//    private String classType;
+    protected String facultyName;
+    protected String subjectType;
+    protected ArrayList<Index> indexList;
     private int AU;
     private int courseVacancy;
 
-    public Course(String courseCode, String courseName, String school, String subjectType, int AU, ArrayList<Index> indexList) {
-//        this.indexLst = indexLst;
+    public Course(String courseCode, String courseName, String facultyName, String subjectType, int AU, ArrayList<Index> indexList, int courseVacancy) {
         this.courseCode = courseCode;
         this.courseName = courseName;
-        this.school = school;
+        this.facultyName = facultyName;
         this.subjectType = subjectType;
-//        this.classType = classType;
         this.AU = AU;
-        this.indexList = indexList;
-//        this.courseVacancy = courseVacancy;
+    	this.indexList = indexList;
+        this.courseVacancy = courseVacancy;
     }
 
     public int getVacancy() {
@@ -30,12 +27,13 @@ public class Course implements Serializable {
     public void setVacancy(int vacancy) {
         this.courseVacancy = vacancy;
     }
-    public void printVacancy(){
-        System.out.println("This course has" + getVacancy());
-    }
 
     public String getCourseCode(){
         return courseCode;
+    }
+    
+    public void setCourseCode(String courseCode){
+        this.courseCode = courseCode;
     }
 
 }

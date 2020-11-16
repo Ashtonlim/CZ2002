@@ -37,8 +37,8 @@ public class RecordManager {
 
         Index add1_1 = new Index("200201", 20, studentList1, studentList1);
         indexList1.add(add1_1);
-        Course add1 = new Course("CZ2002", "Test 2", "SCSE", "Core", 3, indexList1);
-        Course add2 = new Course("CZ2003", "Test 3", "SCSE", "Core", 3, indexList1);
+        Course add1 = new Course("CZ2002", "Test 2", "SCSE", "Core", 3, indexList1, 10);
+        Course add2 = new Course("CZ2003", "Test 3", "SCSE", "Core", 3, indexList1, 10);
         courses.add(add1);
         courses.add(add2);
         save();
