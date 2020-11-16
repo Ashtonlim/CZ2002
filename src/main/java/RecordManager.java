@@ -99,6 +99,48 @@ public class RecordManager {
         save();
         return true;
     }
+    
+    /** Remove user */
+    public boolean removeUser(User user) throws Exception {
+
+        for (int  i = 0; i < this.users.size(); i++){
+            User temp = users.get(i);
+            if (temp.getUserName().equals(user.getUserName())){
+            	users.remove(user);
+                save();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    /** Add course */
+    public boolean addCourse(Course course) throws Exception {
+
+        for (int  i = 0; i < this.courses.size(); i++){
+            Course temp = courses.get(i);
+            if (temp.getCourseCode().equals(course.getCourseCode())){
+                return false;
+            }
+        }
+        courses.add(course);
+        save();
+        return true;
+    }
+    
+    /** Remove course */
+    public boolean removeCourse(Course course) throws Exception {
+
+        for (int  i = 0; i < this.courses.size(); i++){
+            Course temp = courses.get(i);
+            if (temp.getCourseCode().equals(course.getCourseCode())){
+            	courses.remove(course);
+                save();
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void save() {
         ArrayList<Object> temp = new ArrayList<>();
