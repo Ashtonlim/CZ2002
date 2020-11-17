@@ -230,5 +230,4 @@ public class RecordManager {
         }
         return RegCourseStuList;
     }
-
 }

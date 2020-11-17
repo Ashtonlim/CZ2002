@@ -3,9 +3,14 @@ import java.util.ArrayList;
 
 public class StudentController {
     RecordManager RM;
+    Course C;
 
     public StudentController(RecordManager RM){
         this.RM = RM;
+    }
+
+    public StudentController(Course C){
+        this.C = C;
     }
 
     public void printCourseReg(Student s) {
@@ -21,5 +26,17 @@ public class StudentController {
         } else
             System.out.println("No Course Registered found for this Student");
         return;
+    }
+
+    public void checkVacanciesOfIndex(){
+        System.out.println("=== Please input your CourseID to show indexes of the Course ===");
+        String courseCode = View.getTextInput("CourseID: ");
+        Course course =  RM.getCourse(courseCode);
+        ArrayList<Index> indexList = course.getIndexList();
+        System.out.println("=== IndexNumber == Vacancies === ");
+        for (Index index : indexList) {
+            System.out.print("      " + index.getIndex());
+            System.out.println("          " + index.getVacancy());
+        }
     }
 }
