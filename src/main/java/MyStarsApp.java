@@ -85,11 +85,13 @@ public class MyStarsApp {
 //        }
 
 //
-//        Course c1 = RM.getCourse("CZ2003");
-//        System.out.println(c1.getFacultyName());
+        Course c1 = RM.getCourse("CZ2003");
+        System.out.println(c1.getFacultyName());
+
+        AdminController AC = new AdminController(RM);
+        AC.printStudentListByCourse();
 //
-//        AdminController AC = new AdminController(RM);
-//        AC.printStudentListByCourse();
+//
 //        initStudents(Students);
 //
 //        for (int i = 0; i < 5; i++) {
@@ -149,7 +151,7 @@ public class MyStarsApp {
 
     public static void initStudents(ArrayList<Student> S) {
         for (int i = 0; i < 5; i++) {
-            S.add(new Student("ash1", "pass", "ash", "3", Integer.toString(i), "SCSE", "123", 1, 50));
+//            S.add(new Student("ash1", "pass", "ash", "3", Integer.toString(i), "SCSE", "123", 1, 50));
         }
     }
 }

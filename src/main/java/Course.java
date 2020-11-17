@@ -15,7 +15,7 @@ public class Course implements Serializable {
         this.courseName = courseName;
         this.subjectType = subjectType;
         this.AU = AU;
-    	this.indexList = indexList;
+    	faculty.addCourse(this);
     }
 
     public ArrayList<Index> getIndexList(){

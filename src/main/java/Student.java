@@ -6,16 +6,18 @@ public class Student extends User implements Serializable {
     private String matricNum;
     private String facultyName;
     private int yearOfStudy;
-    private ArrayList<Index> indexList;
+    private ArrayList<Index> indexList = new ArrayList<>();
+    private ArrayList<Index> waitList = new ArrayList<>();
     private Faculty faculty;
     private int regAU;
 
-    public Student(String username, String password, String fullName, String gender, String matricNum, String facultyName, Object indexes, int yearOfStudy, int regAU) {
+    public Student(String username, String password, String fullName, String gender, String matricNum, Faculty faculty, int yearOfStudy, int regAU) {
         super(username, password, fullName, gender);
         this.matricNum = matricNum;
         this.facultyName = facultyName;
         this.yearOfStudy = yearOfStudy;
         this.regAU = regAU;
+        faculty.addStudent(this);
 
     }
 
@@ -27,8 +29,12 @@ public class Student extends User implements Serializable {
         this.yearOfStudy = 10;
     }
 
-    public void setIndexList(ArrayList<Index> indexList){
-        this.indexList = indexList;
+    public void addIndex(Index index){
+        indexList.add(index);
+    }
+
+    public void addToWaitList(Index index){
+        waitList.add(index);
     }
 
     public ArrayList<Index> getIndexList(){
