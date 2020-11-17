@@ -76,9 +76,11 @@ public class View {
         System.out.println( "Total: " + studentList.size() );
         for (int i = 0; i < studentList.size(); i++){
             User student = studentList.get(i);
-            System.out.println( (i+1) + student.getFullName() );
+            System.out.println( (i+1) + ". " + student.getFullName() );
         }
     }
+
+
 
 //    public static void main(String[] args){
 //        ArrayList<String> options = new ArrayList<>();

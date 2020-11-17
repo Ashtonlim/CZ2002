@@ -7,6 +7,7 @@ public class Index implements Serializable {
     private ArrayList<Student> waitList;
     private ArrayList<Student> studentList;
     private ArrayList<Lesson> lessonList;
+    private Course course;
 
     public Index(String index, int slots, ArrayList<Student> waitlist, ArrayList<Student> studentList) {
         this.index = index;
@@ -14,11 +15,20 @@ public class Index implements Serializable {
         this.waitList = waitlist;
         this.studentList = studentList;
     }
-    
+
     public String getIndex() {
     	return index;
     }
-    
+
+    public void setCourse(Course course){
+        this.course = course;
+    }
+
+    public Course getCourse(){
+        return course;
+    }
+
+
     public void printWaitList() {
         // System.out.println();
         for (int i = 0; i < waitList.size(); i++) {

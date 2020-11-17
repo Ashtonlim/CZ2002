@@ -47,11 +47,15 @@ public class RecordManager {
         }
 
         indexes.add(new Index("200201", 20, indexWaitList, indexStudentList));
-        courses.add(new Course("CZ2002", "Test 2", "SCSE", "Core", 3, indexes, 10));
-        courses.add(new Course("CZ2003", "Test 3", "SCSE", "Core", 3, new ArrayList<Index>(), 10));
+        Course c1 = new Course("CZ2002", "Test 2", "SCSE", "Core", 3, indexes, 10);
+        Course c2 = new Course("CZ2003", "Test 3", "SCSE", "Core", 3, new ArrayList<Index>(), 10);
+        indexes.get(0).setCourse(c1);
+        courses.add(c1);
+        courses.add(c2);
 
-        facultyList.add(new Faculty("SCSE", students, courses));
-
+        Faculty f1 = new Faculty("SCSE", students, courses);
+        facultyList.add(f1);
+        courses.get(0).setFaculty(f1);
         save();
 
         System.out.println("Dummy data loaded.");
