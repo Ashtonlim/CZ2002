@@ -17,6 +17,10 @@ public class Course implements Serializable {
         this.AU = AU;
     	this.indexList = indexList;
     }
+    
+    public ArrayList<Index> getIndexList(){
+    	return indexList;
+    }
 
     public String getCourseCode(){
         return courseCode;

@@ -50,21 +50,55 @@ public class RecordManager {
         System.out.println("Dummy data loaded.");
     }
 
-    /** search a course by course code */
-    public Course getCourse(String courseCode) {
+
+    /** get faculty by facultyName */
+    public Faculty getFaculty(String facultyName){
+
+        for (Faculty faculty : facultyList) {
+            if (faculty.getName().equals(facultyName)) {
+                return faculty;
+            }
+        }
+
+        return null;
+    }
+    
+    
+    /** get course by course code */
+    public Course getCourse(String courseCode){
 
         for (Faculty faculty : facultyList) {
             ArrayList<Course> tempCourseList = faculty.getCourseList();
-            for (Course temp : tempCourseList) {
-                if (temp.getCourseCode().equals(courseCode)) {
-                    return temp;
+            for (Course tempCourse : tempCourseList) {
+                if (tempCourse.getCourseCode().equals(courseCode)) {
+                    return tempCourse;
                 }
             }
         }
 
         return null;
     }
+    
+    
+    /** get index by index number */
+    public Index getIndex(String index){
+    	
+    	for (Faculty faculty : facultyList) {
+            ArrayList<Course> tempCourseList = faculty.getCourseList();
+            for (Course tempCourse : tempCourseList) {
+		    	ArrayList<Index> tempIndexList = tempCourse.getIndexList();
+		    	for (Index tempIndex : tempIndexList) {
+		            if (tempIndex.getIndex().equals(index)) {
+		                return tempIndex;
+		            }
+		    	}
+		    }
+        }
 
+        return null;
+    }
+
+    
     /** return all courses */
     public ArrayList<Course> getAllCourses() {
         ArrayList<Course> temp = new ArrayList<>();
