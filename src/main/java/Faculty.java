@@ -1,11 +1,11 @@
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Faculty implements Serializable{
 	private String facultyName;
-	private Date regStartDate;
-	private Date regEndDate;
+	private LocalDateTime regStartDate;
+	private LocalDateTime regEndDate;
 	private ArrayList<Student> studentList;
 	private ArrayList<Course> courseList;
 	
@@ -28,11 +28,11 @@ public class Faculty implements Serializable{
 		return facultyName;
 	}
 
-	public Date getStartDate() {
+	public LocalDateTime getStartDate() {
 		return regStartDate;
 	}
 	
-	public Date getEndDate() {
+	public LocalDateTime getEndDate() {
 		return regEndDate;
 	}
 	
@@ -40,7 +40,7 @@ public class Faculty implements Serializable{
 		this.facultyName = facultyName;
 	}
 
-	public void setRegistrationTime(Date regStartDate, Date regEndDate){
+	public void setRegistrationTime(LocalDateTime regStartDate, LocalDateTime regEndDate){
 		this.regStartDate = regStartDate;
 		this.regEndDate = regEndDate;
 	}
