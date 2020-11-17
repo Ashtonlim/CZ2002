@@ -1,4 +1,5 @@
 import javax.crypto.spec.RC2ParameterSpec;
+import java.awt.desktop.SystemSleepEvent;
 import java.util.*;
 
 public class MyStarsApp {
@@ -16,11 +17,9 @@ public class MyStarsApp {
             System.out.println("1: Yes | 2: No");
             try{
                 int c = sc.nextInt();
-                System.out.println(c);
                 if (c < 1 || c > 2){
                     throw new Exception();
                 }
-
                 if (c == 1){ RM.loadDummyData(); }
                 break;
             } catch (Exception e){
@@ -68,28 +67,47 @@ public class MyStarsApp {
         studentOptions.add("Check Vacancies Available");
         studentOptions.add("Change Index Number of Course");
         studentOptions.add("Swop Index Number with Another Student");
-//
-//        while(true) {
-//            int c;
-//            if (activeUser instanceof Student) {
-//                c = View.getPrintOptions("=== User Screen ===", studentOptions);
-//            } else if (activeUser instanceof Admin) {
-//                c = View.getPrintOptions("=== User Screen ===", adminOptions);
-//                switch (c) {
-//                    case 4 :
-//
-//                }
-//            } else {
-//                continue;
-//            }
-//        }
-
-//
-        Course c1 = RM.getCourse("CZ2003");
-        System.out.println(c1.getFacultyName());
 
         AdminController AC = new AdminController(RM);
-        AC.printStudentListByCourse();
+        StudentController SC = new StudentController(RM);
+        boolean active = true;
+        while(active) {
+            int c;
+            if (activeUser instanceof Student) {
+                c = View.getPrintOptions("=== User Screen ===", studentOptions);
+                switch (c){
+                    case 0:
+                        System.out.println("Exiting...");
+                        active = false;
+                        break;
+                    default:
+                        System.out.println("Option not available...");
+                }
+            } else if (activeUser instanceof Admin) {
+                c = View.getPrintOptions("=== Admin Screen ===", adminOptions);
+                switch (c) {
+                    case 4 :
+                        AC.checkVacancies();
+                        break;
+                    case 5:
+                        AC.printStudentListByIndex();
+                        break;
+                    case 6:
+                        AC.printStudentListByCourse();
+                        break;
+                    case 0:
+                        System.out.println("Exiting...");
+                        active = false;
+                        break;
+                    default:
+                        System.out.println("Option not available...");
+                }
+            } else {
+                System.out.println("Not logged in!");
+                break;
+            }
+        }
+
 //
 //
 //        initStudents(Students);

@@ -37,7 +37,13 @@ public class AdminController {
         System.out.println("=== Index Vacancy Checker ===");
         String indexCode = View.getTextInput("Index number: ");
         Index index = RM.getIndex(indexCode);
-        System.out.println("Available slots: " + index.getVacancy());
+
+        if (index != null) {
+            System.out.println("Available slots: " + index.getVacancy());
+        } else {
+            System.out.println("Index not found!");
+        }
+
     }
 
     /** 5. Print student list by index number. -wx */

@@ -14,11 +14,9 @@ public class Student extends User implements Serializable {
     public Student(String username, String password, String fullName, String gender, String matricNum, Faculty faculty, int yearOfStudy, int regAU) {
         super(username, password, fullName, gender);
         this.matricNum = matricNum;
-        this.facultyName = facultyName;
         this.yearOfStudy = yearOfStudy;
         this.regAU = regAU;
         faculty.addStudent(this);
-
     }
 
     public void printStudentInfo() {
