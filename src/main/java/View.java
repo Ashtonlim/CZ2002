@@ -3,8 +3,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class View {
 
+
+
     /** Print the options available and get choice from user */
-    public static int getOptions(String title, ArrayList<String> options){
+    public static int getPrintOptions(String title, ArrayList<String> options){
         Scanner sc = new Scanner(System.in);
         int choice, counter = 0;
         System.out.println(title);
@@ -79,6 +81,8 @@ public class View {
             System.out.println( (i+1) + ". " + student.getFullName() );
         }
     }
+
+
 
 
 

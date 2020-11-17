@@ -34,10 +34,7 @@ public class LoginManager {
 		String storedPW = user.getPassword();
 		// System.out.println(storedPW + " " + hashedInputPW);
 		if (hashedInputPW.equals(storedPW)) {
-			System.out.println("Login successful.");
 			isAuthenticated = true;
-		} else {
-			System.out.println("Login failed. Password is incorrect.");
 		}
 
 		return isAuthenticated;

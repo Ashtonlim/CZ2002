@@ -7,6 +7,7 @@ public class Student extends User implements Serializable {
     private String facultyName;
     private int yearOfStudy;
     private ArrayList<Index> indexList;
+    private Faculty faculty;
     private int regAU;
 
     public Student(String username, String password, String fullName, String gender, String matricNum, String facultyName, Object indexes, int yearOfStudy, int regAU) {
@@ -33,4 +34,14 @@ public class Student extends User implements Serializable {
     public ArrayList<Index> getIndexList(){
         return indexList;
     }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+
 }

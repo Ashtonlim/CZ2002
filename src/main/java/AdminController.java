@@ -46,7 +46,6 @@ public class AdminController {
         String indexCode = View.getTextInput("Index number: ");
         Index index = RM.getIndex(indexCode);
 
-
         if (index != null) {
             View.printStudentList(getStudentList(index));
         } else {

@@ -6,18 +6,24 @@ public class Faculty implements Serializable{
 	private String facultyName;
 	private LocalDateTime regStartDate;
 	private LocalDateTime regEndDate;
-	private ArrayList<Student> studentList;
-	private ArrayList<Course> courseList;
+	private ArrayList<Student> studentList = new ArrayList<>();
+	private ArrayList<Course> courseList = new ArrayList<>();
 	
-	public Faculty(String facultyName, ArrayList<Student> studentList, ArrayList<Course> courseList) {
+	public Faculty(String facultyName) {
 		this.facultyName = facultyName;
-		this.studentList = studentList;
-		this.courseList = courseList;
 	}
 
 
 	public ArrayList<Course> getCourseList(){
 		return courseList;
+	}
+
+	public void addStudent(Student student){
+		studentList.add(student);
+	}
+
+	public ArrayList<Student> getStudentList(){
+		return studentList;
 	}
 
 	public void addCourse(Course course){

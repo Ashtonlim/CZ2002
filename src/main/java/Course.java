@@ -7,17 +7,17 @@ public class Course implements Serializable {
     private Faculty faculty;
     private String facultyName;
     private String subjectType;
-    private ArrayList<Index> indexList;
+    private ArrayList<Index> indexList = new ArrayList<>();
     private int AU;
 
-    public Course(String courseCode, String courseName, String facultyName, String subjectType, int AU, ArrayList<Index> indexList, int courseVacancy) {
+    public Course(String courseCode, String courseName, String subjectType, int AU, Faculty faculty) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.subjectType = subjectType;
         this.AU = AU;
     	this.indexList = indexList;
     }
-    
+
     public ArrayList<Index> getIndexList(){
     	return indexList;
     }
@@ -34,12 +34,8 @@ public class Course implements Serializable {
         this.courseCode = courseCode;
     }
 
-    public void setFaculty(Faculty faculty){
-        this.faculty = faculty;
-    }
-
-    public Faculty getFaculty(){
-        return faculty;
+    public void addIndex(Index index){
+        indexList.add(index);
     }
 
     public String getFacultyName(){

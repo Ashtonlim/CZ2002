@@ -29,33 +29,38 @@ public class RecordManager {
 
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<Admin> admins = new ArrayList<Admin>();
-        ArrayList<Index> indexes = new ArrayList<Index>();
-        ArrayList<Student> indexStudentList = new ArrayList<Student>();
-        ArrayList<Student> indexWaitList = new ArrayList<Student>();
-        ArrayList<Course> courses = new ArrayList<Course>();
 
+        //Student
         students.add(new Student("weixing", password, "WeiXing", "M", "U123", "CS", "123", 2, 20));
         students.add(new Student("zheming", password, "ZheMing", "M", "U321", "CS", "123", 2, 20));
-        admins.add(new Admin("guat", password, "Guat", "Male"));
+        admins.add(new Admin("guat", password, "Guat", "M"));
 
         for (Student s : students) {
             users.add(s);
-            indexStudentList.add(s); // load in students to index
         }
         for (Admin a : admins) {
             users.add(a);
         }
 
-        indexes.add(new Index("200201", 20, indexWaitList, indexStudentList));
-        Course c1 = new Course("CZ2002", "Test 2", "SCSE", "Core", 3, indexes, 10);
-        Course c2 = new Course("CZ2003", "Test 3", "SCSE", "Core", 3, new ArrayList<Index>(), 10);
-        indexes.get(0).setCourse(c1);
-        courses.add(c1);
-        courses.add(c2);
 
-        Faculty f1 = new Faculty("SCSE", students, courses);
+        //Faculty
+        Faculty f1 = new Faculty("SCSE");
+        for (User user : users){
+            if (user instanceof Student){
+                f1.addStudent( (Student) user);
+            }
+        }
+        //Course
+        Course c1 = new Course("CZ2002", "SCSE", "Core", 3, f1);
+        Course c2 = new Course("CZ2003", "SCSE", "Core", 3, f1);
+        f1.addCourse(c1);
+        f1.addCourse(c2);
+        Index i1 = new Index("200201", 20, c1);
+        Index i2 = new Index("200301", 20, c1);
+        c1.addIndex(i1);
+        c2.addIndex(i2);
+
         facultyList.add(f1);
-        courses.get(0).setFaculty(f1);
         save();
 
         System.out.println("Dummy data loaded.");

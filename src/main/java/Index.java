@@ -4,24 +4,36 @@ import java.util.ArrayList;
 public class Index implements Serializable {
     private String index;
     private int totalSlots;
-    private ArrayList<Student> waitList;
-    private ArrayList<Student> studentList;
-    private ArrayList<Lesson> lessonList;
+    private ArrayList<Student> waitList = new ArrayList<>();
+    private ArrayList<Student> studentList = new ArrayList<>();
+    private ArrayList<Lesson> lessonList = new ArrayList<>();
     private Course course;
 
-    public Index(String index, int slots, ArrayList<Student> waitlist, ArrayList<Student> studentList) {
+    public Index(String index, int slots, Course course) {
         this.index = index;
         this.totalSlots = slots;
-        this.waitList = waitlist;
         this.studentList = studentList;
+        this.course = course;
     }
 
     public String getIndex() {
     	return index;
     }
 
-    public void setCourse(Course course){
-        this.course = course;
+    public void addToWaitList(Student student){
+        waitList.add(student);
+    }
+
+    public ArrayList<Student> getWaitList(){
+        return waitList;
+    }
+
+    public void addToStudentList(Student student){
+        studentList.add(student);
+    }
+
+    public ArrayList<Student> getStudentList(){
+        return waitList;
     }
 
     public Course getCourse(){
@@ -48,10 +60,6 @@ public class Index implements Serializable {
 
     public void setVacancy(int slots) {
         this.totalSlots = slots;
-    }
-
-    public ArrayList<Student> getStudentList(){
-        return studentList;
     }
 
 }
