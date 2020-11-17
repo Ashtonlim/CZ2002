@@ -1,11 +1,11 @@
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Student extends User implements Serializable {
     private String matricNum;
     private String facultyName;
     private int yearOfStudy;
-    private ArrayList<Course> courseList;
     private ArrayList<Index> indexList;
     private int regAU;
 
@@ -26,4 +26,11 @@ public class Student extends User implements Serializable {
         this.yearOfStudy = 10;
     }
 
+    public void setIndexList(ArrayList<Index> indexList){
+        this.indexList = indexList;
+    }
+
+    public ArrayList<Index> getIndexList(){
+        return indexList;
+    }
 }
