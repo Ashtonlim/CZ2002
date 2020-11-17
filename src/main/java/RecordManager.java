@@ -5,9 +5,16 @@ public class RecordManager {
     private ArrayList<Faculty> facultyList;
 
     public RecordManager() throws Exception {
-        ArrayList<?> db = FileManager.readSerializedObject(); // [0] -> Users, [1] -> Faculties
-        users = (ArrayList<User>) db.get(0); // Safe cast, checked in FileManager
-        facultyList = (ArrayList<Faculty>) db.get(1); // Safe cast, checked in FileManager
+        try{
+            ArrayList<?> db = FileManager.readSerializedObject(); // [0] -> Users, [1] -> Faculties
+            users = (ArrayList<User>) db.get(0); // Safe cast, checked in FileManager
+            facultyList = (ArrayList<Faculty>) db.get(1); // Safe cast, checked in FileManager
+        } catch (Exception e){
+            System.out.println("Error: " + e.getMessage() );
+            System.out.println("Unable to get data from database, loading empty db. You should load dummy data once.");
+            users = new ArrayList<>();
+            facultyList = new ArrayList<>();
+        }
     }
 
     /**
@@ -125,6 +132,7 @@ public class RecordManager {
 
         return user;
     }
+
 
     /** return all users */
     public ArrayList<User> getAllUsers() {

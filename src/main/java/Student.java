@@ -15,6 +15,7 @@ public class Student extends User implements Serializable {
         this.facultyName = facultyName;
         this.yearOfStudy = yearOfStudy;
         this.regAU = regAU;
+
     }
 
     public void printStudentInfo() {

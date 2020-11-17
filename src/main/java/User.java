@@ -10,6 +10,7 @@ public abstract class User implements Serializable {
 
         this.username = username;
         this.password = password;
+        this.fullName = fullName;
         if (gender.equalsIgnoreCase("m") || gender.equalsIgnoreCase("f")) {
             this.gender = gender.toUpperCase();
         } else {
@@ -20,6 +21,9 @@ public abstract class User implements Serializable {
 
     public String getUserName(){
         return username;
+    }
+    public String getFullName(){
+        return fullName;
     }
     
     public String getPassword() {

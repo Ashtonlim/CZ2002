@@ -36,7 +36,7 @@ public class Faculty implements Serializable{
 		return regEndDate;
 	}
 	
-	public void setFacultyName(String facultyName) {
+	public void setName(String facultyName) {
 		this.facultyName = facultyName;
 	}
 

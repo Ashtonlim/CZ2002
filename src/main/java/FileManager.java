@@ -17,17 +17,17 @@ public class FileManager {
 
     }
 
-    public static ArrayList<?> readSerializedObject() {
+    public static ArrayList<?> readSerializedObject() throws Exception{
         ArrayList<?> read = new ArrayList<Object>();
         System.out.println(DBPath);
-        try {
-            FileInputStream fis = new FileInputStream(DBPath);
-            ObjectInputStream in = new ObjectInputStream(fis);
-            read = (ArrayList<?>) in.readObject();
-            in.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+        FileInputStream fis = new FileInputStream(DBPath);
+        ObjectInputStream in = new ObjectInputStream(fis);
+        read = (ArrayList<?>) in.readObject();
+        in.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         return read;
 
     }

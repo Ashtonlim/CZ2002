@@ -40,4 +40,8 @@ public class Index implements Serializable {
         this.totalSlots = slots;
     }
 
+    public ArrayList<Student> getStudentList(){
+        return studentList;
+    }
+
 }
