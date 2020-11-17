@@ -22,13 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d87434b4-cd92-408d-aaa1-35a19395d41b" name="Default Changelist" comment="Add FileManager for direct file rw via binary.Re-implemented RecordManager">
+    <list default="true" id="d87434b4-cd92-408d-aaa1-35a19395d41b" name="Default Changelist" comment="Added faculty to database, added faculty to RecordManager.&#10;Updated methods in RecordManager to fit faculty class.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Faculty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Index.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MyStarsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MyStarsApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RecordManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RecordManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -188,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605370715184</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added faculty to database, added faculty to RecordManager.&#10;Updated methods in RecordManager to fit faculty class.">
+      <created>1605589286341</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1605589286341</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,7 +217,8 @@
     <MESSAGE value="Implemented RecordManager for users, pending courses." />
     <MESSAGE value="Add FileManager for direct file rw via binary.Re-implemented RecordManager" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/RecordManager.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/RecordManager.java" />
+    <MESSAGE value="Added faculty to database, added faculty to RecordManager.&#10;Updated methods in RecordManager to fit faculty class." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added faculty to database, added faculty to RecordManager.&#10;Updated methods in RecordManager to fit faculty class." />
   </component>
   <component name="WindowStateProjectService">
     <state x="745" y="431" key="#Notifications" timestamp="1605371161609">
@@ -238,6 +243,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="606" y="778" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1603080886606" />
+    <state x="685" y="209" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605589574683">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="685" y="209" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605589574683" />
     <state x="506" y="218" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605362670967">
       <screen x="0" y="23" width="1536" height="882" />
     </state>
@@ -285,10 +294,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1205" y="699" key="VCS.ChangelistChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1603043410729" />
-    <state x="569" y="381" width="513" height="304" key="Vcs.Push.Dialog.v2" timestamp="1605372210052">
-      <screen x="0" y="23" width="1536" height="882" />
+    <state x="949" y="569" width="513" height="304" key="Vcs.Push.Dialog.v2" timestamp="1605589301569">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="949" y="569" width="816" height="482" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1603106398464" />
+    <state x="949" y="569" width="816" height="482" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1605589301569" />
     <state x="569" y="381" width="513" height="304" key="Vcs.Push.Dialog.v2/0.23.1536.882@0.23.1536.882" timestamp="1605372210052" />
     <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605579813451">
       <screen x="0" y="0" width="2560" height="1400" />

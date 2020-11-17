@@ -3,14 +3,14 @@ import java.util.ArrayList;
 
 public class Index implements Serializable {
     private String index;
-    private int slots;
+    private int totalSlots;
     private ArrayList<Student> waitList;
     private ArrayList<Student> studentList;
-    private ArrayList<Lesson> lessons;
+    private ArrayList<Lesson> lessonList;
 
     public Index(String index, int slots, ArrayList<Student> waitlist, ArrayList<Student> studentList) {
         this.index = index;
-        this.slots = slots;
+        this.totalSlots = slots;
         this.waitList = waitlist;
         this.studentList = studentList;
     }
@@ -29,11 +29,11 @@ public class Index implements Serializable {
     }
 
     public int getVacancy() {
-        return slots;
+        return totalSlots - studentList.size();
     }
 
     public void setVacancy(int slots) {
-        this.slots = slots;
+        this.totalSlots = slots;
     }
 
 }
