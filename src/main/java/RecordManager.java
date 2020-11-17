@@ -224,4 +224,20 @@ public class RecordManager {
         FileManager.writeSerializedObject(temp);
     }
 
+    public ArrayList<Index> getCourseStu(Student s) {
+        ArrayList<Index> RegCourseStuList = new ArrayList<>();
+        for (Faculty faculty : facultyList) {
+            for (Course course : faculty.getCourseList()) {
+                for (Index index : course.getIndexList()) {
+                    for (Student stu : index.getStudentList()) {
+                        if (s == stu) {
+                            RegCourseStuList.add(index);
+                        }
+                    }
+                }
+            }
+        }
+        return RegCourseStuList;
+    }
+
 }

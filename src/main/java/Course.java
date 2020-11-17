@@ -25,6 +25,10 @@ public class Course implements Serializable {
     public String getCourseCode(){
         return courseCode;
     }
+
+    public String getCourseName(){
+        return courseName;
+    }
     
     public void setCourseCode(String courseCode){
         this.courseCode = courseCode;
