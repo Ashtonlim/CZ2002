@@ -14,7 +14,11 @@ public class Index implements Serializable {
         this.waitList = waitlist;
         this.studentList = studentList;
     }
-
+    
+    public String getIndex() {
+    	return index;
+    }
+    
     public void printWaitList() {
         // System.out.println();
         for (int i = 0; i < waitList.size(); i++) {
