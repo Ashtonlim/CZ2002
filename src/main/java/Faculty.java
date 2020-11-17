@@ -1,39 +1,48 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Faculty implements Serializable{
 	private String facultyName;
-	private Date startDate;
-	private Date endDate;
+	private Date regStartDate;
+	private Date regEndDate;
+	private ArrayList<Student> studentList;
+	private ArrayList<Course> courseList;
 	
-	public Faculty(String facultyName, Date startDate, Date endDate) {
+	public Faculty(String facultyName, ArrayList<Student> studentList, ArrayList<Course> courseList) {
 		this.facultyName = facultyName;
-		this.startDate = startDate;
-		this.endDate = endDate;
+		this.studentList = studentList;
+		this.courseList = courseList;
 	}
-	
-	public String getFacultyName() {
+
+
+	public ArrayList<Course> getCourseList(){
+		return courseList;
+	}
+
+	public void addCourse(Course course){
+		courseList.add(course);
+	}
+
+	public String getName(){
 		return facultyName;
 	}
-	
+
 	public Date getStartDate() {
-		return startDate;
+		return regStartDate;
 	}
 	
 	public Date getEndDate() {
-		return endDate;
+		return regEndDate;
 	}
 	
 	public void setFacultyName(String facultyName) {
 		this.facultyName = facultyName;
 	}
-	
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-	
-	public void setEndtDate(Date endDate) {
-		this.endDate = endDate;
+
+	public void setRegistrationTime(Date regStartDate, Date regEndDate){
+		this.regStartDate = regStartDate;
+		this.regEndDate = regEndDate;
 	}
 }
 

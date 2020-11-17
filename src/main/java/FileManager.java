@@ -80,12 +80,13 @@ public class FileManager
         return list;
     }
 
-    public ArrayList<Course> loadCourses(List temp){
-        ArrayList<Course> list = new ArrayList<>();
+
+    public ArrayList<Faculty> loadFaculties(List temp){
+        ArrayList<Faculty> list = new ArrayList<>();
         try{
 
             for (Object o : temp){
-                list.add((Course) o);
+                list.add((Faculty) o);
             }
 
         } catch(Exception e){
@@ -102,9 +103,9 @@ public class FileManager
         try{
             List temp = readSerializedObject(DBPath);
             store.add( loadUsers( (List) temp.get(0) ) );
-            store.add( loadCourses( (List) temp.get(1) ) );
+            store.add( loadFaculties( (List) temp.get(1) ) );
         } catch(Exception e){
-            System.out.println("Critical: Error trying to load DB, returning empty database. You should run loadDummyData() once.");
+            System.out.println("Critical: Error trying to load DB, returning empty database. You should load dummydata once and restart.");
             store.add( new ArrayList<>());
             store.add( new ArrayList<>());
         }

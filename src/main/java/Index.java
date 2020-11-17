@@ -36,5 +36,4 @@ public class Index implements Serializable {
         this.slots = slots;
     }
 
-
 }

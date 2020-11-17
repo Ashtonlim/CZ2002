@@ -27,29 +27,32 @@ public class MyStarsApp {
             }
         }
 
-        initStudents(Students);
+        Course c1 = RM.getCourse("CZ2003");
+        System.out.println(c1.getCourseCode());
 
-        for (int i = 0; i < 5; i++) {
-            Students.get(i).printStudentInfo();
-        }
-
-//        Index x = new Index("1", 100, Students, Students);
-//        x.printWaitList();
-
-        printMenu(true);
-
-        do {
-            printShortMenu(true);
-            System.out.print("\n  Enter the number of your choice: ");
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1 -> System.out.println("1. Edit student access period");
-                case 2 -> System.out.println("2. Add a student (name, matric number, gender, nationality, etc)");
-                case 3 -> System.out.println("3. Add/Update a course (course code, school, its index numbers and vacancy).");
-                case 4 -> System.out.println("4. Check available slot for an index number (vacancy in a class)");
-                default -> System.out.println("Only input numbers from 1 to 7 inclusive");
-            }
-        } while(choice != 7);
+//        initStudents(Students);
+//
+//        for (int i = 0; i < 5; i++) {
+//            Students.get(i).printStudentInfo();
+//        }
+//
+////        Index x = new Index("1", 100, Students, Students);
+////        x.printWaitList();
+//
+//        printMenu(true);
+//
+//        do {
+//            printShortMenu(true);
+//            System.out.print("\n  Enter the number of your choice: ");
+//            choice = sc.nextInt();
+//            switch (choice) {
+//                case 1 -> System.out.println("1. Edit student access period");
+//                case 2 -> System.out.println("2. Add a student (name, matric number, gender, nationality, etc)");
+//                case 3 -> System.out.println("3. Add/Update a course (course code, school, its index numbers and vacancy).");
+//                case 4 -> System.out.println("4. Check available slot for an index number (vacancy in a class)");
+//                default -> System.out.println("Only input numbers from 1 to 7 inclusive");
+//            }
+//        } while(choice != 7);
 
 
     }

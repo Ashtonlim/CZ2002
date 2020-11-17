@@ -5,6 +5,7 @@ public class Student extends User implements Serializable {
     private String matricNum;
     private String facultyName;
     private int yearOfStudy;
+    private ArrayList<Course> courses;
     private ArrayList<Index> indexes;
     private int regAU;
 

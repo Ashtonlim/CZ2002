@@ -1,16 +1,16 @@
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class RecordManager {
     private FileManager fm;
-    private ArrayList<Course> courses;
+    private ArrayList<Faculty> facultyList;
     private ArrayList<User> users;
 
     public RecordManager() throws Exception {
         fm = new FileManager(); //The only instantiation
-        ArrayList<Object> db = fm.loadAll(); //[0] -> Users, [1] -> Courses
+        ArrayList<Object> db = fm.loadAll(); //[0] -> Users, [1] -> Faculties
         users = (ArrayList<User>) db.get(0); //Safe cast, checked in FileManager
-        courses = (ArrayList<Course>) db.get(1); //Safe cast, checked in FileManager
+        facultyList = (ArrayList<Faculty>) db.get(1); //Safe cast, checked in FileManager
     }
 
     /** One-click dummy data importer
@@ -28,19 +28,25 @@ public class RecordManager {
         users.add(s2);
         users.add(s3);
 
+
         //Courses
-        courses.clear();
-        ArrayList<Index> indexList1 = new ArrayList<>();
+        facultyList.clear();
         ArrayList<Student> studentList1 = new ArrayList<>();
         studentList1.add( (Student) getUser("weixing") );
         studentList1.add( (Student) getUser("zheming") );
 
+        ArrayList<Index> indexList1 = new ArrayList<>();
         Index add1_1 = new Index("200201", 20, studentList1, studentList1);
         indexList1.add(add1_1);
         Course add1 = new Course("CZ2002", "Test 2", "SCSE", "Core", 3, indexList1, 10);
         Course add2 = new Course("CZ2003", "Test 3", "SCSE", "Core", 3, indexList1, 10);
-        courses.add(add1);
-        courses.add(add2);
+
+        //Faculties
+        ArrayList<Course> courseList1 = new ArrayList<>();
+        courseList1.add(add1);
+        courseList1.add(add2);
+        facultyList.add(new Faculty("SCSE", studentList1, courseList1));
+
         save();
 
         System.out.println("Dummy data loaded.");
@@ -48,21 +54,28 @@ public class RecordManager {
 
     /** search a course by course code */
     public Course getCourse(String courseCode){
-        Course course = null;
 
-        for (int  i = 0; i < courses.size(); i++){
-            Course temp = courses.get(i);
-            if (temp.getCourseCode().equals(courseCode)){
-                course = temp;
-                break;
+        for (Faculty faculty : facultyList) {
+            ArrayList<Course> tempCourseList = faculty.getCourseList();
+            for (Course temp : tempCourseList) {
+                if (temp.getCourseCode().equals(courseCode)) {
+                    return temp;
+                }
             }
         }
-        return course;
+
+        return null;
     }
 
     /** return all courses */
     public ArrayList<Course> getAllCourses(){
-        return courses;
+        ArrayList<Course> temp = new ArrayList<>();
+
+        for (Faculty faculty : facultyList){
+            temp.addAll(faculty.getCourseList());
+        }
+
+        return temp;
     }
 
     /** search a user by username */
@@ -115,37 +128,55 @@ public class RecordManager {
     }
     
     /** Add course */
-    public boolean addCourse(Course course) throws Exception {
-
-        for (int  i = 0; i < this.courses.size(); i++){
-            Course temp = courses.get(i);
-            if (temp.getCourseCode().equals(course.getCourseCode())){
-                return false;
-            }
-        }
-        courses.add(course);
+    public void addCourse(Faculty faculty, Course course) {
+        faculty.addCourse(course);
         save();
-        return true;
     }
-    
-    /** Remove course */
-    public boolean removeCourse(Course course) throws Exception {
 
-        for (int  i = 0; i < this.courses.size(); i++){
-            Course temp = courses.get(i);
-            if (temp.getCourseCode().equals(course.getCourseCode())){
-            	courses.remove(course);
+    public boolean addCourse(String facultyName, Course course){
+
+        for (Faculty faculty : facultyList){
+            if ( facultyName.equals( faculty.getName() ) ){
+                faculty.addCourse(course);
                 save();
                 return true;
             }
         }
+
+        return false;
+    }
+
+    public boolean checkCourseName(String courseCode){
+
+        for (Faculty faculty : facultyList){
+            for (Course course : faculty.getCourseList()){
+                if (courseCode.equals(course.getCourseCode())){
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /** Remove course */
+    public boolean removeCourse(Course course) {
+
+        for (Faculty faculty : facultyList){
+            if ( faculty.getCourseList().contains(course) ){
+                faculty.getCourseList().remove((course));
+                save();
+                return true;
+            }
+        }
+
         return false;
     }
 
     private void save() {
         ArrayList<Object> temp = new ArrayList<>();
         temp.add(users);
-        temp.add(courses);
+        temp.add(facultyList);
         fm.saveAll(temp);
     }
 
