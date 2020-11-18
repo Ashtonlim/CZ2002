@@ -33,6 +33,18 @@ public class RecordManager {
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Index i1 = new Index("200201", 20, c1);
         Index i2 = new Index("200301", 20, c2);
+        Lesson tut2002 = new Lesson("tut", 1, "14:30", "16:30", "TR-20");
+        Lesson lab2002 = new Lesson("lab", 2, "09:30", "11:30", "SPL");
+        Lesson lec2002 = new Lesson("lec", 4, "09:30", "11:30", "LT12");
+        i1.addToLessonList(tut2002);
+        i1.addToLessonList(lab2002);
+        i1.addToLessonList(lec2002);
+        Lesson tut2003 = new Lesson("tut", 5, "14:30", "16:30", "TR-18");
+        Lesson lab2003 = new Lesson("lab", 1, "10:30", "12:30", "HWL1");
+        Lesson lec2003 = new Lesson("lec", 3, "13:30", "14:30", "LT4");
+        i2.addToLessonList(tut2003);
+        i2.addToLessonList(lab2003);
+        i2.addToLessonList(lec2003);
         facultyList.add(f1);
 
         ArrayList<Student> students = new ArrayList<Student>();
@@ -42,10 +54,11 @@ public class RecordManager {
         String password = LoginManager.generateHash("abc123");
         students.add(new Student("weixing", password, "WeiXing", "M", "U123", f1, 2, 20));
         students.add(new Student("zheming", password, "ZheMing", "M", "U321", f1, 2, 20));
+        students.add(new Student("bob", password, "Bob", "M", "U461", f1, 3, 20));
         admins.add(new Admin("guat", password, "Guat", "M"));
         users.addAll(students);
         users.addAll(admins);
-
+        
         i1.addToStudentList( (Student) users.get(0));
         i1.addToStudentList( (Student) users.get(1));
         save();

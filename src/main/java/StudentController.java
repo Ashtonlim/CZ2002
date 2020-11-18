@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class StudentController {
@@ -39,4 +40,32 @@ public class StudentController {
             System.out.println("          " + index.getVacancy());
         }
     }
+    
+    //check for clash between 2 time periods
+    public boolean checkTimeClash(LocalTime start1, LocalTime end1, LocalTime start2, LocalTime end2) {
+    	if (start1.isBefore(end2) && end1.isAfter(start2)) {
+    		return true;
+    	}
+    	return false;
+    }
+    
+    // check whether an index clashes with the registered indexes of the student
+    public boolean checkIndexClash(Student s, Index i) {
+    	ArrayList<Index> regIndexes = s.getIndexList();
+    	for (Index regIndex : regIndexes) {
+    		ArrayList<Lesson> regLessons = regIndex.getLessonList();
+    		for (Lesson regLesson : regLessons) {
+    			for(Lesson newLesson : i.getLessonList()) {
+    				if (regLesson.getDay() != newLesson.getDay()) {
+    					continue;
+    				} else {
+    					return checkTimeClash(regLesson.getStartTime(), regLesson.getEndTime(), newLesson.getStartTime(), newLesson.getEndTime());
+    				}
+    			}
+    		}		
+    	}
+    	
+		return false;
+    }
+    
 }
