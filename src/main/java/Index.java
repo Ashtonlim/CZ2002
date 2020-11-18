@@ -72,9 +72,25 @@ public class Index implements Serializable {
     public int getVacancy() {
         return totalSlots - studentList.size();
     }
-
+    
+    public int getStudentSize(){
+        return studentList.size();
+    }
+    
+    public void setTotalSlots(int slots) {
+        this.totalSlots = slots;
+    }
+    
     public void setVacancy(int slots) {
         this.totalSlots = slots;
     }
 
+    public void setIndex(String newIndex){
+        this.index=newIndex;
+    }
+
+    public void setCourseCode(String newCourseCode){
+        this.course.setCourseCode(newCourseCode);
+    }
+    
 }
