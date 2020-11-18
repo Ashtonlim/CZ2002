@@ -6,4 +6,19 @@ public class Admin extends User implements Serializable {
         super(username, password, fullName, gender, nationality);
     }
 
+    @Override
+    public String getUserName() {
+        return username;
+    }
+
+    @Override
+    public String getFullName() {
+        return fullName;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
 }

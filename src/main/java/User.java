@@ -22,14 +22,8 @@ public abstract class User implements Serializable {
         }
     }
 
-    public String getUserName(){
-        return username;
-    }
-    public String getFullName(){
-        return fullName;
-    }
-    
-    public String getPassword() {
-    	return password;
-    }
+    /** Liskov's Substitution Principle */
+    public abstract String getUserName();
+    public abstract String getFullName();
+    public abstract String getPassword();
 }

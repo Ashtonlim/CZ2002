@@ -67,4 +67,19 @@ public class Student extends User implements Serializable {
 
     public void setNationality(String nationality) { this.nationality = nationality; }
 
+    @Override
+    public String getUserName() {
+        return username;
+    }
+
+    @Override
+    public String getFullName() {
+        return fullName;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
 }
