@@ -4,6 +4,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginManager {
+	private final RecordManager RM;
+
+	public LoginManager(RecordManager RM){
+		this.RM = RM;
+	}
+
+	/**
+	 * null -> user/password does not match
+	 * When asked why doesn't show user does not exist? Prevent brute force (lazy to implement).
+	 * */
+	public User login(String username, String password){
+		User user = RM.getUser(username);
+		if (user == null) return null;
+		boolean authenticated = verifyLogin(user, password);
+		return (authenticated) ? user : null;
+	}
 
 	public static String generateHash(String password) {
 		StringBuilder hash = new StringBuilder();
@@ -25,7 +41,7 @@ public class LoginManager {
 		return hash.toString();
 	}
 
-	public boolean verifyLogin(User user, String password) throws Exception {
+	public static boolean verifyLogin(User user, String password) {
 		boolean isAuthenticated = false;
 		// convert user input password into hashed password
 		String hashedInputPW = generateHash(password);
@@ -39,7 +55,6 @@ public class LoginManager {
 
 		return isAuthenticated;
 	}
-
 	// public boolean verifyAdminLogin(String username, String password) {
 	// boolean isAuthenticated = false;
 	// // convert user input password into hashed password

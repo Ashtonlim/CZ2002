@@ -1,10 +1,11 @@
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class Student extends User implements Serializable {
     private String matricNum;
-    private String facultyName;
     private int yearOfStudy;
     private ArrayList<Index> indexList = new ArrayList<>();
     private ArrayList<Index> waitList = new ArrayList<>();
@@ -19,9 +20,6 @@ public class Student extends User implements Serializable {
         faculty.addStudent(this);
     }
 
-    public void printStudentInfo() {
-        System.out.println(matricNum + " taking " + facultyName+ " in year " + yearOfStudy);
-    }
     
     /** get student indo */
     public ArrayList<Index> getIndexList(){
@@ -31,7 +29,26 @@ public class Student extends User implements Serializable {
     public Faculty getFaculty() {
         return faculty;
     }
-    
+
+    public int getRegAU(){
+        return regAU;
+    }
+
+    public String getFacultyName(){
+        return faculty.getName();
+    }
+
+    public int getNumOfCourses(){
+        return indexList.size();
+    }
+
+    public int getNumOfWaitingList(){
+        return waitList.size();
+    }
+
+    public int getYearOfStudy(){
+        return yearOfStudy;
+    }
     /** set/modify student info */
     public void updateYearOfStudy(){
         this.yearOfStudy = 10;
@@ -59,13 +76,13 @@ public class Student extends User implements Serializable {
 
     public void setMatricNum(String matricNum){ this.matricNum = matricNum; }
 
-    public void setFacultyName(String facultyName){ this.facultyName = facultyName; }
-
     public void setYearOfStudy(int yearOfStudy){ this.yearOfStudy = yearOfStudy; }
 
     public void setRegAU(int regAU){ this.regAU = regAU; }
 
     public void setNationality(String nationality) { this.nationality = nationality; }
+
+
 
     @Override
     public String getUserName() {

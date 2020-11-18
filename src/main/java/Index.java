@@ -50,18 +50,6 @@ public class Index implements Serializable {
         return course;
     }
 
-    public void printWaitList() {
-        // System.out.println();
-        for (int i = 0; i < waitList.size(); i++) {
-        	waitList.get(i).printStudentInfo();
-        }
-    }
-
-    public void printStudentList() {
-        for (int i = 0; i < studentList.size(); i++) {
-            studentList.get(i).printStudentInfo();
-        }
-    }
     
     public void printLessonList() {
         for (int i = 0; i < lessonList.size(); i++) {

@@ -9,8 +9,8 @@ public class TestLogin {
 //		rm.loadDummyData();
 		
 		Scanner sc = new Scanner(System.in);
-		LoginManager login = new LoginManager();
 		RecordManager RM = new RecordManager();
+		LoginManager login = new LoginManager(RM);
 //		for terminal
 //		Console cons = System.console();
 //		
