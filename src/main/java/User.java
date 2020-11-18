@@ -5,12 +5,15 @@ public abstract class User implements Serializable {
     protected String password;
     protected String fullName;
     protected String gender;
+    protected String nationality;
     
-    public User(String username, String password, String fullName, String gender){
+    public User(String username, String password, String fullName, String gender, String nationality){
 
         this.username = username;
         this.password = password;
         this.fullName = fullName;
+        this.nationality = nationality;
+        
         if (gender.equalsIgnoreCase("m") || gender.equalsIgnoreCase("f")) {
             this.gender = gender.toUpperCase();
         } else {
