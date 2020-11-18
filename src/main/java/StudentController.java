@@ -17,7 +17,7 @@ public class StudentController {
     public void printCourseReg(Student s) {
         System.out.println("   CourseID   CourseName   Index   ");
         System.out.println("===================================");
-        ArrayList<Index> RegIndex = RM.getCourseStu(s);
+        ArrayList<Index> RegIndex = s.getIndexList();
         if (RegIndex != null){
             for (int i = 0; i < RegIndex.size(); i++) {
                 System.out.println(

@@ -39,8 +39,8 @@ public class Student extends User implements Serializable {
         return faculty.getName();
     }
 
-    public int getNumOfCourses(){
-        return indexList.size();
+    public ArrayList<Index> getAllIndexes(){
+        return indexList;
     }
 
     public int getNumOfWaitingList(){
