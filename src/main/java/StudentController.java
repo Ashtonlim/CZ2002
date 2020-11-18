@@ -29,15 +29,17 @@ public class StudentController {
         return;
     }
 
-    public void checkVacanciesOfIndex(){
-        System.out.println("=== Please input your CourseID to show indexes of the Course ===");
-        String courseCode = View.getTextInput("CourseID: ");
+    public ArrayList<Index> checkVacanciesOfCourse(String courseCode){
+        ArrayList<Index> temp = new ArrayList<>();
         Course course =  RM.getCourse(courseCode);
-        ArrayList<Index> indexList = course.getIndexList();
-        System.out.println("=== IndexNumber == Vacancies === ");
-        for (Index index : indexList) {
-            System.out.print("      " + index.getIndex());
-            System.out.println("          " + index.getVacancy());
+        if (course != null){
+            for (Index index : course.getIndexList()) {
+                temp.add(index);
+
+            }
+            return temp;
+        } else {
+            return null;
         }
     }
     
