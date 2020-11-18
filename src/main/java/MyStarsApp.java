@@ -70,6 +70,9 @@ public class MyStarsApp {
 
         AdminController AC = new AdminController(RM);
         StudentController SC = new StudentController(RM);
+        View adminView = new View(AC);
+        View studentView = new View(SC);
+
         boolean active = true;
         while(active) {
             int c;
@@ -87,13 +90,13 @@ public class MyStarsApp {
                 c = View.getPrintOptions("=== Admin Screen ===", adminOptions);
                 switch (c) {
                     case 4 :
-                        AC.checkVacancies();
+                        adminView.adminCheckVacancy();
                         break;
                     case 5:
-                        AC.printStudentListByIndex();
+                        adminView.adminPrintStudentListByIndex();
                         break;
                     case 6:
-                        AC.printStudentListByCourse();
+                        adminView.adminPrintStudentListByCourse();
                         break;
                     case 0:
                         System.out.println("Exiting...");

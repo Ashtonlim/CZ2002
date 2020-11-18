@@ -34,43 +34,21 @@ public class AdminController {
     }
 
     /** 4.Check available slot for an index number (vacancy in a class) -wx  */
-    public void checkVacancies(){
-        System.out.println("=== Index Vacancy Checker ===");
-        String indexCode = View.getTextInput("Index number: ");
+    public int checkVacancies(String indexCode){
         Index index = RM.getIndex(indexCode);
-
-        if (index != null) {
-            System.out.println("Available slots: " + index.getVacancy());
-        } else {
-            System.out.println("Index not found!");
-        }
-
+        return (index != null) ? index.getVacancy(): -1;
     }
 
     /** 5. Print student list by index number. -wx */
-    public void printStudentListByIndex(){
-        System.out.println("=== Student List By Index ===");
-        String indexCode = View.getTextInput("Index number: ");
+    public ArrayList<Student> printStudentListByIndex(String indexCode){
         Index index = RM.getIndex(indexCode);
-
-        if (index != null) {
-            View.printStudentList(getStudentList(index));
-        } else {
-            System.out.println("Index not found!");
-        }
+        return (index != null) ? getStudentList(index) : null;
     }
 
     /** 6.Print student list by course (all students registered for the selected course). -wx */
-    public void printStudentListByCourse(){
-        System.out.println("=== Student List By Course ===");
-        String indexCode = View.getTextInput("Course code: ");
-        Course course = RM.getCourse(indexCode);
-
-        if (course != null){
-            View.printStudentList(getStudentList(course));
-        } else {
-            System.out.println("Course not found!");
-        }
+    public ArrayList<Student> printStudentListByCourse(String courseCode){
+        Course course = RM.getCourse(courseCode);
+        return (course != null) ? getStudentList(course) : null;
     }
     
     /** 7.Add a course */

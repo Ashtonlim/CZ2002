@@ -3,7 +3,54 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class View {
 
+    private AdminController AC;
+    private StudentController SC;
 
+    public View(AdminController AC){
+        this.AC = AC;
+    }
+
+    public View(StudentController SC){
+        this.SC = SC;
+    }
+
+    /** Views for Admin */
+
+    /** 4.Check available slot for an index number (vacancy in a class) -wx  */
+    public void adminCheckVacancy(){
+        System.out.println("=== Index Vacancy Checker ===");
+        String indexCode = View.getTextInput("Index number: ");
+        int vacancy = AC.checkVacancies(indexCode);
+        if (vacancy != -1){
+            System.out.println("Available slots: " + vacancy);
+        } else {
+            System.out.println("Index not found!");
+        }
+    }
+
+    public void adminPrintStudentListByIndex(){
+        System.out.println("=== Student List By Index ===");
+        String indexCode = View.getTextInput("Index number: ");
+        ArrayList<Student> studentList = AC.printStudentListByIndex(indexCode);
+        if (studentList != null){
+            printStudentList(studentList);
+        } else {
+            System.out.println("Index not found!");
+        }
+    }
+
+    public void adminPrintStudentListByCourse(){
+        System.out.println("=== Student List By Course ===");
+        String indexCode = View.getTextInput("Course code: ");
+        ArrayList<Student> studentList = AC.printStudentListByCourse(indexCode);
+        if (studentList != null) {
+            printStudentList(studentList);
+        } else {
+            System.out.println("Course not found!");
+        }
+    }
+
+    /** Tools */
 
     /** Print the options available and get choice from user */
     public static int getPrintOptions(String title, ArrayList<String> options){

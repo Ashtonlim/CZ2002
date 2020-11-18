@@ -52,10 +52,10 @@ public class RecordManager {
 
         //Student
         String password = LoginManager.generateHash("abc123");
-        students.add(new Student("weixing", password, "WeiXing", "M", "U123", f1, 2, 20));
-        students.add(new Student("zheming", password, "ZheMing", "M", "U321", f1, 2, 20));
-        students.add(new Student("bob", password, "Bob", "M", "U461", f1, 3, 20));
-        admins.add(new Admin("guat", password, "Guat", "M"));
+        students.add(new Student("weixing", password, "WeiXing", "M","SC","U123", f1, 2, 20));
+        students.add(new Student("zheming", password, "ZheMing", "M", "SC","U321", f1, 2, 20));
+        students.add(new Student("bob", password, "Bob", "M","SC","U461", f1, 3, 20));
+        admins.add(new Admin("guat", password, "Guat",  "M","SC"));
         users.addAll(students);
         users.addAll(admins);
         
@@ -194,6 +194,7 @@ public class RecordManager {
         return false;
     }
 
+    /** Check if the courseName is available */
     public boolean checkCourseName(String courseCode) {
 
         for (Faculty faculty : facultyList) {
