@@ -18,8 +18,9 @@ public class Course implements Serializable {
     	faculty.addCourse(this);
     }
 
+    /** get course info */
     public ArrayList<Index> getIndexList(){
-    	return indexList;
+        return indexList;
     }
 
     public String getCourseCode(){
@@ -29,18 +30,36 @@ public class Course implements Serializable {
     public String getCourseName(){
         return courseName;
     }
-    
-    public void setCourseCode(String courseCode){
-        this.courseCode = courseCode;
-    }
-
-    public void addIndex(Index index){
-        indexList.add(index);
-    }
 
     public String getFacultyName(){
         return facultyName;
     }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    /** set/modify course info */
+    public void setCourseCode(String courseCode){
+        this.courseCode = courseCode;
+    }
+
+    public void addIndex(Index index) {
+        indexList.add(index);
+    }
+
+    public void setCourseName(String courseName){
+        this.courseName = courseName;
+    }
+
+    public void setFaculty(Faculty faculty){
+        this.faculty = faculty;
+    }
+
+    public void setAU(int AU) { this.AU = AU; }
+
+    public void setSubjectType(String newSubjectType) { this.subjectType=newSubjectType; }
+
 }
 
 
