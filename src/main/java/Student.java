@@ -11,8 +11,8 @@ public class Student extends User implements Serializable {
     private Faculty faculty;
     private int regAU;
 
-    public Student(String username, String password, String fullName, String gender, String matricNum, Faculty faculty, int yearOfStudy, int regAU) {
-        super(username, password, fullName, gender);
+    public Student(String username, String password, String fullName, String gender, String nationality, String matricNum, Faculty faculty, int yearOfStudy, int regAU) {
+        super(username, password, fullName, gender, nationality);
         this.matricNum = matricNum;
         this.yearOfStudy = yearOfStudy;
         this.regAU = regAU;
@@ -22,7 +22,17 @@ public class Student extends User implements Serializable {
     public void printStudentInfo() {
         System.out.println(matricNum + " taking " + facultyName+ " in year " + yearOfStudy);
     }
+    
+    /** get student indo */
+    public ArrayList<Index> getIndexList(){
+        return indexList;
+    }
 
+    public Faculty getFaculty() {
+        return faculty;
+    }
+    
+    /** set/modify student info */
     public void updateYearOfStudy(){
         this.yearOfStudy = 10;
     }
@@ -35,17 +45,26 @@ public class Student extends User implements Serializable {
         waitList.add(index);
     }
 
-    public ArrayList<Index> getIndexList(){
-        return indexList;
-    }
-
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
-    }
+    public void setUserName(String userName){ this.username = userName; }
 
+    public void setPassword(String password){ this.password = password; }
+
+    public void setFullName(String fullName){ this.fullName = fullName; }
+
+    public void setGender(String gender){ this.gender = gender; }
+
+    public void setMatricNum(String matricNum){ this.matricNum = matricNum; }
+
+    public void setFacultyName(String facultyName){ this.facultyName = facultyName; }
+
+    public void setYearOfStudy(int yearOfStudy){ this.yearOfStudy = yearOfStudy; }
+
+    public void setRegAU(int regAU){ this.regAU = regAU; }
+
+    public void setNationality(String nationality) { this.nationality = nationality; }
 
 }
