@@ -8,7 +8,7 @@ public class TimeManager {
 	public TimeManager() {}
 	
 	// create a LocalDateTime object
-	public LocalDateTime createDateTime(int year, int month, int day, int hour, int min, int second) throws DateTimeException{
+	public static LocalDateTime createDateTime(int year, int month, int day, int hour, int min, int second) throws DateTimeException{
 		LocalDateTime datetime = null;
 		try {
 			datetime = LocalDateTime.of(year, month, day, hour, min, second);
