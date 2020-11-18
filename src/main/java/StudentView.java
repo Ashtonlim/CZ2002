@@ -13,14 +13,15 @@ public class StudentView extends View {
     @Override
     public void renderUserInfo() {
         System.out.println("Welcome " + student.getFullName() + " | Account type: Student.");
-        System.out.println("School: " + student.getFaculty() + "" +
-                " | AU Registered:" + student.getRegAU() +
-                " | Number of Registered Courses" + student.getNumOfCourses());
+        System.out.println("School: " + student.getFacultyName() + "" +
+                " | AU Registered: " + student.getRegAU() +
+                " | Number of Registered Courses: " + student.getNumOfCourses());
     }
 
     @Override
     public void renderMainMenu() {
         //Construct menu
+        String title = "=== Student Screen ===";
         ArrayList<String> studentOptions = new ArrayList<>();
         studentOptions.add("*Add Course");
         studentOptions.add("Drop Course");
@@ -31,7 +32,7 @@ public class StudentView extends View {
 
         boolean active = true;
         while(active){
-            int c = View.getPrintOptions("=== Admin Screen ===", "Logout", studentOptions);
+            int c = View.getPrintOptions(title, "Logout", studentOptions);
             switch (c) {
                 case 0 -> {
                     active = false;

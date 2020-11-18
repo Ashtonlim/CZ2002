@@ -17,6 +17,7 @@ public class Student extends User implements Serializable {
         this.matricNum = matricNum;
         this.yearOfStudy = yearOfStudy;
         this.regAU = regAU;
+        this.faculty = faculty;
         faculty.addStudent(this);
     }
 

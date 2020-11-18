@@ -63,6 +63,7 @@ public class AdminView extends View {
     @Override
     public void renderMainMenu() {
         //Construct menu
+        String title = "=== Student Screen ===";
         ArrayList<String> adminOptions = new ArrayList<>();
         adminOptions.add("Edit student access period");
         adminOptions.add("Add a student (name, matric number, gender, nationality, etc)");
@@ -73,7 +74,7 @@ public class AdminView extends View {
         adminOptions.add("Add a student (name, matric number, gender, nationality, etc)");
         boolean active = true;
         while(active){
-            int c = View.getPrintOptions("=== Admin Screen ===", "Logout", adminOptions);
+            int c = View.getPrintOptions(title, "Logout", adminOptions);
             switch (c) {
                 case 4 -> adminCheckVacancy();
                 case 5 -> adminPrintStudentListByIndex();
