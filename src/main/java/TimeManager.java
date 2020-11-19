@@ -20,9 +20,13 @@ public class TimeManager {
 	
 	// convert LocalDateTime to string
 	public static String dateTimeToStr(LocalDateTime datetime) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); 
-		String dateTimeStr = datetime.format(formatter);
-		return dateTimeStr;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		return datetime.format(formatter);
+	}
+
+	public static String dateTimeToStr(LocalTime datetime) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+		return datetime.format(formatter);
 	}
 
 }

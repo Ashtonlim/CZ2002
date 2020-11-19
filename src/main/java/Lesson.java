@@ -60,6 +60,10 @@ public class Lesson implements Serializable {
 		return oddEvenWeek;
 	}
 
+	public String getCourseName(){
+		return index.getCourseName();
+	}
+
 	public void setType(String type) {
 		this.type = type;
 	}

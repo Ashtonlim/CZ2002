@@ -30,9 +30,9 @@ public class Index implements Serializable {
         return waitList;
     }
 
-    public void addToStudentList(Student student){
+    public boolean addToStudentList(Student student){
         studentList.add(student);
-        student.addIndex(this);
+        return student.addIndex(this);
     }
 
     public ArrayList<Student> getStudentList(){
@@ -80,5 +80,8 @@ public class Index implements Serializable {
     public void setCourseCode(String newCourseCode){
         this.course.setCourseCode(newCourseCode);
     }
-    
+
+    public String getCourseName() {
+        return course.getCourseName();
+    }
 }
