@@ -126,7 +126,7 @@ public class TimeTable implements Serializable {
             for (int j = 1; j < col+1; j++){
                 if (timetable[i-1][j-1] != null) {
                     lesson = timetable[i-1][j-1];
-                    tt[i][j] = " " + lesson.getCourseName() + " (" + lesson.getType() + ") ";
+                    tt[i][j] = " " + lesson.getCourseName() + " (" + lesson.getType() + ") Test ";
                 } else {
                     tt[i][j] = " Empty ";
                 }
