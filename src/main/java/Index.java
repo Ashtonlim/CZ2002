@@ -47,10 +47,8 @@ public class Index implements Serializable {
         return lessonList;
     }
 
-    public Course getCourse(){
-        return course;
-    }
-    
+    public String getCourseCode() { return course.getCourseCode();}
+
     public void printLessonList() {
         for (int i = 0; i < lessonList.size(); i++) {
         	lessonList.get(i).printLessonInfo();

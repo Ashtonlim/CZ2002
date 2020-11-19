@@ -20,7 +20,7 @@ public class StudentController {
         if (RegIndex != null){
             for (int i = 0; i < RegIndex.size(); i++) {
                 System.out.println(
-                        "   " + RegIndex.get(i).getCourse().getCourseCode() + "       " + RegIndex.get(i).getCourse().getCourseName() +
+                        "   " + RegIndex.get(i).getCourseCode() + "       " + RegIndex.get(i).getCourseCode() +
                                 "         " + RegIndex.get(i).getIndex());
             }
         } else

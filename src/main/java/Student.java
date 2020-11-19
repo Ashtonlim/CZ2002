@@ -23,14 +23,9 @@ public class Student extends User implements Serializable {
         faculty.addStudent(this);
     }
 
-    
     /** get student indo */
     public ArrayList<Index> getIndexList(){
         return indexList;
-    }
-
-    public Faculty getFaculty() {
-        return faculty;
     }
 
     public int getRegAU(){
@@ -52,6 +47,8 @@ public class Student extends User implements Serializable {
     public int getYearOfStudy(){
         return yearOfStudy;
     }
+
+    public String getMatricNum(){ return matricNum;}
 
     public TimeTable getTimeTable(){
         return timeTable;

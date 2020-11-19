@@ -35,10 +35,6 @@ public class Course implements Serializable {
         return facultyName;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
-    }
-
     /** set/modify course info */
     public void setCourseCode(String courseCode){
         this.courseCode = courseCode;
