@@ -1,41 +1,47 @@
 import java.io.Serializable;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Lesson implements Serializable {
-	
-	// type: lab, tut, lec
-	private String type;
-	// day: mon-1, tue-2 etc.
-	private int day;
-	// time: HH:MM 
-	private LocalTime startTime;
-	private LocalTime endTime;
-	private String venue;
-	private Index index;
 
+	private String type;	// type: lab, tut, lec
+	private final LocalTime startTime; 	// time: HH:MM
+	private final LocalTime endTime;
+	private String venue;
+	private final Index index;
+	private final int dayOfWeek; //0-5 | 0 -> Mon, 1 -> Tues (Time Standard)
+	private final int oddEvenWeek; //0 -> even, 1 -> odd
+
+	/** Lesson shouldn't be modified after StarsWar has begun, due to clash handling */
 	public Lesson(String type, int day, int oddEvenWeek, String startTime, String endTime, String venue, Index index) throws Exception{
 		this.index = index;
 		index.addToLessonList(this);
+
 		this.type = type;
-		this.day = day;
+		this.dayOfWeek = day;
 		this.venue = venue;
+		this.oddEvenWeek = oddEvenWeek;
+
 		LocalTime tempStart = LocalTime.parse(startTime);
 		LocalTime tempEnd = LocalTime.parse(endTime);
-		if (isValidTime(tempStart, tempEnd) == true) {
-			this.startTime = tempStart;
-			this.endTime = tempEnd;
-		} else {
+
+		if (!isValidTime(tempStart, tempEnd)) {
 			System.out.println("Error - start time must be before end time.");
 			throw new Exception();
 		}
+
+		this.startTime = tempStart;
+		this.endTime = tempEnd;
+
 	}
-	
+
 	public String getType() {
 		return type;
 	}
 	
-	public int getDay() {
-		return day;
+	public int getDayOfWeek() {
+		return dayOfWeek;
 	}
 	
 	public LocalTime getStartTime() {
@@ -49,32 +55,42 @@ public class Lesson implements Serializable {
 	public String getVenue() {
 		return venue;
 	}
-	
+
+	public int getWeekType(){
+		return oddEvenWeek;
+	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	public void setDay(int day) {
-		this.day = day;
+
+	public String getIndexCode(){
+		return this.index.getIndex();
 	}
-	
-	public void setStartTime(String startTime) {
-		LocalTime temp = LocalTime.parse(startTime);
-		if (isValidTime(temp, endTime)) {
-			this.startTime = temp;
-		} else {
-			System.out.println("Error - start time must be before end time. Start time not updated.");
-		}
-	}
-	
-	public void setEndTime(String endTime) {
-		LocalTime temp = LocalTime.parse(endTime);
-		if (isValidTime(startTime, temp)) {
-			this.endTime = temp;
-		} else {
-			System.out.println("Error - end time must be after start time. End time not updated.");
-		}
-	}
+
+	/** Shouldn't allow change of start/end time, can create clashes in the system. */
+//	public void setDayOfWeek(int dayOfWeek) {
+//		this.dayOfWeek = dayOfWeek;
+//	}
+
+
+//	public void setStartTime(String startTime) {
+//		LocalTime temp = LocalTime.parse(startTime);
+//		if (isValidTime(temp, endTime)) {
+//			this.startTime = temp;
+//		} else {
+//			System.out.println("Error - start time must be before end time. Start time not updated.");
+//		}
+//	}
+//
+//	public void setEndTime(String endTime) {
+//		LocalTime temp = LocalTime.parse(endTime);
+//		if (isValidTime(startTime, temp)) {
+//			this.endTime = temp;
+//		} else {
+//			System.out.println("Error - end time must be after start time. End time not updated.");
+//		}
+//	}
 	
 	public void setVenue(String venue) {
 		this.venue = venue;
@@ -92,7 +108,9 @@ public class Lesson implements Serializable {
 	}
 	
 	public void printLessonInfo() {
-		System.out.println("Type: " + type + ", " + "Day: " + day + ", " + startTime + " - " + endTime + ", " + "Venue: " + venue);
+		System.out.println("Type: " + type + ", " + "Day: " + dayOfWeek + ", " + startTime + " - " + endTime + ", " + "Venue: " + venue);
 	}
+
+
 
 }

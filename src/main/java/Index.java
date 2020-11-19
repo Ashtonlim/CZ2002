@@ -16,6 +16,7 @@ public class Index implements Serializable {
         course.addIndex(this);
     }
 
+
     public String getIndex() {
     	return index;
     }
@@ -49,7 +50,6 @@ public class Index implements Serializable {
     public Course getCourse(){
         return course;
     }
-
     
     public void printLessonList() {
         for (int i = 0; i < lessonList.size(); i++) {
