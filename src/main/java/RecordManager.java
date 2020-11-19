@@ -33,18 +33,12 @@ public class RecordManager {
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Index i1 = new Index("200201", 20, c1);
         Index i2 = new Index("200301", 20, c2);
-        Lesson tut2002 = new Lesson("tut", 1, "14:30", "16:30", "TR-20");
-        Lesson lab2002 = new Lesson("lab", 2, "09:30", "11:30", "SPL");
-        Lesson lec2002 = new Lesson("lec", 4, "09:30", "11:30", "LT12");
-        i1.addToLessonList(tut2002);
-        i1.addToLessonList(lab2002);
-        i1.addToLessonList(lec2002);
-        Lesson tut2003 = new Lesson("tut", 5, "14:30", "16:30", "TR-18");
-        Lesson lab2003 = new Lesson("lab", 1, "10:30", "12:30", "HWL1");
-        Lesson lec2003 = new Lesson("lec", 3, "13:30", "14:30", "LT4");
-        i2.addToLessonList(tut2003);
-        i2.addToLessonList(lab2003);
-        i2.addToLessonList(lec2003);
+        Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
+        Lesson lab2002 = new Lesson("lab", 2, 0, "09:30", "11:30", "SPL", i1);
+        Lesson lec2002 = new Lesson("lec", 4, 0, "09:30", "11:30", "LT12", i1);
+        Lesson tut2003 = new Lesson("tut", 5, 1, "14:30", "16:30", "TR-18", i2);
+        Lesson lab2003 = new Lesson("lab", 1, 1, "10:30", "12:30", "HWL1", i2);
+        Lesson lec2003 = new Lesson("lec", 3, 1, "13:30", "14:30", "LT4", i2);
         facultyList.add(f1);
 
         ArrayList<Student> students = new ArrayList<Student>();
@@ -76,6 +70,10 @@ public class RecordManager {
         }
 
         return null;
+    }
+
+    public ArrayList<Faculty> getAllFaculties(){
+        return facultyList;
     }
     
     
@@ -142,8 +140,14 @@ public class RecordManager {
     }
 
 
-    /** return all users */
-    public ArrayList<User> getAllUsers() {
+    /** return all students */
+    public ArrayList<User> getAllStudents() {
+        ArrayList<Student> temp = new ArrayList<>();
+        for (User user : users){
+            if (user instanceof Student){
+                temp.add( (Student) user);
+            }
+        }
         return users;
     }
 
@@ -160,6 +164,7 @@ public class RecordManager {
         save();
         return true;
     }
+
 
     /** Remove user */
     public boolean removeUser(User user) throws Exception {
@@ -222,26 +227,11 @@ public class RecordManager {
         return false;
     }
 
-    private void save() {
+    public void save() {
         ArrayList<Object> temp = new ArrayList<>();
         temp.add(users);
         temp.add(facultyList);
         FileManager.writeSerializedObject(temp);
     }
 
-    public ArrayList<Index> getCourseStu(Student s) {
-        ArrayList<Index> RegCourseStuList = new ArrayList<>();
-        for (Faculty faculty : facultyList) {
-            for (Course course : faculty.getCourseList()) {
-                for (Index index : course.getIndexList()) {
-                    for (Student stu : index.getStudentList()) {
-                        if (s == stu) {
-                            RegCourseStuList.add(index);
-                        }
-                    }
-                }
-            }
-        }
-        return RegCourseStuList;
-    }
 }

@@ -11,8 +11,11 @@ public class Lesson implements Serializable {
 	private LocalTime startTime;
 	private LocalTime endTime;
 	private String venue;
+	private Index index;
 
-	public Lesson(String type, int day, String startTime, String endTime, String venue) throws Exception{
+	public Lesson(String type, int day, int oddEvenWeek, String startTime, String endTime, String venue, Index index) throws Exception{
+		this.index = index;
+		index.addToLessonList(this);
 		this.type = type;
 		this.day = day;
 		this.venue = venue;
