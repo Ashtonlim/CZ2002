@@ -37,9 +37,15 @@ public class StudentView extends View {
         TimeTable timeTable = student.getTimeTable();
         Lesson[][] evenWeek = timeTable.getEvenWeek();
         Lesson[][] oddWeek = timeTable.getOddWeek();
+        int choice = getIntInput("Print: 1 - Odd weeks | 2 - Even weeks?");
+        if (choice == 1){
+            String[][] tt = timeTable.processTimeTable(oddWeek);
+            Printer.print(tt);
+        } else {
+            String[][] tt = timeTable.processTimeTable(evenWeek);
+            Printer.print(tt);
+        }
 
-        String[][] tt = timeTable.processTimeTable(evenWeek);
-        Printer.print(tt);
     }
 
     @Override
