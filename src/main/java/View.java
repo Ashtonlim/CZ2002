@@ -1,59 +1,54 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import util.PrettyPrinter;
 public class View {
+    protected MyStarsApp app;
+    protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
 
-    private AdminController AC;
-    private StudentController SC;
+    public View(MyStarsApp app){
+        this.app = app;
+    }
+    /** Common View */
 
-    public View(AdminController AC){
-        this.AC = AC;
+    public void renderUserInfo(){
+        System.out.println("Welcome guest! | Account type: Guest.");
+        System.out.println("Please login!");
+    }
+    public void renderMainMenu(){
+        System.out.println("Nothing to show here...");
     }
 
-    public View(StudentController SC){
-        this.SC = SC;
+    /** Landing Page */
+    public void renderStartPage(){
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Login");
+        int choice = View.getPrintOptions("* MyStarsApp *", "Exit Program", options);
+        app.setRunningStatus(choice != 0);
     }
 
-    /** Views for Admin */
-
-    /** 4.Check available slot for an index number (vacancy in a class) -wx  */
-    public void adminCheckVacancy(){
-        System.out.println("=== Index Vacancy Checker ===");
-        String indexCode = View.getTextInput("Index number: ");
-        int vacancy = AC.checkVacancies(indexCode);
-        if (vacancy != -1){
-            System.out.println("Available slots: " + vacancy);
+    /** Login page */
+    public void renderLoginPage(){
+        User activeUser = null;
+        LoginManager LM = new LoginManager(app.getRM());
+        //Non terminal code, to be changed to terminal version lat
+        System.out.println("=== User Login ===");
+        String username = View.getTextInput("Username: ");
+        String password = View.getTextInput("Password: ");
+        System.out.println("Logging in........");
+        User user = LM.login(username, password);
+        if (user != null){
+            System.out.println("Login successfully.");
         } else {
-            System.out.println("Index not found!");
+            System.out.println("Username and Password combination does not match.");
         }
+        app.setActiveUser(user);
     }
 
-    public void adminPrintStudentListByIndex(){
-        System.out.println("=== Student List By Index ===");
-        String indexCode = View.getTextInput("Index number: ");
-        ArrayList<Student> studentList = AC.printStudentListByIndex(indexCode);
-        if (studentList != null){
-            printStudentList(studentList);
-        } else {
-            System.out.println("Index not found!");
-        }
-    }
-
-    public void adminPrintStudentListByCourse(){
-        System.out.println("=== Student List By Course ===");
-        String indexCode = View.getTextInput("Course code: ");
-        ArrayList<Student> studentList = AC.printStudentListByCourse(indexCode);
-        if (studentList != null) {
-            printStudentList(studentList);
-        } else {
-            System.out.println("Course not found!");
-        }
-    }
-
-    /** Tools */
+    /** Static methods */
 
     /** Print the options available and get choice from user */
-    public static int getPrintOptions(String title, ArrayList<String> options){
+    public static int getPrintOptions(String title, String endText, ArrayList<String> options){
         Scanner sc = new Scanner(System.in);
         int choice, counter = 0;
         System.out.println(title);
@@ -63,7 +58,7 @@ public class View {
             counter += 1;
         }
 
-        System.out.println("0. Exit");
+        System.out.println("0. " + endText);
 
         //Get user choice.
         while(true){
@@ -76,7 +71,6 @@ public class View {
         }
 
         return choice;
-
     }
 
     /** Get int input from user */
@@ -128,8 +122,6 @@ public class View {
             System.out.println( (i+1) + ". " + student.getFullName() );
         }
     }
-
-
 
 
 

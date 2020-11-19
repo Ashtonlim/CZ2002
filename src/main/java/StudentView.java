@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class StudentView extends View {
-    private StudentController SC;
-    private Student student;
+    private final StudentController SC;
+    private final Student student;
 
     public StudentView(MyStarsApp app, Student student) {
         super(app);
@@ -33,6 +33,15 @@ public class StudentView extends View {
 
     }
 
+    public void studentPrintTimeTable(){
+        TimeTable timeTable = student.getTimeTable();
+        Lesson[][] evenWeek = timeTable.getEvenWeek();
+        Lesson[][] oddWeek = timeTable.getOddWeek();
+
+        String[][] tt = timeTable.processTimeTable(evenWeek);
+        Printer.print(tt);
+    }
+
     @Override
     public void renderUserInfo() {
         System.out.println("Welcome " + student.getFullName() + " | Account type: Student.");
@@ -52,12 +61,14 @@ public class StudentView extends View {
         studentOptions.add("Check Vacancies Available");
         studentOptions.add("Change Index Number of Course");
         studentOptions.add("Swop Index Number with Another Student");
+        studentOptions.add("Print Time Table");
 
         boolean active = true;
         while(active){
             int c = View.getPrintOptions(title, "Logout", studentOptions);
             switch (c) {
                 case 4 -> studentCheckVacanciesOfCourse();
+                case 7 -> studentPrintTimeTable();
                 case 0 -> {
                     active = false;
                     System.out.println("Logging out...");

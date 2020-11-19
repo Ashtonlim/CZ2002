@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.lang.reflect.Array;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -11,6 +12,7 @@ public class Student extends User implements Serializable {
     private ArrayList<Index> waitList = new ArrayList<>();
     private Faculty faculty;
     private int regAU;
+    private final TimeTable timeTable = new TimeTable();
 
     public Student(String username, String password, String fullName, String gender, String nationality, String matricNum, Faculty faculty, int yearOfStudy, int regAU) {
         super(username, password, fullName, gender, nationality);
@@ -50,13 +52,30 @@ public class Student extends User implements Serializable {
     public int getYearOfStudy(){
         return yearOfStudy;
     }
+
+    public TimeTable getTimeTable(){
+        return timeTable;
+    }
+
     /** set/modify student info */
     public void updateYearOfStudy(){
         this.yearOfStudy = 10;
     }
 
-    public void addIndex(Index index){
-        indexList.add(index);
+    public boolean addIndex(Index index) {
+        boolean success;
+        try {
+             success = timeTable.addIndex(index);
+        } catch (Exception ex){
+            success = false;
+        }
+
+        if (success){
+            indexList.add(index);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void addToWaitList(Index index){

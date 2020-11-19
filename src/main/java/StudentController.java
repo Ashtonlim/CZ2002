@@ -1,4 +1,3 @@
-import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -53,21 +52,28 @@ public class StudentController {
     
     // check whether an index clashes with the registered indexes of the student
     public boolean checkIndexClash(Student s, Index i) {
-    	ArrayList<Index> regIndexes = s.getIndexList();
-    	for (Index regIndex : regIndexes) {
-    		ArrayList<Lesson> regLessons = regIndex.getLessonList();
-    		for (Lesson regLesson : regLessons) {
-    			for(Lesson newLesson : i.getLessonList()) {
-    				if (regLesson.getDay() != newLesson.getDay()) {
-    					continue;
-    				} else {
-    					return checkTimeClash(regLesson.getStartTime(), regLesson.getEndTime(), newLesson.getStartTime(), newLesson.getEndTime());
-    				}
-    			}
-    		}		
-    	}
-    	
-		return false;
+        TimeTable timeTable = s.getTimeTable();
+        try {
+            return timeTable.checkClash(i);
+        } catch (Exception ex){
+            //Wrong Index time will end up here
+        }
+		return true;
+
+//        ArrayList<Index> regIndexes = s.getIndexList();
+//        for (Index regIndex : regIndexes) {
+//            ArrayList<Lesson> regLessons = regIndex.getLessonList();
+//            for (Lesson regLesson : regLessons) {
+//                for(Lesson newLesson : i.getLessonList()) {
+//                    if (regLesson.getDay() != newLesson.getDay()) {
+//                        continue;
+//                    } else {
+//                        return checkTimeClash(regLesson.getStartTime(), regLesson.getEndTime(), newLesson.getStartTime(), newLesson.getEndTime());
+//                    }
+//                }
+//            }
+//        }
+//
+//        return false;
     }
-    
 }

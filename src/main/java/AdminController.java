@@ -2,7 +2,7 @@ import java.util.*;
 import java.time.LocalDateTime;
 
 public class AdminController {
-    RecordManager RM;
+    private final RecordManager RM;
 
     public AdminController(RecordManager RM){
         this.RM = RM;
@@ -33,6 +33,12 @@ public class AdminController {
         return index.getStudentList();
     }
 
+    /** Check if faculty exists */
+    public Faculty getFaulty(String facultyName){
+        return RM.getFaculty(facultyName);
+    }
+
+
     /** 4.Check available slot for an index number (vacancy in a class) -wx  */
     public int checkVacancies(String indexCode){
         Index index = RM.getIndex(indexCode);
@@ -40,13 +46,13 @@ public class AdminController {
     }
 
     /** 5. Print student list by index number. -wx */
-    public ArrayList<Student> printStudentListByIndex(String indexCode){
+    public ArrayList<Student> getStudentListByIndex(String indexCode){
         Index index = RM.getIndex(indexCode);
         return (index != null) ? getStudentList(index) : null;
     }
 
     /** 6.Print student list by course (all students registered for the selected course). -wx */
-    public ArrayList<Student> printStudentListByCourse(String courseCode){
+    public ArrayList<Student> getStudentListByCourse(String courseCode){
         Course course = RM.getCourse(courseCode);
         return (course != null) ? getStudentList(course) : null;
     }
@@ -91,9 +97,6 @@ public class AdminController {
     /** 9.Add a Index */
     public void addIndex(String index, int slots, Course course) {
         Index indexObject = new Index(index, slots, course);
-        indexObject.setIndex(index);
-        indexObject.setTotalSlots(slots);
-        indexObject.setCourseCode(course.getCourseCode());
     }
 
     /** 10.Update Index info */
@@ -116,15 +119,6 @@ public class AdminController {
     /** 11.add a student */
     public void addStudent(String username, String password, String fullName, String gender, String nationality, String matricNum, Faculty faculty, int yearOfStudy, int regAU){
         Student student = new Student(username, password, fullName, gender, nationality, matricNum, faculty, yearOfStudy, regAU);
-        student.setUserName(username);
-        student.setPassword(password);
-        student.setFullName(fullName);
-        student.setGender(gender);
-        student.setNationality(nationality);
-        student.setMatricNum(matricNum);
-        student.setFacultyName(faculty.getName());
-        student.setYearOfStudy(yearOfStudy);
-        student.setRegAU(regAU);
     }
 
     /** 12.Edit student access period */
@@ -135,4 +129,12 @@ public class AdminController {
         faculty.setRegistrationTime(regStartDate, regEndDate);
     }
 
+    /** Get db info */
+    public Dictionary<String, String> getDatabaseInfo(){
+        Dictionary<String, String> dbInfo = new Hashtable<>();
+        dbInfo.put( "facultySize", Integer.toString( RM.getAllFaculties().size() ) );
+        dbInfo.put( "studentSize", Integer.toString( RM.getAllStudents().size() ) );
+        dbInfo.put( "courseSize", Integer.toString( RM.getAllCourses().size() ) );
+        return dbInfo;
+    }
 }
