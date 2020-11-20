@@ -1,3 +1,5 @@
+package Controller;
+import Entity.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -14,7 +16,7 @@ public class StudentController {
     }
 
     public void printCourseReg(Student s) {
-        System.out.println("   CourseID   CourseName   Index   ");
+        System.out.println("   CourseID   CourseName   Entity.Index   ");
         System.out.println("===================================");
         ArrayList<Index> RegIndex = s.getIndexList();
         if (RegIndex != null){
@@ -24,7 +26,7 @@ public class StudentController {
                                 "         " + RegIndex.get(i).getIndex());
             }
         } else
-            System.out.println("No Course Registered found for this Student");
+            System.out.println("No Entity.Course Registered found for this Entity.Student");
         return;
     }
 
@@ -56,15 +58,15 @@ public class StudentController {
         try {
             return timeTable.checkClash(i);
         } catch (Exception ex){
-            //Wrong Index time will end up here
+            //Wrong Entity.Index time will end up here
         }
 		return true;
 
-//        ArrayList<Index> regIndexes = s.getIndexList();
-//        for (Index regIndex : regIndexes) {
-//            ArrayList<Lesson> regLessons = regIndex.getLessonList();
-//            for (Lesson regLesson : regLessons) {
-//                for(Lesson newLesson : i.getLessonList()) {
+//        ArrayList<Entity.Index> regIndexes = s.getIndexList();
+//        for (Entity.Index regIndex : regIndexes) {
+//            ArrayList<Entity.Lesson> regLessons = regIndex.getLessonList();
+//            for (Entity.Lesson regLesson : regLessons) {
+//                for(Entity.Lesson newLesson : i.getLessonList()) {
 //                    if (regLesson.getDay() != newLesson.getDay()) {
 //                        continue;
 //                    } else {

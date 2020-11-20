@@ -1,3 +1,7 @@
+package View;
+import Entity.*;
+import Controller.*;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,7 +13,7 @@ public class View {
     public View(MyStarsApp app){
         this.app = app;
     }
-    /** Common View */
+    /** Common View.View */
 
     public void renderUserInfo(){
         System.out.println("Welcome guest! | Account type: Guest.");
@@ -23,7 +27,7 @@ public class View {
     public void renderStartPage(){
         ArrayList<String> options = new ArrayList<>();
         options.add("Login");
-        int choice = View.getPrintOptions("* MyStarsApp *", "Exit Program", options);
+        int choice = View.getPrintOptions("* Controller.MyStarsApp *", "Exit Program", options);
         app.setRunningStatus(choice != 0);
     }
 
@@ -32,7 +36,7 @@ public class View {
         User activeUser = null;
         LoginManager LM = new LoginManager(app.getRM());
         //Non terminal code, to be changed to terminal version lat
-        System.out.println("=== User Login ===");
+        System.out.println("=== Entity.User Login ===");
         String username = View.getTextInput("Username: ");
         String password = View.getTextInput("Password: ");
         System.out.println("Logging in........");

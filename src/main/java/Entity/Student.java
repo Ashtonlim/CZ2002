@@ -1,9 +1,10 @@
+package Entity;
+
+import Entity.Faculty;
+import Entity.Index;
+
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
 
 public class Student extends User implements Serializable {
     private String matricNum;
