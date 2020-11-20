@@ -1,3 +1,11 @@
+package Controller;
+import View.*;
+import Controller.*;
+import Entity.Admin;
+import Entity.Student;
+import Entity.User;
+import View.View;
+
 import java.util.*;
 
 public class MyStarsApp {

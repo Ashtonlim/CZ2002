@@ -1,6 +1,6 @@
+package Entity;
+
 import java.io.Serializable;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Lesson implements Serializable {
@@ -13,7 +13,7 @@ public class Lesson implements Serializable {
 	private final int dayOfWeek; //0-5 | 0 -> Mon, 1 -> Tues (Time Standard)
 	private final int oddEvenWeek; //0 -> even, 1 -> odd
 
-	/** Lesson shouldn't be modified after StarsWar has begun, due to clash handling */
+	/** Entity.Lesson shouldn't be modified after StarsWar has begun, due to clash handling */
 	public Lesson(String type, int day, int oddEvenWeek, String startTime, String endTime, String venue, Index index) throws Exception{
 		this.index = index;
 		index.addToLessonList(this);

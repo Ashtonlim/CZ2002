@@ -1,11 +1,14 @@
-import java.io.Console;
+import Controller.LoginManager;
+import Controller.RecordManager;
+import Entity.User;
+
 import java.util.Scanner;
 
 public class TestLogin {
 	
 	public static void main(String[] args) throws Exception {
 		
-//		RecordManager rm = new RecordManager();
+//		Controller.RecordManager rm = new Controller.RecordManager();
 //		rm.loadDummyData();
 		
 		Scanner sc = new Scanner(System.in);
@@ -43,7 +46,7 @@ public class TestLogin {
 
 			User user = RM.getUser(loginUsername);
 			if (user == null){
-				System.out.println("User does not exist");
+				System.out.println("Entity.User does not exist");
 			} else {
 				System.out.println("Logging in........");
 				success = login.verifyLogin(user, loginPassword);

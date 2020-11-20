@@ -1,3 +1,9 @@
+package View;
+import Entity.*;
+import Controller.StudentController;
+import Controller.*;
+import View.View;
+
 import java.util.ArrayList;
 
 public class StudentView extends View {
@@ -12,7 +18,7 @@ public class StudentView extends View {
 
 
     public void studentCheckVacanciesOfCourse(){
-        System.out.println("=== Please input your CourseID to show indexes of the Course ===");
+        System.out.println("=== Please input your CourseID to show indexes of the Entity.Course ===");
         String courseCode = View.getTextInput("CourseID: ");
         ArrayList<Index> indexList =  SC.checkVacanciesOfCourse(courseCode);
         if (indexList != null){
@@ -28,7 +34,7 @@ public class StudentView extends View {
             }
 
         } else {
-            System.out.println("Course does not exist");
+            System.out.println("Entity.Course does not exist");
         }
 
     }
@@ -50,7 +56,7 @@ public class StudentView extends View {
 
     @Override
     public void renderUserInfo() {
-        System.out.println("Welcome " + student.getFullName() + " | Account type: Student.");
+        System.out.println("Welcome " + student.getFullName() + " | Account type: Entity.Student.");
         System.out.println("School: " + student.getFacultyName() + "" +
                 " | AU Registered: " + student.getRegAU() +
                 " | Number of Registered Courses: " + student.getAllIndexes().size());
@@ -59,14 +65,14 @@ public class StudentView extends View {
     @Override
     public void renderMainMenu() {
         //Construct menu
-        String title = "=== Student Screen ===";
+        String title = "=== Entity.Student Screen ===";
         ArrayList<String> studentOptions = new ArrayList<>();
-        studentOptions.add("*Add Course");
-        studentOptions.add("Drop Course");
+        studentOptions.add("*Add Entity.Course");
+        studentOptions.add("Drop Entity.Course");
         studentOptions.add("Check/Print Courses Registered");
         studentOptions.add("Check Vacancies Available");
-        studentOptions.add("Change Index Number of Course");
-        studentOptions.add("Swop Index Number with Another Student");
+        studentOptions.add("Change Entity.Index Number of Entity.Course");
+        studentOptions.add("Swop Entity.Index Number with Another Entity.Student");
         studentOptions.add("Print Time Table");
 
         boolean active = true;

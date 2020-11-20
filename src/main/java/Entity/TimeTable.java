@@ -1,3 +1,9 @@
+package Entity;
+
+import Controller.TimeManager;
+import Entity.Index;
+import Entity.Lesson;
+
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalTime;
@@ -9,7 +15,6 @@ public class TimeTable implements Serializable {
     private final int col = 6;
     public TimeTable(){
         //32 * 6 matrix timetable (1 row is 30 mins)
-
         this.oddWeek = new Lesson[row][col];
         this.evenWeek = new Lesson[row][col];
     }

@@ -1,7 +1,10 @@
+package Controller;
+
+import Controller.RecordManager;
+import Entity.User;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginManager {
 	private final RecordManager RM;
