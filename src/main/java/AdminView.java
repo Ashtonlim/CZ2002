@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 import java.util.Dictionary;
 
+
 public class AdminView extends View {
     private final AdminController AC;
+    
     private final Admin admin;
 
     public AdminView(MyStarsApp app, Admin admin) {
@@ -13,6 +15,30 @@ public class AdminView extends View {
 
     /** Views for Admin */
 
+    /** 1. Edit student access period  */
+    public void adminEditAccessPeriod() {
+    	System.out.println("=== Edit Student Access Period ===");
+    	String facultyName = View.getTextInput("Faculty name (EEE, SCSE etc.): ");
+    	String startDateTime = View.getTextInput("Period starting date and time (yyyy-MM-dd HH:mm:ss): ");
+    	String endDateTime = View.getTextInput("Period ending date and time (yyyy-MM-dd HH:mm:ss): ");
+    	int result = AC.editAccessPeriod(facultyName, startDateTime, endDateTime);
+    	switch(result) {
+    		case 1:
+    			System.out.println("Access period for " + facultyName + " successfully updated.");
+    			break;
+    		case 0: 
+    			System.out.println("Invalid date and time. Please ensure format is strictly followed.");
+    			break;
+    		case -1:
+    			System.out.println("Invalid period. Starting date and time must be before ending date and time");
+    			break;
+    		case -2:
+    			System.out.println("Faculty not found");
+    			break;
+    	}
+    }
+    
+    
     /** 4.Check available slot for an index number (vacancy in a class) -wx  */
     public void adminCheckVacancy(){
         System.out.println("=== Index Vacancy Checker ===");
@@ -50,7 +76,7 @@ public class AdminView extends View {
     public void adminAddCourse(){
         System.out.println("=== Add a new course ===");
         String faculty = View.getTextInput("Faculty name: ");
-        AC.getFaulty(faculty);
+        AC.getFaculty(faculty);
     }
 
     @Override
@@ -63,7 +89,7 @@ public class AdminView extends View {
     @Override
     public void renderMainMenu() {
         //Construct menu
-        String title = "=== Student Screen ===";
+        String title = "=== Admin Screen ===";
         ArrayList<String> adminOptions = new ArrayList<>();
         adminOptions.add("Edit student access period");
         adminOptions.add("Add a student (name, matric number, gender, nationality, etc)");
@@ -76,6 +102,7 @@ public class AdminView extends View {
         while(active){
             int c = View.getPrintOptions(title, "Logout", adminOptions);
             switch (c) {
+            	case 1 -> adminEditAccessPeriod();
                 case 4 -> adminCheckVacancy();
                 case 5 -> adminPrintStudentListByIndex();
                 case 6 -> adminPrintStudentListByCourse();

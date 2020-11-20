@@ -34,7 +34,7 @@ public class AdminController {
     }
 
     /** Check if faculty exists */
-    public Faculty getFaulty(String facultyName){
+    public Faculty getFaculty(String facultyName){
         return RM.getFaculty(facultyName);
     }
 
@@ -122,11 +122,26 @@ public class AdminController {
     }
 
     /** 12.Edit student access period */
-    public void editAccessPeriod(String facultyName, int yearStart, int monthStart, int dayStart, int hourStart, int minStart, int secondStart, int yearEnd, int monthEnd, int dayEnd, int hourEnd, int minEnd, int secondEnd) {
-        LocalDateTime regStartDate = TimeManager.createDateTime(yearStart, monthStart, dayStart, hourStart, minStart, secondStart);
-        LocalDateTime regEndDate = TimeManager.createDateTime (yearEnd, monthEnd, dayEnd, hourEnd, minEnd, secondEnd);
-        Faculty faculty = RM.getFaculty(facultyName);
-        faculty.setRegistrationTime(regStartDate, regEndDate);
+    public int editAccessPeriod(String facultyName, String startDateTime, String endDateTime) {
+    	LocalDateTime start = TimeManager.strToDateTime(startDateTime);
+    	LocalDateTime end = TimeManager.strToDateTime(endDateTime);
+    	if (start == null || end == null) {
+    		// DateTime string not in correct format
+    		return 0;
+    	}
+    	
+        if (start.isAfter(end)) {
+        	// start > end
+        	return -1;
+        } else {
+        	Faculty faculty = RM.getFaculty(facultyName);
+        	if (faculty == null) {
+        		// faculty not found
+        		return -2;
+        	}
+            faculty.setRegistrationTime(start, end);
+            return 1;
+        }
     }
 
     /** Get db info */
