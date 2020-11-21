@@ -44,7 +44,11 @@ public class Student extends User implements Serializable {
     }
 
     public int getRegAU() {
-        return regAU;
+        int totalAU = 0;
+        for (Index index : indexList) {
+            totalAU += index.getAU();
+        }
+        return totalAU;
     }
 
     public String getFacultyName() {
