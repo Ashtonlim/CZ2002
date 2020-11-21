@@ -83,12 +83,12 @@ public class Student extends User implements Serializable {
     public boolean addIndex(Index index) {
 
         if (index.getVacancy() <= 0) {
-            System.out.println("Index: " + index.getIndex() + " is full.");
+            System.out.println("Debug: Index: " + index.getIndex() + " is full.");
             return false;
         }
 
         if (hasIndex(index)) {
-            System.out.println("Already registered index " + index.getIndex());
+            System.out.println("Debug: Already registered index " + index.getIndex());
             return false;
         }
 
@@ -100,7 +100,7 @@ public class Student extends User implements Serializable {
             }
 
         } catch (Exception ex) {
-            System.out.println(ex);
+            System.out.println("Debug" + ex);
         }
 
         return false;
@@ -109,15 +109,16 @@ public class Student extends User implements Serializable {
 
     public boolean removeIndex(Index index) {
         if (!hasIndex(index)) {
-            System.out.println("Student does not have index " + index.getIndex());
+            System.out.println("Debug: Student does not have index " + index.getIndex());
             return false;
         }
 
         try {
             // if clashes when adding to timetable
             if (timeTable.removeIndex(index)) {
+                index.removeFromStudentList(this);
                 indexList.remove(index);
-                System.out.println("Removed index " + index.getIndex());
+                System.out.println("Debug: Removed index " + index.getIndex());
                 return true;
             }
 
@@ -132,7 +133,7 @@ public class Student extends User implements Serializable {
         Index index = hasIndex(indexStr);
 
         if (index == null) {
-            System.out.println("Student does not have index " + indexStr);
+            System.out.println("Debug: Student does not have index " + indexStr);
             return false;
         }
 
@@ -140,7 +141,7 @@ public class Student extends User implements Serializable {
             // if clashes when adding to timetable
             if (timeTable.removeIndex(index)) {
                 indexList.remove(index);
-                System.out.println("Removed index " + index.getIndex());
+                System.out.println("Debug Removed index " + index.getIndex());
                 return true;
             }
 

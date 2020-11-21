@@ -77,6 +77,23 @@ public class StudentController {
         return false;
     }
 
+    /** Status code:
+     * 1 - success | 0 - Clash | -1 = oldIndex not in the same course as new index.
+     * -2 - no vacancy in new index
+     * */
+    public int changeIndex(Student student, Index oldIndex, Index newIndex){
+        if (!oldIndex.getCourseCode().equals(newIndex.getCourseCode())){
+            return -1;
+        }
+        if (newIndex.getVacancy() == 0){
+            return -2;
+        }
+
+        student.removeIndex(oldIndex);
+        boolean addStatus = student.addIndex(newIndex);
+        return (addStatus) ? 1 : 0;
+    }
+
     // check whether an index clashes with the registered indexes of the student
     public boolean checkIndexClash(Student s, Index i) {
         TimeTable timeTable = s.getTimeTable();

@@ -6,8 +6,9 @@ import java.util.ArrayList;
 public class RecordManager {
     private ArrayList<User> users;
     private ArrayList<Faculty> facultyList;
+    private ArrayList<Student> swopList;
 
-    public RecordManager() throws Exception {
+    public RecordManager(){
         try {
             ArrayList<?> db = FileManager.readSerializedObject(); // [0] -> Users, [1] -> Faculties
             users = (ArrayList<User>) db.get(0); // Safe cast, checked in Controller.FileManager
@@ -35,6 +36,7 @@ public class RecordManager {
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Index i1 = new Index("200201", 20, c1);
+        Index i3 = new Index("200202", 10, c1);
         Index i2 = new Index("200301", 20, c2);
         Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
         Lesson lab2002 = new Lesson("lab", 2, 0, "09:30", "11:30", "SPL", i1);

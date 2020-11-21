@@ -28,13 +28,19 @@ public class Index implements Serializable {
         student.addToWaitList(this);
     }
 
+    public void removeFromStudentList(Student student){
+        studentList.remove(student);
+    }
     public ArrayList<Student> getWaitList(){
         return waitList;
     }
 
     public boolean addToStudentList(Student student){
-        studentList.add(student);
-        return student.addIndex(this);
+        boolean status = student.addIndex(this);
+        if (status) {
+            studentList.add(student);
+            return true;
+        } else { return false; }
     }
 
     public ArrayList<Student> getStudentList(){
@@ -55,6 +61,9 @@ public class Index implements Serializable {
         return course.getAU();
     }
 
+    public ArrayList<Index> getIndexesOfCourse(){
+        return course.getIndexList();
+    }
     public void printLessonList() {
         for (int i = 0; i < lessonList.size(); i++) {
         	lessonList.get(i).printLessonInfo();

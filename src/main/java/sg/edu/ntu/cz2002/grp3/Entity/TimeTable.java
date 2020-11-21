@@ -5,6 +5,7 @@ import sg.edu.ntu.cz2002.grp3.Controller.TimeManager;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class TimeTable implements Serializable {
     private final Lesson[][] oddWeek;
@@ -72,6 +73,7 @@ public class TimeTable implements Serializable {
             temp[slotNo + i][dayOfWeek] = null;
         }
     }
+
 
     public boolean checkClash(Index index) throws Exception {
         LocalTime startTime, endTime;
@@ -160,7 +162,7 @@ public class TimeTable implements Serializable {
             for (int j = 1; j < col + 1; j++) {
                 if (timetable[i - 1][j - 1] != null) {
                     lesson = timetable[i - 1][j - 1];
-                    tt[i][j] = " " + lesson.getCourseName() + " (" + lesson.getType() + ") Test ";
+                    tt[i][j] = " " + lesson.getCourseName() + " (" + lesson.getType() + ") ";
                 } else {
                     tt[i][j] = " Empty ";
                 }
