@@ -50,7 +50,7 @@ public class RecordManager {
         ArrayList<Admin> admins = new ArrayList<Admin>();
 
         // Entity.Student
-        String password = LoginManager.generateHash("abc123");
+        String password = LoginManager.generateHash("a");
         students.add(new Student("weixing", password, "WeiXing", "M", "SC", "U123", f1, 2, 20));
         students.add(new Student("zheming", password, "ZheMing", "M", "SC", "U321", f1, 2, 20));
         students.add(new Student("bob", password, "Bob", "M", "SC", "U461", f1, 3, 20));
@@ -141,14 +141,14 @@ public class RecordManager {
     }
 
     /** return all students */
-    public ArrayList<User> getAllStudents() {
+    public ArrayList<Student> getAllStudents() {
         ArrayList<Student> temp = new ArrayList<>();
         for (User user : users) {
             if (user instanceof Student) {
                 temp.add((Student) user);
             }
         }
-        return users;
+        return temp;
     }
 
     /** Add user */

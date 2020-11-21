@@ -57,17 +57,6 @@ public class StudentController {
         }
     }
 
-    /** change password for when the account is created by admin */
-    public boolean changePassword(User user, String oldPassword, String newPassword) {
-        boolean isAuthenticated = LoginManager.verifyLogin(user, oldPassword);
-        if (isAuthenticated == true) {
-            String newHashPassword = LoginManager.generateHash(newPassword);
-            user.setPassword(newHashPassword);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     // check for clash between 2 time periods
     public boolean checkTimeClash(LocalTime start1, LocalTime end1, LocalTime start2, LocalTime end2) {

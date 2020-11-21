@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Course implements Serializable {
-    private String courseCode;
+	private String courseCode;
     private String courseName;
     private Faculty faculty;
-    private String facultyName;
     private String subjectType;
     private ArrayList<Index> indexList = new ArrayList<>();
     private int AU;
@@ -33,8 +32,8 @@ public class Course implements Serializable {
         return courseName;
     }
 
-    public String getFacultyName(){
-        return facultyName;
+    public Faculty getFaculty(){
+        return faculty;
     }
 
     public int getAU(){

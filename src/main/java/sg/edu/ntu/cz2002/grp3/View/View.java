@@ -38,7 +38,6 @@ public class View {
 
     /** Login page */
     public void renderLoginPage() {
-        User activeUser = null;
         LoginManager LM = new LoginManager(app.getRM());
         // Non terminal code, to be changed to terminal version lat
         System.out.println("=== User Login ===");
@@ -110,26 +109,39 @@ public class View {
         while (true) {
             try {
                 System.out.println(prompt);
-                input = sc.next();
+                input = sc.nextLine();
                 break;
             } catch (InputMismatchException ex) {
                 System.out.println("Invalid character(s) entered, please enter text only.");
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
-            } finally {
-                sc.nextLine();
             }
         }
-
+        return input;
+    }
+    
+    /** Get confirmation input from user */
+    public static char getConfInput(String prompt) {
+        char input;
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println(prompt);
+            input = sc.next().charAt(0);
+            if (!(input == 'y' || input=='n')) {
+            	System.out.println("Invalid option.");
+            } else {
+            	break;
+            }
+        }
         return input;
     }
 
     /** Print student list */
-    public static void printStudentList(ArrayList<Student> studentList) {
-        System.out.println("Total: " + studentList.size());
-        for (int i = 0; i < studentList.size(); i++) {
-            User student = studentList.get(i);
-            System.out.println((i + 1) + ". " + student.getFullName());
+    public static void printStudentList(ArrayList<Student> studentList){
+        System.out.println( "Total students: " + studentList.size() );
+        for (int i = 0; i < studentList.size(); i++){
+            Student student = studentList.get(i);
+            System.out.println( (i+1) + ". " + student.getMatricNum() + ", " + student.getFullName() + ", " + student.getFacultyName());
         }
     }
 

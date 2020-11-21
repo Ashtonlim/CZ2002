@@ -11,6 +11,11 @@ public class AdminController {
         this.RM = RM;
     }
 
+    /** Get all student list */
+    public ArrayList<Student> getAllStudents() {
+    	return RM.getAllStudents();
+    }
+    
     /** Get student list from faculty */
     private ArrayList<Student> getStudentList(Faculty faculty){
         ArrayList<Student> studentList = new ArrayList<>();
@@ -40,7 +45,16 @@ public class AdminController {
     public Faculty getFaculty(String facultyName){
         return RM.getFaculty(facultyName);
     }
-
+    
+    /** Get course */
+    public Course getCourse(String courseCode){
+        return RM.getCourse(courseCode);
+    }
+    
+    /** Get index */
+    public Index getIndex(String index){
+        return RM.getIndex(index);
+    }
 
     /** 4.Check available slot for an index number (vacancy in a class) -wx  */
     public int checkVacancies(String indexCode){
@@ -61,16 +75,51 @@ public class AdminController {
     }
     
     /** 7.Add a course */
-    public void addCourse(String courseCode, String courseName, String subjectType, int AU, Faculty faculty) {
-        Course course = new Course(courseCode, courseName,subjectType,AU,faculty);
-        course.setCourseCode(courseCode);
-        course.setCourseName(courseName);
-        course.setSubjectType(subjectType);
-        course.setAU(AU);
-        course.setFaculty(faculty);
+    public int addCourse(String courseCode, String courseName, String subjectType, int AU, Faculty faculty) {
+    	if (RM.getCourse(courseCode) != null) {
+    		// course exists
+    		return 0;
+    	} else if (AU < 1) {
+    		// AU 0 or below
+    		return -1;
+    	} else {
+    		Course course = new Course(courseCode, courseName, subjectType, AU, faculty);
+    		RM.addCourse(faculty, course);
+    		return 1;
+    	}
     }
+    
+    /** Add an Index */
+    public int addIndex(String strIndex, int slots, Course course) {
+    	if (RM.getIndex(strIndex) != null) {
+    		// index exists
+    		return 0;
+    	} else if (slots < 0) {
+    		// negative slots
+    		return -1;
+    	} else {
+    		Index index = new Index(strIndex, slots, course);
+    		course.addIndex(index);
+    		return 1;
+    	}
+    }
+    
+    /** Add lesson to index */
+//    public int addLesson(Index index, int slots, Course course) {
+//    	if (RM.getIndex(strIndex) != null) {
+//    		// index exists
+//    		return 0;
+//    	} else if (slots < 0) {
+//    		// negative slots
+//    		return -1;
+//    	} else {
+//    		Index index = new Index(strIndex, slots, course);
+//    		course.addIndex(index);
+//    		return 1;
+//    	}
+//    }
 
-    /** 8.Update Entity.Course info */
+    /** 8.Update Course info */
     public void updateCourseCode(String courseCode, String newCourseCode){
         Course course = RM.getCourse(courseCode);
         course.setCourseCode(newCourseCode);
@@ -97,12 +146,7 @@ public class AdminController {
         course.setFaculty(newFaculty);
     }
 
-    /** 9.Add a Entity.Index */
-    public void addIndex(String index, int slots, Course course) {
-        Index indexObject = new Index(index, slots, course);
-    }
-
-    /** 10.Update Entity.Index info */
+    /** 10.Update Index info */
     public void updateIndexCode(String index, String newIndex) {
         Index indexObject = RM.getIndex(index);
         indexObject.setIndex(newIndex);
@@ -120,25 +164,31 @@ public class AdminController {
     }
 
     /** 11.add a student */
-    public int addStudent(String username, String fullName, String gender, String nationality, String matricNum, String faculty, int yearOfStudy){
+    public int addStudent(String username, String fullName, String gender, String nationality, String matricNum, String faculty, int yearOfStudy) {
     	Faculty fac = RM.getFaculty(faculty);
         if (RM.getUser(username) != null) {
         	// username exists
         	return 0;
-        } else if (gender.toLowerCase() != "m" || gender.toLowerCase() != "f"){
+        } else if (!gender.equalsIgnoreCase("m") && !gender.equalsIgnoreCase("f")){
         	// invalid gender
         	return -1;
         } else if (fac == null) {
         	// faculty not found
         	return -2;
-        } else if (yearOfStudy < 1) {
+        } else if (yearOfStudy < 1 || yearOfStudy > 4) {
         	// invalid year
         	return -3;
         } else {
         	Student student = new Student(username, fullName, gender, nationality, matricNum, fac, yearOfStudy);
+        	try {
+        		RM.addUser(student);
+        	} catch (Exception e) {
+        		e.printStackTrace();
+        	}
         	return 1;
         }
     }
+    
 
     /** 12.Edit student access period */
     public int editAccessPeriod(String facultyName, String startDateTime, String endDateTime) {
@@ -147,9 +197,7 @@ public class AdminController {
     	if (start == null || end == null) {
     		// DateTime string not in correct format
     		return 0;
-    	}
-    	
-        if (start.isAfter(end)) {
+    	} else if (start.isAfter(end)) {
         	// start > end
         	return -1;
         } else {

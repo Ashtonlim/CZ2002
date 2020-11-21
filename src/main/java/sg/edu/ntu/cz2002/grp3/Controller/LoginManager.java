@@ -61,4 +61,16 @@ public class LoginManager {
 		return isAuthenticated;
 	}
 
+	
+    /** change password for when the account is created by admin */
+    public static boolean changePassword(User user, String oldPassword, String newPassword) {
+    	boolean isAuthenticated = verifyLogin(user, oldPassword);
+    	if (isAuthenticated == true) {
+    		String newHashPassword = generateHash(newPassword);
+    		user.setPassword(newHashPassword);
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
 }

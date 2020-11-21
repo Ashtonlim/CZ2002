@@ -25,7 +25,7 @@ public class Admin extends User implements Serializable {
 
     @Override
     public void setPassword(String password) {
-        //implement later
+    	this.password = password;
     }
 
 }

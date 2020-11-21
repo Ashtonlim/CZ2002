@@ -2,6 +2,7 @@ package sg.edu.ntu.cz2002.grp3.View;
 
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.StudentController;
+import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
 
 import java.lang.reflect.Array;
@@ -106,8 +107,8 @@ public class StudentView extends View {
         // need to change to console version later
         String oldPassword = View.getTextInput("Old password: ");
         String newPassword = View.getTextInput("New password: ");
-        boolean result = SC.changePassword(student, oldPassword, newPassword);
-        if (result) {
+        boolean result = LoginManager.changePassword(student, oldPassword, newPassword);
+        if (result == true) {
             System.out.println("Password successfully changed.");
         } else {
             System.out.println("Old password is incorrect.");
@@ -133,6 +134,7 @@ public class StudentView extends View {
         studentOptions.add("Change Index Number of Course");
         studentOptions.add("Swop Index Number with Another Student");
         studentOptions.add("Print Time Table");
+        studentOptions.add("Change Password");
 
         boolean active = true;
         while (active) {
@@ -143,6 +145,7 @@ public class StudentView extends View {
                 case 4 -> checkVacanciesOfCourse();
                 case 5 -> changeIndex();
                 case 7 -> printTimeTable();
+                case 8 -> changePassword();
                 case 0 -> {
                     active = false;
                     System.out.println("Logging out...");
