@@ -18,7 +18,12 @@ public class StudentView extends View {
         this.student = student;
     }
 
+    /** Views for Student */
+
+    /** 1.Add course */
     public void addCourse() {
+        System.out.println("=== Add a course ===");
+        
         String indexCode = getTextInput("Enter index of course to add");
 
         Index index = SC.checkValidIndex(indexCode);
@@ -30,51 +35,63 @@ public class StudentView extends View {
         System.out.println("Adding index");
         if (student.addIndex(index)) {
             System.out.println("Added index " + index.getIndex());
+        } else {
+            System.out.println(index.getIndex() + "cannot be added");
         }
     }
 
+    /** 2.Drop course */
     public void dropCourse() {
+        System.out.println("=== Drop a course ===");
         String indexCode = getTextInput("Enter index of course to drop");
         student.removeIndex(indexCode);
     }
 
+    /** 3. Check vacancies of a course */
     public void checkVacanciesOfCourse() {
-        System.out.println("=== Please input your CourseID to show indexes of the Course ===");
+        System.out.println("=== Check vacancies of a course ===");
+
+        System.out.println("Please input your CourseID to show indexes of the Course: ");
         String courseCode = View.getTextInput("CourseID: ");
         ArrayList<Index> indexList = SC.checkVacanciesOfCourse(courseCode);
+        
         if (indexList != null) {
-            System.out.println("=== IndexNumber == Vacancies === ");
-
             if (indexList.size() == 0) {
                 System.out.println("There is no index in this course.");
+            } else {
+                System.out.println("=== IndexNumber == Vacancies === ");
+                for (Index index : indexList) {
+                   System.out.print("      " + index.getIndex());
+                   System.out.println("          " + index.getVacancy());
+                }
             }
-
-            for (Index index : indexList) {
-                System.out.print("      " + index.getIndex());
-                System.out.println("          " + index.getVacancy());
-            }
-
         } else {
             System.out.println("Course does not exist");
         }
     }
 
+    /** 4. Print Timetable */
     public void printTimeTable() {
+        System.out.println("=== Print Timetable ===");
+        
         TimeTable timeTable = student.getTimeTable();
         Lesson[][] evenWeek = timeTable.getEvenWeek();
         Lesson[][] oddWeek = timeTable.getOddWeek();
-        int choice = getIntInput("Print: 1 - Odd weeks | 2 - Even weeks?");
+        int choice = getIntInput("Please choose: 1 - timetable of Odd weeks | 2 - timetable of Even weeks");
         String[][] tt;
+        
         if (choice == 1) {
             tt = timeTable.processTimeTable(oddWeek);
         } else {
             tt = timeTable.processTimeTable(evenWeek);
         }
+        
         Printer.print(tt);
-
     }
 
+    /** 5. Change index */
     public void changeIndex(){
+        System.out.println("=== Change index ===");
         ArrayList<String> stringIndexList = new ArrayList<>();
         ArrayList<Index> indexList = student.getIndexList();
 
@@ -83,7 +100,7 @@ public class StudentView extends View {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringIndexList.add(string);
         }
-        int choice1 = getPrintOptions("Which index would u like to change?", "Back", stringIndexList);
+        int choice1 = getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
         if (choice1 == 0) return;
         Index oldIndex = indexList.get(choice1 - 1);
 
@@ -94,14 +111,14 @@ public class StudentView extends View {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringOtherIndexList.add(string);
         }
-        int choice2 = getPrintOptions("Which index to change to?", "Back", stringOtherIndexList);
+        int choice2 = getPrintOptions("Which index would you like to change to?", "Back", stringOtherIndexList);
         if (choice2 == 0) return;
         Index newIndex = otherIndexes.get(choice2-1);
         SC.changeIndex(student, oldIndex, newIndex);
         System.out.println("Index changed successfully.");
     }
 
-    /** change password */
+    /** 6. Change password */
     public void changePassword() {
         System.out.println("=== Change account password ===");
         // need to change to console version later
@@ -132,7 +149,7 @@ public class StudentView extends View {
         studentOptions.add("Check/Print Courses Registered");
         studentOptions.add("Check Vacancies Available");
         studentOptions.add("Change Index Number of Course");
-        studentOptions.add("Swop Index Number with Another Student");
+        studentOptions.add("Swap Index Number with Another Student");
         studentOptions.add("Print Time Table");
         studentOptions.add("Change Password");
 
