@@ -23,7 +23,7 @@ public class StudentView extends View {
     /** 1.Add course */
     public void addCourse() {
         System.out.println("=== Add a course ===");
-        
+
         String indexCode = getTextInput("Enter index of course to add");
 
         Index index = SC.checkValidIndex(indexCode);
@@ -44,7 +44,8 @@ public class StudentView extends View {
     public void dropCourse() {
         System.out.println("=== Drop a course ===");
         String indexCode = getTextInput("Enter index of course to drop");
-        student.removeIndex(indexCode);
+        Index index = SC.checkValidIndex(indexCode);
+        index.removeFromStudentList(student);
     }
 
     /** 3. Check vacancies of a course */
@@ -54,15 +55,15 @@ public class StudentView extends View {
         System.out.println("Please input your CourseID to show indexes of the Course: ");
         String courseCode = View.getTextInput("CourseID: ");
         ArrayList<Index> indexList = SC.checkVacanciesOfCourse(courseCode);
-        
+
         if (indexList != null) {
             if (indexList.size() == 0) {
                 System.out.println("There is no index in this course.");
             } else {
                 System.out.println("=== IndexNumber == Vacancies === ");
                 for (Index index : indexList) {
-                   System.out.print("      " + index.getIndex());
-                   System.out.println("          " + index.getVacancy());
+                    System.out.print("      " + index.getIndex());
+                    System.out.println("          " + index.getVacancy());
                 }
             }
         } else {
@@ -73,36 +74,37 @@ public class StudentView extends View {
     /** 4. Print Timetable */
     public void printTimeTable() {
         System.out.println("=== Print Timetable ===");
-        
+
         TimeTable timeTable = student.getTimeTable();
         Lesson[][] evenWeek = timeTable.getEvenWeek();
         Lesson[][] oddWeek = timeTable.getOddWeek();
         int choice = getIntInput("Please choose: 1 - timetable of Odd weeks | 2 - timetable of Even weeks");
         String[][] tt;
-        
+
         if (choice == 1) {
             tt = timeTable.processTimeTable(oddWeek);
         } else {
             tt = timeTable.processTimeTable(evenWeek);
         }
-        
+
         Printer.print(tt);
     }
 
     /** 6. Swop index */
-    public void swopIndex(){
-        while(true) {
+    public void swopIndex() {
+        while (true) {
             System.out.println("=== Swop index ===");
             ArrayList<String> stringIndexList = new ArrayList<>();
             ArrayList<Index> indexList = student.getIndexList();
 
-            //Print indexes of the student.
+            // Print indexes of the student.
             for (Index index : indexList) {
                 String string = index.getCourseName() + " - " + index.getIndex();
                 stringIndexList.add(string);
             }
             int choice1 = getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
-            if (choice1 == 0) return;
+            if (choice1 == 0)
+                return;
             Index sourceIndex = indexList.get(choice1 - 1);
 
             String targetMatricNum = getTextInput("Enter the matric number of student you are swopping with.");
@@ -113,7 +115,8 @@ public class StudentView extends View {
                 case 0 -> System.out.println("The matric number is invalid.");
                 case -1 -> System.out.println("Invalid password! Please double check.");
                 case -2 -> System.out.println("Your partner has not registered for this course.");
-                case -3 -> System.out.println("The index you are trying to swop with clashes with your current timetable.");
+                case -3 -> System.out
+                        .println("The index you are trying to swop with clashes with your current timetable.");
                 case -4 -> System.out.println("Your old index clashes with your partner's timetable.");
                 case -5 -> System.out.println("You and your partner have the same index.");
                 default -> System.out.println("Unknown status, operation unsuccessful.");
@@ -122,30 +125,32 @@ public class StudentView extends View {
     }
 
     /** 5. Change index */
-    public void changeIndex(){
+    public void changeIndex() {
         System.out.println("=== Change index ===");
         ArrayList<String> stringIndexList = new ArrayList<>();
         ArrayList<Index> indexList = student.getIndexList();
 
-        //Print indexes of the student.
-        for (Index index : indexList){
+        // Print indexes of the student.
+        for (Index index : indexList) {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringIndexList.add(string);
         }
         int choice1 = getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
-        if (choice1 == 0) return;
+        if (choice1 == 0)
+            return;
         Index oldIndex = indexList.get(choice1 - 1);
 
-        //Print available indexes under same course
+        // Print available indexes under same course
         ArrayList<String> stringOtherIndexList = new ArrayList<>();
         ArrayList<Index> otherIndexes = oldIndex.getIndexesOfCourse();
-        for (Index index : otherIndexes){
+        for (Index index : otherIndexes) {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringOtherIndexList.add(string);
         }
         int choice2 = getPrintOptions("Which index would you like to change to?", "Back", stringOtherIndexList);
-        if (choice2 == 0) return;
-        Index newIndex = otherIndexes.get(choice2-1);
+        if (choice2 == 0)
+            return;
+        Index newIndex = otherIndexes.get(choice2 - 1);
         SC.changeIndex(student, oldIndex, newIndex);
         System.out.println("Index changed successfully.");
     }

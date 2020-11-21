@@ -75,29 +75,29 @@ public class Student extends User implements Serializable {
     public void updateYearOfStudy() {
         this.yearOfStudy = 10;
     }
+    // moved to index.
+    // public boolean removeIndex(String indexStr) {
+    // Index index = hasIndex(indexStr);
 
-    public boolean removeIndex(String indexStr) {
-        Index index = hasIndex(indexStr);
+    // if (index == null) {
+    // System.out.println("Debug: Student does not have index " + indexStr);
+    // return false;
+    // }
 
-        if (index == null) {
-            System.out.println("Debug: Student does not have index " + indexStr);
-            return false;
-        }
+    // try {
+    // // if clashes when adding to timetable
+    // if (timeTable.removeIndex(index)) {
+    // // indexList.remove(index);
+    // System.out.println("Debug Removed index " + index.getIndex());
+    // return true;
+    // }
 
-        try {
-            // if clashes when adding to timetable
-            if (timeTable.removeIndex(index)) {
-                // indexList.remove(index);
-                System.out.println("Debug Removed index " + index.getIndex());
-                return true;
-            }
+    // } catch (Exception ex) {
+    // System.out.println(ex);
+    // }
 
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-
-        return false;
-    }
+    // return false;
+    // }
 
     public Index hasIndex(String index) {
         for (Index i : getIndexList()) {
