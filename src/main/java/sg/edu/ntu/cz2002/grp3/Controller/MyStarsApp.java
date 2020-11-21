@@ -14,10 +14,10 @@ public class MyStarsApp {
     private boolean running;
     public MyStarsApp() throws Exception {
         RM = new RecordManager();
+        activeView = new View(this);
     }
 
     public void start() throws Exception {
-        activeView = new View(this);
         running = true;
         //Load dummy data
         ArrayList<String> options = new ArrayList<>();
