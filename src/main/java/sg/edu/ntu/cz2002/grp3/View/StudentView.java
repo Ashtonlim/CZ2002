@@ -18,7 +18,12 @@ public class StudentView extends View {
         this.student = student;
     }
 
+    /** Views for Student */
+
+    /** 1.Add course */
     public void addCourse() {
+        System.out.println("=== Add a course ===");
+        
         String indexCode = getTextInput("Enter index of course to add");
 
         Index index = SC.checkValidIndex(indexCode);
@@ -30,10 +35,14 @@ public class StudentView extends View {
         System.out.println("Adding index");
         if (student.addIndex(index)) {
             System.out.println("Added index " + index.getIndex());
+        } else {
+            System.out.println(index.getIndex() + "cannot be added");
         }
     }
 
+    /** 2.Drop course */
     public void dropCourse() {
+        System.out.println("=== Drop a course ===");
         String indexCode = getTextInput("Enter index of course to drop");
         student.removeIndex(indexCode);
     }
