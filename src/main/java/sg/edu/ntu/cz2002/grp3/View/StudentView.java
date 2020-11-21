@@ -1,4 +1,5 @@
 package sg.edu.ntu.cz2002.grp3.View;
+
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.StudentController;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
@@ -15,19 +16,38 @@ public class StudentView extends View {
         this.student = student;
     }
 
+    public void addCourse() {
+        String indexCode = getTextInput("Enter index of course to add");
 
-    public void studentCheckVacanciesOfCourse(){
+        Index index = SC.checkValidIndex(indexCode);
+        if (index == null) {
+            System.out.println("Invalid index " + indexCode);
+            return;
+        }
+
+        System.out.println("Adding index");
+        if (student.addIndex(index)) {
+            System.out.println("Added index " + index.getIndex());
+        }
+    }
+
+    public void dropCourse() {
+        String indexCode = getTextInput("Enter index of course to drop");
+        student.removeIndex(indexCode);
+    }
+
+    public void studentCheckVacanciesOfCourse() {
         System.out.println("=== Please input your CourseID to show indexes of the Course ===");
         String courseCode = View.getTextInput("CourseID: ");
-        ArrayList<Index> indexList =  SC.checkVacanciesOfCourse(courseCode);
-        if (indexList != null){
+        ArrayList<Index> indexList = SC.checkVacanciesOfCourse(courseCode);
+        if (indexList != null) {
             System.out.println("=== IndexNumber == Vacancies === ");
 
-            if (indexList.size() == 0){
+            if (indexList.size() == 0) {
                 System.out.println("There is no index in this course.");
             }
 
-            for (Index index : indexList){
+            for (Index index : indexList) {
                 System.out.print("      " + index.getIndex());
                 System.out.println("          " + index.getVacancy());
             }
@@ -37,12 +57,12 @@ public class StudentView extends View {
         }
     }
 
-    public void studentPrintTimeTable(){
+    public void studentPrintTimeTable() {
         TimeTable timeTable = student.getTimeTable();
         Lesson[][] evenWeek = timeTable.getEvenWeek();
         Lesson[][] oddWeek = timeTable.getOddWeek();
         int choice = getIntInput("Print: 1 - Odd weeks | 2 - Even weeks?");
-        if (choice == 1){
+        if (choice == 1) {
             String[][] tt = timeTable.processTimeTable(oddWeek);
             Printer.print(tt);
         } else {
@@ -54,29 +74,28 @@ public class StudentView extends View {
 
     /** change password */
     public void changePassword() {
-    	System.out.println("=== Change account password ===");
-    	// need to change to console version later
-    	String oldPassword = View.getTextInput("Old password: ");
-    	String newPassword = View.getTextInput("New password: ");
-    	boolean result = SC.changePassword(student, oldPassword, newPassword);
-    	if (result == true) {
-    		System.out.println("Password successfully changed.");
-    	} else {
-    		System.out.println("Old password is incorrect.");
-    	}
+        System.out.println("=== Change account password ===");
+        // need to change to console version later
+        String oldPassword = View.getTextInput("Old password: ");
+        String newPassword = View.getTextInput("New password: ");
+        boolean result = SC.changePassword(student, oldPassword, newPassword);
+        if (result == true) {
+            System.out.println("Password successfully changed.");
+        } else {
+            System.out.println("Old password is incorrect.");
+        }
     }
-    
+
     @Override
     public void renderUserInfo() {
         System.out.println("Welcome " + student.getFullName() + " | Account type: Student.");
-        System.out.println("School: " + student.getFacultyName() + "" +
-                " | AU Registered: " + student.getRegAU() +
-                " | Number of Registered Courses: " + student.getAllIndexes().size());
+        System.out.println("School: " + student.getFacultyName() + "" + " | AU Registered: " + student.getRegAU()
+                + " | Number of Registered Courses: " + student.getAllIndexes().size());
     }
 
     @Override
     public void renderMainMenu() {
-        //Construct menu
+        // Construct menu
         String title = "=== Student Screen ===";
         ArrayList<String> studentOptions = new ArrayList<>();
         studentOptions.add("*Add Course");
@@ -88,9 +107,11 @@ public class StudentView extends View {
         studentOptions.add("Print Time Table");
 
         boolean active = true;
-        while(active){
+        while (active) {
             int c = View.getPrintOptions(title, "Logout", studentOptions);
             switch (c) {
+                case 1 -> addCourse();
+                case 2 -> dropCourse();
                 case 4 -> studentCheckVacanciesOfCourse();
                 case 7 -> studentPrintTimeTable();
                 case 0 -> {
@@ -103,12 +124,12 @@ public class StudentView extends View {
     }
 
     @Override
-    public void renderStartPage(){
+    public void renderStartPage() {
         super.renderStartPage();
     }
 
     @Override
-    public void renderLoginPage(){
+    public void renderLoginPage() {
         super.renderLoginPage();
     }
 }

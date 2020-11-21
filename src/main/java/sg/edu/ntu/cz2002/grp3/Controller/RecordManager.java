@@ -1,4 +1,5 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
+
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import java.util.ArrayList;
 
@@ -7,12 +8,12 @@ public class RecordManager {
     private ArrayList<Faculty> facultyList;
 
     public RecordManager() throws Exception {
-        try{
+        try {
             ArrayList<?> db = FileManager.readSerializedObject(); // [0] -> Users, [1] -> Faculties
             users = (ArrayList<User>) db.get(0); // Safe cast, checked in Controller.FileManager
             facultyList = (ArrayList<Faculty>) db.get(1); // Safe cast, checked in Controller.FileManager
-        } catch (Exception e){
-            System.out.println("Error: " + e.getMessage() );
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
             System.out.println("Unable to get data from database, loading empty db. You should load dummy data once.");
             users = new ArrayList<>();
             facultyList = new ArrayList<>();
@@ -27,10 +28,10 @@ public class RecordManager {
         users = new ArrayList<>();
         facultyList = new ArrayList<>();
 
-        //Entity.Faculty
+        // Entity.Faculty
         Faculty f1 = new Faculty("SCSE");
 
-        //Entity.Course
+        // Entity.Course
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Index i1 = new Index("200201", 20, c1);
@@ -46,24 +47,23 @@ public class RecordManager {
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<Admin> admins = new ArrayList<Admin>();
 
-        //Entity.Student
+        // Entity.Student
         String password = LoginManager.generateHash("abc123");
-        students.add(new Student("weixing", password, "WeiXing", "M","SC","U123", f1, 2, 20));
-        students.add(new Student("zheming", password, "ZheMing", "M", "SC","U321", f1, 2, 20));
-        students.add(new Student("bob", password, "Bob", "M","SC","U461", f1, 3, 20));
-        admins.add(new Admin("guat", password, "Guat",  "M","SC"));
+        students.add(new Student("weixing", password, "WeiXing", "M", "SC", "U123", f1, 2, 20));
+        students.add(new Student("zheming", password, "ZheMing", "M", "SC", "U321", f1, 2, 20));
+        students.add(new Student("bob", password, "Bob", "M", "SC", "U461", f1, 3, 20));
+        admins.add(new Admin("guat", password, "Guat", "M", "SC"));
         users.addAll(students);
         users.addAll(admins);
-        
-        i1.addToStudentList( (Student) users.get(0));
-        i1.addToStudentList( (Student) users.get(1));
+
+        i1.addToStudentList((Student) users.get(0));
+        i1.addToStudentList((Student) users.get(1));
         save();
         System.out.println("Dummy data loaded.");
     }
 
-
     /** get faculty by facultyName */
-    public Faculty getFaculty(String facultyName){
+    public Faculty getFaculty(String facultyName) {
 
         for (Faculty faculty : facultyList) {
             if (faculty.getName().equals(facultyName)) {
@@ -74,13 +74,12 @@ public class RecordManager {
         return null;
     }
 
-    public ArrayList<Faculty> getAllFaculties(){
+    public ArrayList<Faculty> getAllFaculties() {
         return facultyList;
     }
-    
-    
+
     /** get course by course code */
-    public Course getCourse(String courseCode){
+    public Course getCourse(String courseCode) {
 
         for (Faculty faculty : facultyList) {
             ArrayList<Course> tempCourseList = faculty.getCourseList();
@@ -93,27 +92,25 @@ public class RecordManager {
 
         return null;
     }
-    
-    
+
     /** get index by index number */
-    public Index getIndex(String index){
-    	
-    	for (Faculty faculty : facultyList) {
+    public Index getIndex(String index) {
+
+        for (Faculty faculty : facultyList) {
             ArrayList<Course> tempCourseList = faculty.getCourseList();
             for (Course tempCourse : tempCourseList) {
-		    	ArrayList<Index> tempIndexList = tempCourse.getIndexList();
-		    	for (Index tempIndex : tempIndexList) {
-		            if (tempIndex.getIndex().equals(index)) {
-		                return tempIndex;
-		            }
-		    	}
-		    }
+                ArrayList<Index> tempIndexList = tempCourse.getIndexList();
+                for (Index tempIndex : tempIndexList) {
+                    if (tempIndex.getIndex().equals(index)) {
+                        return tempIndex;
+                    }
+                }
+            }
         }
 
         return null;
     }
 
-    
     /** return all courses */
     public ArrayList<Course> getAllCourses() {
         ArrayList<Course> temp = new ArrayList<>();
@@ -141,13 +138,12 @@ public class RecordManager {
         return user;
     }
 
-
     /** return all students */
     public ArrayList<User> getAllStudents() {
         ArrayList<Student> temp = new ArrayList<>();
-        for (User user : users){
-            if (user instanceof Student){
-                temp.add( (Student) user);
+        for (User user : users) {
+            if (user instanceof Student) {
+                temp.add((Student) user);
             }
         }
         return users;
@@ -166,7 +162,6 @@ public class RecordManager {
         save();
         return true;
     }
-
 
     /** Remove user */
     public boolean removeUser(User user) throws Exception {
