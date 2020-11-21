@@ -8,7 +8,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class LoginManager {
 	private final RecordManager RM;
-
+	
+	/** default password */
+	public static String defPassword = generateHash("p@ssw0rd!");
+	
 	public LoginManager(RecordManager RM){
 		this.RM = RM;
 	}
@@ -58,36 +61,5 @@ public class LoginManager {
 
 		return isAuthenticated;
 	}
-	// public boolean verifyAdminLogin(String username, String password) {
-	// boolean isAuthenticated = false;
-	// // convert user input password into hashed password
-	// String saltedInputPW = SALT + password;
-	// String hashedInputPW = generateHash(saltedInputPW);
-	//
-	// boolean found = false;
-	// int index = 0;
-	//
-	// //find user
-	// for (int i=0; i<listOfAdmins.size(); i++){
-	// String storedUser = listOfAdmins.get(i).getUsername();
-	// if(username.equals(storedUser)){
-	// index = i;
-	// found = true;
-	// break;
-	// }
-	// System.out.println("Login failed. The user does not exist.");
-	// }
-	// //check password
-	// if (found == true) {
-	// String storedPW = listOfAdmins.get(index).getPassword();
-	// if (hashedInputPW.equals(storedPW)) {
-	// System.out.println("Login successful.");
-	// isAuthenticated = true;
-	// } else {
-	// System.out.println("Login failed. Password is incorrect.");
-	// }
-	// }
-	// return isAuthenticated;
-	// }
 
 }

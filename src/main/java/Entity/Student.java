@@ -6,6 +6,8 @@ import Entity.Index;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import Controller.LoginManager;
+
 public class Student extends User implements Serializable {
     private String matricNum;
     private int yearOfStudy;
@@ -15,11 +17,22 @@ public class Student extends User implements Serializable {
     private int regAU;
     private final TimeTable timeTable = new TimeTable();
 
+    /** constructor for loading dummy data */
     public Student(String username, String password, String fullName, String gender, String nationality, String matricNum, Faculty faculty, int yearOfStudy, int regAU) {
         super(username, password, fullName, gender, nationality);
         this.matricNum = matricNum;
         this.yearOfStudy = yearOfStudy;
         this.regAU = regAU;
+        this.faculty = faculty;
+        faculty.addStudent(this);
+    }
+    
+    /** constructor for admin to add new student. password is default and regAU = 0 */
+    public Student(String username, String fullName, String gender, String nationality, String matricNum, Faculty faculty, int yearOfStudy) {
+        super(username, LoginManager.defPassword, fullName, gender, nationality);
+        this.matricNum = matricNum;
+        this.yearOfStudy = yearOfStudy;
+        this.regAU = 0;
         this.faculty = faculty;
         faculty.addStudent(this);
     }

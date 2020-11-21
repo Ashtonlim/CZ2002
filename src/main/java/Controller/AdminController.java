@@ -123,8 +123,24 @@ public class AdminController {
     }
 
     /** 11.add a student */
-    public void addStudent(String username, String password, String fullName, String gender, String nationality, String matricNum, Faculty faculty, int yearOfStudy, int regAU){
-        Student student = new Student(username, password, fullName, gender, nationality, matricNum, faculty, yearOfStudy, regAU);
+    public int addStudent(String username, String fullName, String gender, String nationality, String matricNum, String faculty, int yearOfStudy){
+    	Faculty fac = RM.getFaculty(faculty);
+        if (RM.getUser(username) != null) {
+        	// username exists
+        	return 0;
+        } else if (gender.toLowerCase() != "m" || gender.toLowerCase() != "f"){
+        	// invalid gender
+        	return -1;
+        } else if (fac == null) {
+        	// faculty not found
+        	return -2;
+        } else if (yearOfStudy < 1) {
+        	// invalid year
+        	return -3;
+        } else {
+        	Student student = new Student(username, fullName, gender, nationality, matricNum, fac, yearOfStudy);
+        	return 1;
+        }
     }
 
     /** 12.Edit student access period */

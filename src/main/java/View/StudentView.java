@@ -18,7 +18,7 @@ public class StudentView extends View {
 
 
     public void studentCheckVacanciesOfCourse(){
-        System.out.println("=== Please input your CourseID to show indexes of the Entity.Course ===");
+        System.out.println("=== Please input your CourseID to show indexes of the Course ===");
         String courseCode = View.getTextInput("CourseID: ");
         ArrayList<Index> indexList =  SC.checkVacanciesOfCourse(courseCode);
         if (indexList != null){
@@ -34,9 +34,8 @@ public class StudentView extends View {
             }
 
         } else {
-            System.out.println("Entity.Course does not exist");
+            System.out.println("Course does not exist");
         }
-
     }
 
     public void studentPrintTimeTable(){
@@ -54,9 +53,23 @@ public class StudentView extends View {
 
     }
 
+    /** change password */
+    public void changePassword() {
+    	System.out.println("=== Change account password ===");
+    	// need to change to console version later
+    	String oldPassword = View.getTextInput("Old password: ");
+    	String newPassword = View.getTextInput("New password: ");
+    	boolean result = SC.changePassword(student, oldPassword, newPassword);
+    	if (result == true) {
+    		System.out.println("Password successfully changed.");
+    	} else {
+    		System.out.println("Old password is incorrect.");
+    	}
+    }
+    
     @Override
     public void renderUserInfo() {
-        System.out.println("Welcome " + student.getFullName() + " | Account type: Entity.Student.");
+        System.out.println("Welcome " + student.getFullName() + " | Account type: Student.");
         System.out.println("School: " + student.getFacultyName() + "" +
                 " | AU Registered: " + student.getRegAU() +
                 " | Number of Registered Courses: " + student.getAllIndexes().size());
@@ -65,14 +78,14 @@ public class StudentView extends View {
     @Override
     public void renderMainMenu() {
         //Construct menu
-        String title = "=== Entity.Student Screen ===";
+        String title = "=== Student Screen ===";
         ArrayList<String> studentOptions = new ArrayList<>();
-        studentOptions.add("*Add Entity.Course");
-        studentOptions.add("Drop Entity.Course");
+        studentOptions.add("*Add Course");
+        studentOptions.add("Drop Course");
         studentOptions.add("Check/Print Courses Registered");
         studentOptions.add("Check Vacancies Available");
-        studentOptions.add("Change Entity.Index Number of Entity.Course");
-        studentOptions.add("Swop Entity.Index Number with Another Entity.Student");
+        studentOptions.add("Change Index Number of Course");
+        studentOptions.add("Swop Index Number with Another Student");
         studentOptions.add("Print Time Table");
 
         boolean active = true;

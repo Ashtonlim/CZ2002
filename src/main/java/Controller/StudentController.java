@@ -16,7 +16,7 @@ public class StudentController {
     }
 
     public void printCourseReg(Student s) {
-        System.out.println("   CourseID   CourseName   Entity.Index   ");
+        System.out.println("   CourseID   CourseName   Index   ");
         System.out.println("===================================");
         ArrayList<Index> RegIndex = s.getIndexList();
         if (RegIndex != null){
@@ -26,7 +26,7 @@ public class StudentController {
                                 "         " + RegIndex.get(i).getIndex());
             }
         } else
-            System.out.println("No Entity.Course Registered found for this Entity.Student");
+            System.out.println("No Course Registered found for this Student");
         return;
     }
 
@@ -42,6 +42,18 @@ public class StudentController {
         } else {
             return null;
         }
+    }
+    
+    /** change password for when the account is created by admin */
+    public boolean changePassword(User user, String oldPassword, String newPassword) {
+    	boolean isAuthenticated = LoginManager.verifyLogin(user, oldPassword);
+    	if (isAuthenticated == true) {
+    		String newHashPassword = LoginManager.generateHash(newPassword);
+    		user.setPassword(newHashPassword);
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
     
     //check for clash between 2 time periods

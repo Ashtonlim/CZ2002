@@ -28,4 +28,5 @@ public abstract class User implements Serializable {
     public abstract String getUserName();
     public abstract String getFullName();
     public abstract String getPassword();
+    public abstract void setPassword(String password);
 }
