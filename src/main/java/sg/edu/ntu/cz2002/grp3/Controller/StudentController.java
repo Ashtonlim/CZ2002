@@ -5,15 +5,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class StudentController {
-    RecordManager RM;
-    Course C;
+    private RecordManager RM;
 
     public StudentController(RecordManager RM) {
         this.RM = RM;
-    }
-
-    public StudentController(Course C) {
-        this.C = C;
     }
 
     public void printCourseReg(Student s) {
@@ -81,6 +76,35 @@ public class StudentController {
         student.removeIndex(oldIndex);
         boolean addStatus = student.addIndex(newIndex);
         return (addStatus) ? 1 : 0;
+    }
+
+    public int swopIndex(Student source, String targetMatricNum, String targetPassword, Index sourceIndex){
+        Student target = RM.getStudent(targetMatricNum);
+        if (target == null) return 0;
+        if ( !LoginManager.verifyLogin(target, targetPassword) ) return -1; //Check password of target Student
+
+        boolean found = false;
+        Index targetIndex = null;
+        for (Index index : target.getIndexList()){
+            if ( index.getCourseCode().equals( sourceIndex.getCourseCode() ) ){
+                found = true;
+                targetIndex = index;
+                break;
+            }
+        }
+        if (!found) return -2; //Target student does not have the Specific course index source student trying to swop.
+        if ( sourceIndex == targetIndex ) return -5; //both same index
+        if ( source.getTimeTable().checkClash(targetIndex) ) return -3; //Source student clashes with new index
+        if ( target.getTimeTable().checkClash(sourceIndex) )return -4; //Target student clashes with new index
+
+        //Swop;
+        sourceIndex.removeFromStudentList(source);
+        targetIndex.removeFromStudentList(target);
+        sourceIndex.addToStudentList(target);
+        targetIndex.addToStudentList(source);
+
+        return 1;
+
     }
 
     // check whether an index clashes with the registered indexes of the student

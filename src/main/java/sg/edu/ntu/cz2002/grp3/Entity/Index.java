@@ -29,18 +29,28 @@ public class Index implements Serializable {
     }
 
     public void removeFromStudentList(Student student){
+        student.removeIndex(this);
         studentList.remove(student);
     }
+
     public ArrayList<Student> getWaitList(){
         return waitList;
     }
 
+
     public boolean addToStudentList(Student student){
+        if ( getVacancy() == 0){
+            System.out.println("System error (illegal operation): The index does not have a vacancy. Aborting...");
+            return false;
+        }
+
         boolean status = student.addIndex(this);
         if (status) {
             studentList.add(student);
             return true;
-        } else { return false; }
+        } else {
+            return false;
+        }
     }
 
     public ArrayList<Student> getStudentList(){

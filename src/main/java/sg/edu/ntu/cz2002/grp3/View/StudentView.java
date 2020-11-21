@@ -89,6 +89,38 @@ public class StudentView extends View {
         Printer.print(tt);
     }
 
+    /** 6. Swop index */
+    public void swopIndex(){
+        while(true) {
+            System.out.println("=== Swop index ===");
+            ArrayList<String> stringIndexList = new ArrayList<>();
+            ArrayList<Index> indexList = student.getIndexList();
+
+            //Print indexes of the student.
+            for (Index index : indexList) {
+                String string = index.getCourseName() + " - " + index.getIndex();
+                stringIndexList.add(string);
+            }
+            int choice1 = getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
+            if (choice1 == 0) return;
+            Index sourceIndex = indexList.get(choice1 - 1);
+
+            String targetMatricNum = getTextInput("Enter the matric number of student you are swopping with.");
+            String targetPassword = getTextInput("Enter the password of student you are swopping with.");
+            int res = SC.swopIndex(student, targetMatricNum, targetPassword, sourceIndex);
+            switch (res) {
+                case 1 -> System.out.println("Index successfully swopped with " + targetMatricNum);
+                case 0 -> System.out.println("The matric number is invalid.");
+                case -1 -> System.out.println("Invalid password! Please double check.");
+                case -2 -> System.out.println("Your partner has not registered for this course.");
+                case -3 -> System.out.println("The index you are trying to swop with clashes with your current timetable.");
+                case -4 -> System.out.println("Your old index clashes with your partner's timetable.");
+                case -5 -> System.out.println("You and your partner have the same index.");
+                default -> System.out.println("Unknown status, operation unsuccessful.");
+            }
+        }
+    }
+
     /** 5. Change index */
     public void changeIndex(){
         System.out.println("=== Change index ===");
@@ -161,6 +193,7 @@ public class StudentView extends View {
                 case 2 -> dropCourse();
                 case 4 -> checkVacanciesOfCourse();
                 case 5 -> changeIndex();
+                case 6 -> swopIndex();
                 case 7 -> printTimeTable();
                 case 8 -> changePassword();
                 case 0 -> {

@@ -78,28 +78,20 @@ public class Student extends User implements Serializable {
 
     public boolean addIndex(Index index) {
 
-        if (index.getVacancy() <= 0) {
-            System.out.println("Debug: Index: " + index.getIndex() + " is full.");
-            return false;
-        }
-
         if (hasIndex(index)) {
             System.out.println("Debug: Already registered index " + index.getIndex());
             return false;
         }
 
-        try {
-            // if clashes when adding to timetable
-            if (timeTable.addIndex(index)) {
+        // if clashes when adding to timetable
+        if (timeTable.addIndex(index)) {
 //                indexList.add(index);
-                return true;
-            }
-
-        } catch (Exception ex) {
-            System.out.println("Debug" + ex);
+            System.out.println("Debug: Added to timetable successfully.");
+            return true;
+        } else {
+            System.out.println("System error (illegal operation): Unhandled clashes in timetable. Aborting...");
+            return false;
         }
-
-        return false;
 
     }
 
@@ -109,17 +101,11 @@ public class Student extends User implements Serializable {
             return false;
         }
 
-        try {
-            // if clashes when adding to timetable
-            if (timeTable.removeIndex(index)) {
-                index.removeFromStudentList(this);
+        // if clashes when adding to timetable
+        if (timeTable.removeIndex(index)) {
 //                indexList.remove(index);
-                System.out.println("Debug: Removed index " + index.getIndex());
-                return true;
-            }
-
-        } catch (Exception ex) {
-            System.out.println(ex);
+            System.out.println("Debug: Removed index " + index.getIndex());
+            return true;
         }
 
         return false;
