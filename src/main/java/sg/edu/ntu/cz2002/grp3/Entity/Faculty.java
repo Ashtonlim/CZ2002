@@ -1,4 +1,4 @@
-package Entity;
+package sg.edu.ntu.cz2002.grp3.Entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

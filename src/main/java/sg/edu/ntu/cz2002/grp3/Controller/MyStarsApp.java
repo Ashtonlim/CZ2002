@@ -26,7 +26,7 @@ public class MyStarsApp {
         if (choice == 1){ RM.loadDummyData(); }
         //End of load dummy data
 
-        //sg.edu.ntu.cz2002.grp3.Main program
+        //Main program
         while(running){
             activeView.renderStartPage();
             if (!running) break;

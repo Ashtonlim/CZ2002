@@ -1,8 +1,7 @@
-package View;
-import Entity.*;
-import Controller.StudentController;
-import Controller.*;
-import View.View;
+package sg.edu.ntu.cz2002.grp3.View;
+import sg.edu.ntu.cz2002.grp3.Entity.*;
+import sg.edu.ntu.cz2002.grp3.Controller.StudentController;
+import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
 
 import java.util.ArrayList;
 

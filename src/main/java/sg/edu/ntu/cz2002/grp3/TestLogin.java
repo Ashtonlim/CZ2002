@@ -1,6 +1,8 @@
-import Controller.LoginManager;
-import Controller.RecordManager;
-import Entity.User;
+package sg.edu.ntu.cz2002.grp3;
+
+import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
+import sg.edu.ntu.cz2002.grp3.Controller.RecordManager;
+import sg.edu.ntu.cz2002.grp3.Entity.User;
 
 import java.util.Scanner;
 

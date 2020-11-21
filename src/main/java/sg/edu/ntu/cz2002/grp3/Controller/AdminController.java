@@ -1,8 +1,5 @@
-package Controller;
-import Entity.*;
-
-import Controller.RecordManager;
-import Controller.TimeManager;
+package sg.edu.ntu.cz2002.grp3.Controller;
+import sg.edu.ntu.cz2002.grp3.Entity.*;
 
 import java.util.*;
 import java.time.LocalDateTime;

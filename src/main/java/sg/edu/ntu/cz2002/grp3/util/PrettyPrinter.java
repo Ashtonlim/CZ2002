@@ -1,6 +1,6 @@
 //Source: https://stackoverflow.com/a/11384393/11224251
 
-package util;
+package sg.edu.ntu.cz2002.grp3.util;
 
 import java.io.PrintStream;
 

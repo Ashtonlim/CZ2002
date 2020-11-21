@@ -1,4 +1,4 @@
-package Entity;
+package sg.edu.ntu.cz2002.grp3.Entity;
 
 import java.io.Serializable;
 
@@ -21,6 +21,11 @@ public class Admin extends User implements Serializable {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public void setPassword(String password) {
+        //implement later
     }
 
 }

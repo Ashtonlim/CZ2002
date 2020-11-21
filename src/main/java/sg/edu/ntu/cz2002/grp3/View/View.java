@@ -1,11 +1,12 @@
-package View;
-import Entity.*;
-import Controller.*;
+package sg.edu.ntu.cz2002.grp3.View;
+import sg.edu.ntu.cz2002.grp3.Entity.*;
+import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
+import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import util.PrettyPrinter;
+import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 public class View {
     protected MyStarsApp app;
     protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
