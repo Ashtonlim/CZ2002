@@ -19,7 +19,7 @@ public class TimeTable implements Serializable {
         this.evenWeek = new Lesson[row][col];
     }
 
-    public boolean addIndex(Index index) throws Exception {
+    public boolean addIndex(Index index) {
         if (checkClash(index))
             return false;
 
@@ -30,7 +30,7 @@ public class TimeTable implements Serializable {
         return true;
     }
 
-    public boolean removeIndex(Index index) throws Exception {
+    public boolean removeIndex(Index index){
         if (checkClash(index)) {
             for (Lesson lesson : index.getLessonList()) {
                 removeFromTimeTable(lesson);
@@ -42,57 +42,74 @@ public class TimeTable implements Serializable {
 
     }
 
-    private void addToTimeTable(Lesson lesson) throws Exception {
+    private void addToTimeTable(Lesson lesson) {
         int evenOddWeek = lesson.getWeekType();
         int dayOfWeek = lesson.getDayOfWeek();
-        LocalTime startTime = lesson.getStartTime();
-        LocalTime endTime = lesson.getEndTime();
 
-        int slotNo = timeToSlotNo(startTime);
-        int weight = calWeight(startTime, endTime);
+        try {
+            LocalTime startTime = lesson.getStartTime();
+            LocalTime endTime = lesson.getEndTime();
 
-        Lesson[][] temp = (evenOddWeek == 0) ? evenWeek : oddWeek;
-
-        for (int i = 0; i < weight; i++) {
-            temp[slotNo + i][dayOfWeek] = lesson;
-        }
-    }
-
-    private void removeFromTimeTable(Lesson lesson) throws Exception {
-        int evenOddWeek = lesson.getWeekType();
-        int dayOfWeek = lesson.getDayOfWeek();
-        LocalTime startTime = lesson.getStartTime();
-        LocalTime endTime = lesson.getEndTime();
-
-        int slotNo = timeToSlotNo(startTime);
-        int weight = calWeight(startTime, endTime);
-
-        Lesson[][] temp = (evenOddWeek == 0) ? evenWeek : oddWeek;
-
-        for (int i = 0; i < weight; i++) {
-            temp[slotNo + i][dayOfWeek] = null;
-        }
-    }
-
-
-    public boolean checkClash(Index index) throws Exception {
-        LocalTime startTime, endTime;
-        int evenOddWeek, dayOfWeek, slotNo, weight;
-        boolean clash;
-        for (Lesson lesson : index.getLessonList()) {
-            startTime = lesson.getStartTime();
-            endTime = lesson.getEndTime();
-            dayOfWeek = lesson.getDayOfWeek();
-            slotNo = timeToSlotNo(startTime);
-            weight = calWeight(startTime, endTime);
-            evenOddWeek = lesson.getWeekType();
+            int slotNo = timeToSlotNo(startTime);
+            int weight = calWeight(startTime, endTime);
 
             Lesson[][] temp = (evenOddWeek == 0) ? evenWeek : oddWeek;
 
-            clash = checkClash(dayOfWeek, slotNo, weight, temp);
-            if (clash)
-                return true;
+            for (int i = 0; i < weight; i++) {
+                temp[slotNo + i][dayOfWeek] = lesson;
+            }
+        } catch (Exception ex) {
+            System.out.println("System error: " + ex);
+            System.out.println("Unable to complete your operation.");
         }
+    }
+
+    private void removeFromTimeTable(Lesson lesson) {
+        int evenOddWeek = lesson.getWeekType();
+        int dayOfWeek = lesson.getDayOfWeek();
+        LocalTime startTime = lesson.getStartTime();
+        LocalTime endTime = lesson.getEndTime();
+
+        try {
+            int slotNo = timeToSlotNo(startTime);
+            int weight = calWeight(startTime, endTime);
+            Lesson[][] temp = (evenOddWeek == 0) ? evenWeek : oddWeek;
+
+            for (int i = 0; i < weight; i++) {
+                temp[slotNo + i][dayOfWeek] = null;
+            }
+        } catch (Exception ex) {
+            System.out.println("System error: " + ex);
+            System.out.println("Unable to complete your operation.");
+        }
+    }
+
+
+    public boolean checkClash(Index index) {
+        LocalTime startTime, endTime;
+        int evenOddWeek, dayOfWeek, slotNo, weight;
+        boolean clash;
+        try {
+            for (Lesson lesson : index.getLessonList()) {
+                startTime = lesson.getStartTime();
+                endTime = lesson.getEndTime();
+                dayOfWeek = lesson.getDayOfWeek();
+                slotNo = timeToSlotNo(startTime);
+                weight = calWeight(startTime, endTime);
+                evenOddWeek = lesson.getWeekType();
+
+                Lesson[][] temp = (evenOddWeek == 0) ? evenWeek : oddWeek;
+
+                clash = checkClash(dayOfWeek, slotNo, weight, temp);
+                if (clash)
+                    return true;
+            }
+        } catch (Exception ex){
+            System.out.println("System error: " + ex);
+            System.out.println("Unable to complete your operation." );
+            return true;
+        }
+
         return false;
     }
 
@@ -107,7 +124,7 @@ public class TimeTable implements Serializable {
     private static int calWeight(LocalTime startTime, LocalTime endTime) throws Exception {
         if ((startTime.getMinute() != 0 && startTime.getMinute() != 30)
                 || (endTime.getMinute() != 0 && endTime.getMinute() != 30)) {
-            throw new Exception("Invalid time");
+            throw new Exception("Critical - Invalid time format for index");
         }
         Duration duration = Duration.between(startTime, endTime);
         return (int) (duration.toMinutes() / 30);
@@ -115,7 +132,7 @@ public class TimeTable implements Serializable {
 
     private static int timeToSlotNo(LocalTime startTime) throws Exception {
         if (startTime.getMinute() != 0 && startTime.getMinute() != 30) {
-            throw new Exception("Invalid time");
+            throw new Exception("Critical - Invalid time format for index");
         }
 
         int slotNo = (startTime.getHour() - 8) * 2;
