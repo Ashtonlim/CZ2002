@@ -1,4 +1,7 @@
-package sg.edu.ntu.cz2002.grp3.Entity;
+package Entity;
+
+import Entity.Faculty;
+import Entity.Index;
 
 import java.io.Serializable;
 import java.util.ArrayList;

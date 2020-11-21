@@ -1,5 +1,8 @@
-package sg.edu.ntu.cz2002.grp3.Controller;
-import sg.edu.ntu.cz2002.grp3.Entity.*;
+package Controller;
+import Entity.*;
+
+import Controller.RecordManager;
+import Controller.TimeManager;
 
 import java.util.*;
 import java.time.LocalDateTime;
@@ -70,7 +73,7 @@ public class AdminController {
         course.setFaculty(faculty);
     }
 
-    /** 8.Update sg.edu.ntu.cz2002.grp3.Entity.Course info */
+    /** 8.Update Entity.Course info */
     public void updateCourseCode(String courseCode, String newCourseCode){
         Course course = RM.getCourse(courseCode);
         course.setCourseCode(newCourseCode);
@@ -97,12 +100,12 @@ public class AdminController {
         course.setFaculty(newFaculty);
     }
 
-    /** 9.Add a sg.edu.ntu.cz2002.grp3.Entity.Index */
+    /** 9.Add a Entity.Index */
     public void addIndex(String index, int slots, Course course) {
         Index indexObject = new Index(index, slots, course);
     }
 
-    /** 10.Update sg.edu.ntu.cz2002.grp3.Entity.Index info */
+    /** 10.Update Entity.Index info */
     public void updateIndexCode(String index, String newIndex) {
         Index indexObject = RM.getIndex(index);
         indexObject.setIndex(newIndex);

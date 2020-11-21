@@ -1,4 +1,4 @@
-package sg.edu.ntu.cz2002.grp3.Entity;
+package Entity;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package sg.edu.ntu.cz2002.grp3.Controller;
+package Controller;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;

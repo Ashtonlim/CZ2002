@@ -1,5 +1,5 @@
-package sg.edu.ntu.cz2002.grp3.Controller;
-import sg.edu.ntu.cz2002.grp3.Entity.*;
+package Controller;
+import Entity.*;
 import java.util.ArrayList;
 
 public class RecordManager {
@@ -9,8 +9,8 @@ public class RecordManager {
     public RecordManager() throws Exception {
         try{
             ArrayList<?> db = FileManager.readSerializedObject(); // [0] -> Users, [1] -> Faculties
-            users = (ArrayList<User>) db.get(0); // Safe cast, checked in sg.edu.ntu.cz2002.grp3.Controller.FileManager
-            facultyList = (ArrayList<Faculty>) db.get(1); // Safe cast, checked in sg.edu.ntu.cz2002.grp3.Controller.FileManager
+            users = (ArrayList<User>) db.get(0); // Safe cast, checked in Controller.FileManager
+            facultyList = (ArrayList<Faculty>) db.get(1); // Safe cast, checked in Controller.FileManager
         } catch (Exception e){
             System.out.println("Error: " + e.getMessage() );
             System.out.println("Unable to get data from database, loading empty db. You should load dummy data once.");
@@ -27,10 +27,10 @@ public class RecordManager {
         users = new ArrayList<>();
         facultyList = new ArrayList<>();
 
-        //sg.edu.ntu.cz2002.grp3.Entity.Faculty
+        //Entity.Faculty
         Faculty f1 = new Faculty("SCSE");
 
-        //sg.edu.ntu.cz2002.grp3.Entity.Course
+        //Entity.Course
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Index i1 = new Index("200201", 20, c1);
@@ -46,7 +46,7 @@ public class RecordManager {
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<Admin> admins = new ArrayList<Admin>();
 
-        //sg.edu.ntu.cz2002.grp3.Entity.Student
+        //Entity.Student
         String password = LoginManager.generateHash("abc123");
         students.add(new Student("weixing", password, "WeiXing", "M","SC","U123", f1, 2, 20));
         students.add(new Student("zheming", password, "ZheMing", "M", "SC","U321", f1, 2, 20));

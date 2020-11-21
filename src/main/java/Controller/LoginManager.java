@@ -1,6 +1,7 @@
-package sg.edu.ntu.cz2002.grp3.Controller;
+package Controller;
 
-import sg.edu.ntu.cz2002.grp3.Entity.User;
+import Controller.RecordManager;
+import Entity.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

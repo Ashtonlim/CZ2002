@@ -1,8 +1,6 @@
-package sg.edu.ntu.cz2002.grp3;
-
-import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
-import sg.edu.ntu.cz2002.grp3.Controller.RecordManager;
-import sg.edu.ntu.cz2002.grp3.Entity.User;
+import Controller.LoginManager;
+import Controller.RecordManager;
+import Entity.User;
 
 import java.util.Scanner;
 
@@ -10,7 +8,7 @@ public class TestLogin {
 	
 	public static void main(String[] args) throws Exception {
 		
-//		sg.edu.ntu.cz2002.grp3.Controller.RecordManager rm = new sg.edu.ntu.cz2002.grp3.Controller.RecordManager();
+//		Controller.RecordManager rm = new Controller.RecordManager();
 //		rm.loadDummyData();
 		
 		Scanner sc = new Scanner(System.in);
@@ -48,7 +46,7 @@ public class TestLogin {
 
 			User user = RM.getUser(loginUsername);
 			if (user == null){
-				System.out.println("sg.edu.ntu.cz2002.grp3.Entity.User does not exist");
+				System.out.println("Entity.User does not exist");
 			} else {
 				System.out.println("Logging in........");
 				success = login.verifyLogin(user, loginPassword);
