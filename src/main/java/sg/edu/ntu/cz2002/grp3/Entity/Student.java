@@ -8,8 +8,8 @@ import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 public class Student extends User implements Serializable {
     private String matricNum;
     private int yearOfStudy;
-//    private ArrayList<Index> indexList = new ArrayList<>();
-    private ArrayList<Index> waitList = new ArrayList<>();
+    // private ArrayList<Index> indexList = new ArrayList<>();
+    // private ArrayList<Index> waitList = new ArrayList<>();
     private Faculty faculty;
     private int regAU;
     private final TimeTable timeTable = new TimeTable();
@@ -55,9 +55,9 @@ public class Student extends User implements Serializable {
         return faculty.getName();
     }
 
-    public int getNumOfWaitingList() {
-        return waitList.size();
-    }
+    // public int getNumOfWaitingList() {
+    // return waitList.size();
+    // }
 
     public int getYearOfStudy() {
         return yearOfStudy;
@@ -76,7 +76,6 @@ public class Student extends User implements Serializable {
         this.yearOfStudy = 10;
     }
 
-
     public boolean removeIndex(String indexStr) {
         Index index = hasIndex(indexStr);
 
@@ -88,7 +87,7 @@ public class Student extends User implements Serializable {
         try {
             // if clashes when adding to timetable
             if (timeTable.removeIndex(index)) {
-//                indexList.remove(index);
+                // indexList.remove(index);
                 System.out.println("Debug Removed index " + index.getIndex());
                 return true;
             }
@@ -118,9 +117,9 @@ public class Student extends User implements Serializable {
         return false;
     }
 
-    public boolean hasCourse(String courseCode){
-        for (Index index : getIndexList()){
-            if (index.getCourseCode().equals(courseCode)){
+    public boolean hasCourse(String courseCode) {
+        for (Index index : getIndexList()) {
+            if (index.getCourseCode().equals(courseCode)) {
                 return true;
             }
         }
@@ -128,9 +127,10 @@ public class Student extends User implements Serializable {
         return false;
     }
 
-    public void addToWaitList(Index index) {
-        waitList.add(index);
-    }
+    // removing waitlist from student
+    // public void addToWaitList(Index index) {
+    // waitList.add(index);
+    // }
 
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
