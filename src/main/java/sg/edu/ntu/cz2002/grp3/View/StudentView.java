@@ -77,18 +77,21 @@ public class StudentView extends View {
         TimeTable timeTable = student.getTimeTable();
         Lesson[][] evenWeek = timeTable.getEvenWeek();
         Lesson[][] oddWeek = timeTable.getOddWeek();
-        int choice = getIntInput("Print: 1 - Odd weeks | 2 - Even weeks?");
+        int choice = getIntInput("Please choose: 1 - timetable of Odd weeks | 2 - timetable of Even weeks");
         String[][] tt;
+        
         if (choice == 1) {
             tt = timeTable.processTimeTable(oddWeek);
         } else {
             tt = timeTable.processTimeTable(evenWeek);
         }
+        
         Printer.print(tt);
-
     }
 
+    /** 5. Change index */
     public void changeIndex(){
+        System.out.println("=== Change index ===");
         ArrayList<String> stringIndexList = new ArrayList<>();
         ArrayList<Index> indexList = student.getIndexList();
 
@@ -97,7 +100,7 @@ public class StudentView extends View {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringIndexList.add(string);
         }
-        int choice1 = getPrintOptions("Which index would u like to change?", "Back", stringIndexList);
+        int choice1 = getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
         if (choice1 == 0) return;
         Index oldIndex = indexList.get(choice1 - 1);
 
@@ -108,14 +111,14 @@ public class StudentView extends View {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringOtherIndexList.add(string);
         }
-        int choice2 = getPrintOptions("Which index to change to?", "Back", stringOtherIndexList);
+        int choice2 = getPrintOptions("Which index would you like to change to?", "Back", stringOtherIndexList);
         if (choice2 == 0) return;
         Index newIndex = otherIndexes.get(choice2-1);
         SC.changeIndex(student, oldIndex, newIndex);
         System.out.println("Index changed successfully.");
     }
 
-    /** change password */
+    /** 6. Change password */
     public void changePassword() {
         System.out.println("=== Change account password ===");
         // need to change to console version later
