@@ -53,7 +53,12 @@ public class Index implements Serializable {
 
         //Check student's timetable
         if (student.hasIndex(this)) {
-            System.out.println("Debug: Already registered index " + getIndex());
+            System.out.println("Debug: Already registered index: " + getIndex());
+            return false;
+        }
+
+        if (student.hasCourse(getCourseCode())){
+            System.out.println("Debug: Already registered this course: " + getCourseName());
             return false;
         }
 

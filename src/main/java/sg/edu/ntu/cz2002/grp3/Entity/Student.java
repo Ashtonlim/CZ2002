@@ -118,6 +118,16 @@ public class Student extends User implements Serializable {
         return false;
     }
 
+    public boolean hasCourse(String courseCode){
+        for (Index index : getIndexList()){
+            if (index.getCourseCode().equals(courseCode)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void addToWaitList(Index index) {
         waitList.add(index);
     }
