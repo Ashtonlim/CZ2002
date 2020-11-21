@@ -1,8 +1,6 @@
-package Entity;
+package sg.edu.ntu.cz2002.grp3.Entity;
 
-import Controller.TimeManager;
-import Entity.Index;
-import Entity.Lesson;
+import sg.edu.ntu.cz2002.grp3.Controller.TimeManager;
 
 import java.io.Serializable;
 import java.time.Duration;

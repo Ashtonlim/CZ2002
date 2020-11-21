@@ -1,6 +1,6 @@
 Add data/empty check for source files (users/courses)
 Implement classes class
-Make sure there is only one instance of Controller.RecordManager during runtime
+Make sure there is only one instance of sg.edu.ntu.cz2002.grp3.Controller.RecordManager during runtime
 Handle InvalidClassException for readSerializable (When classes changed, binary file becomes invalid)
 Clean up arraylist when objects are deleted
 Clean up error handling and true/false returned

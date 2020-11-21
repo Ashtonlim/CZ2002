@@ -1,5 +1,5 @@
-package Controller;
-import Entity.*;
+package sg.edu.ntu.cz2002.grp3.Controller;
+import sg.edu.ntu.cz2002.grp3.Entity.*;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Paths;

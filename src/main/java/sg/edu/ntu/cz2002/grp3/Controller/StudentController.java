@@ -1,5 +1,5 @@
-package Controller;
-import Entity.*;
+package sg.edu.ntu.cz2002.grp3.Controller;
+import sg.edu.ntu.cz2002.grp3.Entity.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class StudentController {
     }
 
     public void printCourseReg(Student s) {
-        System.out.println("   CourseID   CourseName   Entity.Index   ");
+        System.out.println("   CourseID   CourseName   sg.edu.ntu.cz2002.grp3.Entity.Index   ");
         System.out.println("===================================");
         ArrayList<Index> RegIndex = s.getIndexList();
         if (RegIndex != null){
@@ -26,7 +26,7 @@ public class StudentController {
                                 "         " + RegIndex.get(i).getIndex());
             }
         } else
-            System.out.println("No Entity.Course Registered found for this Entity.Student");
+            System.out.println("No sg.edu.ntu.cz2002.grp3.Entity.Course Registered found for this sg.edu.ntu.cz2002.grp3.Entity.Student");
         return;
     }
 
@@ -58,15 +58,15 @@ public class StudentController {
         try {
             return timeTable.checkClash(i);
         } catch (Exception ex){
-            //Wrong Entity.Index time will end up here
+            //Wrong sg.edu.ntu.cz2002.grp3.Entity.Index time will end up here
         }
 		return true;
 
-//        ArrayList<Entity.Index> regIndexes = s.getIndexList();
-//        for (Entity.Index regIndex : regIndexes) {
-//            ArrayList<Entity.Lesson> regLessons = regIndex.getLessonList();
-//            for (Entity.Lesson regLesson : regLessons) {
-//                for(Entity.Lesson newLesson : i.getLessonList()) {
+//        ArrayList<sg.edu.ntu.cz2002.grp3.Entity.Index> regIndexes = s.getIndexList();
+//        for (sg.edu.ntu.cz2002.grp3.Entity.Index regIndex : regIndexes) {
+//            ArrayList<sg.edu.ntu.cz2002.grp3.Entity.Lesson> regLessons = regIndex.getLessonList();
+//            for (sg.edu.ntu.cz2002.grp3.Entity.Lesson regLesson : regLessons) {
+//                for(sg.edu.ntu.cz2002.grp3.Entity.Lesson newLesson : i.getLessonList()) {
 //                    if (regLesson.getDay() != newLesson.getDay()) {
 //                        continue;
 //                    } else {

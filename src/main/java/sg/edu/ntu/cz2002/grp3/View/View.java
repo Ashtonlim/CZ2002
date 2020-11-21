@@ -1,11 +1,11 @@
-package View;
-import Entity.*;
-import Controller.*;
+package sg.edu.ntu.cz2002.grp3.View;
+import sg.edu.ntu.cz2002.grp3.Entity.*;
+import sg.edu.ntu.cz2002.grp3.Controller.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import util.PrettyPrinter;
+import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 public class View {
     protected MyStarsApp app;
     protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
@@ -13,7 +13,7 @@ public class View {
     public View(MyStarsApp app){
         this.app = app;
     }
-    /** Common View.View */
+    /** Common View */
 
     public void renderUserInfo(){
         System.out.println("Welcome guest! | Account type: Guest.");
@@ -27,7 +27,7 @@ public class View {
     public void renderStartPage(){
         ArrayList<String> options = new ArrayList<>();
         options.add("Login");
-        int choice = View.getPrintOptions("* Controller.MyStarsApp *", "Exit Program", options);
+        int choice = View.getPrintOptions("* MyStarsApp *", "Exit Program", options);
         app.setRunningStatus(choice != 0);
     }
 
@@ -36,7 +36,7 @@ public class View {
         User activeUser = null;
         LoginManager LM = new LoginManager(app.getRM());
         //Non terminal code, to be changed to terminal version lat
-        System.out.println("=== Entity.User Login ===");
+        System.out.println("=== User Login ===");
         String username = View.getTextInput("Username: ");
         String password = View.getTextInput("Password: ");
         System.out.println("Logging in........");

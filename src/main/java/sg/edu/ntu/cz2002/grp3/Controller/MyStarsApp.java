@@ -1,10 +1,9 @@
-package Controller;
-import View.*;
-import Controller.*;
-import Entity.Admin;
-import Entity.Student;
-import Entity.User;
-import View.View;
+package sg.edu.ntu.cz2002.grp3.Controller;
+import sg.edu.ntu.cz2002.grp3.View.*;
+import sg.edu.ntu.cz2002.grp3.Entity.Admin;
+import sg.edu.ntu.cz2002.grp3.Entity.Student;
+import sg.edu.ntu.cz2002.grp3.Entity.User;
+import sg.edu.ntu.cz2002.grp3.View.View;
 
 import java.util.*;
 
@@ -13,14 +12,13 @@ public class MyStarsApp {
     private View activeView;
     private User activeUser;
     private boolean running;
-
     public MyStarsApp() throws Exception {
         RM = new RecordManager();
-        activeView = new View(this);
-        running = true;
     }
 
     public void start() throws Exception {
+        activeView = new View(this);
+        running = true;
         //Load dummy data
         ArrayList<String> options = new ArrayList<>();
         options.add("Yes");
@@ -28,7 +26,7 @@ public class MyStarsApp {
         if (choice == 1){ RM.loadDummyData(); }
         //End of load dummy data
 
-        //Main program
+        //sg.edu.ntu.cz2002.grp3.Main program
         while(running){
             activeView.renderStartPage();
             if (!running) break;
