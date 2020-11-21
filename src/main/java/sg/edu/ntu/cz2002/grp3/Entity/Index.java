@@ -28,9 +28,20 @@ public class Index implements Serializable {
         student.addToWaitList(this);
     }
 
-    public void removeFromStudentList(Student student){
-        student.removeIndex(this);
-        studentList.remove(student);
+    public boolean removeFromStudentList(Student student){
+        if (!student.hasIndex(this)) {
+            System.out.println("Debug: Student does not have index " + getIndex());
+            return false;
+        }
+
+        // if clashes when adding to timetable
+        if (student.getTimeTable().removeIndex(this)) {
+            System.out.println("Debug: Removed index " + getIndex());
+            studentList.remove(student);
+            return true;
+        }
+
+        return false;
     }
 
     public ArrayList<Student> getWaitList(){
@@ -39,16 +50,25 @@ public class Index implements Serializable {
 
 
     public boolean addToStudentList(Student student){
+
+        //Check student's timetable
+        if (student.hasIndex(this)) {
+            System.out.println("Debug: Already registered index " + getIndex());
+            return false;
+        }
+
         if ( getVacancy() == 0){
             System.out.println("System error (illegal operation): The index does not have a vacancy. Aborting...");
             return false;
         }
 
-        boolean status = student.addIndex(this);
-        if (status) {
+        // if clashes when adding to timetable
+        if (student.getTimeTable().addIndex(this)) {
+            System.out.println("Debug: Added to timetable successfully.");
             studentList.add(student);
             return true;
         } else {
+            System.out.println("System error (illegal operation): Unhandled clashes in timetable. Aborting...");
             return false;
         }
     }

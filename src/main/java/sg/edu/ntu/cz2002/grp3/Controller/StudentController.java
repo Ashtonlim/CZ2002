@@ -73,8 +73,8 @@ public class StudentController {
             return -2;
         }
 
-        student.removeIndex(oldIndex);
-        boolean addStatus = student.addIndex(newIndex);
+        oldIndex.removeFromStudentList(student);
+        boolean addStatus = newIndex.addToStudentList(student);
         return (addStatus) ? 1 : 0;
     }
 

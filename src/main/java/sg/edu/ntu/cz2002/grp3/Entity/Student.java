@@ -76,40 +76,6 @@ public class Student extends User implements Serializable {
         this.yearOfStudy = 10;
     }
 
-    public boolean addIndex(Index index) {
-
-        if (hasIndex(index)) {
-            System.out.println("Debug: Already registered index " + index.getIndex());
-            return false;
-        }
-
-        // if clashes when adding to timetable
-        if (timeTable.addIndex(index)) {
-//                indexList.add(index);
-            System.out.println("Debug: Added to timetable successfully.");
-            return true;
-        } else {
-            System.out.println("System error (illegal operation): Unhandled clashes in timetable. Aborting...");
-            return false;
-        }
-
-    }
-
-    public boolean removeIndex(Index index) {
-        if (!hasIndex(index)) {
-            System.out.println("Debug: Student does not have index " + index.getIndex());
-            return false;
-        }
-
-        // if clashes when adding to timetable
-        if (timeTable.removeIndex(index)) {
-//                indexList.remove(index);
-            System.out.println("Debug: Removed index " + index.getIndex());
-            return true;
-        }
-
-        return false;
-    }
 
     public boolean removeIndex(String indexStr) {
         Index index = hasIndex(indexStr);

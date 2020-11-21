@@ -33,7 +33,7 @@ public class StudentView extends View {
         }
 
         System.out.println("Adding index");
-        if (student.addIndex(index)) {
+        if (index.addToStudentList(student)) {
             System.out.println("Added index " + index.getIndex());
         } else {
             System.out.println(index.getIndex() + "cannot be added");
