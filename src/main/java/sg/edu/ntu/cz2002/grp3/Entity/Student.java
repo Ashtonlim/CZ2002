@@ -8,7 +8,7 @@ import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 public class Student extends User implements Serializable {
     private String matricNum;
     private int yearOfStudy;
-    private ArrayList<Index> indexList = new ArrayList<>();
+//    private ArrayList<Index> indexList = new ArrayList<>();
     private ArrayList<Index> waitList = new ArrayList<>();
     private Faculty faculty;
     private int regAU;
@@ -40,12 +40,12 @@ public class Student extends User implements Serializable {
 
     /** get student indo */
     public ArrayList<Index> getIndexList() {
-        return indexList;
+        return timeTable.getIndexList();
     }
 
     public int getRegAU() {
         int totalAU = 0;
-        for (Index index : indexList) {
+        for (Index index : getIndexList()) {
             totalAU += index.getAU();
         }
         return totalAU;
@@ -53,10 +53,6 @@ public class Student extends User implements Serializable {
 
     public String getFacultyName() {
         return faculty.getName();
-    }
-
-    public ArrayList<Index> getAllIndexes() {
-        return indexList;
     }
 
     public int getNumOfWaitingList() {
@@ -95,7 +91,7 @@ public class Student extends User implements Serializable {
         try {
             // if clashes when adding to timetable
             if (timeTable.addIndex(index)) {
-                indexList.add(index);
+//                indexList.add(index);
                 return true;
             }
 
@@ -117,7 +113,7 @@ public class Student extends User implements Serializable {
             // if clashes when adding to timetable
             if (timeTable.removeIndex(index)) {
                 index.removeFromStudentList(this);
-                indexList.remove(index);
+//                indexList.remove(index);
                 System.out.println("Debug: Removed index " + index.getIndex());
                 return true;
             }
@@ -140,7 +136,7 @@ public class Student extends User implements Serializable {
         try {
             // if clashes when adding to timetable
             if (timeTable.removeIndex(index)) {
-                indexList.remove(index);
+//                indexList.remove(index);
                 System.out.println("Debug Removed index " + index.getIndex());
                 return true;
             }
@@ -153,7 +149,7 @@ public class Student extends User implements Serializable {
     }
 
     public Index hasIndex(String index) {
-        for (Index i : indexList) {
+        for (Index i : getIndexList()) {
             if (i.getIndex().equals(index)) {
                 return i;
             }
@@ -162,7 +158,7 @@ public class Student extends User implements Serializable {
     }
 
     public boolean hasIndex(Index index) {
-        for (Index i : indexList) {
+        for (Index i : getIndexList()) {
             if (i.getIndex().equals(index.getIndex())) {
                 return true;
             }

@@ -67,7 +67,9 @@ public class Lesson implements Serializable {
 	public String getCourseName() {
 		return index.getCourseName();
 	}
-
+	public Index getIndex(){
+		return index;
+	}
 	public void setType(String type) {
 		this.type = type;
 	}

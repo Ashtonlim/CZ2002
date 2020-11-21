@@ -118,7 +118,7 @@ public class StudentView extends View {
     public void renderUserInfo() {
         System.out.println("Welcome " + student.getFullName() + " | Account type: Student.");
         System.out.println("School: " + student.getFacultyName() + "" + " | AU Registered: " + student.getRegAU()
-                + " | Number of Registered Courses: " + student.getAllIndexes().size());
+                + " | Number of Registered Courses: " + student.getIndexList().size());
     }
 
     @Override

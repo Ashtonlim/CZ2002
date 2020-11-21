@@ -133,6 +133,21 @@ public class TimeTable implements Serializable {
         return oddWeek;
     }
 
+    public ArrayList<Index> getIndexList(){
+        ArrayList<Index> indexList = new ArrayList<>();
+        for (int i = 0; i < row; i++){
+            for (int j = 0; j < col; j++){
+                if (!indexList.contains(evenWeek[i][j].getIndex())){
+                    indexList.add(evenWeek[i][j].getIndex());
+                }
+
+                if (!indexList.contains(oddWeek[i][j].getIndex())){
+                    indexList.add(oddWeek[i][j].getIndex());
+                }
+            }
+        }
+        return indexList;
+    }
     public String[][] processTimeTable(Lesson[][] timetable) {
         String[][] tt = new String[row + 1][col + 1];
         Lesson lesson;
