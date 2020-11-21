@@ -47,28 +47,33 @@ public class StudentView extends View {
         student.removeIndex(indexCode);
     }
 
+    /** 3. Check vacancies of a course */
     public void checkVacanciesOfCourse() {
+        System.out.println("=== Check vacancies of a course ===");
+
         System.out.println("=== Please input your CourseID to show indexes of the Course ===");
         String courseCode = View.getTextInput("CourseID: ");
         ArrayList<Index> indexList = SC.checkVacanciesOfCourse(courseCode);
+        
         if (indexList != null) {
-            System.out.println("=== IndexNumber == Vacancies === ");
-
             if (indexList.size() == 0) {
                 System.out.println("There is no index in this course.");
+            } else {
+                System.out.println("=== IndexNumber == Vacancies === ");
+                for (Index index : indexList) {
+                   System.out.print("      " + index.getIndex());
+                   System.out.println("          " + index.getVacancy());
+                }
             }
-
-            for (Index index : indexList) {
-                System.out.print("      " + index.getIndex());
-                System.out.println("          " + index.getVacancy());
-            }
-
         } else {
             System.out.println("Course does not exist");
         }
     }
 
+    /** 4. Print Timetable */
     public void printTimeTable() {
+        System.out.println("=== Print Timetable ===");
+        
         TimeTable timeTable = student.getTimeTable();
         Lesson[][] evenWeek = timeTable.getEvenWeek();
         Lesson[][] oddWeek = timeTable.getOddWeek();
