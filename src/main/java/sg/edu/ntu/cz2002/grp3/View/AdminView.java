@@ -184,8 +184,10 @@ public class AdminView extends View {
     public void changePassword() {
     	System.out.println("=== Change account password ===");
     	// need to change to console version later
-    	String oldPassword = View.getTextInput("Old password: ");
-    	String newPassword = View.getTextInput("New password: ");
+    	System.out.print("Old ");
+    	String oldPassword = View.getPassword();
+    	System.out.print("New ");
+    	String newPassword = View.getPassword();
     	boolean result = LoginManager.changePassword(admin, oldPassword, newPassword);
     	if (result == true) {
     		System.out.println("Password successfully changed.");

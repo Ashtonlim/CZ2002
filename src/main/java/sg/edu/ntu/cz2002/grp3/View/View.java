@@ -4,6 +4,7 @@ import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
 import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -120,7 +121,7 @@ public class View {
         return input;
     }
     
-    /** Get confirmation input from user */
+    /** Get confirmation y/n input from user */
     public static char getConfInput(String prompt) {
         char input;
         Scanner sc = new Scanner(System.in);
@@ -134,6 +135,14 @@ public class View {
             }
         }
         return input;
+    }
+    
+    /** get password with hidden fields */
+    public static String getPassword() {
+		Console cons = System.console();
+		char[] input = cons.readPassword("Password: ");
+		String password = String.valueOf(input);
+		return password;
     }
 
     /** Print student list */
