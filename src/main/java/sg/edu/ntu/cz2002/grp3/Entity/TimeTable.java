@@ -19,10 +19,7 @@ public class TimeTable implements Serializable {
     }
 
     public boolean addIndex(Index index) throws Exception {
-        boolean clash;
-
-        clash = checkClash(index);
-        if (clash)
+        if (checkClash(index))
             return false;
 
         for (Lesson lesson : index.getLessonList()) {
@@ -30,6 +27,18 @@ public class TimeTable implements Serializable {
         }
 
         return true;
+    }
+
+    public boolean removeIndex(Index index) throws Exception {
+        if (checkClash(index)) {
+            for (Lesson lesson : index.getLessonList()) {
+                removeFromTimeTable(lesson);
+            }
+            return true;
+        }
+        System.out.println("Index not in Timetable");
+        return false;
+
     }
 
     private void addToTimeTable(Lesson lesson) throws Exception {
@@ -45,6 +54,22 @@ public class TimeTable implements Serializable {
 
         for (int i = 0; i < weight; i++) {
             temp[slotNo + i][dayOfWeek] = lesson;
+        }
+    }
+
+    private void removeFromTimeTable(Lesson lesson) throws Exception {
+        int evenOddWeek = lesson.getWeekType();
+        int dayOfWeek = lesson.getDayOfWeek();
+        LocalTime startTime = lesson.getStartTime();
+        LocalTime endTime = lesson.getEndTime();
+
+        int slotNo = timeToSlotNo(startTime);
+        int weight = calWeight(startTime, endTime);
+
+        Lesson[][] temp = (evenOddWeek == 0) ? evenWeek : oddWeek;
+
+        for (int i = 0; i < weight; i++) {
+            temp[slotNo + i][dayOfWeek] = null;
         }
     }
 

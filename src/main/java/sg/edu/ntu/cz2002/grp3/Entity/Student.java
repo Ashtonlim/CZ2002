@@ -108,23 +108,46 @@ public class Student extends User implements Serializable {
     }
 
     public boolean removeIndex(Index index) {
-        if (hasIndex(index)) {
-            System.out.println("Removed index " + index.getIndex());
-            indexList.remove(index);
-            return true;
+        if (!hasIndex(index)) {
+            System.out.println("Student does not have index " + index.getIndex());
+            return false;
         }
-        System.out.println("Student does not have index " + index.getIndex());
+
+        try {
+            // if clashes when adding to timetable
+            if (timeTable.removeIndex(index)) {
+                indexList.remove(index);
+                System.out.println("Removed index " + index.getIndex());
+                return true;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+
         return false;
     }
 
     public boolean removeIndex(String indexStr) {
         Index index = hasIndex(indexStr);
-        if (index != null) {
-            System.out.println("Removed index " + index.getIndex());
-            indexList.remove(index);
-            return true;
+
+        if (index == null) {
+            System.out.println("Student does not have index " + indexStr);
+            return false;
         }
-        System.out.println("Student does not have index " + indexStr);
+
+        try {
+            // if clashes when adding to timetable
+            if (timeTable.removeIndex(index)) {
+                indexList.remove(index);
+                System.out.println("Removed index " + index.getIndex());
+                return true;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+
         return false;
     }
 
