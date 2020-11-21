@@ -51,7 +51,7 @@ public class StudentView extends View {
     public void checkVacanciesOfCourse() {
         System.out.println("=== Check vacancies of a course ===");
 
-        System.out.println("=== Please input your CourseID to show indexes of the Course ===");
+        System.out.println("Please input your CourseID to show indexes of the Course: ");
         String courseCode = View.getTextInput("CourseID: ");
         ArrayList<Index> indexList = SC.checkVacanciesOfCourse(courseCode);
         
@@ -149,7 +149,7 @@ public class StudentView extends View {
         studentOptions.add("Check/Print Courses Registered");
         studentOptions.add("Check Vacancies Available");
         studentOptions.add("Change Index Number of Course");
-        studentOptions.add("Swop Index Number with Another Student");
+        studentOptions.add("Swap Index Number with Another Student");
         studentOptions.add("Print Time Table");
         studentOptions.add("Change Password");
 
