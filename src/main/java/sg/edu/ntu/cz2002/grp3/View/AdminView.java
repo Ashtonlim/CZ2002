@@ -301,6 +301,7 @@ public class AdminView extends View {
         }
     }
 
+    /** Print Student List by Index */
     public void adminPrintStudentListByIndex(){
         System.out.println("=== Student List By Index ===");
         String indexCode = View.getTextInput("Index number: ");
@@ -311,7 +312,8 @@ public class AdminView extends View {
             System.out.println("Index not found!");
         }
     }
-
+	
+    /** Print student List by Course */
     public void adminPrintStudentListByCourse(){
         System.out.println("=== Student List By Course ===");
         String indexCode = View.getTextInput("Course code: ");
