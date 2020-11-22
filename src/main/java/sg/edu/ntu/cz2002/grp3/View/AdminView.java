@@ -316,6 +316,7 @@ public class AdminView extends View {
             		break;
             	case 7:
             		adminUpdateIndex(course);
+            		break;
                 default:
                 	System.out.println("Option not available...");
             }
