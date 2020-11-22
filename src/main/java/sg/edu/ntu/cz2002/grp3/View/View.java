@@ -82,6 +82,21 @@ public class View {
         return choice;
     }
 
+    public static void changePassword(User user) {
+        System.out.println("=== Change account password ===");
+        // need to change to console version later
+        System.out.print("Old ");
+        String oldPassword = View.getPassword("Password: ");
+        System.out.print("New ");
+        String newPassword = View.getPassword("Password: ");
+        boolean result = LoginManager.changePassword(user, oldPassword, newPassword);
+        if (result) {
+            System.out.println("Password successfully changed.");
+        } else {
+            System.out.println("Old password is incorrect.");
+        }
+    }
+
     /** Get int input from user */
     public static int getIntInput(String prompt) {
         int choice;

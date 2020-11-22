@@ -178,23 +178,7 @@ public class AdminView extends View {
             System.out.println("Course not found!");
         }
     }
-    
-    
-    /** 9. change password */
-    public void changePassword() {
-    	System.out.println("=== Change account password ===");
-    	// need to change to console version later
-    	System.out.print("Old ");
-    	String oldPassword = View.getPassword("Password: ");
-    	System.out.print("New ");
-    	String newPassword = View.getPassword("Password: ");
-    	boolean result = LoginManager.changePassword(admin, oldPassword, newPassword);
-    	if (result) {
-    		System.out.println("Password successfully changed.");
-    	} else {
-    		System.out.println("Old password is incorrect.");
-    	}
-    }
+
 
     @Override
     public void renderUserInfo() {
@@ -226,7 +210,7 @@ public class AdminView extends View {
                 case 5 -> adminCheckVacancy();
                 case 6 -> adminPrintStudentListByIndex();
                 case 7 -> adminPrintStudentListByCourse();
-                case 8 -> changePassword();
+                case 8 -> changePassword(admin);
                 case 0 -> {
                     active = false;
                     System.out.println("Logging out...");

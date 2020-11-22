@@ -155,20 +155,6 @@ public class StudentView extends View {
         System.out.println("Index changed successfully.");
     }
 
-    /** 6. Change password */
-    public void changePassword() {
-        System.out.println("=== Change account password ===");
-        // need to change to console version later
-        String oldPassword = View.getTextInput("Old password: ");
-        String newPassword = View.getTextInput("New password: ");
-        boolean result = LoginManager.changePassword(student, oldPassword, newPassword);
-        if (result == true) {
-            System.out.println("Password successfully changed.");
-        } else {
-            System.out.println("Old password is incorrect.");
-        }
-    }
-
     @Override
     public void renderUserInfo() {
         System.out.println("Welcome " + student.getFullName() + " | Account type: Student.");
@@ -200,7 +186,7 @@ public class StudentView extends View {
                 case 5 -> changeIndex();
                 case 6 -> swopIndex();
                 case 7 -> printTimeTable();
-                case 8 -> changePassword();
+                case 8 -> changePassword(student);
                 case 0 -> {
                     active = false;
                     System.out.println("Logging out...");
