@@ -100,7 +100,7 @@ public class AdminView extends View {
         	switch(result) {
         	case 1:
         		System.out.println("Course " + courseCode + " " + courseName + " successfully added into system.");
-        		char choice = View.getConfInput("Add indexes now? y/n");
+        		char choice = View.getConfInput("Add indexes now? Y/N");
     			if (choice == 'Y') { 
     				Course course = AC.getCourse(courseCode);
             		adminAddIndexes(course, courseName);
