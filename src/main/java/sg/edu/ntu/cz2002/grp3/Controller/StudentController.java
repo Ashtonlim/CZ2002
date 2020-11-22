@@ -1,7 +1,7 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
 
 import sg.edu.ntu.cz2002.grp3.Entity.*;
-import java.time.LocalTime;
+// import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class StudentController {
@@ -42,15 +42,15 @@ public class StudentController {
         }
     }
 
-    /** Status code:
-     * 1 - success | 0 - Clash | -1 = oldIndex not in the same course as new index.
-     * -2 - no vacancy in new index
-     * */
-    public int changeIndex(Student student, Index oldIndex, Index newIndex){
-        if (!oldIndex.getCourseCode().equals(newIndex.getCourseCode())){
+    /**
+     * Status code: 1 - success | 0 - Clash | -1 = oldIndex not in the same course
+     * as new index. -2 - no vacancy in new index
+     */
+    public int changeIndex(Student student, Index oldIndex, Index newIndex) {
+        if (!oldIndex.getCourseCode().equals(newIndex.getCourseCode())) {
             return -1;
         }
-        if (newIndex.getVacancy() == 0){
+        if (newIndex.getVacancy() == 0) {
             return -2;
         }
 
@@ -59,26 +59,33 @@ public class StudentController {
         return (addStatus) ? 1 : 0;
     }
 
-    public int swopIndex(Student source, String targetMatricNum, String targetPassword, Index sourceIndex){
+    public int swopIndex(Student source, String targetMatricNum, String targetPassword, Index sourceIndex) {
         Student target = RM.getStudent(targetMatricNum);
-        if (target == null) return 0;
-        if ( !LoginManager.verifyLogin(target, targetPassword) ) return -1; //Check password of target Student
+        if (target == null)
+            return 0;
+        if (!LoginManager.verifyLogin(target, targetPassword))
+            return -1; // Check password of target Student
 
         boolean found = false;
         Index targetIndex = null;
-        for (Index index : target.getIndexList()){
-            if ( index.getCourseCode().equals( sourceIndex.getCourseCode() ) ){
+        for (Index index : target.getIndexList()) {
+            if (index.getCourseCode().equals(sourceIndex.getCourseCode())) {
                 found = true;
                 targetIndex = index;
                 break;
             }
         }
-        if (!found) return -2; //Target student does not have the Specific course index source student trying to swop.
-        if ( sourceIndex == targetIndex ) return -5; //both same index
-        if ( source.getTimeTable().checkClash(targetIndex) ) return -3; //Source student clashes with new index
-        if ( target.getTimeTable().checkClash(sourceIndex) )return -4; //Target student clashes with new index
+        if (!found)
+            return -2; // Target student does not have the Specific course index source student trying
+                       // to swop.
+        if (sourceIndex == targetIndex)
+            return -5; // both same index
+        if (source.getTimeTable().checkClash(targetIndex))
+            return -3; // Source student clashes with new index
+        if (target.getTimeTable().checkClash(sourceIndex))
+            return -4; // Target student clashes with new index
 
-        //Swop;
+        // Swop;
         sourceIndex.removeFromStudentList(source);
         targetIndex.removeFromStudentList(target);
         sourceIndex.addToStudentList(target);

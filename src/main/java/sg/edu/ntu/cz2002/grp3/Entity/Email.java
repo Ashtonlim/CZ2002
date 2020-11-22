@@ -10,7 +10,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-class Email {
+public class Email {
     private static String usr = "oopmystarapp@gmail.com";
     private static String pwd = "myStarApp1";
 
@@ -39,14 +39,11 @@ class Email {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(usr));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(usr));
-            // to be added an email addr
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(subject);
             message.setText(body);
-
             Transport.send(message);
 
-            System.out.println("Done");
             return true;
 
         } catch (MessagingException e) {

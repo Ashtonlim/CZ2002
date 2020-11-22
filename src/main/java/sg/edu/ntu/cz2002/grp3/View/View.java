@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
 public class View {
     protected MyStarsApp app;
     protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
 
     public View(MyStarsApp app) {
         this.app = app;
+
     }
 
     /** Common View.View */
@@ -137,7 +137,7 @@ public class View {
         }
         return input;
     }
-    
+
     /** Get confirmation y/n input from user */
     public static char getConfInput(String prompt) {
         char input;
@@ -146,35 +146,36 @@ public class View {
             System.out.println(prompt);
             input = sc.next().charAt(0);
             input = Character.toUpperCase(input);
-            if (!(input == 'Y' || input=='N')) {
-            	System.out.println("Invalid option.");
+            if (!(input == 'Y' || input == 'N')) {
+                System.out.println("Invalid option.");
             } else {
-            	break;
+                break;
             }
         }
         return input;
     }
-    
+
     /** get password with hidden fields */
     public static String getPassword(String prompt) {
-		Console cons = System.console();
-		char[] input = cons.readPassword(prompt);
-		String password = String.valueOf(input);
-		return password;
+        Console cons = System.console();
+        char[] input = cons.readPassword(prompt);
+        String password = String.valueOf(input);
+        return password;
     }
 
     /** Print student list */
-    public static void printStudentList(ArrayList<Student> studentList){
-        System.out.println( "Total students: " + studentList.size() );
-        for (int i = 0; i < studentList.size(); i++){
+    public static void printStudentList(ArrayList<Student> studentList) {
+        System.out.println("Total students: " + studentList.size());
+        for (int i = 0; i < studentList.size(); i++) {
             Student student = studentList.get(i);
-            System.out.println( (i+1) + ". " + student.getMatricNum() + ", " + student.getFullName() + ", " + student.getFacultyName());
+            System.out.println((i + 1) + ". " + student.getMatricNum() + ", " + student.getFullName() + ", "
+                    + student.getFacultyName());
         }
     }
 
     /** Print course list */
-    public static void printCourseList(ArrayList<Course> courseList){
-        System.out.println( "Total Courses: " + courseList.size() + "\n");
+    public static void printCourseList(ArrayList<Course> courseList) {
+        System.out.println("Total Courses: " + courseList.size() + "\n");
         for (int i = 0; i < courseList.size(); i++) {
             Course course = courseList.get(i);
             System.out.println( (i+1) + ". " + course.getCourseCode() + ", " + course.getCourseName() + ", " + course.getFaculty().getName());
@@ -183,7 +184,7 @@ public class View {
             System.out.println("");
         }
     }
-    
+
     /** print index list */
     public static void printIndexList(ArrayList<Index> indexList) {
     	if (indexList.size() != 0) {
@@ -197,10 +198,10 @@ public class View {
         	System.out.println("None");
         }
     }
-    
+
     /** Print lesson list */
     public static void printLessonList(ArrayList<Lesson> lessonList) {
-        System.out.println( "Total Lessons: " + lessonList.size() + "\n");
+        System.out.println("Total Lessons: " + lessonList.size() + "\n");
         for (int i = 0; i < lessonList.size(); i++) {
             Lesson lesson = lessonList.get(i);
             String type = lesson.getType();
@@ -211,23 +212,22 @@ public class View {
             int oddEven = lesson.getOddEvenWeek();
             String strOddEven;
             if (oddEven == 0) {
-            	strOddEven = "Even";
+                strOddEven = "Even";
             } else {
-            	strOddEven = "Odd";
+                strOddEven = "Odd";
             }
-            System.out.println((i+1) + ". " + type + ", " + strOddEven + " " + day 
-            		+ ", " + start + " - " + end + ", "+ "Venue: " + venue);
+            System.out.println((i + 1) + ". " + type + ", " + strOddEven + " " + day + ", " + start + " - " + end + ", "
+                    + "Venue: " + venue);
         }
     }
 
-    protected static void pressEnterKeyToGoBack()
-    {
+    protected static void pressEnterKeyToGoBack() {
         System.out.println("Press Enter key to go back...");
-        try
-        {
+        try {
             System.in.read();
+        } catch (Exception ignored) {
         }
-        catch(Exception ignored) {};
+        ;
     }
     // public static void main(String[] args){
     // ArrayList<String> options = new ArrayList<>();

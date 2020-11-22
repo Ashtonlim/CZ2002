@@ -15,6 +15,7 @@ public class StudentView extends View {
         super(app);
         this.SC = new StudentController(app.getRM());
         this.student = student;
+
     }
 
     /** Views for Student */
@@ -31,7 +32,6 @@ public class StudentView extends View {
             return;
         }
 
-        System.out.println("Adding index");
         if (index.addToStudentList(student)) {
             System.out.println("Added index " + index.getIndex());
             System.out.println("=== Your courses now ===");
@@ -42,7 +42,7 @@ public class StudentView extends View {
             }
 
         } else {
-            System.out.println(index.getIndex() + "cannot be added");
+            System.out.println("Debug: Could not add " + index.getIndex());
         }
     }
 
