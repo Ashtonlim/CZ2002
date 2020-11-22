@@ -42,15 +42,6 @@ public class StudentController {
         }
     }
 
-
-    // check for clash between 2 time periods
-    public boolean checkTimeClash(LocalTime start1, LocalTime end1, LocalTime start2, LocalTime end2) {
-        if (start1.isBefore(end2) && end1.isAfter(start2)) {
-            return true;
-        }
-        return false;
-    }
-
     /** Status code:
      * 1 - success | 0 - Clash | -1 = oldIndex not in the same course as new index.
      * -2 - no vacancy in new index

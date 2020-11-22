@@ -42,7 +42,26 @@ public class TimeManager {
 		}
 		return ldt;
 	}
-
+	
+	public static LocalTime strToTime(String time) {
+		LocalTime lt = null;
+		try {
+			lt = LocalTime.parse(time, tFormatter);
+		} catch (java.time.format.DateTimeParseException e) {
+			System.out.println("Error - Cannot parse string to LocalTime.");
+		}
+		return lt;
+	}
+	
+	/** check for clash between 2 time periods */
+    public static boolean checkTimeClash(LocalTime start1, LocalTime end1, LocalTime start2, LocalTime end2) {
+        if (start1.isBefore(end2) && end1.isAfter(start2)) {
+            return true;
+        }
+        return false;
+    }
+    
+    /** convert int day to string */
 	public static String numToDay(int dayOfWeek) {
 		switch(dayOfWeek) {
 		case 1:

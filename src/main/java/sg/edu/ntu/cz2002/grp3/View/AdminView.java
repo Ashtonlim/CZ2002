@@ -86,7 +86,7 @@ public class AdminView extends View {
         }
     }
     
-    /** 3.Add/update course */
+    /** 3.Add course */
     public void adminAddCourse(){
         System.out.println("=== Add a New Course ===");
         String strFaculty = View.getTextInput("Faculty name: ");
@@ -101,7 +101,7 @@ public class AdminView extends View {
         	case 1:
         		System.out.println("Course " + courseCode + " " + courseName + " successfully added into system.");
         		char choice = View.getConfInput("Add indexes now? y/n");
-    			if (choice == 'y') { 
+    			if (choice == 'Y') { 
     				Course course = AC.getCourse(courseCode);
             		adminAddIndexes(course, courseName);
             		break;
@@ -146,7 +146,7 @@ public class AdminView extends View {
     			System.out.println("Index " + indexNo +" successfully added to course " + courseName);
     			adminAddLesson(AC.getIndex(indexNo), indexNo);
     			char choice = View.getConfInput("Add another index? y/n");
-    			if (choice == 'n') {
+    			if (choice == 'N') {
     				printCourseListAll();
     				loop = false; 
     			}
@@ -200,10 +200,9 @@ public class AdminView extends View {
 	    	case 1:
 	    		System.out.println(type + " on " + TimeManager.numToDay(day) + " " + start + "-" + end 
 	    				+ " successfully added to index " + indexNo + ".");
+	    		printLessonsInIndex(index);
 	    		char choice = View.getConfInput("Add another lesson? y/n");
-    			if (choice == 'n') { 
-    				System.out.println("=== Index " + indexNo + " Lessons ===");
-    				printLessonsInIndex(index);
+    			if (choice == 'N') { 
     				loop = false; 
     			}
 	    		break;
@@ -216,19 +215,26 @@ public class AdminView extends View {
 	    	case -3:
 	    		System.out.println("Invalid time range.");
 	    		break;
+	    	case -4:
+	    		System.out.println("Lesson clashes with existing lessons.");
+	    		printLessonsInIndex(index);
 	    	}
     	}
     }
     
     /** print lessons in index */
     public void printLessonsInIndex(Index index) {
+    	System.out.println("=== Index " + index.getIndex() + " Lessons ===");
         ArrayList<Lesson> lessonList = index.getLessonList();
         if (lessonList != null){
             printLessonList(lessonList);
         } else {
             System.out.println("Lesson list is empty.");
         }
+        System.out.println("");
     }
+    
+    /** 4. Update course */
     
     /** 4.Check available slot for an index number (vacancy in a class) -wx  */
     public void adminCheckVacancy(){

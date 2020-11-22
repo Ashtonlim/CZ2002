@@ -3,6 +3,7 @@ import sg.edu.ntu.cz2002.grp3.Entity.*;
 
 import java.util.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class AdminController {
     private final RecordManager RM;
@@ -120,16 +121,50 @@ public class AdminController {
 		try {
 			// if weekly lessons
 			if (oddEven == 2) {
-	    		Lesson l1 = new Lesson(type, day, 0, start, end, venue, index);
-	    		Lesson l2 = new Lesson(type, day, 1, start, end, venue, index);
-	    		return 1;
+				boolean isClashEven = checkLessonClash(index, day, 0, start, end);
+				boolean isClashOdd = checkLessonClash(index, day, 1, start, end);
+				if (isClashEven == false && isClashOdd == false) {
+					Lesson l1 = new Lesson(type, day, 0, start, end, venue, index);
+					Lesson l2 = new Lesson(type, day, 1, start, end, venue, index);
+					return 1;
+				} else {
+					// lesson clashing
+					return -4;
+				}
+			// not weekly lessons
 			} else {
-				Lesson l1 = new Lesson(type, day, oddEven, start, end, venue, index);
-				return 1;
+				boolean isClash = checkLessonClash(index, day, oddEven, start, end);
+				if (isClash == false) {
+					Lesson l1 = new Lesson(type, day, oddEven, start, end, venue, index);
+					return 1;
+				} else {
+					// lesson clashing
+					return -4;
+				}
 			}
 	    } catch (Exception e) {
 			return -3;
 		}
+    }
+    
+    /** check if lessons in an index clashes */
+    public boolean checkLessonClash(Index index, int day, int oddEven, String start, String end) {
+    	boolean isClash = false;
+    	for (Lesson tempLesson : index.getLessonList()) {
+    		if (day == tempLesson.getDayOfWeek()) {
+    			if (oddEven == tempLesson.getOddEvenWeek()) {
+	    			LocalTime startLT = TimeManager.strToTime(start);
+	    			LocalTime endLT = TimeManager.strToTime(end);
+	    			LocalTime startTemp = tempLesson.getStartTime();
+	    			LocalTime endTemp = tempLesson.getEndTime();
+	    			isClash = TimeManager.checkTimeClash(startLT, endLT, startTemp, endTemp);
+	    			if (isClash == true) {
+	    				return isClash;
+	    			}
+    			}
+    		}
+    	}
+    	return isClash;
     }
 
     /** 8.Update Course info */
