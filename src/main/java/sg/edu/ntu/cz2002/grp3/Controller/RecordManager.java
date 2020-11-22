@@ -37,7 +37,7 @@ public class RecordManager {
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Course c3 = new Course("NB1001", "Econs", "Core", 3, f2);
         Index i1 = new Index("200201", 20, c1);
-        Index i3 = new Index("200202", 10, c1);
+        Index i3 = new Index("200202", 5, c1);
         Index i2 = new Index("200301", 20, c2);
         Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
         Lesson lab2002 = new Lesson("lab", 2, 0, "09:30", "11:30", "SPL", i1);
@@ -58,7 +58,7 @@ public class RecordManager {
 
         students.add(new Student("weixing", "wxOODPtest@gmail.com", password, "WeiXing", "M", "SC", "U123", f1, 2, 0));
         students.add(new Student("zheming", "zmOODPtest@gmail.com", password, "ZheMing", "M", "SC", "U321", f1, 2, 0));
-        students.add(new Student("ash", "ashOODPtest@gmail.com", password, "Ashton", "M", "SC", "U195", f1, 3, 0));
+        students.add(new Student("ash", "mystaroodp@gmail.com", password, "Ashton", "M", "SC", "U195", f1, 3, 0));
         students.add(new Student("bob", "bobOODPtest@gmail.com", password, "Bob", "M", "SC", "U461", f2, 3, 0));
         students.add(new Student("james", "U201@gmail.com", password, "James Law", "M", "SC", "U201", f1, 3, 0));
         students.add(new Student("Mike", "U202@gmail.com", password, "Mike Law", "M", "SC", "U202", f1, 3, 0));
@@ -74,10 +74,15 @@ public class RecordManager {
         users.addAll(admins);
 
         i1.addToStudentList((Student) users.get(0));
+        // i1.addToStudentList((Student) users.get(1));
+        // i3.addToStudentList((Student) users.get(0));
         i3.addToStudentList((Student) users.get(1));
-        i3.addToStudentList((Student) users.get(2));
+        // i3.addToStudentList((Student) users.get(2));
         i3.addToStudentList((Student) users.get(3));
         i3.addToStudentList((Student) users.get(4));
+        i3.addToStudentList((Student) users.get(5));
+        i3.addToStudentList((Student) users.get(6));
+
         save();
         System.out.println("Dummy data loaded.");
     }

@@ -45,9 +45,8 @@ public class Index implements Serializable {
             if (waitList.size() > 0) {
                 Student s = waitList.get(0);
                 addToStudentList(s);
-                Email.sendMail(s.getEmail(), "Waitlist Notification",
-                        "Congrats, you got into index " + this.getIndex());
-                System.out.println("System: Email sent to");
+                Email.sendMail(s.getEmail(), "Waitlist Notification", "Congrats, you got into index " + getIndex());
+                System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
             }
 
             return true;
