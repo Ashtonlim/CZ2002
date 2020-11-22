@@ -31,6 +31,10 @@ public class Faculty implements Serializable{
 	public void addCourse(Course course){
 		courseList.add(course);
 	}
+	
+	public void removeCourse(Course course){
+		courseList.remove(course);
+	}
 
 	public String getName(){
 		return facultyName;

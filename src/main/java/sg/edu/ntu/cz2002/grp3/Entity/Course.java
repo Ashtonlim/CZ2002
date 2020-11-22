@@ -37,6 +37,10 @@ public class Course implements Serializable {
         return faculty;
     }
 
+    public String getSubjectType() {
+    	return subjectType;
+    }
+    
     public int getAU(){
         return AU;
     }

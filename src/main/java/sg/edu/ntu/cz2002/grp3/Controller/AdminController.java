@@ -168,15 +168,22 @@ public class AdminController {
     }
 
     /** 8.Update Course info */
-    public void updateCourseCode(String courseCode, String newCourseCode){
-        Course course = RM.getCourse(courseCode);
-        course.setCourseCode(newCourseCode);
+    public boolean updateCourseCode(Course course, String newCourseCode) {
+        if (RM.getCourse(newCourseCode) == null) {
+        	course.setCourseCode(newCourseCode);
+        	return true;
+        } else {
+        	return false;
+        }
     }
 
-    public void updateCourseName(String courseCode,String newName) {
-
-        Course course = RM.getCourse (courseCode);
-        course.setCourseName(newName);
+    public boolean updateCourseName(Course course, String newName) {
+        if (RM.getCourse(newName) == null) {
+        	course.setCourseCode(newName);
+        	return true;
+        } else {
+        	return false;
+        }
     }
 
     public void updateSubjectType(String courseCode, String newSubjectType){
@@ -189,9 +196,14 @@ public class AdminController {
         course.setAU(newAU);
     }
 
-    public void updateCourseFaculty(String courseCode, Faculty newFaculty) {
-        Course course = RM.getCourse (courseCode);
-        course.setFaculty(newFaculty);
+    public boolean updateCourseFaculty(Course course, String newFaculty) {
+    	Faculty faculty = RM.getFaculty(newFaculty);
+    	if (faculty != null) {
+        	course.setFaculty(faculty);
+        	return true;
+        } else {
+        	return false;
+        }
     }
 
     /** 10.Update Index info */

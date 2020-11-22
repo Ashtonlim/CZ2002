@@ -236,6 +236,59 @@ public class AdminView extends View {
     
     /** 4. Update course */
     
+    public void adminUpdateOptions() {
+    	System.out.println("=== Update a Course ===");
+    	String courseCode = View.getTextInput("Course code: ");
+    	Course course = AC.getCourse(courseCode);
+    	if (course == null) {
+    		System.out.println("Course not found!");
+    		return;
+    	}
+    	String courseName = course.getCourseName();
+    	String facultyName = course.getFaculty().getName();
+    	String subType = course.getSubjectType();
+    	int AU = course.getAU();
+    	String title = "=== Update " + courseCode + " ===";
+    	System.out.println(courseCode + ", " + courseName + ", " + facultyName + ", "
+    				+ subType + ", AU: " + AU);
+    	ArrayList<String> courseOptions = new ArrayList<>();
+    	courseOptions.add("Change course code");
+    	courseOptions.add("Change course name");
+    	courseOptions.add("Change faculty");
+    	courseOptions.add("Change subject type");
+    	courseOptions.add("Change AU");
+    	courseOptions.add("Remove course from database");
+    	courseOptions.add("Update indexes (Index no., vacancies)");
+    	while(true){
+            int c = View.getPrintOptions(title, "Exit", courseOptions);
+            switch (c) {
+            	case 0:
+            		return;
+            	case 1:
+            		String newCourseCode = View.getTextInput("New course code: ");
+            		if (AC.updateCourseCode(course, newCourseCode) == true) {
+            			System.out.println(courseCode + " successfully changed to " + newCourseCode);
+            		}
+            		break;
+            	case 2:
+            		String newCourseName = View.getTextInput("New course name: ");
+            		if (AC.updateCourseName(course, newCourseName) == true) {
+            			System.out.println(courseName + " successfully changed to " + newCourseName);
+            		}
+            		break;
+            	case 3:
+            		String newFaculty = View.getTextInput("New faculty: ");
+            		if (AC.updateCourseFaculty(course, newFaculty) == true) {
+            			System.out.println(facultyName + " successfully changed to " + newFaculty);
+            		}
+            		break;
+                default: 
+                	System.out.println("Option not available...");
+            }
+			pressEnterKeyToGoBack();
+    	}
+    }
+    
     /** 4.Check available slot for an index number (vacancy in a class) -wx  */
     public void adminCheckVacancy(){
         System.out.println("=== Index Vacancy Checker ===");
@@ -297,6 +350,7 @@ public class AdminView extends View {
             	case 1 -> adminEditAccessPeriod();
             	case 2 -> adminAddStudent();
             	case 3 -> adminAddCourse();
+            	case 4 -> adminUpdateOptions();
                 case 5 -> adminCheckVacancy();
                 case 6 -> adminPrintStudentListByIndex();
                 case 7 -> adminPrintStudentListByCourse();
