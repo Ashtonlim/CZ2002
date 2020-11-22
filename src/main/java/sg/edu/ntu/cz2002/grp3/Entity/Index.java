@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Index implements Serializable {
+
+    private static final long serialVersionUID = 1659216272267144237L;
     private String index;
     private int vacancy;
     private ArrayList<Student> waitList = new ArrayList<>();
@@ -41,8 +43,10 @@ public class Index implements Serializable {
             System.out.println("Debug: Removed index " + getIndex());
             studentList.remove(student);
             if (waitList.size() > 0) {
-                addToStudentList(waitList.get(0));
-                System.out.println("System: Should send a notification also");
+                Student s = waitList.get(0);
+                addToStudentList(s);
+                Email.sendMail(s.getEmail(), "Waitlist Notification", "Congrats, you got into index " + getIndex());
+                System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
             }
 
             return true;
@@ -110,11 +114,11 @@ public class Index implements Serializable {
         return course.getIndexList();
     }
 
-//    public void printLessonList() {
-//        for (int i = 0; i < lessonList.size(); i++) {
-//            lessonList.get(i).printLessonInfo();
-//        }
-//    }
+    // public void printLessonList() {
+    // for (int i = 0; i < lessonList.size(); i++) {
+    // lessonList.get(i).printLessonInfo();
+    // }
+    // }
 
     public int getVacancy() {
         return vacancy;

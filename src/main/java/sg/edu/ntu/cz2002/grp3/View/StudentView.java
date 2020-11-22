@@ -34,6 +34,13 @@ public class StudentView extends View {
         System.out.println("Adding index");
         if (index.addToStudentList(student)) {
             System.out.println("Added index " + index.getIndex());
+            System.out.println("=== Your courses now ===");
+
+            // Print indexes of the student.
+            for (Index i : SC.getCourseReg(student)) {
+                System.out.println(i.getCourseName() + " - " + i.getIndex());
+            }
+
         } else {
             System.out.println(index.getIndex() + "cannot be added");
         }
@@ -45,7 +52,7 @@ public class StudentView extends View {
         ArrayList<Index> indexList = SC.getCourseReg(student);
         ArrayList<String> stringIndexList = new ArrayList<>();
 
-        if (indexList.size() == 0){
+        if (indexList.size() == 0) {
             System.out.println(" - You have not registered for any courses yet. - ");
             return;
         }
@@ -56,14 +63,15 @@ public class StudentView extends View {
             stringIndexList.add(string);
         }
         int choice1 = getPrintOptions("Which index would you like to drop?", "Back", stringIndexList);
-        if (choice1 == 0) return;
+        if (choice1 == 0)
+            return;
         Index indexToDrop = indexList.get(choice1 - 1);
         indexToDrop.removeFromStudentList(student);
     }
 
     /** Print courses registered */
 
-    public void printCoursesRegistered(){
+    public void printCoursesRegistered() {
         System.out.println("=== Courses Registered ===");
         ArrayList<Index> indexList = SC.getCourseReg(student);
 
@@ -73,19 +81,19 @@ public class StudentView extends View {
         res[0][2] = " Course Name ";
         res[0][3] = " Course Index ";
 
-        for (int i = 1; i < indexList.size() + 1; i++){
-            for (int j = 0; j < 4; j++){
-                switch (j){
+        for (int i = 1; i < indexList.size() + 1; i++) {
+            for (int j = 0; j < 4; j++) {
+                switch (j) {
                     case 0 -> res[i][j] = " " + i + " ";
-                    case 1 -> res[i][j] = " " + indexList.get(i-1).getCourseCode() + " ";
-                    case 2 -> res[i][j] = " " + indexList.get(i-1).getCourseName() + " ";
-                    case 3 -> res[i][j] = " " + indexList.get(i-1).getIndex() + " ";
+                    case 1 -> res[i][j] = " " + indexList.get(i - 1).getCourseCode() + " ";
+                    case 2 -> res[i][j] = " " + indexList.get(i - 1).getCourseName() + " ";
+                    case 3 -> res[i][j] = " " + indexList.get(i - 1).getIndex() + " ";
                     default -> res[i][j] = " Error ";
                 }
             }
         }
 
-        if (res.length == 1){
+        if (res.length == 1) {
             System.out.println(" - You have no course registered. - ");
         } else {
             Printer.print(res);
@@ -99,7 +107,7 @@ public class StudentView extends View {
         System.out.println("Please input your CourseID to show indexes of the Course.");
         String courseCode = View.getTextInput("CourseID: ");
         ArrayList<Index> indexList = SC.getVacanciesOfCourse(courseCode);
-        if (indexList == null){
+        if (indexList == null) {
             System.out.println("Course does not exist");
             return;
         }
@@ -109,21 +117,22 @@ public class StudentView extends View {
         res[0][1] = " Index Number ";
         res[0][2] = " Vacancies ";
 
-        for (int i = 1; i < indexList.size() + 1; i++){
-            for (int j = 0; j < 3; j++){
-                switch (j){
+        for (int i = 1; i < indexList.size() + 1; i++) {
+            for (int j = 0; j < 3; j++) {
+                switch (j) {
                     case 0 -> res[i][j] = " " + i + " ";
-                    case 1 -> res[i][j] = " " + indexList.get(i-1).getIndex() + " ";
-                    case 2 -> res[i][j] = " " + indexList.get(i-1).getVacancy() + " ";
+                    case 1 -> res[i][j] = " " + indexList.get(i - 1).getIndex() + " ";
+                    case 2 -> res[i][j] = " " + indexList.get(i - 1).getVacancy() + " ";
                     default -> res[i][j] = " Error ";
                 }
             }
         }
 
-        if (res.length == 1){
+        if (res.length == 1) {
             System.out.println(" - There is no index in this course. - ");
         } else {
-            System.out.println("Index vacancies for " + indexList.get(0).getCourseCode() + " - " +indexList.get(0).getCourseName() + ": ");
+            System.out.println("Index vacancies for " + indexList.get(0).getCourseCode() + " - "
+                    + indexList.get(0).getCourseName() + ": ");
             Printer.print(res);
         }
     }
@@ -149,7 +158,7 @@ public class StudentView extends View {
 
     /** 6. Swop index */
     public void swopIndex() {
-        while(true) {
+        while (true) {
             System.out.println("=== Swop index ===");
             ArrayList<String> stringIndexList = new ArrayList<>();
             ArrayList<Index> indexList = student.getIndexList();
@@ -174,7 +183,10 @@ public class StudentView extends View {
             String targetPassword = getTextInput("Enter the password of student you are swopping with.");
             int res = SC.swopIndex(student, targetMatricNum, targetPassword, sourceIndex);
             switch (res) {
-                case 1 -> {System.out.println("Index successfully swopped with " + targetMatricNum); return;}
+                case 1 -> {
+                    System.out.println("Index successfully swopped with " + targetMatricNum);
+                    return;
+                }
                 case 0 -> System.out.println("The matric number is invalid.");
                 case -1 -> System.out.println("Invalid password! Please double check.");
                 case -2 -> System.out.println("Your partner has not registered for this course.");
@@ -193,7 +205,7 @@ public class StudentView extends View {
         ArrayList<String> stringIndexList = new ArrayList<>();
         ArrayList<Index> indexList = student.getIndexList();
 
-        if (indexList.size() == 0){
+        if (indexList.size() == 0) {
             System.out.println(" - You have not registered for any courses yet. - ");
             return;
         }
@@ -204,7 +216,8 @@ public class StudentView extends View {
             stringIndexList.add(string);
         }
         int choice1 = getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
-        if (choice1 == 0) return;
+        if (choice1 == 0)
+            return;
         Index oldIndex = indexList.get(choice1 - 1);
 
         // Print available indexes under same course
@@ -212,10 +225,10 @@ public class StudentView extends View {
         ArrayList<Index> otherIndexes = oldIndex.getIndexesOfCourse();
 
         int currIndexPos = -2;
-        for (int i = 0; i < otherIndexes.size(); i++){
+        for (int i = 0; i < otherIndexes.size(); i++) {
             String string;
             Index index = otherIndexes.get(i);
-            if (index == oldIndex){
+            if (index == oldIndex) {
                 string = index.getCourseName() + " - " + index.getIndex() + " (Current index)";
                 currIndexPos = i;
             } else {
@@ -224,16 +237,16 @@ public class StudentView extends View {
             stringOtherIndexList.add(string);
         }
 
-
         int choice2 = getPrintOptions("Which index would you like to change to?", "Back", stringOtherIndexList);
-        if (choice2 == 0) return;
-        if (choice2 == currIndexPos+1){
+        if (choice2 == 0)
+            return;
+        if (choice2 == currIndexPos + 1) {
             System.out.println("You have selected the same index.");
             return;
         }
         Index newIndex = otherIndexes.get(choice2 - 1);
         int status = SC.changeIndex(student, oldIndex, newIndex);
-        switch(status){
+        switch (status) {
             case -2 -> System.out.println("No vacancies in selected index.");
             case -1 -> System.out.println("Old index not in the same course as new index.");
             case 0 -> System.out.println("New index clashes with your timetable.");

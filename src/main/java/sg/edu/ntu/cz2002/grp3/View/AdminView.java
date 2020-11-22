@@ -1,4 +1,5 @@
 package sg.edu.ntu.cz2002.grp3.View;
+
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.AdminController;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
@@ -7,19 +8,18 @@ import sg.edu.ntu.cz2002.grp3.Controller.TimeManager;
 import java.util.ArrayList;
 import java.util.Dictionary;
 
-
 public class AdminView extends View {
-    private final AdminController AC;
-    
-    private final Admin admin;
+	private final AdminController AC;
 
-    public AdminView(MyStarsApp app, Admin admin) {
-        super(app);
-        this.admin = admin;
-        this.AC = new AdminController(app.getRM());
-    }
+	private final Admin admin;
 
-    /** Views for Admin */
+	public AdminView(MyStarsApp app, Admin admin) {
+		super(app);
+		this.admin = admin;
+		this.AC = new AdminController(app.getRM());
+	}
+
+	/** Views for Admin */
 
     /** 1. Edit student access period  */
     public void adminEditAccessPeriod() {
@@ -101,7 +101,7 @@ public class AdminView extends View {
         	case 1:
         		System.out.println("Course " + courseCode + " " + courseName + " successfully added into system.");
         		char choice = View.getConfInput("Add indexes now? y/n");
-    			if (choice == 'Y') { 
+    			if (choice == 'Y') {
     				Course course = AC.getCourse(courseCode);
             		adminAddIndex(course);
             		break;
@@ -119,9 +119,9 @@ public class AdminView extends View {
         } else {
         	System.out.println("Faculty not found!");
         }
-        
+
     }
-    
+
     /** print full course list */
     public void printCourseListAll() {
     	System.out.println("=== All Courses ===");
@@ -132,7 +132,7 @@ public class AdminView extends View {
             System.out.println("Course list is empty.");
         }
     }
-    
+
     /** add indexes to course */
     public void adminAddIndex(Course course) {
     	System.out.println("=== Add Indexes to Course ===");
@@ -148,7 +148,7 @@ public class AdminView extends View {
     			char choice = View.getConfInput("Add another index? y/n");
     			if (choice == 'N') {
     				printCourseListAll();
-    				loop = false; 
+    				loop = false;
     			}
     			break;
     		case 0:
@@ -160,7 +160,7 @@ public class AdminView extends View {
     		}
     	}
     }
-    
+
     /** add lessons to index */
     public void adminAddLesson(Index index) {
     	boolean loop = true;
@@ -202,8 +202,8 @@ public class AdminView extends View {
 	    				+ " successfully added to index " + index.getIndex() + ".");
 	    		printLessonsInIndex(index);
 	    		char choice = View.getConfInput("Add another lesson? y/n");
-    			if (choice == 'N') { 
-    				loop = false; 
+    			if (choice == 'N') {
+    				loop = false;
     			}
 	    		break;
 	    	case -1:
@@ -221,7 +221,7 @@ public class AdminView extends View {
 	    	}
     	}
     }
-    
+
     /** print lessons in index */
     public void printLessonsInIndex(Index index) {
     	System.out.println("=== Index " + index.getIndex() + " Lessons ===");
@@ -233,7 +233,7 @@ public class AdminView extends View {
         }
         System.out.println("");
     }
-    
+
     /** 4. Update course */
     public void adminUpdateCourse() {
     	System.out.println("=== Update a Course ===");
@@ -313,15 +313,15 @@ public class AdminView extends View {
             			return;
             		}
             		break;
-            	case 7: 
+            	case 7:
             		adminUpdateIndex(course);
-                default: 
+                default:
                 	System.out.println("Option not available...");
             }
 			pressEnterKeyToGoBack();
     	}
     }
-    
+
     /** update indexes */
     public void adminUpdateIndex(Course course) {
     	ArrayList<Index> indexList = course.getIndexList();
@@ -378,7 +378,7 @@ public class AdminView extends View {
             			return;
             		}
             		break;
-	            default: 
+	            default:
 	            	System.out.println("Option not available...");
 	        }
 			pressEnterKeyToGoBack();
@@ -397,35 +397,37 @@ public class AdminView extends View {
         }
     }
 
-    public void adminPrintStudentListByIndex(){
-        System.out.println("=== Student List By Index ===");
-        String indexCode = View.getTextInput("Index number: ");
-        ArrayList<Student> studentList = AC.getStudentListByIndex(indexCode);
-        if (studentList != null){
-            printStudentList(studentList);
-        } else {
-            System.out.println("Index not found!");
-        }
-    }
+	/** Print Student List by Index */
+	public void adminPrintStudentListByIndex() {
+		System.out.println("=== Student List By Index ===");
+		String indexCode = View.getTextInput("Index number: ");
+		ArrayList<Student> studentList = AC.getStudentListByIndex(indexCode);
+		if (studentList != null) {
+			printStudentList(studentList);
+		} else {
+			System.out.println("Index not found!");
+		}
+	}
 
-    public void adminPrintStudentListByCourse(){
-        System.out.println("=== Student List By Course ===");
-        String courseCode = View.getTextInput("Course code: ");
-        ArrayList<Student> studentList = AC.getStudentListByCourse(courseCode);
-        if (studentList != null) {
-            printStudentList(studentList);
-        } else {
-            System.out.println("Course not found!");
-        }
-    }
+	/** Print student List by Course */
+	public void adminPrintStudentListByCourse() {
+		System.out.println("=== Student List By Course ===");
+		String courseCode = View.getTextInput("Course code: ");
+		ArrayList<Student> studentList = AC.getStudentListByCourse(courseCode);
+		if (studentList != null) {
+			printStudentList(studentList);
+		} else {
+			System.out.println("Course not found!");
+		}
+	}
 
-
-    @Override
-    public void renderUserInfo() {
-        Dictionary<String, String> info = AC.getDatabaseInfo();
-        System.out.println("Welcome " + admin.getFullName() + "! | Account type: Admin.");
-        System.out.println("There are " + info.get("facultySize") + " faculties, " + info.get("studentSize") + " students and " + info.get("courseSize") + " courses in the system.");
-    }
+	@Override
+	public void renderUserInfo() {
+		Dictionary<String, String> info = AC.getDatabaseInfo();
+		System.out.println("Welcome " + admin.getFullName() + "! | Account type: Admin.");
+		System.out.println("There are " + info.get("facultySize") + " faculties, " + info.get("studentSize")
+				+ " students and " + info.get("courseSize") + " courses in the system.");
+	}
 
     @Override
     public void renderMainMenu() {
@@ -458,16 +460,16 @@ public class AdminView extends View {
                 default -> System.out.println("Option not available...");
             }
 			pressEnterKeyToGoBack();
-        }
-    }
+		}
+	}
 
-    @Override
-    public void renderStartPage(){
-        super.renderStartPage();
-    }
+	@Override
+	public void renderStartPage() {
+		super.renderStartPage();
+	}
 
-    @Override
-    public void renderLoginPage(){
-        super.renderLoginPage();
-    }
+	@Override
+	public void renderLoginPage() {
+		super.renderLoginPage();
+	}
 }

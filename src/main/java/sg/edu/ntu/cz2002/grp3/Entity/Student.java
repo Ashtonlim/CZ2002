@@ -7,18 +7,18 @@ import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 
 public class Student extends User implements Serializable {
     private String matricNum;
+    private String email;
     private int yearOfStudy;
-    // private ArrayList<Index> indexList = new ArrayList<>();
-    // private ArrayList<Index> waitList = new ArrayList<>();
     private Faculty faculty;
     private int regAU;
     private final TimeTable timeTable = new TimeTable();
 
     /** constructor for loading dummy data */
-    public Student(String username, String password, String fullName, String gender, String nationality,
+    public Student(String username, String email, String password, String fullName, String gender, String nationality,
             String matricNum, Faculty faculty, int yearOfStudy, int regAU) {
         super(username, password, fullName, gender, nationality);
         this.matricNum = matricNum;
+        this.email = email;
         this.yearOfStudy = yearOfStudy;
         this.regAU = regAU;
         this.faculty = faculty;
@@ -28,10 +28,11 @@ public class Student extends User implements Serializable {
     /**
      * constructor for admin to add new student. password is default and regAU = 0
      */
-    public Student(String username, String fullName, String gender, String nationality, String matricNum,
+    public Student(String username, String email, String fullName, String gender, String nationality, String matricNum,
             Faculty faculty, int yearOfStudy) {
         super(username, LoginManager.defPassword, fullName, gender, nationality);
         this.matricNum = matricNum;
+        this.email = email;
         this.yearOfStudy = yearOfStudy;
         this.regAU = 0;
         this.faculty = faculty;
@@ -51,53 +52,10 @@ public class Student extends User implements Serializable {
         return totalAU;
     }
 
-    public String getFacultyName() {
-        return faculty.getName();
-    }
-
-    // public int getNumOfWaitingList() {
-    // return waitList.size();
-    // }
-
-    public int getYearOfStudy() {
-        return yearOfStudy;
-    }
-
-    public String getMatricNum() {
-        return matricNum;
-    }
-
-    public TimeTable getTimeTable() {
-        return timeTable;
-    }
-
     /** set/modify student info */
     public void updateYearOfStudy() {
         this.yearOfStudy = 10;
     }
-    // moved to index.
-    // public boolean removeIndex(String indexStr) {
-    // Index index = hasIndex(indexStr);
-
-    // if (index == null) {
-    // System.out.println("Debug: Student does not have index " + indexStr);
-    // return false;
-    // }
-
-    // try {
-    // // if clashes when adding to timetable
-    // if (timeTable.removeIndex(index)) {
-    // // indexList.remove(index);
-    // System.out.println("Debug Removed index " + index.getIndex());
-    // return true;
-    // }
-
-    // } catch (Exception ex) {
-    // System.out.println(ex);
-    // }
-
-    // return false;
-    // }
 
     public Index hasIndex(String index) {
         for (Index i : getIndexList()) {
@@ -127,17 +85,16 @@ public class Student extends User implements Serializable {
         return false;
     }
 
-    // removing waitlist from student
-    // public void addToWaitList(Index index) {
-    // waitList.add(index);
-    // }
-
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
 
     public void setUserName(String userName) {
         this.username = userName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
@@ -181,6 +138,26 @@ public class Student extends User implements Serializable {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getFacultyName() {
+        return faculty.getName();
+    }
+
+    public int getYearOfStudy() {
+        return yearOfStudy;
+    }
+
+    public String getMatricNum() {
+        return matricNum;
+    }
+
+    public TimeTable getTimeTable() {
+        return timeTable;
     }
 
 }

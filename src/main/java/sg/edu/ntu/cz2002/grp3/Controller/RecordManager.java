@@ -7,7 +7,7 @@ public class RecordManager {
     private ArrayList<User> users;
     private ArrayList<Faculty> facultyList;
 
-    public RecordManager(){
+    public RecordManager() {
         try {
             ArrayList<?> db = FileManager.readSerializedObject(); // [0] -> Users, [1] -> Faculties
             users = (ArrayList<User>) db.get(0); // Safe cast, checked in Controller.FileManager
@@ -30,20 +30,15 @@ public class RecordManager {
 
         // Entity.Faculty
         Faculty f1 = new Faculty("SCSE");
-        Faculty f2 = new Faculty("EEE");
+        Faculty f2 = new Faculty("NBS");
 
         // Entity.Course
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
-        Course c3 = new Course("EE8084", "Cyber Security", "UE", 3, f2);
-        Course c4 = new Course("EE2003", "Test", "Core", 3, f2);
-        
+        Course c3 = new Course("NB1001", "Econs", "Core", 3, f2);
         Index i1 = new Index("200201", 20, c1);
-        Index i3 = new Index("200202", 10, c1);
+        Index i3 = new Index("200202", 5, c1);
         Index i2 = new Index("200301", 20, c2);
-        Index i4 = new Index("808401", 20, c3);
-        Index i5 = new Index("808402", 10, c3);
-        Index i6 = new Index("200301", 20, c4);
         Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
         Lesson lab2002 = new Lesson("lab", 2, 0, "09:30", "11:30", "SPL", i1);
         Lesson lec2002 = new Lesson("lec", 4, 0, "09:30", "11:30", "LT12", i1);
@@ -60,19 +55,34 @@ public class RecordManager {
 
         // Student
         String password = LoginManager.generateHash("a");
-        students.add(new Student("weixing", password, "WeiXing", "M", "SC", "U123", f1, 2, 20));
-        students.add(new Student("zheming", password, "ZheMing", "M", "SC", "U321", f1, 2, 20));
-        students.add(new Student("bob", password, "Bob", "M", "SC", "U461", f2, 3, 20));
-        students.add(new Student("mary", password, "Mary", "F", "SC", "U654", f2, 1, 20));
+
+        students.add(new Student("weixing", "wxOODPtest@gmail.com", password, "WeiXing", "M", "SC", "U123", f1, 2, 0));
+        students.add(new Student("zheming", "zmOODPtest@gmail.com", password, "ZheMing", "M", "SC", "U321", f1, 2, 0));
+        students.add(new Student("ash", "mystaroodp@gmail.com", password, "Ashton", "M", "SC", "U195", f1, 3, 0));
+        students.add(new Student("bob", "bobOODPtest@gmail.com", password, "Bob", "M", "SC", "U461", f2, 3, 0));
+        students.add(new Student("james", "U201@gmail.com", password, "James Law", "M", "SC", "U201", f1, 3, 0));
+        students.add(new Student("Mike", "U202@gmail.com", password, "Mike Law", "M", "SC", "U202", f1, 3, 0));
+        students.add(new Student("Gary", "U203@gmail.com", password, "Gary Law", "M", "SC", "U203", f1, 3, 0));
+        students.add(new Student("Jack", "U204@gmail.com", password, "Jack Law", "M", "SC", "U204", f1, 3, 0));
+        students.add(new Student("Tim", "U205@gmail.com", password, "Tim Law", "M", "SC", "U205", f1, 3, 0));
+        students.add(new Student("Tina", "U206@gmail.com", password, "Tina Tan", "M", "SC", "U206", f1, 3, 0));
+        students.add(new Student("Jess", "U207@gmail.com", password, "Jess Tan", "M", "SC", "U207", f1, 3, 0));
+        students.add(new Student("Claire", "U208@gmail.com", password, "Claire Tan", "M", "SC", "U208", f1, 3, 0));
         admins.add(new Admin("guat", password, "Guat", "M", "SC"));
+
         users.addAll(students);
         users.addAll(admins);
-        
+
         i1.addToStudentList((Student) users.get(0));
+        // i1.addToStudentList((Student) users.get(1));
+        // i3.addToStudentList((Student) users.get(0));
         i3.addToStudentList((Student) users.get(1));
-        i4.addToStudentList((Student) users.get(2));
-        i4.addToStudentList((Student) users.get(3));
-        i5.addToStudentList((Student) users.get(1));
+        // i3.addToStudentList((Student) users.get(2));
+        i3.addToStudentList((Student) users.get(3));
+        i3.addToStudentList((Student) users.get(4));
+        i3.addToStudentList((Student) users.get(5));
+        i3.addToStudentList((Student) users.get(6));
+
         save();
         System.out.println("Dummy data loaded.");
     }
@@ -153,9 +163,9 @@ public class RecordManager {
         return user;
     }
 
-    public Student getStudent(String matricNum){
-        for (Student student: getAllStudents()){
-            if (student.getMatricNum().equals(matricNum)){
+    public Student getStudent(String matricNum) {
+        for (Student student : getAllStudents()) {
+            if (student.getMatricNum().equals(matricNum)) {
                 return student;
             }
         }
@@ -247,7 +257,7 @@ public class RecordManager {
 
         return false;
     }
-    
+
     /** Remove index */
     public boolean removeIndex(Index index) {
 
