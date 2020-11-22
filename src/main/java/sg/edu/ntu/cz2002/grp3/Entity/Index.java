@@ -43,6 +43,8 @@ public class Index implements Serializable {
             System.out.println("Debug: Removed index " + getIndex());
             studentList.remove(student);
             if (waitList.size() > 0) {
+                System.out.println("System: Removing " + s.getFullName()
+                        + " from waitlist and Sending notification email out... ");
                 Student s = waitList.get(0);
                 addToStudentList(s);
                 Email.sendMail(s.getEmail(), "Waitlist Notification", "Congrats, you got into index " + getIndex());
