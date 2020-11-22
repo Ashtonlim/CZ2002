@@ -70,10 +70,10 @@ public class StudentView extends View {
             }
         }
 
-        Printer.print(res);
         if (res.length == 1){
             System.out.println(" - You have no course registered. - ");
         }
+        Printer.print(res);
     }
 
     /** 3. Check vacancies of a course */
@@ -217,8 +217,7 @@ public class StudentView extends View {
         studentOptions.add("Print Time Table");
         studentOptions.add("Change Password");
 
-        boolean active = true;
-        while (active) {
+        while (true) {
             int c = View.getPrintOptions(title, "Logout", studentOptions);
             switch (c) {
                 case 1 -> addCourse();
@@ -230,11 +229,12 @@ public class StudentView extends View {
                 case 7 -> printTimeTable();
                 case 8 -> changePassword(student);
                 case 0 -> {
-                    active = false;
                     System.out.println("Logging out...");
+                    return;
                 }
                 default -> System.out.println("Option not available...");
             }
+            View.pressEnterKeyToGoBack();
         }
     }
 

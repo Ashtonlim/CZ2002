@@ -84,7 +84,7 @@ public class View {
         return choice;
     }
 
-    public static void changePassword(User user) {
+    protected static void changePassword(User user) {
         System.out.println("=== Change account password (Console required) ===");
         // need to change to console version later
         System.out.print("Old ");
@@ -100,7 +100,7 @@ public class View {
     }
 
     /** Get int input from user */
-    public static int getIntInput(String prompt) {
+    protected static int getIntInput(String prompt) {
         int choice;
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -121,7 +121,7 @@ public class View {
     }
 
     /** Get text input from user */
-    public static String getTextInput(String prompt) {
+    protected static String getTextInput(String prompt) {
         String input;
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -139,7 +139,7 @@ public class View {
     }
     
     /** Get confirmation y/n input from user */
-    public static char getConfInput(String prompt) {
+    protected static char getConfInput(String prompt) {
         char input;
         Scanner sc = new Scanner(System.in);
         while (true) {
@@ -156,7 +156,7 @@ public class View {
     }
     
     /** get password with hidden fields */
-    public static String getPassword(String prompt) {
+    protected static String getPassword(String prompt) {
 		Console cons = System.console();
 		char[] input = cons.readPassword(prompt);
 		String password = String.valueOf(input);
@@ -164,7 +164,7 @@ public class View {
     }
 
     /** Print student list */
-    public static void printStudentList(ArrayList<Student> studentList){
+    protected static void printStudentList(ArrayList<Student> studentList){
         System.out.println( "Total students: " + studentList.size() );
         for (int i = 0; i < studentList.size(); i++){
             Student student = studentList.get(i);
@@ -173,7 +173,7 @@ public class View {
     }
 
     /** Print course list */
-    public static void printCourseList(ArrayList<Course> courseList){
+    protected static void printCourseList(ArrayList<Course> courseList){
         System.out.println( "Total Courses: " + courseList.size() + "\n");
         for (int i = 0; i < courseList.size(); i++) {
             Course course = courseList.get(i);
@@ -193,7 +193,7 @@ public class View {
     }
     
     /** Print lesson list */
-    public static void printLessonList(ArrayList<Lesson> lessonList) {
+    protected static void printLessonList(ArrayList<Lesson> lessonList) {
         System.out.println( "Total Lessons: " + lessonList.size());
         for (int i = 0; i < lessonList.size(); i++) {
             Lesson lesson = lessonList.get(i);
@@ -213,7 +213,16 @@ public class View {
             		+ ", " + start + " - " + end + ", "+ "Venue: " + venue);
         }
     }
-    
+
+    protected static void pressEnterKeyToGoBack()
+    {
+        System.out.println("Press Enter key to go back...");
+        try
+        {
+            System.in.read();
+        }
+        catch(Exception ignored) {};
+    }
     // public static void main(String[] args){
     // ArrayList<String> options = new ArrayList<>();
     //

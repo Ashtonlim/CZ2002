@@ -285,8 +285,7 @@ public class AdminView extends View {
         adminOptions.add("Print student list by index number.");
         adminOptions.add("Print student list by course (all students registered for the selected course).");
         adminOptions.add("Change password.");
-        boolean active = true;
-        while(active){
+        while(true){
             int c = View.getPrintOptions(title, "Logout", adminOptions);
             switch (c) {
             	case 1 -> adminEditAccessPeriod();
@@ -297,11 +296,12 @@ public class AdminView extends View {
                 case 7 -> adminPrintStudentListByCourse();
                 case 8 -> changePassword(admin);
                 case 0 -> {
-                    active = false;
                     System.out.println("Logging out...");
+                    return;
                 }
                 default -> System.out.println("Option not available...");
             }
+			pressEnterKeyToGoBack();
         }
     }
 
