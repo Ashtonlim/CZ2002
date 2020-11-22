@@ -60,6 +60,14 @@ public class RecordManager {
         students.add(new Student("zheming", "zmOODPtest@gmail.com", password, "ZheMing", "M", "SC", "U321", f1, 2, 0));
         students.add(new Student("ash", "ashOODPtest@gmail.com", password, "Ashton", "M", "SC", "U195", f1, 3, 0));
         students.add(new Student("bob", "bobOODPtest@gmail.com", password, "Bob", "M", "SC", "U461", f2, 3, 0));
+        students.add(new Student("james", "U201@gmail.com", password, "James Law", "M", "SC", "U201", f1, 3, 0));
+        students.add(new Student("Mike", "U202@gmail.com", password, "Mike Law", "M", "SC", "U202", f1, 3, 0));
+        students.add(new Student("Gary", "U203@gmail.com", password, "Gary Law", "M", "SC", "U203", f1, 3, 0));
+        students.add(new Student("Jack", "U204@gmail.com", password, "Jack Law", "M", "SC", "U204", f1, 3, 0));
+        students.add(new Student("Tim", "U205@gmail.com", password, "Tim Law", "M", "SC", "U205", f1, 3, 0));
+        students.add(new Student("Tina", "U206@gmail.com", password, "Tina Tan", "M", "SC", "U206", f1, 3, 0));
+        students.add(new Student("Jess", "U207@gmail.com", password, "Jess Tan", "M", "SC", "U207", f1, 3, 0));
+        students.add(new Student("Claire", "U208@gmail.com", password, "Claire Tan", "M", "SC", "U208", f1, 3, 0));
         admins.add(new Admin("guat", password, "Guat", "M", "SC"));
 
         users.addAll(students);
@@ -67,6 +75,9 @@ public class RecordManager {
 
         i1.addToStudentList((Student) users.get(0));
         i3.addToStudentList((Student) users.get(1));
+        i3.addToStudentList((Student) users.get(2));
+        i3.addToStudentList((Student) users.get(3));
+        i3.addToStudentList((Student) users.get(4));
         save();
         System.out.println("Dummy data loaded.");
     }

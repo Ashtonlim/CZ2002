@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Index implements Serializable {
+
+    private static final long serialVersionUID = 1659216272267144237L;
     private String index;
     private int totalSlots;
     private ArrayList<Student> waitList = new ArrayList<>();
