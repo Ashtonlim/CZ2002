@@ -4,12 +4,13 @@ import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
 import sg.edu.ntu.cz2002.grp3.Controller.TimeManager;
 import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
+import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
+
 
 public class View {
     protected MyStarsApp app;
@@ -84,7 +85,7 @@ public class View {
     }
 
     public static void changePassword(User user) {
-        System.out.println("=== Change account password ===");
+        System.out.println("=== Change account password (Console required) ===");
         // need to change to console version later
         System.out.print("Old ");
         String oldPassword = View.getPassword("Password: ");
@@ -144,7 +145,8 @@ public class View {
         while (true) {
             System.out.println(prompt);
             input = sc.next().charAt(0);
-            if (!(input == 'y' || input=='n')) {
+            input = Character.toUpperCase(input);
+            if (!(input == 'Y' || input=='N')) {
             	System.out.println("Invalid option.");
             } else {
             	break;

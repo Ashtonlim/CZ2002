@@ -11,18 +11,8 @@ public class StudentController {
         this.RM = RM;
     }
 
-    public void printCourseReg(Student s) {
-        System.out.println("   CourseID   CourseName   Index   ");
-        System.out.println("===================================");
-        ArrayList<Index> RegIndex = s.getIndexList();
-        if (RegIndex != null) {
-            for (int i = 0; i < RegIndex.size(); i++) {
-                System.out.println("   " + RegIndex.get(i).getCourseCode() + "       " + RegIndex.get(i).getCourseCode()
-                        + "         " + RegIndex.get(i).getIndex());
-            }
-        } else
-            System.out.println("No Course Registered found for this Student");
-        return;
+    public ArrayList<Index> getCourseReg(Student student) {
+        return student.getIndexList();
     }
 
     public Index checkValidIndex(String indexCode) {
@@ -38,7 +28,7 @@ public class StudentController {
         return null;
     }
 
-    public ArrayList<Index> checkVacanciesOfCourse(String courseCode) {
+    public ArrayList<Index> getVacanciesOfCourse(String courseCode) {
         ArrayList<Index> temp = new ArrayList<>();
         Course course = RM.getCourse(courseCode);
         if (course != null) {

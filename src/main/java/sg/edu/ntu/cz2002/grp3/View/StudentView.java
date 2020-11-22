@@ -2,10 +2,8 @@ package sg.edu.ntu.cz2002.grp3.View;
 
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.StudentController;
-import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class StudentView extends View {
@@ -48,26 +46,69 @@ public class StudentView extends View {
         index.removeFromStudentList(student);
     }
 
-    /** 3. Check vacancies of a course */
-    public void checkVacanciesOfCourse() {
-        System.out.println("=== Check vacancies of a course ===");
+    /** Print courses registered */
 
-        System.out.println("Please input your CourseID to show indexes of the Course: ");
-        String courseCode = View.getTextInput("CourseID: ");
-        ArrayList<Index> indexList = SC.checkVacanciesOfCourse(courseCode);
+    public void printCoursesRegistered(){
+        System.out.println("=== Courses Registered ===");
+        ArrayList<Index> indexList = SC.getCourseReg(student);
 
-        if (indexList != null) {
-            if (indexList.size() == 0) {
-                System.out.println("There is no index in this course.");
-            } else {
-                System.out.println("=== IndexNumber == Vacancies === ");
-                for (Index index : indexList) {
-                    System.out.print("      " + index.getIndex());
-                    System.out.println("          " + index.getVacancy());
+        String[][] res = new String[indexList.size() + 1][4];
+        res[0][0] = " No. ";
+        res[0][1] = " Course Code ";
+        res[0][2] = " Course Name ";
+        res[0][3] = " Course Index ";
+
+        for (int i = 1; i < indexList.size() + 1; i++){
+            for (int j = 0; j < 4; j++){
+                switch (j){
+                    case 0 -> res[i][j] = " " + i + " ";
+                    case 1 -> res[i][j] = " " + indexList.get(i-1).getCourseCode() + " ";
+                    case 2 -> res[i][j] = " " + indexList.get(i-1).getCourseName() + " ";
+                    case 3 -> res[i][j] = " " + indexList.get(i-1).getIndex() + " ";
+                    default -> res[i][j] = " Error ";
                 }
             }
-        } else {
+        }
+
+        Printer.print(res);
+        if (res.length == 1){
+            System.out.println(" - You have no course registered. - ");
+        }
+    }
+
+    /** 3. Check vacancies of a course */
+    public void printVacanciesOfCourse() {
+        System.out.println("=== Check vacancies of a course ===");
+
+        System.out.println("Please input your CourseID to show indexes of the Course.");
+        String courseCode = View.getTextInput("CourseID: ");
+        ArrayList<Index> indexList = SC.getVacanciesOfCourse(courseCode);
+        if (indexList == null){
             System.out.println("Course does not exist");
+            return;
+        }
+
+        String[][] res = new String[indexList.size() + 1][3];
+        res[0][0] = " No. ";
+        res[0][1] = " Index Number ";
+        res[0][2] = " Vacancies ";
+
+        for (int i = 1; i < indexList.size() + 1; i++){
+            for (int j = 0; j < 3; j++){
+                switch (j){
+                    case 0 -> res[i][j] = " " + i + " ";
+                    case 1 -> res[i][j] = " " + indexList.get(i-1).getIndex() + " ";
+                    case 2 -> res[i][j] = " " + indexList.get(i-1).getVacancy() + " ";
+                    default -> res[i][j] = " Error ";
+                }
+            }
+        }
+
+        if (res.length == 1){
+            System.out.println(" - There is no index in this course. - ");
+        } else {
+            System.out.println("Index vacancies for " + indexList.get(0).getCourseCode() + " - " +indexList.get(0).getCourseName() + ": ");
+            Printer.print(res);
         }
     }
 
@@ -182,7 +223,8 @@ public class StudentView extends View {
             switch (c) {
                 case 1 -> addCourse();
                 case 2 -> dropCourse();
-                case 4 -> checkVacanciesOfCourse();
+                case 3 -> printCoursesRegistered();
+                case 4 -> printVacanciesOfCourse();
                 case 5 -> changeIndex();
                 case 6 -> swopIndex();
                 case 7 -> printTimeTable();
