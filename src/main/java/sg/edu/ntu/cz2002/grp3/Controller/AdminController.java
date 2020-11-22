@@ -51,6 +51,11 @@ public class AdminController {
         return RM.getCourse(courseCode);
     }
     
+    /** Get all course list */
+    public ArrayList<Course> getAllCourses() {
+        return RM.getAllCourses();
+    }
+    
     /** Get index */
     public Index getIndex(String index){
         return RM.getIndex(index);
@@ -84,7 +89,6 @@ public class AdminController {
     		return -1;
     	} else {
     		Course course = new Course(courseCode, courseName, subjectType, AU, faculty);
-    		RM.addCourse(faculty, course);
     		return 1;
     	}
     }
@@ -99,25 +103,34 @@ public class AdminController {
     		return -1;
     	} else {
     		Index index = new Index(strIndex, slots, course);
-    		course.addIndex(index);
     		return 1;
     	}
     }
     
     /** Add lesson to index */
-//    public int addLesson(Index index, int slots, Course course) {
-//    	if (RM.getIndex(strIndex) != null) {
-//    		// index exists
-//    		return 0;
-//    	} else if (slots < 0) {
-//    		// negative slots
-//    		return -1;
-//    	} else {
-//    		Index index = new Index(strIndex, slots, course);
-//    		course.addIndex(index);
-//    		return 1;
-//    	}
-//    }
+    public int addLesson(String type, int day, String start, String end, String venue, int oddEven, Index index) {
+    	if (day < 1 || day > 6) {
+    		// invalid day
+    		return -1;
+    	} else if (!(oddEven == 0 || oddEven == 1 || oddEven == 2)) {
+    		// invalid option
+    		return -2;
+    	} 
+    		
+		try {
+			// if weekly lessons
+			if (oddEven == 2) {
+	    		Lesson l1 = new Lesson(type, day, 0, start, end, venue, index);
+	    		Lesson l2 = new Lesson(type, day, 1, start, end, venue, index);
+	    		return 1;
+			} else {
+				Lesson l1 = new Lesson(type, day, oddEven, start, end, venue, index);
+				return 1;
+			}
+	    } catch (Exception e) {
+			return -3;
+		}
+    }
 
     /** 8.Update Course info */
     public void updateCourseCode(String courseCode, String newCourseCode){

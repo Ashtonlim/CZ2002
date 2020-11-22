@@ -1,8 +1,8 @@
 package sg.edu.ntu.cz2002.grp3.View;
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.AdminController;
-import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
+import sg.edu.ntu.cz2002.grp3.Controller.TimeManager;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -75,7 +75,9 @@ public class AdminView extends View {
     	}
     }
     
+    /** print full student list */
     public void adminPrintStudentListAll() {
+    	System.out.println("=== All Students ===");
         ArrayList<Student> studentList = AC.getAllStudents();
         if (studentList != null){
             printStudentList(studentList);
@@ -98,9 +100,15 @@ public class AdminView extends View {
         	switch(result) {
         	case 1:
         		System.out.println("Course " + courseCode + " " + courseName + " successfully added into system.");
-        		Course course = AC.getCourse(courseCode);
-        		adminAddIndexes(course);
-        		break;
+        		char choice = View.getConfInput("Add indexes now? y/n");
+    			if (choice == 'y') { 
+    				Course course = AC.getCourse(courseCode);
+            		adminAddIndexes(course, courseName);
+            		break;
+    			} else {
+    				printCourseListAll();
+    				break;
+    			}
         	case 0:
         		System.out.println("Course already exists.");
         		break;
@@ -114,18 +122,33 @@ public class AdminView extends View {
         
     }
     
-    public void adminAddIndexes(Course course) {
-    	System.out.println("=== Add Index to Course ===");
+    /** print full course list */
+    public void printCourseListAll() {
+    	System.out.println("=== All Courses ===");
+        ArrayList<Course> courseList = AC.getAllCourses();
+        if (courseList != null){
+            printCourseList(courseList);
+        } else {
+            System.out.println("Student list is empty.");
+        }
+    }
+    
+    /** add indexes to course */
+    public void adminAddIndexes(Course course, String courseName) {
+    	System.out.println("=== Add Indexes to Course ===");
     	boolean loop = true;
     	while (loop) {
-    		String index = View.getTextInput("Index (e.g. 200201): ");
+    		String indexNo = View.getTextInput("Index (e.g. 200201): ");
     		int slots = View.getIntInput("Total vacancy: ");
-    		int result = AC.addIndex(index, slots, course);
+    		int result = AC.addIndex(indexNo, slots, course);
     		switch(result) {
     		case 1:
-    			char choice = View.getConfInput("Continue? y/n");
+    			System.out.println("Index " + indexNo +" successfully added to course " + courseName);
+    			adminAddLesson(AC.getIndex(indexNo), indexNo);
+    			char choice = View.getConfInput("Add another index? y/n");
     			if (choice == 'n') {
-    				loop = false;
+    				printCourseListAll();
+    				loop = false; 
     			}
     			break;
     		case 0:
@@ -134,16 +157,78 @@ public class AdminView extends View {
     		case -1:
     			System.out.println("Total vacancy cannot be less than 0.");
     			break;
-    		
     		}
     	}
     }
     
-    public void adminAddLesson(Index index) {
-    	System.out.println("=== Add Lesson to Index ===");
-    	
+    /** add lessons to index */
+    public void adminAddLesson(Index index, String indexNo) {
+    	boolean loop = true;
+    	while (loop) {
+    		System.out.println("=== Add Lessons to Index ===");
+	    	System.out.println("1. Lecture\n"
+	    					 + "2. Lab\n"
+	    					 + "3. Tutorial");
+	    	int option = View.getIntInput("Your selection: ");
+	    	if (!(option == 1 || option == 2 || option == 3)) { 
+	    		System.out.println("Invalid option.");
+	    		continue; 
+	    	}
+	    	int day = View.getIntInput("Day of week (1-6): ");
+			String start = View.getTextInput("Start time (HH:mm): ");
+			String end = View.getTextInput("End time (HH:mm): ");
+			String venue = View.getTextInput("Venue: ");
+			String type = null;
+	    	int result = 0;
+	    	switch(option) {
+	    	case 1:
+	    		type = "Lecture";
+	    		result = AC.addLesson(type, day, start, end, venue, 2, index); //default weekly
+	    		break;
+	    	case 2:
+	    		type = "Lab";
+	    		int oddEven = View.getIntInput("0. Even week / 1. Odd week / 2. Every week: ");
+	    		result = AC.addLesson(type, day, start, end, venue, oddEven, index);	
+	    		break;
+	    	case 3:
+	    		type = "Tutorial";
+	    		result = AC.addLesson(type, day, start, end, venue, 2, index);	//default weekly
+	    		break;
+	    	}
+	    	
+	    	switch(result) {
+	    	case 1:
+	    		System.out.println(type + " on " + TimeManager.numToDay(day) + " " + start + "-" + end 
+	    				+ " successfully added to index " + indexNo + ".");
+	    		char choice = View.getConfInput("Add another lesson? y/n");
+    			if (choice == 'n') { 
+    				System.out.println("=== Index " + indexNo + " Lessons ===");
+    				printLessonsInIndex(index);
+    				loop = false; 
+    			}
+	    		break;
+	    	case -1:
+	    		System.out.println("Day is out of range.");
+	    		break;
+	    	case -2:
+	    		System.out.println("Invalid week option.");
+	    		break;
+	    	case -3:
+	    		System.out.println("Invalid time range.");
+	    		break;
+	    	}
+    	}
     }
     
+    /** print lessons in index */
+    public void printLessonsInIndex(Index index) {
+        ArrayList<Lesson> lessonList = index.getLessonList();
+        if (lessonList != null){
+            printLessonList(lessonList);
+        } else {
+            System.out.println("Lesson list is empty.");
+        }
+    }
     
     /** 4.Check available slot for an index number (vacancy in a class) -wx  */
     public void adminCheckVacancy(){

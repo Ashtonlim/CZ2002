@@ -110,11 +110,11 @@ public class Index implements Serializable {
         return course.getIndexList();
     }
 
-    public void printLessonList() {
-        for (int i = 0; i < lessonList.size(); i++) {
-            lessonList.get(i).printLessonInfo();
-        }
-    }
+//    public void printLessonList() {
+//        for (int i = 0; i < lessonList.size(); i++) {
+//            lessonList.get(i).printLessonInfo();
+//        }
+//    }
 
     public int getVacancy() {
         return totalSlots - studentList.size();

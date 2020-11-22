@@ -47,6 +47,10 @@ public class Lesson implements Serializable {
 	public int getDayOfWeek() {
 		return dayOfWeek;
 	}
+	
+	public int getOddEvenWeek() {
+		return oddEvenWeek;
+	}
 
 	public LocalTime getStartTime() {
 		return startTime;
@@ -120,9 +124,9 @@ public class Lesson implements Serializable {
 		}
 	}
 
-	public void printLessonInfo() {
-		System.out.println("Type: " + type + ", " + "Day: " + dayOfWeek + ", " + startTime + " - " + endTime + ", "
-				+ "Venue: " + venue);
-	}
+//	public void printLessonInfo() {
+//		System.out.println("Type: " + type + ", " + "Day: " + dayOfWeek + ", " + startTime + " - " + endTime + ", "
+//				+ "Venue: " + venue);
+//	}
 
 }

@@ -2,6 +2,7 @@ package sg.edu.ntu.cz2002.grp3.View;
 
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
+import sg.edu.ntu.cz2002.grp3.Controller.TimeManager;
 import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 
 import java.io.Console;
@@ -169,6 +170,48 @@ public class View {
         }
     }
 
+    /** Print course list */
+    public static void printCourseList(ArrayList<Course> courseList){
+        System.out.println( "Total Courses: " + courseList.size() + "\n");
+        for (int i = 0; i < courseList.size(); i++) {
+            Course course = courseList.get(i);
+            System.out.println( (i+1) + ". " + course.getCourseCode() + ", " + course.getCourseName() + ", " + course.getFaculty().getName());
+            System.out.print("Indexes: ");
+            ArrayList<Index> indexList = course.getIndexList();
+            if (indexList.size() != 0) {
+            	for (int j = 0; j < indexList.size(); j++) {
+	            	Index index = indexList.get(j);
+	            	System.out.print(index.getIndex() + " | ");
+            	}
+            	System.out.println("\n");
+            } else {
+            	System.out.println("None\n");
+            }
+        }
+    }
+    
+    /** Print lesson list */
+    public static void printLessonList(ArrayList<Lesson> lessonList) {
+        System.out.println( "Total Lessons: " + lessonList.size());
+        for (int i = 0; i < lessonList.size(); i++) {
+            Lesson lesson = lessonList.get(i);
+            String type = lesson.getType();
+            String day = TimeManager.numToDay(lesson.getDayOfWeek());
+            String start = TimeManager.dateTimeToStr(lesson.getStartTime());
+            String end = TimeManager.dateTimeToStr(lesson.getEndTime());
+            String venue = lesson.getVenue();
+            int oddEven = lesson.getOddEvenWeek();
+            String strOddEven;
+            if (oddEven == 0) {
+            	strOddEven = "Even";
+            } else {
+            	strOddEven = "Odd";
+            }
+            System.out.println((i+1) + ". " + type + ", " + strOddEven + " " + day 
+            		+ ", " + start + " - " + end + ", "+ "Venue: " + venue);
+        }
+    }
+    
     // public static void main(String[] args){
     // ArrayList<String> options = new ArrayList<>();
     //

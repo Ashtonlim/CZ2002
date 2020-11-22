@@ -15,6 +15,7 @@ public class Course implements Serializable {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.subjectType = subjectType;
+        this.faculty = faculty;
         this.AU = AU;
     	faculty.addCourse(this);
     }
