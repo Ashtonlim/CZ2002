@@ -185,11 +185,11 @@ public class AdminView extends View {
     	System.out.println("=== Change account password ===");
     	// need to change to console version later
     	System.out.print("Old ");
-    	String oldPassword = View.getPassword();
+    	String oldPassword = View.getPassword("Password: ");
     	System.out.print("New ");
-    	String newPassword = View.getPassword();
+    	String newPassword = View.getPassword("Password: ");
     	boolean result = LoginManager.changePassword(admin, oldPassword, newPassword);
-    	if (result == true) {
+    	if (result) {
     		System.out.println("Password successfully changed.");
     	} else {
     		System.out.println("Old password is incorrect.");

@@ -138,9 +138,9 @@ public class View {
     }
     
     /** get password with hidden fields */
-    public static String getPassword() {
+    public static String getPassword(String prompt) {
 		Console cons = System.console();
-		char[] input = cons.readPassword("Password: ");
+		char[] input = cons.readPassword(prompt);
 		String password = String.valueOf(input);
 		return password;
     }
