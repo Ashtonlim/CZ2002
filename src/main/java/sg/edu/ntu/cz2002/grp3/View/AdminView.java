@@ -145,7 +145,7 @@ public class AdminView extends View {
     		case 1:
     			System.out.println("Index " + indexNo +" successfully added to course " + courseName);
     			adminAddLesson(AC.getIndex(indexNo), indexNo);
-    			char choice = View.getConfInput("Add another index? y/n");
+    			char choice = View.getConfInput("Add another index? Y/N");
     			if (choice == 'N') {
     				printCourseListAll();
     				loop = false; 
@@ -201,7 +201,7 @@ public class AdminView extends View {
 	    		System.out.println(type + " on " + TimeManager.numToDay(day) + " " + start + "-" + end 
 	    				+ " successfully added to index " + indexNo + ".");
 	    		printLessonsInIndex(index);
-	    		char choice = View.getConfInput("Add another lesson? y/n");
+	    		char choice = View.getConfInput("Add another lesson? Y/N");
     			if (choice == 'N') { 
     				loop = false; 
     			}
