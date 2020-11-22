@@ -21,8 +21,10 @@ public class MyStarsApp {
     }
 
     public void start() throws Exception {
+        // Uncomment to send a test email when the application starts up
+        // Email.sendMail("mystaroodp@gmail.com", "Waitlist Notification", "Congrats,
+        // you got into index ");
 
-        Email.sendMail("mystaroodp@gmail.com", "Waitlist Notification", "Congrats, you got into index ");
         running = true;
         // Load dummy data
         ArrayList<String> options = new ArrayList<>();
