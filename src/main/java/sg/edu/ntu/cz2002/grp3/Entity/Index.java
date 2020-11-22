@@ -5,15 +5,15 @@ import java.util.ArrayList;
 
 public class Index implements Serializable {
     private String index;
-    private int totalSlots;
+    private int vacancy;
     private ArrayList<Student> waitList = new ArrayList<>();
     private ArrayList<Student> studentList = new ArrayList<>();
     private ArrayList<Lesson> lessonList = new ArrayList<>();
     private Course course;
 
-    public Index(String index, int slots, Course course) {
+    public Index(String index, int vacancy, Course course) {
         this.index = index;
-        this.totalSlots = slots;
+        this.vacancy = vacancy;
         this.course = course;
         course.addIndex(this);
     }
@@ -117,27 +117,23 @@ public class Index implements Serializable {
 //    }
 
     public int getVacancy() {
-        return totalSlots - studentList.size();
+        return vacancy;
     }
 
     public int getStudentSize() {
         return studentList.size();
     }
-
-    public void setTotalSlots(int slots) {
-        this.totalSlots = slots;
+    
+    public int getTotalSlots() {
+    	return studentList.size() + vacancy;
     }
 
-    public void setVacancy(int slots) {
-        this.totalSlots = slots;
+    public void setVacancy(int vacancy) {
+        this.vacancy = vacancy;
     }
 
     public void setIndex(String newIndex) {
         this.index = newIndex;
-    }
-
-    public void setCourseCode(String newCourseCode) {
-        this.course.setCourseCode(newCourseCode);
     }
 
     public String getCourseName() {

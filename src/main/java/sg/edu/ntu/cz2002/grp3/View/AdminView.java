@@ -87,7 +87,7 @@ public class AdminView extends View {
     }
     
     /** 3.Add course */
-    public void adminAddCourse(){
+    public void adminAddCourse() {
         System.out.println("=== Add a New Course ===");
         String strFaculty = View.getTextInput("Faculty name: ");
         Faculty faculty = AC.getFaculty(strFaculty);
@@ -100,10 +100,10 @@ public class AdminView extends View {
         	switch(result) {
         	case 1:
         		System.out.println("Course " + courseCode + " " + courseName + " successfully added into system.");
-        		char choice = View.getConfInput("Add indexes now? Y/N");
+        		char choice = View.getConfInput("Add indexes now? y/n");
     			if (choice == 'Y') { 
     				Course course = AC.getCourse(courseCode);
-            		adminAddIndexes(course, courseName);
+            		adminAddIndex(course);
             		break;
     			} else {
     				printCourseListAll();
@@ -134,7 +134,7 @@ public class AdminView extends View {
     }
     
     /** add indexes to course */
-    public void adminAddIndexes(Course course, String courseName) {
+    public void adminAddIndex(Course course) {
     	System.out.println("=== Add Indexes to Course ===");
     	boolean loop = true;
     	while (loop) {
@@ -143,8 +143,8 @@ public class AdminView extends View {
     		int result = AC.addIndex(indexNo, slots, course);
     		switch(result) {
     		case 1:
-    			System.out.println("Index " + indexNo +" successfully added to course " + courseName);
-    			adminAddLesson(AC.getIndex(indexNo), indexNo);
+    			System.out.println("Index " + indexNo +" successfully added to course " + course.getCourseName());
+    			adminAddLesson(AC.getIndex(indexNo));
     			char choice = View.getConfInput("Add another index? y/n");
     			if (choice == 'N') {
     				printCourseListAll();
@@ -162,7 +162,7 @@ public class AdminView extends View {
     }
     
     /** add lessons to index */
-    public void adminAddLesson(Index index, String indexNo) {
+    public void adminAddLesson(Index index) {
     	boolean loop = true;
     	while (loop) {
     		System.out.println("=== Add Lessons to Index ===");
@@ -199,7 +199,7 @@ public class AdminView extends View {
 	    	switch(result) {
 	    	case 1:
 	    		System.out.println(type + " on " + TimeManager.numToDay(day) + " " + start + "-" + end 
-	    				+ " successfully added to index " + indexNo + ".");
+	    				+ " successfully added to index " + index.getIndex() + ".");
 	    		printLessonsInIndex(index);
 	    		char choice = View.getConfInput("Add another lesson? y/n");
     			if (choice == 'N') { 
@@ -235,8 +235,7 @@ public class AdminView extends View {
     }
     
     /** 4. Update course */
-    
-    public void adminUpdateOptions() {
+    public void adminUpdateCourse() {
     	System.out.println("=== Update a Course ===");
     	String courseCode = View.getTextInput("Course code: ");
     	Course course = AC.getCourse(courseCode);
@@ -248,18 +247,20 @@ public class AdminView extends View {
     	String facultyName = course.getFaculty().getName();
     	String subType = course.getSubjectType();
     	int AU = course.getAU();
-    	String title = "=== Update " + courseCode + " ===";
-    	System.out.println(courseCode + ", " + courseName + ", " + facultyName + ", "
-    				+ subType + ", AU: " + AU);
+
     	ArrayList<String> courseOptions = new ArrayList<>();
     	courseOptions.add("Change course code");
     	courseOptions.add("Change course name");
-    	courseOptions.add("Change faculty");
     	courseOptions.add("Change subject type");
     	courseOptions.add("Change AU");
+    	courseOptions.add("Add new index");
     	courseOptions.add("Remove course from database");
-    	courseOptions.add("Update indexes (Index no., vacancies)");
-    	while(true){
+    	courseOptions.add("Update indexes (Index no, vacancies, remove)");
+    	boolean loop = true;
+    	while(loop) {
+        	System.out.println(courseCode + ", " + courseName + ", " + facultyName + ", "
+    				+ subType + ", AU: " + AU);
+        	String title = "=== Update " + courseCode + " ===";
             int c = View.getPrintOptions(title, "Exit", courseOptions);
             switch (c) {
             	case 0:
@@ -268,25 +269,120 @@ public class AdminView extends View {
             		String newCourseCode = View.getTextInput("New course code: ");
             		if (AC.updateCourseCode(course, newCourseCode) == true) {
             			System.out.println(courseCode + " successfully changed to " + newCourseCode);
+            			courseCode = newCourseCode;
+            		} else {
+            			System.out.println("The new course code already exists.");
             		}
             		break;
             	case 2:
             		String newCourseName = View.getTextInput("New course name: ");
-            		if (AC.updateCourseName(course, newCourseName) == true) {
-            			System.out.println(courseName + " successfully changed to " + newCourseName);
-            		}
+            		AC.updateCourseName(course, newCourseName);
+            		System.out.println(courseName + " successfully changed to " + newCourseName);
+            		courseName = newCourseName;
             		break;
             	case 3:
-            		String newFaculty = View.getTextInput("New faculty: ");
-            		if (AC.updateCourseFaculty(course, newFaculty) == true) {
-            			System.out.println(facultyName + " successfully changed to " + newFaculty);
+            		String newSubType = View.getTextInput("New subject type: ");
+            		AC.updateCourseName(course, newSubType);
+            		System.out.println(subType + " successfully changed to " + newSubType);
+            		subType = newSubType;
+            		break;
+            	case 4:
+            		int newAU = View.getIntInput("New AU: ");
+            		if (AC.updateCourseAU(course, newAU) == true) {
+            			System.out.println("AU successfully changed from " + AU + " to " + newAU + ".");
+            			AU = newAU;
+            		} else {
+            			System.out.println("AU cannot be less than 1.");
             		}
             		break;
+            	case 5:
+            		adminAddIndex(course);
+            		break;
+            	case 6:
+            		char confirm = View.getConfInput("Removal cannot be undone. Are you sure you want to remove course? y/n");
+            		if (confirm == 'Y') {
+            			boolean result = AC.removeCourse(course);
+            			if (result == true) {
+            				System.out.println(courseName + " has been successfully removed from the database.");
+            				loop = false;
+            			} else {
+            				System.out.println("Error removing course from the database.");
+            			}
+            		} else {
+            			System.out.println("Course removal cancelled.");
+            			return;
+            		}
+            		break;
+            	case 7: 
+            		adminUpdateIndex(course);
                 default: 
                 	System.out.println("Option not available...");
             }
 			pressEnterKeyToGoBack();
     	}
+    }
+    
+    /** update indexes */
+    public void adminUpdateIndex(Course course) {
+    	ArrayList<Index> indexList = course.getIndexList();
+    	View.printIndexList(indexList);
+    	String indexNo = View.getTextInput("Enter index: ");
+    	Index index = AC.getIndex(indexNo);
+    	if (index == null) {
+    		System.out.println("Index not found!");
+    		return;
+    	}
+    	int vacancy = index.getVacancy();
+
+		ArrayList<String> indexOptions = new ArrayList<>();
+		indexOptions.add("Change index number");
+		indexOptions.add("Change vacancies");
+		indexOptions.add("Remove index from course");
+		boolean loop = true;
+		while(loop) {
+	    	System.out.println(indexNo + ", Vacancy: " + vacancy);
+	    	String title = "=== Update " + indexNo + " ===";
+	        int c = View.getPrintOptions(title, "Exit", indexOptions);
+	        switch (c) {
+	        	case 0:
+	        		return;
+	        	case 1:
+	        		String newIndexNo = View.getTextInput("New index: ");
+	        		if (AC.updateIndexNo(index, newIndexNo) == true) {
+	        			System.out.println(indexNo + " successfully changed to " + newIndexNo);
+	        			indexNo = newIndexNo;
+	        		} else {
+	        			System.out.println("The new index already exists.");
+	        		}
+	        		break;
+	        	case 2:
+	        		int newVacancy = View.getIntInput("New vacancy: ");
+	        		if (AC.updateIndexVac(index, newVacancy) == true) {
+	        			System.out.println("Vacancy successfully changed from " + vacancy + " to " + newVacancy + ".");
+	        			vacancy = newVacancy;
+	        		} else {
+	        			System.out.println("Vacancy cannot be less than 0.");
+	        		}
+	        		break;
+	        	case 3:
+	        		char confirm = View.getConfInput("Removal cannot be undone. Are you sure you want to remove index? y/n");
+            		if (confirm == 'Y') {
+            			if (AC.removeIndex(index) == true) {
+            				System.out.println(indexNo + " has been successfully removed from the course.");
+            				loop = false;
+            			} else {
+            				System.out.println("Error removing course from the database.");
+            			}
+            		} else {
+            			System.out.println("Index removal cancelled.");
+            			return;
+            		}
+            		break;
+	            default: 
+	            	System.out.println("Option not available...");
+	        }
+			pressEnterKeyToGoBack();
+		}
     }
     
     /** 4.Check available slot for an index number (vacancy in a class) -wx  */
@@ -314,8 +410,8 @@ public class AdminView extends View {
 
     public void adminPrintStudentListByCourse(){
         System.out.println("=== Student List By Course ===");
-        String indexCode = View.getTextInput("Course code: ");
-        ArrayList<Student> studentList = AC.getStudentListByCourse(indexCode);
+        String courseCode = View.getTextInput("Course code: ");
+        ArrayList<Student> studentList = AC.getStudentListByCourse(courseCode);
         if (studentList != null) {
             printStudentList(studentList);
         } else {
@@ -350,7 +446,7 @@ public class AdminView extends View {
             	case 1 -> adminEditAccessPeriod();
             	case 2 -> adminAddStudent();
             	case 3 -> adminAddCourse();
-            	case 4 -> adminUpdateOptions();
+            	case 4 -> adminUpdateCourse();
                 case 5 -> adminCheckVacancy();
                 case 6 -> adminPrintStudentListByIndex();
                 case 7 -> adminPrintStudentListByCourse();

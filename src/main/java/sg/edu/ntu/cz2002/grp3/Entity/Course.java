@@ -53,13 +53,19 @@ public class Course implements Serializable {
     public void addIndex(Index index) {
         indexList.add(index);
     }
+    
+    public void removeIndex(Index index) {
+        indexList.remove(index);
+    }
 
     public void setCourseName(String courseName){
         this.courseName = courseName;
     }
 
-    public void setFaculty(Faculty faculty){
-        this.faculty = faculty;
+    public void setFaculty(Faculty newFaculty){
+    	faculty.removeCourse(this); //old faculty remove course
+        this.faculty = newFaculty; // set new faculty
+        faculty.addCourse(this); // new faculty add course
     }
 
     public void setAU(int AU) { this.AU = AU; }

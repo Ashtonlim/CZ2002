@@ -30,13 +30,20 @@ public class RecordManager {
 
         // Entity.Faculty
         Faculty f1 = new Faculty("SCSE");
+        Faculty f2 = new Faculty("EEE");
 
         // Entity.Course
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
+        Course c3 = new Course("EE8084", "Cyber Security", "UE", 3, f2);
+        Course c4 = new Course("EE2003", "Test", "Core", 3, f2);
+        
         Index i1 = new Index("200201", 20, c1);
         Index i3 = new Index("200202", 10, c1);
         Index i2 = new Index("200301", 20, c2);
+        Index i4 = new Index("808401", 20, c3);
+        Index i5 = new Index("808402", 10, c3);
+        Index i6 = new Index("200301", 20, c4);
         Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
         Lesson lab2002 = new Lesson("lab", 2, 0, "09:30", "11:30", "SPL", i1);
         Lesson lec2002 = new Lesson("lec", 4, 0, "09:30", "11:30", "LT12", i1);
@@ -46,6 +53,7 @@ public class RecordManager {
         Lesson lab2003 = new Lesson("lab", 1, 1, "10:30", "12:30", "HWL1", i3);
         Lesson lec2003 = new Lesson("lec", 3, 1, "13:30", "14:30", "LT4", i3);
         facultyList.add(f1);
+        facultyList.add(f2);
 
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<Admin> admins = new ArrayList<Admin>();
@@ -54,13 +62,17 @@ public class RecordManager {
         String password = LoginManager.generateHash("a");
         students.add(new Student("weixing", password, "WeiXing", "M", "SC", "U123", f1, 2, 20));
         students.add(new Student("zheming", password, "ZheMing", "M", "SC", "U321", f1, 2, 20));
-        students.add(new Student("bob", password, "Bob", "M", "SC", "U461", f1, 3, 20));
+        students.add(new Student("bob", password, "Bob", "M", "SC", "U461", f2, 3, 20));
+        students.add(new Student("mary", password, "Mary", "F", "SC", "U654", f2, 1, 20));
         admins.add(new Admin("guat", password, "Guat", "M", "SC"));
         users.addAll(students);
         users.addAll(admins);
-
+        
         i1.addToStudentList((Student) users.get(0));
         i3.addToStudentList((Student) users.get(1));
+        i4.addToStudentList((Student) users.get(2));
+        i4.addToStudentList((Student) users.get(3));
+        i5.addToStudentList((Student) users.get(1));
         save();
         System.out.println("Dummy data loaded.");
     }
@@ -230,6 +242,21 @@ public class RecordManager {
                 faculty.getCourseList().remove((course));
                 save();
                 return true;
+            }
+        }
+
+        return false;
+    }
+    
+    /** Remove index */
+    public boolean removeIndex(Index index) {
+
+        for (Faculty faculty : facultyList) {
+        	for (Course course : faculty.getCourseList())
+	            if (course.getIndexList().contains(index)) {
+	            	course.getIndexList().remove(index);
+	                save();
+	                return true;
             }
         }
 
