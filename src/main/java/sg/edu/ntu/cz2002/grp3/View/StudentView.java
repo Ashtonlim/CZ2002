@@ -4,6 +4,7 @@ import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.StudentController;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class StudentView extends View {
@@ -41,9 +42,23 @@ public class StudentView extends View {
     /** 2.Drop course */
     public void dropCourse() {
         System.out.println("=== Drop a course ===");
-        String indexCode = getTextInput("Enter index of course to drop");
-        Index index = SC.checkValidIndex(indexCode);
-        index.removeFromStudentList(student);
+        ArrayList<Index> indexList = SC.getCourseReg(student);
+        ArrayList<String> stringIndexList = new ArrayList<>();
+
+        if (indexList.size() == 0){
+            System.out.println(" - You have not registered for any courses yet. - ");
+            return;
+        }
+
+        // Print indexes of the student.
+        for (Index index : indexList) {
+            String string = index.getCourseName() + " - " + index.getIndex();
+            stringIndexList.add(string);
+        }
+        int choice1 = getPrintOptions("Which index would you like to drop?", "Back", stringIndexList);
+        if (choice1 == 0) return;
+        Index indexToDrop = indexList.get(choice1 - 1);
+        indexToDrop.removeFromStudentList(student);
     }
 
     /** Print courses registered */
