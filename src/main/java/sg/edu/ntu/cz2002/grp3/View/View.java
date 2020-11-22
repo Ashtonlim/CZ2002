@@ -178,19 +178,24 @@ public class View {
         System.out.println("Total Courses: " + courseList.size() + "\n");
         for (int i = 0; i < courseList.size(); i++) {
             Course course = courseList.get(i);
-            System.out.println((i + 1) + ". " + course.getCourseCode() + ", " + course.getCourseName() + ", "
-                    + course.getFaculty().getName());
-            System.out.print("Indexes: ");
+            System.out.println( (i+1) + ". " + course.getCourseCode() + ", " + course.getCourseName() + ", " + course.getFaculty().getName());
             ArrayList<Index> indexList = course.getIndexList();
-            if (indexList.size() != 0) {
-                for (int j = 0; j < indexList.size(); j++) {
-                    Index index = indexList.get(j);
-                    System.out.print(index.getIndex() + " | ");
-                }
-                System.out.println("\n");
-            } else {
-                System.out.println("None\n");
-            }
+            printIndexList(indexList);
+            System.out.println("");
+        }
+    }
+
+    /** print index list */
+    public static void printIndexList(ArrayList<Index> indexList) {
+    	if (indexList.size() != 0) {
+            System.out.print("Indexes: | ");
+        	for (int j = 0; j < indexList.size(); j++) {
+            	Index index = indexList.get(j);
+            	System.out.print(index.getIndex() + " | ");
+        	}
+        	System.out.println("");
+        } else {
+        	System.out.println("None");
         }
     }
 

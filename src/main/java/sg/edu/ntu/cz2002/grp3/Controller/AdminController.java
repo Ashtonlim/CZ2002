@@ -181,51 +181,52 @@ public class AdminController {
         }
     }
 
-    public boolean updateCourseName(Course course, String newName) {
-        if (RM.getCourse(newName) == null) {
-            course.setCourseCode(newName);
-            return true;
-        } else {
-            return false;
-        }
+    public void updateCourseName(Course course, String newName) {
+        	course.setCourseCode(newName);
     }
 
-    public void updateSubjectType(String courseCode, String newSubjectType) {
-        Course course = RM.getCourse(courseCode);
+    public void updateSubjectType(Course course, String newSubjectType){
         course.setSubjectType(newSubjectType);
     }
 
-    public void updateCourseAU(String courseCode, int newAU) {
-        Course course = RM.getCourse(courseCode);
-        course.setAU(newAU);
+    public boolean updateCourseAU(Course course, int newAU){
+    	if (newAU > 0) {
+    		course.setAU(newAU);
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
-    public boolean updateCourseFaculty(Course course, String newFaculty) {
-        Faculty faculty = RM.getFaculty(newFaculty);
-        if (faculty != null) {
-            course.setFaculty(faculty);
-            return true;
+
+    public boolean removeCourse(Course course) {
+    	return RM.removeCourse(course);
+    }
+
+
+    /** 10.Update Index info */
+    public boolean updateIndexNo(Index index, String newIndex) {
+    	if (RM.getIndex(newIndex) == null) {
+        	index.setIndex(newIndex);
+        	return true;
+        } else {
+        	return false;
+        }
+    }
+
+    public boolean updateIndexVac(Index index, int newVacancy) {
+        if (newVacancy >= 0) {
+        	index.setVacancy(newVacancy);
+        	return true;
         } else {
             return false;
         }
     }
 
-    /** 10.Update Index info */
-    public void updateIndexCode(String index, String newIndex) {
-        Index indexObject = RM.getIndex(index);
-        indexObject.setIndex(newIndex);
+    public boolean removeIndex(Index index) {
+    	return RM.removeIndex(index);
     }
 
-    public void updateIndexVac(String index, int newVacancy) {
-        Index indexObject = RM.getIndex(index);
-        int indexStudentSize = indexObject.getStudentSize();
-        indexObject.setTotalSlots(newVacancy + indexStudentSize);
-    }
-
-    public void updateIndexCourse(String index, String newCourseCode) {
-        Index indexObject = RM.getIndex(index);
-        indexObject.setCourseCode(newCourseCode);
-    }
 
     /** 11.add a student */
     public int addStudent(String username, String email, String fullName, String gender, String nationality,

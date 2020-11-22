@@ -258,6 +258,21 @@ public class RecordManager {
         return false;
     }
 
+    /** Remove index */
+    public boolean removeIndex(Index index) {
+
+        for (Faculty faculty : facultyList) {
+        	for (Course course : faculty.getCourseList())
+	            if (course.getIndexList().contains(index)) {
+	            	course.getIndexList().remove(index);
+	                save();
+	                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void save() {
         ArrayList<Object> temp = new ArrayList<>();
         temp.add(users);
