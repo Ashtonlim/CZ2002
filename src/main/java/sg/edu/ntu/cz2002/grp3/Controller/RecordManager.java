@@ -36,7 +36,7 @@ public class RecordManager {
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Course c3 = new Course("NB1001", "Econs", "Core", 3, f2);
-	Course c4 = new Course("NB1002","Accounting","Core",2, f2);
+	    Course c4 = new Course("NB1002","Accounting","Core",2, f2);
 	    
         Index i1 = new Index("200201", 10, c1);
         Index i2 = new Index("200202", 10, c1);
@@ -78,7 +78,7 @@ public class RecordManager {
         students.add(new Student("Tina", "U206@gmail.com", password, "Tina Tan", "F", "SC", "U206", f1, 3, 0));
         students.add(new Student("Jess", "U207@gmail.com", password, "Jess Tan", "F", "SC", "U207", f1, 3, 0));
         students.add(new Student("Claire", "U208@gmail.com", password, "Claire Tan", "F", "SC", "U208", f1, 2, 0));
-	students.add(new Student("Amy", "U209@gmail.com", password, "Amy Tan", "F", "SC", "U209", f2, 1, 0));
+	    students.add(new Student("Amy", "U209@gmail.com", password, "Amy Tan", "F", "SC", "U209", f2, 1, 0));
         students.add(new Student("Helen", "U210@gmail.com", password, "Helen Tan", "F", "SC", "U210", f2, 2, 0));
         students.add(new Student("Monica", "U211@gmail.com", password, "Monica Tan", "F", "SC", "U211", f2, 1, 0));
         admins.add(new Admin("guat", password, "Guat", "M", "SC"));
@@ -228,24 +228,6 @@ public class RecordManager {
         return false;
     }
 
-    /** Add course */
-    public void addCourse(Faculty faculty, Course course) {
-        faculty.addCourse(course);
-        save();
-    }
-
-    public boolean addCourse(String facultyName, Course course) {
-
-        for (Faculty faculty : facultyList) {
-            if (facultyName.equals(faculty.getName())) {
-                faculty.addCourse(course);
-                save();
-                return true;
-            }
-        }
-
-        return false;
-    }
 
     /** Check if the courseName is available */
     public boolean checkCourseName(String courseCode) {

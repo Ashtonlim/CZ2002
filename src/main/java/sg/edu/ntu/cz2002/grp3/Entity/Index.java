@@ -1,5 +1,7 @@
 package sg.edu.ntu.cz2002.grp3.Entity;
 
+import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -16,8 +18,10 @@ public class Index implements Serializable {
     public Index(String index, int vacancy, Course course) {
         this.index = index;
         this.vacancy = vacancy;
+        try {
+            course.addIndex(this);
+        } catch (IllegalMethodAccessException ignored){}
         this.course = course;
-        course.addIndex(this);
     }
 
     public String getIndex() {
@@ -96,8 +100,13 @@ public class Index implements Serializable {
         return studentList;
     }
 
-    public void addToLessonList(Lesson lesson) {
-        lessonList.add(lesson);
+    public void addToLessonList(Lesson lesson) throws IllegalMethodAccessException {
+        if (lesson.hasIndex()){
+            throw new IllegalMethodAccessException("Directly calling addToLessonList() from Index is not allowed.");
+        } else {
+            lessonList.add(lesson);
+        }
+
     }
 
     public ArrayList<Lesson> getLessonList() {
@@ -144,5 +153,9 @@ public class Index implements Serializable {
 
     public String getCourseName() {
         return course.getCourseName();
+    }
+
+    public boolean hasCourse(){
+        return course != null;
     }
 }

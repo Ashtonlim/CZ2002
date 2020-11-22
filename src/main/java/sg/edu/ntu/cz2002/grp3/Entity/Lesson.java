@@ -1,5 +1,7 @@
 package sg.edu.ntu.cz2002.grp3.Entity;
 
+import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
+
 import java.io.Serializable;
 import java.time.LocalTime;
 
@@ -19,8 +21,6 @@ public class Lesson implements Serializable {
 	 */
 	public Lesson(String type, int day, int oddEvenWeek, String startTime, String endTime, String venue, Index index)
 			throws Exception {
-		this.index = index;
-		index.addToLessonList(this);
 
 		this.type = type;
 		this.dayOfWeek = day;
@@ -38,6 +38,10 @@ public class Lesson implements Serializable {
 		this.startTime = tempStart;
 		this.endTime = tempEnd;
 
+		try {
+			index.addToLessonList(this);
+		} catch (IllegalMethodAccessException ignored){}
+		this.index = index;
 	}
 
 	public String getType() {
@@ -84,32 +88,9 @@ public class Lesson implements Serializable {
 		return this.index.getIndex();
 	}
 
-	/**
-	 * Shouldn't allow change of start/end time, can create clashes in the system.
-	 */
-	// public void setDayOfWeek(int dayOfWeek) {
-	// this.dayOfWeek = dayOfWeek;
-	// }
-
-	// public void setStartTime(String startTime) {
-	// LocalTime temp = LocalTime.parse(startTime);
-	// if (isValidTime(temp, endTime)) {
-	// this.startTime = temp;
-	// } else {
-	// System.out.println("Error - start time must be before end time. Start time
-	// not updated.");
-	// }
-	// }
-	//
-	// public void setEndTime(String endTime) {
-	// LocalTime temp = LocalTime.parse(endTime);
-	// if (isValidTime(startTime, temp)) {
-	// this.endTime = temp;
-	// } else {
-	// System.out.println("Error - end time must be after start time. End time not
-	// updated.");
-	// }
-	// }
+	public boolean hasIndex(){
+		return index != null;
+	}
 
 	public void setVenue(String venue) {
 		this.venue = venue;

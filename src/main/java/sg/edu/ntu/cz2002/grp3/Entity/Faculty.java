@@ -1,5 +1,7 @@
 package sg.edu.ntu.cz2002.grp3.Entity;
 
+import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -21,16 +23,27 @@ public class Faculty implements Serializable {
 		return courseList;
 	}
 
-	public void addStudent(Student student) {
-		studentList.add(student);
+	public void addStudent(Student student) throws IllegalMethodAccessException {
+		//Only callable when instantiating a new student;
+		if (student.hasFaulty()){
+			throw new IllegalMethodAccessException("Directly calling addStudent() from faculty is not allowed.");
+		} else {
+			studentList.add(student);
+		}
 	}
 
-	public ArrayList<Student> getStudentList() {
-		return studentList;
+	public void removeStudent(Student student){
+		studentList.remove(student);
 	}
 
-	public void addCourse(Course course) {
-		courseList.add(course);
+
+	public void addCourse(Course course) throws IllegalMethodAccessException {
+		//Only callable when instantiating a new course;
+		if (course.hasFaulty()){
+			throw new IllegalMethodAccessException("Directly calling addCourse() from faculty is not allowed.");
+		} else {
+			courseList.add(course);
+		}
 	}
 
 	public void removeCourse(Course course) {

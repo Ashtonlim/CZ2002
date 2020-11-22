@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
+import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
 
 public class Student extends User implements Serializable {
     private String matricNum;
@@ -21,22 +22,26 @@ public class Student extends User implements Serializable {
         this.email = email;
         this.yearOfStudy = yearOfStudy;
         this.regAU = regAU;
+        try {
+            faculty.addStudent(this);
+        } catch (Exception ignored){}
         this.faculty = faculty;
-        faculty.addStudent(this);
     }
 
     /**
      * constructor for admin to add new student. password is default and regAU = 0
      */
     public Student(String username, String email, String fullName, String gender, String nationality, String matricNum,
-            Faculty faculty, int yearOfStudy) {
+            Faculty faculty, int yearOfStudy){
         super(username, LoginManager.defPassword, fullName, gender, nationality);
         this.matricNum = matricNum;
         this.email = email;
         this.yearOfStudy = yearOfStudy;
         this.regAU = 0;
+        try {
+            faculty.addStudent(this);
+        } catch (IllegalMethodAccessException ignored){}
         this.faculty = faculty;
-        faculty.addStudent(this);
     }
 
     /** get student indo */
@@ -85,8 +90,8 @@ public class Student extends User implements Serializable {
         return false;
     }
 
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
+    public boolean hasFaulty(){
+        return faculty != null;
     }
 
     public void setUserName(String userName) {

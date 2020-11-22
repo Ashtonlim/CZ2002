@@ -1,5 +1,7 @@
 package sg.edu.ntu.cz2002.grp3.Entity;
 
+import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,9 +17,11 @@ public class Course implements Serializable {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.subjectType = subjectType;
-        this.faculty = faculty;
         this.AU = AU;
-    	faculty.addCourse(this);
+        try {
+            faculty.addCourse(this);
+        } catch (IllegalMethodAccessException ignored){}
+        this.faculty = faculty;
     }
 
     /** get course info */
@@ -50,8 +54,12 @@ public class Course implements Serializable {
         this.courseCode = courseCode;
     }
 
-    public void addIndex(Index index) {
-        indexList.add(index);
+    public void addIndex(Index index) throws IllegalMethodAccessException {
+        if (index.hasCourse()){
+            throw new IllegalMethodAccessException("Directly calling addIndex() from Course is not allowed.");
+        } else {
+            indexList.add(index);
+        }
     }
     
     public void removeIndex(Index index) {
@@ -62,16 +70,14 @@ public class Course implements Serializable {
         this.courseName = courseName;
     }
 
-    public void setFaculty(Faculty newFaculty){
-    	faculty.removeCourse(this); //old faculty remove course
-        this.faculty = newFaculty; // set new faculty
-        faculty.addCourse(this); // new faculty add course
-    }
 
     public void setAU(int AU) { this.AU = AU; }
 
     public void setSubjectType(String newSubjectType) { this.subjectType=newSubjectType; }
 
+    public boolean hasFaulty(){
+        return faculty != null;
+    }
 }
 
 
