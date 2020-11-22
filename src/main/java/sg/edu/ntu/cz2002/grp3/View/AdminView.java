@@ -49,12 +49,13 @@ public class AdminView extends View {
     	System.out.println("=== Add a Student ===");
     	String username = View.getTextInput("Username: ");
     	String fullName = View.getTextInput("Full name: ");
+    	String email = View.getTextInput("Email: ");
     	String gender = View.getTextInput("Gender ('M' or 'F'): ");
     	String nationality = View.getTextInput("Nationality: ");
     	String matricNum = View.getTextInput("Matriculation number: ");
     	String faculty = View.getTextInput("Faculty (EEE, SCSE etc.): ");
     	int yearOfStudy = View.getIntInput("Year of study: ");
-    	int result = AC.addStudent(username, fullName, gender, nationality, matricNum, faculty, yearOfStudy);
+    	int result = AC.addStudent(username, email, fullName, gender, nationality, matricNum, faculty, yearOfStudy);
     	switch(result) {
 		case 1:
 			System.out.println("Student " + username + " successfully added into system.");
