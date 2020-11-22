@@ -316,8 +316,8 @@ public class AdminView extends View {
     /** Print student List by Course */
     public void adminPrintStudentListByCourse(){
         System.out.println("=== Student List By Course ===");
-        String indexCode = View.getTextInput("Course code: ");
-        ArrayList<Student> studentList = AC.getStudentListByCourse(indexCode);
+        String courseCode = View.getTextInput("Course code: ");
+        ArrayList<Student> studentList = AC.getStudentListByCourse(courseCode);
         if (studentList != null) {
             printStudentList(studentList);
         } else {
