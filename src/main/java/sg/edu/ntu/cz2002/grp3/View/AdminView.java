@@ -129,7 +129,7 @@ public class AdminView extends View {
         if (courseList != null){
             printCourseList(courseList);
         } else {
-            System.out.println("Student list is empty.");
+            System.out.println("Course list is empty.");
         }
     }
     
