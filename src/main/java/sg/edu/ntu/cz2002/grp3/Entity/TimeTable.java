@@ -8,6 +8,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class TimeTable implements Serializable {
+
+    private static final long serialVersionUID = -282722565573449812L;
     private final Lesson[][] oddWeek;
     private final Lesson[][] evenWeek;
     private final int row = 32;
@@ -30,7 +32,7 @@ public class TimeTable implements Serializable {
         return true;
     }
 
-    public boolean removeIndex(Index index){
+    public boolean removeIndex(Index index) {
         if (checkClash(index)) {
             for (Lesson lesson : index.getLessonList()) {
                 removeFromTimeTable(lesson);
@@ -84,7 +86,6 @@ public class TimeTable implements Serializable {
         }
     }
 
-
     public boolean checkClash(Index index) {
         LocalTime startTime, endTime;
         int evenOddWeek, dayOfWeek, slotNo, weight;
@@ -104,9 +105,9 @@ public class TimeTable implements Serializable {
                 if (clash)
                     return true;
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("System error: " + ex);
-            System.out.println("Unable to complete your operation." );
+            System.out.println("Unable to complete your operation.");
             return true;
         }
 
@@ -150,10 +151,10 @@ public class TimeTable implements Serializable {
         return oddWeek;
     }
 
-    public ArrayList<Index> getIndexList(){
+    public ArrayList<Index> getIndexList() {
         ArrayList<Index> indexList = new ArrayList<>();
-        for (int i = 0; i < row; i++){
-            for (int j = 0; j < col; j++){
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 if (evenWeek[i][j] != null) {
                     if (!indexList.contains(evenWeek[i][j].getIndex())) {
                         indexList.add(evenWeek[i][j].getIndex());
@@ -168,6 +169,7 @@ public class TimeTable implements Serializable {
         }
         return indexList;
     }
+
     public String[][] processTimeTable(Lesson[][] timetable) {
         String[][] tt = new String[row + 1][col + 1];
         Lesson lesson;

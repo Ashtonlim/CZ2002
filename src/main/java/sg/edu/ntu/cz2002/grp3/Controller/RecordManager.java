@@ -7,7 +7,7 @@ public class RecordManager {
     private ArrayList<User> users;
     private ArrayList<Faculty> facultyList;
 
-    public RecordManager(){
+    public RecordManager() {
         try {
             ArrayList<?> db = FileManager.readSerializedObject(); // [0] -> Users, [1] -> Faculties
             users = (ArrayList<User>) db.get(0); // Safe cast, checked in Controller.FileManager
@@ -30,10 +30,12 @@ public class RecordManager {
 
         // Entity.Faculty
         Faculty f1 = new Faculty("SCSE");
+        Faculty f2 = new Faculty("NBS");
 
         // Entity.Course
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
+        Course c3 = new Course("NB1001", "Econs", "Core", 3, f2);
         Index i1 = new Index("200201", 20, c1);
         Index i3 = new Index("200202", 10, c1);
         Index i2 = new Index("200301", 20, c2);
@@ -46,16 +48,20 @@ public class RecordManager {
         Lesson lab2003 = new Lesson("lab", 1, 1, "10:30", "12:30", "HWL1", i3);
         Lesson lec2003 = new Lesson("lec", 3, 1, "13:30", "14:30", "LT4", i3);
         facultyList.add(f1);
+        facultyList.add(f2);
 
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<Admin> admins = new ArrayList<Admin>();
 
         // Student
         String password = LoginManager.generateHash("a");
-        students.add(new Student("weixing", password, "WeiXing", "M", "SC", "U123", f1, 2, 20));
-        students.add(new Student("zheming", password, "ZheMing", "M", "SC", "U321", f1, 2, 20));
-        students.add(new Student("bob", password, "Bob", "M", "SC", "U461", f1, 3, 20));
+
+        students.add(new Student("weixing", "wxOODPtest@gmail.com", password, "WeiXing", "M", "SC", "U123", f1, 2, 0));
+        students.add(new Student("zheming", "zmOODPtest@gmail.com", password, "ZheMing", "M", "SC", "U321", f1, 2, 0));
+        students.add(new Student("ash", "ashOODPtest@gmail.com", password, "Ashton", "M", "SC", "U195", f1, 3, 0));
+        students.add(new Student("bob", "bobOODPtest@gmail.com", password, "Bob", "M", "SC", "U461", f2, 3, 0));
         admins.add(new Admin("guat", password, "Guat", "M", "SC"));
+
         users.addAll(students);
         users.addAll(admins);
 
@@ -141,9 +147,9 @@ public class RecordManager {
         return user;
     }
 
-    public Student getStudent(String matricNum){
-        for (Student student: getAllStudents()){
-            if (student.getMatricNum().equals(matricNum)){
+    public Student getStudent(String matricNum) {
+        for (Student student : getAllStudents()) {
+            if (student.getMatricNum().equals(matricNum)) {
                 return student;
             }
         }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalTime;
 
 public class Lesson implements Serializable {
-
+	private static final long serialVersionUID = 3962835452663198474L;
 	private String type; // type: lab, tut, lec
 	private final LocalTime startTime; // time: HH:MM
 	private final LocalTime endTime;
@@ -47,7 +47,7 @@ public class Lesson implements Serializable {
 	public int getDayOfWeek() {
 		return dayOfWeek;
 	}
-	
+
 	public int getOddEvenWeek() {
 		return oddEvenWeek;
 	}
@@ -71,9 +71,11 @@ public class Lesson implements Serializable {
 	public String getCourseName() {
 		return index.getCourseName();
 	}
-	public Index getIndex(){
+
+	public Index getIndex() {
 		return index;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -124,9 +126,10 @@ public class Lesson implements Serializable {
 		}
 	}
 
-//	public void printLessonInfo() {
-//		System.out.println("Type: " + type + ", " + "Day: " + dayOfWeek + ", " + startTime + " - " + endTime + ", "
-//				+ "Venue: " + venue);
-//	}
+	// public void printLessonInfo() {
+	// System.out.println("Type: " + type + ", " + "Day: " + dayOfWeek + ", " +
+	// startTime + " - " + endTime + ", "
+	// + "Venue: " + venue);
+	// }
 
 }
