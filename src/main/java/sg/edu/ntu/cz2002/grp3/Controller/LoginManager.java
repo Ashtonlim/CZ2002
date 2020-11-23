@@ -6,35 +6,36 @@ import sg.edu.ntu.cz2002.grp3.Entity.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
+// import java.time.LocalDateTime;
 
 public class LoginManager {
 	private final RecordManager RM;
-	
+
 	/** default password */
 	public static String defPassword = generateHash("p@ssw0rd!");
-	
-	public LoginManager(RecordManager RM){
+
+	public LoginManager(RecordManager RM) {
 		this.RM = RM;
 	}
 
 	/**
-	 * null -> user/password does not match
-	 * When asked why doesn't show user does not exist? Prevent brute force (lazy to implement).
-	 * */
-	public User login(String username, String password){
+	 * null -> user/password does not match When asked why doesn't show user does
+	 * not exist? Prevent brute force (lazy to implement).
+	 */
+	public User login(String username, String password) {
 		User user = RM.getUser(username);
-		if (user == null) return null;
+		if (user == null)
+			return null;
 		boolean authenticated = verifyLogin(user, password);
 		return (authenticated) ? user : null;
 	}
-	
+
 	/** check if login is within access period if user is student */
-	public boolean isWithinPeriod(User user) {  
+	public boolean isWithinPeriod(User user) {
 		if (user instanceof Student) {
 			Faculty faculty = RM.getFaculty(((Student) user).getFacultyName());
-			if (TimeManager.currentDateTime.isBefore(faculty.getStartDate()) 
-				|| TimeManager.currentDateTime.isAfter(faculty.getEndDate())) {
+			if (TimeManager.currentDateTime.isBefore(faculty.getStartDate())
+					|| TimeManager.currentDateTime.isAfter(faculty.getEndDate())) {
 				return false;
 			} else {
 				return true;
@@ -43,7 +44,6 @@ public class LoginManager {
 			return true;
 		}
 	}
-
 
 	public static String generateHash(String password) {
 		StringBuilder hash = new StringBuilder();
@@ -80,16 +80,15 @@ public class LoginManager {
 		return isAuthenticated;
 	}
 
-	
-    /** change password for when the account is created by admin */
-    public static boolean changePassword(User user, String oldPassword, String newPassword) {
-    	boolean isAuthenticated = verifyLogin(user, oldPassword);
-    	if (isAuthenticated == true) {
-    		String newHashPassword = generateHash(newPassword);
-    		user.setPassword(newHashPassword);
-    		return true;
-    	} else {
-    		return false;
-    	}
-    }
+	/** change password for when the account is created by admin */
+	public static boolean changePassword(User user, String oldPassword, String newPassword) {
+		boolean isAuthenticated = verifyLogin(user, oldPassword);
+		if (isAuthenticated == true) {
+			String newHashPassword = generateHash(newPassword);
+			user.setPassword(newHashPassword);
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

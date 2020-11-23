@@ -13,21 +13,32 @@ import javax.mail.internet.MimeMessage;
 public class Email {
     private static String usr = "oopmystarapp@gmail.com";
     private static String pwd = "myStarApp1";
+    private static Properties props;
 
-    // public Email() {
-    // }
+    static {
+        props = new Properties();
 
-    // public Email(String usr, String pwd) {
-    // this.usr = usr;
-    // this.pwd = pwd;
-    // }
-
-    public static boolean sendMail(String to, String subject, String body) {
-        Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
+
+    }
+
+    public static void setUsr(String usr) {
+        Email.usr = usr;
+    }
+
+    public static void setPwd(String pwd) {
+        Email.pwd = pwd;
+    }
+
+    public static void setFrom(String usr, String pwd) {
+        setUsr(usr);
+        setPwd(pwd);
+    }
+
+    public static boolean sendMail(String to, String subject, String body) {
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {

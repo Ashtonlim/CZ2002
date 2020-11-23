@@ -6,7 +6,7 @@ import sg.edu.ntu.cz2002.grp3.Entity.Student;
 import sg.edu.ntu.cz2002.grp3.Entity.User;
 import sg.edu.ntu.cz2002.grp3.View.IView;
 
-import java.util.*;
+// import java.util.*;
 
 public class MyStarsApp {
     private final RecordManager RM;
@@ -24,14 +24,16 @@ public class MyStarsApp {
         running = true;
         // Main program
         while (running) {
-            IView activeView = new GuestView(); //Started with guest view
-            ((GuestView) activeView).renderDummyData(RM); //To be removed in production.
+            IView activeView = new GuestView(); // Started with guest view
+            ((GuestView) activeView).renderDummyData(RM); // To be removed in production.
 
             activeView.renderStartPage(this);
-            if (!running) break;
+            if (!running)
+                break;
 
             activeView.renderLoginPage(this, RM);
-            if (activeUser == null) continue;
+            if (activeUser == null)
+                continue;
 
             activeView = (activeUser instanceof Admin) ? new AdminView(new AdminController(RM), (Admin) activeUser)
                     : new StudentView(new StudentController(RM), (Student) activeUser);
