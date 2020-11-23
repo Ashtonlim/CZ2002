@@ -233,19 +233,6 @@ public class RecordManager {
         return false;
     }
 
-    /** Check if the courseName is available */
-    public boolean checkCourseName(String courseCode) {
-
-        for (Faculty faculty : facultyList) {
-            for (Course course : faculty.getCourseList()) {
-                if (courseCode.equals(course.getCourseCode())) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
 
     /** Remove course */
     public boolean removeCourse(Course course) {
