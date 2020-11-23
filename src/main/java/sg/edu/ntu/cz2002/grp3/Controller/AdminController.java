@@ -256,21 +256,16 @@ public class AdminController {
     }
 
     /** 12.Edit student access period */
-    public int editAccessPeriod(String facultyName, String startDateTime, String endDateTime) {
+    public int editAccessPeriod(Faculty faculty, String startDateTime, String endDateTime) {
         LocalDateTime start = TimeManager.strToDateTime(startDateTime);
         LocalDateTime end = TimeManager.strToDateTime(endDateTime);
         if (start == null || end == null) {
             // DateTime string not in correct format
             return 0;
-        } else if (start.isAfter(end)) {
+        } else if (start.isAfter(end) || start.equals(end)) {
             // start > end
             return -1;
         } else {
-            Faculty faculty = RM.getFaculty(facultyName);
-            if (faculty == null) {
-                // faculty not found
-                return -2;
-            }
             faculty.setRegistrationTime(start, end);
             return 1;
         }

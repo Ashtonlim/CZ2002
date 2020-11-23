@@ -26,17 +26,22 @@ public class AdminView extends View {
     	System.out.println("=== Edit Student Access Period ===");
     	String facultyName = View.getTextInput("Faculty name (SCSE, NBS etc.): ");
     	Faculty faculty = AC.getFaculty(facultyName);
-    	try {
-    		String currStart = TimeManager.dateTimeToStr(faculty.getStartDate());
-    		String currEnd = TimeManager.dateTimeToStr(faculty.getEndDate());
-    		System.out.println("Current access period for " + facultyName + ": " + currStart + " - " + currEnd);
-    	} catch (NullPointerException e) {
-    		System.out.println("Current access period for " + facultyName + ": None");
+    	if (faculty != null) {
+    		try {
+    			String currStart = TimeManager.dateTimeToStr(faculty.getStartDate());
+	    		String currEnd = TimeManager.dateTimeToStr(faculty.getEndDate());
+	    		System.out.println("Current access period for " + facultyName + ": " + currStart + " - " + currEnd);
+    		} catch (NullPointerException e) {
+    			System.out.println("Current access period for " + facultyName + ": None");
+    		}
+    	} else {
+			System.out.println("Faculty not found.");
+			return;
     	}
-
+    	
     	String startDateTime = View.getTextInput("New starting date and time (yyyy-MM-dd HH:mm:ss): ");
     	String endDateTime = View.getTextInput("New ending date and time (yyyy-MM-dd HH:mm:ss): ");
-    	int result = AC.editAccessPeriod(facultyName, startDateTime, endDateTime);
+    	int result = AC.editAccessPeriod(faculty, startDateTime, endDateTime);
     	switch(result) {
     		case 1:
     			System.out.println("Access period for " + facultyName + " successfully updated.");
@@ -45,10 +50,7 @@ public class AdminView extends View {
     			System.out.println("Invalid date and time. Please ensure format is strictly followed.");
     			break;
     		case -1:
-    			System.out.println("Invalid period. Starting date and time must be before ending date and time");
-    			break;
-    		case -2:
-    			System.out.println("Faculty not found");
+    			System.out.println("Invalid period. Starting date and time must be before ending date and time.");
     			break;
     	}
     }
