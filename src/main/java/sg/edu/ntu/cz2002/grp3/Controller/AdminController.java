@@ -8,8 +8,9 @@ import java.time.LocalTime;
 
 public class AdminController {
     private final RecordManager RM;
-
-    public AdminController(RecordManager RM) {
+    private final Admin admin;
+    public AdminController(RecordManager RM, Admin admin) {
+        this.admin = admin;
         this.RM = RM;
     }
 
@@ -282,11 +283,17 @@ public class AdminController {
     }
 
     /** Get db info */
-    public Dictionary<String, String> getDatabaseInfo() {
+    public Dictionary<String, String> getWelcomeInfo() {
         Dictionary<String, String> dbInfo = new Hashtable<>();
+        dbInfo.put("fullName", admin.getFullName());
         dbInfo.put("facultySize", Integer.toString(RM.getAllFaculties().size()));
         dbInfo.put("studentSize", Integer.toString(RM.getAllStudents().size()));
         dbInfo.put("courseSize", Integer.toString(RM.getAllCourses().size()));
         return dbInfo;
     }
+
+    public boolean changePassword(String oldPassword, String newPassword) {
+        return LoginManager.changePassword(admin, oldPassword, newPassword);
+    }
+
 }

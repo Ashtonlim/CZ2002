@@ -130,6 +130,10 @@ public class Student extends User implements Serializable {
         this.nationality = nationality;
     }
 
+    public String[][] getTableTimeForPrinting(int oddEven){
+        return timeTable.processTimeTable(oddEven);
+    }
+
     @Override
     public String getUserName() {
         return username;

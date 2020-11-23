@@ -69,25 +69,24 @@ public class Index implements Serializable {
     }
 
     /**
-     * 1 - Success | 0 -
+     * 1 - Success | -11 - Index already registered by this student.
+     * -12 - Already registered this course | -13 - No vacancies
+     * -14 - Clash
      */
-    public boolean addToStudentList(Student student) {
+    public int addToStudentList(Student student) {
 
         // Check student's timetable
         if (student.hasIndex(this)) {
-            System.out.println("Debug: Already registered index: " + getIndex());
-            return false;
+            return -11;
         }
 
         if (student.hasCourse(getCourseCode())) {
-            System.out.println("Debug: Already registered this course: " + getCourseName());
-            return false;
+            return -12;
         }
 
         if (getVacancy() == 0) {
-            System.out.println("The index does not have a vacancy. adding you to waitlist instead...");
             addToWaitList(student);
-            return false;
+            return -13;
         }
 
         // if clashes when adding to timetable
@@ -95,10 +94,9 @@ public class Index implements Serializable {
             System.out.println("Debug: Added to timetable successfully.");
             removeFromWaitList(student);
             studentList.add(student);
-            return true;
+            return 1;
         } else {
-            System.out.println("System error (illegal operation): Unhandled clashes in timetable. Aborting...");
-            return false;
+            return -14;
         }
     }
 

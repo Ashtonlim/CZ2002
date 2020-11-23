@@ -92,9 +92,9 @@ public class RecordManager {
         users.addAll(admins);
 
         i1.addToStudentList((Student) users.get(0));
-        // i1.addToStudentList((Student) users.get(1));
+        i2.addToStudentList((Student) users.get(1));
         // i3.addToStudentList((Student) users.get(0));
-        i3.addToStudentList((Student) users.get(1));
+//        i3.addToStudentList((Student) users.get(1));
         i3.addToStudentList((Student) users.get(2));
         i3.addToStudentList((Student) users.get(3));
         i3.addToStudentList((Student) users.get(4));
@@ -143,19 +143,21 @@ public class RecordManager {
     /** get index by index number */
     public Index getIndex(String index) {
 
-        for (Faculty faculty : facultyList) {
-            ArrayList<Course> tempCourseList = faculty.getCourseList();
-            for (Course tempCourse : tempCourseList) {
-                ArrayList<Index> tempIndexList = tempCourse.getIndexList();
-                for (Index tempIndex : tempIndexList) {
-                    if (tempIndex.getIndex().equals(index)) {
-                        return tempIndex;
-                    }
+        for (Course tempCourse : getAllCourses()) {
+            ArrayList<Index> tempIndexList = tempCourse.getIndexList();
+            for (Index tempIndex : tempIndexList) {
+                if (tempIndex.getIndex().equals(index)) {
+                    return tempIndex;
                 }
             }
         }
 
         return null;
+    }
+
+    public ArrayList<Index> getIndexListByCourse(String couseCode){
+        Course course = getCourse(couseCode);
+        return (course != null) ? course.getIndexList() : null;
     }
 
     /** return all courses */
@@ -234,6 +236,7 @@ public class RecordManager {
     }
 
 
+
     /** Check if the courseName is available */
     public boolean checkCourseName(String courseCode) {
 
@@ -264,16 +267,11 @@ public class RecordManager {
 
     /** Remove index */
     public boolean removeIndex(Index index) {
-
-        for (Faculty faculty : facultyList) {
-        	for (Course course : faculty.getCourseList())
-	            if (course.getIndexList().contains(index)) {
-	            	course.getIndexList().remove(index);
-	                save();
-	                return true;
-            }
+        for (Course course : getAllCourses())
+            if (course.getIndexList().contains(index)) {
+                course.getIndexList().remove(index);
+                return true;
         }
-
         return false;
     }
 

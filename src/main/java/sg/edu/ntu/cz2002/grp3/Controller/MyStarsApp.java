@@ -35,8 +35,8 @@ public class MyStarsApp {
             if (activeUser == null)
                 continue;
 
-            activeView = (activeUser instanceof Admin) ? new AdminView(new AdminController(RM), (Admin) activeUser)
-                    : new StudentView(new StudentController(RM), (Student) activeUser);
+            activeView = (activeUser instanceof Admin) ? new AdminView( new AdminController(RM, (Admin) activeUser) )
+                    : new StudentView( new StudentController(RM, (Student) activeUser) );
 
             activeView.renderUserInfo();
             activeView.renderMainMenu();

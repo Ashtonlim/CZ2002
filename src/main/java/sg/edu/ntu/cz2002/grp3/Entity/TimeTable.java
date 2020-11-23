@@ -170,7 +170,15 @@ public class TimeTable implements Serializable {
         return indexList;
     }
 
-    public String[][] processTimeTable(Lesson[][] timetable) {
+    public String[][] processTimeTable(int oddEven) {
+        Lesson[][] timeTable;
+
+        if (oddEven == 0){
+            timeTable = evenWeek;
+        } else {
+            timeTable = oddWeek;
+        }
+
         String[][] tt = new String[row + 1][col + 1];
         Lesson lesson;
         String[] header = { " Monday ", " Tuesday ", " Wednesday ", " Thursday ", " Friday ", " Saturday " };
@@ -185,6 +193,7 @@ public class TimeTable implements Serializable {
         }
 
         tt[0][0] = " TIME/DAY ";
+
         // Add day header
         for (int j = 1; j < col + 1; j++) {
             tt[0][j] = header[j - 1];
@@ -197,8 +206,8 @@ public class TimeTable implements Serializable {
 
         for (int i = 1; i < row + 1; i++) {
             for (int j = 1; j < col + 1; j++) {
-                if (timetable[i - 1][j - 1] != null) {
-                    lesson = timetable[i - 1][j - 1];
+                if (timeTable[i - 1][j - 1] != null) {
+                    lesson = timeTable[i - 1][j - 1];
                     tt[i][j] = " " + lesson.getCourseName() + " (" + lesson.getType() + ") ";
                 } else {
                     tt[i][j] = " Empty ";

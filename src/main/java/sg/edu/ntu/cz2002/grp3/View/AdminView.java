@@ -9,13 +9,10 @@ import java.util.Dictionary;
 
 public class AdminView implements IView {
 	private final AdminController AC;
-	private final Admin admin;
 
-	public AdminView(AdminController AC, Admin admin) {
-		this.admin = admin;
+	public AdminView(AdminController AC) {
 		this.AC = AC;
 	}
-
 
     /** 1. Edit student access period  */
     public void adminEditAccessPeriod() {
@@ -399,7 +396,7 @@ public class AdminView implements IView {
 		String oldPassword = IO.getPassword("Password: ");
 		System.out.print("New ");
 		String newPassword = IO.getPassword("Password: ");
-		boolean result = LoginManager.changePassword(admin, oldPassword, newPassword);
+		boolean result = AC.changePassword(oldPassword, newPassword);
 		if (result) {
 			System.out.println("Password successfully changed.");
 		} else {
@@ -432,13 +429,14 @@ public class AdminView implements IView {
 
 	@Override
 	public void renderUserInfo() {
-		Dictionary<String, String> info = AC.getDatabaseInfo();
-		System.out.println("Welcome " + admin.getFullName() + "! | Account type: Admin.");
+
+		Dictionary<String, String> info = AC.getWelcomeInfo();
+		System.out.println("Welcome " + ( info.get("fullName") + "! | Account type: Admin."));
 		System.out.println("There are " + info.get("facultySize") + " faculties, " + info.get("studentSize")
 				+ " students and " + info.get("courseSize") + " courses in the system.");
 	}
 
-    @Override
+	@Override
     public void renderMainMenu() {
         //Construct menu
         String title = "=== Admin Screen ===";
