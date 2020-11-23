@@ -253,7 +253,7 @@ public class AdminView implements IView {
             		}
             		break;
             	case 7:
-            		adminUpdateIndex();
+            		adminUpdateIndex(courseCode);
             		break;
                 default:
                 	System.out.println("Option not available...");
@@ -263,7 +263,7 @@ public class AdminView implements IView {
     }
 
     /** update indexes */
-    public void adminUpdateIndex() {
+    public void adminUpdateIndex(String courseCode) {
     	
     	String indexNo = IO.getTextInput("Enter index: ");
     	if (!AC.checkIndexExists(indexNo)) {

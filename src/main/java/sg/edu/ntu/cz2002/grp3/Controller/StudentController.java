@@ -217,18 +217,16 @@ public class StudentController {
 
         int row = 0;
         for (Course course : faculty.getCourseList()){
+            System.out.println("debug: IndexList size is: " + course.getIndexList().size());
             for (Index index : course.getIndexList()){
                 ArrayList<String> temp2 = new ArrayList<>();
                 temp2.add(" " + index.getCourseCode() + " ");
                 temp2.add(" " + index.getCourseName() + " ");
                 temp2.add(" " + index.getIndex() + " ");
                 temp.add(temp2);
-            }
-            if (course.getIndexList().size() != 0){
                 row += 1;
             }
         }
-
         String[][] res = new String[row+1][3];
         res[0][0] = " Course Code ";
         res[0][1] = " Course Name ";
