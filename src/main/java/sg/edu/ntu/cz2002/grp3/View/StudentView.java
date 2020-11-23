@@ -1,30 +1,31 @@
 package sg.edu.ntu.cz2002.grp3.View;
 
+import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
+import sg.edu.ntu.cz2002.grp3.Controller.RecordManager;
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.StudentController;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
+import sg.edu.ntu.cz2002.grp3.util.Input;
+import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class StudentView extends View {
+public class StudentView implements IView {
     private final StudentController SC;
     private final Student student;
+    protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
 
-    public StudentView(MyStarsApp app, Student student) {
-        super(app);
-        this.SC = new StudentController(app.getRM());
+
+    public StudentView(StudentController SC, Student student) {
+        this.SC = SC;
         this.student = student;
-
     }
-
-    /** Views for Student */
 
     /** 1.Add course */
     public void addCourse() {
         System.out.println("=== Add a course ===");
 
-        String indexCode = getTextInput("Enter index of course to add");
+        String indexCode = Input.getTextInput("Enter index of course to add");
 
         Index index = SC.checkValidIndex(indexCode);
         if (index == null) {
@@ -62,7 +63,7 @@ public class StudentView extends View {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringIndexList.add(string);
         }
-        int choice1 = getPrintOptions("Which index would you like to drop?", "Back", stringIndexList);
+        int choice1 = Input.getPrintOptions("Which index would you like to drop?", "Back", stringIndexList);
         if (choice1 == 0)
             return;
         Index indexToDrop = indexList.get(choice1 - 1);
@@ -105,7 +106,7 @@ public class StudentView extends View {
         System.out.println("=== Check vacancies of a course ===");
 
         System.out.println("Please input your CourseID to show indexes of the Course.");
-        String courseCode = View.getTextInput("CourseID: ");
+        String courseCode = Input.getTextInput("CourseID: ");
         ArrayList<Index> indexList = SC.getVacanciesOfCourse(courseCode);
         if (indexList == null) {
             System.out.println("Course does not exist");
@@ -144,7 +145,7 @@ public class StudentView extends View {
         TimeTable timeTable = student.getTimeTable();
         Lesson[][] evenWeek = timeTable.getEvenWeek();
         Lesson[][] oddWeek = timeTable.getOddWeek();
-        int choice = getIntInput("Please choose: 1 - timetable of Odd weeks | 2 - timetable of Even weeks");
+        int choice = Input.getIntInput("Please choose: 1 - timetable of Odd weeks | 2 - timetable of Even weeks");
         String[][] tt;
 
         if (choice == 1) {
@@ -174,13 +175,13 @@ public class StudentView extends View {
                 stringIndexList.add(string);
             }
 
-            int choice1 = getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
+            int choice1 = Input.getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
             if (choice1 == 0)
                 return;
             Index sourceIndex = indexList.get(choice1 - 1);
 
-            String targetMatricNum = getTextInput("Enter the matric number of student you are swopping with.");
-            String targetPassword = getTextInput("Enter the password of student you are swopping with.");
+            String targetMatricNum = Input.getTextInput("Enter the matric number of student you are swopping with.");
+            String targetPassword = Input.getTextInput("Enter the password of student you are swopping with.");
             int res = SC.swopIndex(student, targetMatricNum, targetPassword, sourceIndex);
             switch (res) {
                 case 1 -> {
@@ -215,7 +216,7 @@ public class StudentView extends View {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringIndexList.add(string);
         }
-        int choice1 = getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
+        int choice1 = Input.getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
         if (choice1 == 0)
             return;
         Index oldIndex = indexList.get(choice1 - 1);
@@ -237,7 +238,7 @@ public class StudentView extends View {
             stringOtherIndexList.add(string);
         }
 
-        int choice2 = getPrintOptions("Which index would you like to change to?", "Back", stringOtherIndexList);
+        int choice2 = Input.getPrintOptions("Which index would you like to change to?", "Back", stringOtherIndexList);
         if (choice2 == 0)
             return;
         if (choice2 == currIndexPos + 1) {
@@ -255,12 +256,36 @@ public class StudentView extends View {
         }
 
     }
+    @Override
+    public void renderStartPage(MyStarsApp app) {
+        System.out.println("Please Logout first.");
+    }
+
+    @Override
+    public void renderLoginPage(MyStarsApp app, RecordManager RM) {
+        System.out.println("You have already logged-in.");
+    }
 
     @Override
     public void renderUserInfo() {
         System.out.println("Welcome " + student.getFullName() + " | Account type: Student.");
         System.out.println("School: " + student.getFacultyName() + "" + " | AU Registered: " + student.getRegAU()
                 + " | Number of Registered Courses: " + student.getIndexList().size());
+    }
+
+    public void changePassword() {
+        System.out.println("=== Change account password (Console required) ===");
+        // need to change to console version later
+        System.out.print("Old ");
+        String oldPassword = Input.getPassword("Password: ");
+        System.out.print("New ");
+        String newPassword = Input.getPassword("Password: ");
+        boolean result = LoginManager.changePassword(student, oldPassword, newPassword);
+        if (result) {
+            System.out.println("Password successfully changed.");
+        } else {
+            System.out.println("Old password is incorrect.");
+        }
     }
 
     @Override
@@ -278,7 +303,7 @@ public class StudentView extends View {
         studentOptions.add("Change Password");
 
         while (true) {
-            int c = View.getPrintOptions(title, "Logout", studentOptions);
+            int c = Input.getPrintOptions(title, "Logout", studentOptions);
             switch (c) {
                 case 1 -> addCourse();
                 case 2 -> dropCourse();
@@ -293,24 +318,15 @@ public class StudentView extends View {
                     printCoursesRegistered();
                 }
                 case 7 -> printTimeTable();
-                case 8 -> changePassword(student);
+                case 8 -> changePassword();
                 case 0 -> {
                     System.out.println("Logging out...");
                     return;
                 }
                 default -> System.out.println("Option not available...");
             }
-            View.pressEnterKeyToGoBack();
+            Input.pressEnterKeyToGoBack();
         }
     }
 
-    @Override
-    public void renderStartPage() {
-        super.renderStartPage();
-    }
-
-    @Override
-    public void renderLoginPage() {
-        super.renderLoginPage();
-    }
 }

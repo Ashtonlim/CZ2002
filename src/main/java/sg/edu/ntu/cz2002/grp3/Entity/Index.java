@@ -65,6 +65,10 @@ public class Index implements Serializable {
         return waitList;
     }
 
+
+    /**
+     * 1 - Success | 0 -
+     * */
     public boolean addToStudentList(Student student) {
 
         // Check student's timetable
