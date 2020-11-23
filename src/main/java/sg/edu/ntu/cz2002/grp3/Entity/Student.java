@@ -7,11 +7,11 @@ import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
 
 public class Student extends User implements Serializable {
-    private String matricNum;
-    private String email;
-    private int yearOfStudy;
-    private Faculty faculty;
-    private int regAU;
+    private final String matricNum;
+    private final String email;
+    private final int yearOfStudy;
+    private final Faculty faculty;
+    private final int regAU;
     private final TimeTable timeTable = new TimeTable();
 
     /** constructor for loading dummy data */
@@ -58,18 +58,6 @@ public class Student extends User implements Serializable {
     }
 
     /** set/modify student info */
-    public void updateYearOfStudy() {
-        this.yearOfStudy = 10;
-    }
-
-    public Index hasIndex(String index) {
-        for (Index i : getIndexList()) {
-            if (i.getIndex().equals(index)) {
-                return i;
-            }
-        }
-        return null;
-    }
 
     public boolean hasIndex(Index index) {
         for (Index i : getIndexList()) {
@@ -94,40 +82,9 @@ public class Student extends User implements Serializable {
         return faculty != null;
     }
 
-    public void setUserName(String userName) {
-        this.username = userName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setMatricNum(String matricNum) {
-        this.matricNum = matricNum;
-    }
-
-    public void setYearOfStudy(int yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
-    }
-
-    public void setRegAU(int regAU) {
-        this.regAU = regAU;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
     }
 
     public String[][] getTableTimeForPrinting(int oddEven){
@@ -157,9 +114,6 @@ public class Student extends User implements Serializable {
         return faculty.getName();
     }
 
-    public int getYearOfStudy() {
-        return yearOfStudy;
-    }
 
     public String getMatricNum() {
         return matricNum;

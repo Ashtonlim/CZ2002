@@ -175,9 +175,8 @@ public class RecordManager {
     public User getUser(String username) {
         User user = null;
 
-        for (int i = 0; i < users.size(); i++) {
+        for (User temp : users) {
 
-            User temp = users.get(i);
             if (temp.getUserName().equals(username)) {
                 user = temp;
                 break;
@@ -210,8 +209,7 @@ public class RecordManager {
     /** Add user */
     public boolean addUser(User user) throws Exception {
 
-        for (int i = 0; i < this.users.size(); i++) {
-            User temp = users.get(i);
+        for (User temp : this.users) {
             if (temp.getUserName().equals(user.getUserName())) {
                 return false;
             }
@@ -234,8 +232,6 @@ public class RecordManager {
         }
         return false;
     }
-
-
 
     /** Check if the courseName is available */
     public boolean checkCourseName(String courseCode) {

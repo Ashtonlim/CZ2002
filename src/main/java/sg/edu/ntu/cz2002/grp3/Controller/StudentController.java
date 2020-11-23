@@ -1,11 +1,14 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
 
-import sg.edu.ntu.cz2002.grp3.Entity.*;
-import sg.edu.ntu.cz2002.grp3.util.IO;
+
 // import java.time.LocalTime;
+import sg.edu.ntu.cz2002.grp3.Entity.Course;
+import sg.edu.ntu.cz2002.grp3.Entity.Faculty;
+import sg.edu.ntu.cz2002.grp3.Entity.Index;
+import sg.edu.ntu.cz2002.grp3.Entity.Student;
+
 import java.util.ArrayList;
 import java.util.Dictionary;
-import java.util.HashSet;
 import java.util.Hashtable;
 
 public class StudentController {
@@ -20,16 +23,6 @@ public class StudentController {
         return student.getIndexList();
     }
 
-    /** get faculty courses */
-    public ArrayList<Course> getFacultyCourses(String facultyName) {
-        Faculty faculty = RM.getFaculty(facultyName);
-        if (faculty != null) {
-        	return faculty.getCourseList();
-        } else {
-        	return null;
-        }
-    } 
-
 
     public int addIndexToStudent(String indexCode){
         Index index = RM.getIndex(indexCode);
@@ -40,28 +33,11 @@ public class StudentController {
         return index.addToStudentList(student);
     }
 
-    public Index checkValidIndex(String indexCode) {
-        ArrayList<Course> courses = RM.getAllCourses();
-        for (Course c : courses) {
-            System.out.println(c.getCourseName());
-            for (Index i : c.getIndexList()) {
-                if (i.getIndex().equals(indexCode)) {
-                    return i;
-                }
-            }
-        }
-        return null;
-    }
 
     public ArrayList<Index> getVacanciesOfCourse(String courseCode) {
-        ArrayList<Index> temp = new ArrayList<>();
         Course course = RM.getCourse(courseCode);
         if (course != null) {
-            for (Index index : course.getIndexList()) {
-                temp.add(index);
-
-            }
-            return temp;
+            return new ArrayList<>(course.getIndexList());
         } else {
             return null;
         }
@@ -218,13 +194,12 @@ public class StudentController {
         ArrayList<String> stringOtherIndexList = new ArrayList<>();
         ArrayList<Index> otherIndexes = oldIndex.getIndexesOfCourse();
 
-        for (int i = 0; i < otherIndexes.size(); i++) {
+        for (Index otherIndex : otherIndexes) {
             String string;
-            Index index = otherIndexes.get(i);
-            if (index == oldIndex) {
-                string = index.getCourseName() + " - " + index.getIndex() + " (Current index)";
+            if (otherIndex == oldIndex) {
+                string = otherIndex.getCourseName() + " - " + otherIndex.getIndex() + " (Current index)";
             } else {
-                string = index.getCourseName() + " - " + index.getIndex();
+                string = otherIndex.getCourseName() + " - " + otherIndex.getIndex();
             }
             stringOtherIndexList.add(string);
         }
