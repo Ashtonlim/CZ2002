@@ -1,8 +1,6 @@
 package sg.edu.ntu.cz2002.grp3.View;
 
-import sg.edu.ntu.cz2002.grp3.Controller.RecordManager;
 import sg.edu.ntu.cz2002.grp3.Controller.StudentController;
-import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
 
 import sg.edu.ntu.cz2002.grp3.util.IO;
 import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
