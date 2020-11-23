@@ -17,7 +17,6 @@ public class View {
 
     public View(MyStarsApp app) {
         this.app = app;
-
     }
 
     /** Common View.View */
@@ -43,15 +42,20 @@ public class View {
     public void renderLoginPage() {
         LoginManager LM = new LoginManager(app.getRM());
         // Non terminal code, to be changed to terminal version lat
+        System.out.println("Current System Time: " + TimeManager.currentDateTimeStr);
         System.out.println("=== User Login ===");
         String username = View.getTextInput("Username: ");
         String password = View.getTextInput("Password: ");
         System.out.println("Logging in........");
         User user = LM.login(username, password);
-        if (user != null) {
+        boolean isAllowed = LM.isWithinPeriod(user);
+        if (user != null && isAllowed) {
             System.out.println("Login successfully.");
+        } else if (user != null && !isAllowed){
+            System.out.println("Login not allowed outside of access period.");
+            user = null;
         } else {
-            System.out.println("Username and Password combination does not match.");
+        	System.out.println("Invalid username or password.");
         }
         app.setActiveUser(user);
     }

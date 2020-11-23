@@ -1,6 +1,8 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
 
 import sg.edu.ntu.cz2002.grp3.Entity.*;
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class RecordManager {
@@ -31,6 +33,9 @@ public class RecordManager {
         // Entity.Faculty
         Faculty f1 = new Faculty("SCSE");
         Faculty f2 = new Faculty("NBS");
+        LocalDateTime scseStart = TimeManager.createDateTime(2020, 11, 23, 9, 0, 0);
+        LocalDateTime scseEnd = TimeManager.createDateTime(2020, 11, 30, 22, 0, 0);
+        f1.setRegistrationTime(scseStart, scseEnd);
 
         // Entity.Course
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
@@ -95,7 +100,7 @@ public class RecordManager {
         i3.addToStudentList((Student) users.get(4));
         i3.addToStudentList((Student) users.get(5));
         i3.addToStudentList((Student) users.get(6));
-	i3.addToStudentList((Student) users.get(7));
+        i3.addToStudentList((Student) users.get(7));
         i3.addToStudentList((Student) users.get(8));
         i3.addToStudentList((Student) users.get(9));
         i3.addToStudentList((Student) users.get(10));

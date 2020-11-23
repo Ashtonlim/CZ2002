@@ -1,9 +1,12 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
 
+import sg.edu.ntu.cz2002.grp3.Entity.Faculty;
+import sg.edu.ntu.cz2002.grp3.Entity.Student;
 import sg.edu.ntu.cz2002.grp3.Entity.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 
 public class LoginManager {
 	private final RecordManager RM;
@@ -25,6 +28,22 @@ public class LoginManager {
 		boolean authenticated = verifyLogin(user, password);
 		return (authenticated) ? user : null;
 	}
+	
+	/** check if login is within access period if user is student */
+	public boolean isWithinPeriod(User user) {  
+		if (user instanceof Student) {
+			Faculty faculty = RM.getFaculty(((Student) user).getFacultyName());
+			if (TimeManager.currentDateTime.isBefore(faculty.getStartDate()) 
+				|| TimeManager.currentDateTime.isAfter(faculty.getEndDate())) {
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			return true;
+		}
+	}
+
 
 	public static String generateHash(String password) {
 		StringBuilder hash = new StringBuilder();

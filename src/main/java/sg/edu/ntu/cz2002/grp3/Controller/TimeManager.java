@@ -6,9 +6,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class TimeManager {
-
+	
 	private static DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	private static DateTimeFormatter tFormatter = DateTimeFormatter.ofPattern("HH:mm");
+	public static LocalDateTime currentDateTime = LocalDateTime.now();
+	public static String currentDateTimeStr = dateTimeToStr(currentDateTime);
 	
 	
 	// create a LocalDateTime object
