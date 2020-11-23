@@ -181,6 +181,8 @@ public class AdminController {
             return -2;
         }
 
+        day = day -1; // 0 -> Mon, 1 -> Tues
+
         try {
             // if weekly lessons
             if (oddEven == 2) {
