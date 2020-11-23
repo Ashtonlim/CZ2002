@@ -1,5 +1,6 @@
 package sg.edu.ntu.cz2002.grp3.Entity;
 
+import sg.edu.ntu.cz2002.grp3.Controller.NotificationManager;
 import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
 
 import java.io.Serializable;
@@ -20,7 +21,8 @@ public class Index implements Serializable {
         this.vacancy = vacancy;
         try {
             course.addIndex(this);
-        } catch (IllegalMethodAccessException ignored){}
+        } catch (IllegalMethodAccessException ignored) {
+        }
         this.course = course;
     }
 
@@ -51,7 +53,8 @@ public class Index implements Serializable {
                 System.out.println("System: Removing " + s.getFullName()
                         + " from waitlist and Sending notification email out... ");
                 addToStudentList(s);
-                Email.sendMail(s.getEmail(), "Waitlist Notification", "Congrats, you got into index " + getIndex());
+                NotificationManager.notifyEmail(s.getEmail(), "Waitlist Notification",
+                        "Congrats, you got into index " + getIndex());
                 System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
             }
 
@@ -65,10 +68,9 @@ public class Index implements Serializable {
         return waitList;
     }
 
-
     /**
      * 1 - Success | 0 -
-     * */
+     */
     public boolean addToStudentList(Student student) {
 
         // Check student's timetable
@@ -105,7 +107,7 @@ public class Index implements Serializable {
     }
 
     public void addToLessonList(Lesson lesson) throws IllegalMethodAccessException {
-        if (lesson.hasIndex()){
+        if (lesson.hasIndex()) {
             throw new IllegalMethodAccessException("Directly calling addToLessonList() from Index is not allowed.");
         } else {
             lessonList.add(lesson);
@@ -142,9 +144,9 @@ public class Index implements Serializable {
     public int getStudentSize() {
         return studentList.size();
     }
-    
+
     public int getTotalSlots() {
-    	return studentList.size() + vacancy;
+        return studentList.size() + vacancy;
     }
 
     public void setVacancy(int vacancy) {
@@ -159,7 +161,7 @@ public class Index implements Serializable {
         return course.getCourseName();
     }
 
-    public boolean hasCourse(){
+    public boolean hasCourse() {
         return course != null;
     }
 }
