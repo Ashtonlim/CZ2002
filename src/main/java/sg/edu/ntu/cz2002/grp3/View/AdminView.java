@@ -349,7 +349,7 @@ public class AdminView implements IView {
 	public void adminPrintStudentListByCourse() {
 		System.out.println("=== Student List By Course ===");
 		String courseCode = IO.getTextInput("Course code: ");
-		
+		AC.printStudentListByCourse(courseCode);
 	}
 	
 
