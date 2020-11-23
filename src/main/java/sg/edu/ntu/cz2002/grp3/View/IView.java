@@ -7,6 +7,6 @@ public interface IView {
     void renderUserInfo();
     void renderMainMenu();
     void changePassword();
-    void renderStartPage(MyStarsApp app);
-    void renderLoginPage(MyStarsApp app, RecordManager RM);
+    void renderStartPage();
+    void renderLoginPage();
 }

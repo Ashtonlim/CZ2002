@@ -22,18 +22,17 @@ public class MyStarsApp {
         // Email.sendMail("mystaroodp@gmail.com", "Waitlist Notification", "Congrats,
         // you got into index ");
         running = true;
+
         // Main program
         while (running) {
-            IView activeView = new GuestView(); // Started with guest view
+            IView activeView = new GuestView(this); // Started with guest view
             ((GuestView) activeView).renderDummyData(RM); // To be removed in production.
 
-            activeView.renderStartPage(this);
-            if (!running)
-                break;
+            activeView.renderStartPage();
+            if (!running) break;
 
-            activeView.renderLoginPage(this, RM);
-            if (activeUser == null)
-                continue;
+            activeView.renderLoginPage();
+            if (activeUser == null) continue;
 
             activeView = (activeUser instanceof Admin) ? new AdminView( new AdminController(RM, (Admin) activeUser) )
                     : new StudentView( new StudentController(RM, (Student) activeUser) );
@@ -44,6 +43,7 @@ public class MyStarsApp {
             // Save database after logout.
             System.out.println("Your data has been saved.");
             RM.save();
+            activeUser = null;
         }
     }
 
@@ -55,4 +55,7 @@ public class MyStarsApp {
         this.activeUser = activeUser;
     }
 
+    public RecordManager getRM(){
+        return RM;
+    }
 }

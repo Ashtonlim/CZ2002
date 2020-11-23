@@ -10,7 +10,12 @@ import sg.edu.ntu.cz2002.grp3.util.IO;
 import java.util.ArrayList;
 
 public class GuestView implements IView {
-
+    RecordManager RM;
+    MyStarsApp app;
+    public GuestView(MyStarsApp app){
+        this.app = app;
+        this.RM = app.getRM();
+    }
     public void renderDummyData(RecordManager RM){
         // Load dummy data
         ArrayList<String> options = new ArrayList<>();
@@ -24,9 +29,8 @@ public class GuestView implements IView {
         // End of load dummy data
     }
 
-
     /** Login page */
-    public void renderLoginPage(MyStarsApp app, RecordManager RM) {
+    public void renderLoginPage() {
         LoginManager LM = new LoginManager(RM);
         // Non terminal code, to be changed to terminal version lat
         System.out.println("Current System Time: " + TimeManager.currentDateTimeStr);
@@ -48,7 +52,7 @@ public class GuestView implements IView {
     }
 
     /** Landing Page */
-    public void renderStartPage(MyStarsApp app) {
+    public void renderStartPage() {
         ArrayList<String> options = new ArrayList<>();
         options.add("Login");
         int choice = IO.getPrintOptions("* MyStarsApp *", "Exit Program", options);

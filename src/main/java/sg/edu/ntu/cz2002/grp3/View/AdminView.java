@@ -418,12 +418,12 @@ public class AdminView implements IView {
     
 
 	@Override
-	public void renderStartPage(MyStarsApp app) {
+	public void renderStartPage() {
 		System.out.println("Please Logout first.");
 	}
 
 	@Override
-	public void renderLoginPage(MyStarsApp app, RecordManager RM) {
+	public void renderLoginPage() {
 		System.out.println("You have already logged-in.");
 	}
 

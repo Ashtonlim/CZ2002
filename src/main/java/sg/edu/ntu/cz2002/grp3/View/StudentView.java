@@ -1,10 +1,9 @@
 package sg.edu.ntu.cz2002.grp3.View;
 
-import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 import sg.edu.ntu.cz2002.grp3.Controller.RecordManager;
-import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.StudentController;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
+
 import sg.edu.ntu.cz2002.grp3.util.IO;
 import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 
@@ -163,12 +162,12 @@ public class StudentView implements IView {
 
     }
     @Override
-    public void renderStartPage(MyStarsApp app) {
+    public void renderStartPage() {
         System.out.println("Please Logout first.");
     }
 
     @Override
-    public void renderLoginPage(MyStarsApp app, RecordManager RM) {
+    public void renderLoginPage() {
         System.out.println("You have already logged-in.");
     }
 
@@ -198,9 +197,9 @@ public class StudentView implements IView {
     /** print school course list */
     public void printCourseListFaculty() {
     	String facultyName = IO.getTextInput("Enter Faculty: ");
-    	ArrayList<Course> courseList = SC.getFacultyCourses(facultyName);
-        if (courseList != null) {
-            IO.printCourseList(courseList);
+        String[][] res = SC.getIndexListFromFacultyForPrinting(facultyName);
+        if (res.length != 0) {
+            Printer.print(res);
         } else {
             System.out.println("Course list is empty or faculty does not exist");
         }

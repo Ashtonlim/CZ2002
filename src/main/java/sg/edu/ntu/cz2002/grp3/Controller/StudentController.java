@@ -232,6 +232,42 @@ public class StudentController {
         return stringOtherIndexList;
     }
 
+    public String[][] getIndexListFromFacultyForPrinting(String facultyName){
+        Faculty faculty = RM.getFaculty(facultyName);
+
+        ArrayList<ArrayList<String>> temp = new ArrayList<>();
+        if (faculty == null){
+            return new String[0][0];
+        }
+
+        int row = 0;
+        for (Course course : faculty.getCourseList()){
+            for (Index index : course.getIndexList()){
+                ArrayList<String> temp2 = new ArrayList<>();
+                temp2.add(" " + index.getCourseCode() + " ");
+                temp2.add(" " + index.getCourseName() + " ");
+                temp2.add(" " + index.getIndex() + " ");
+                temp.add(temp2);
+            }
+            if (course.getIndexList().size() != 0){
+                row += 1;
+            }
+        }
+
+        String[][] res = new String[row+1][3];
+        res[0][0] = " Course Code ";
+        res[0][1] = " Course Name ";
+        res[0][2] = " Index No. ";
+
+        for (int i = 1; i < row + 1; i++){
+            for (int j = 0; j < 3; j++){
+                res[i][j] = temp.get(i-1).get(j);
+            }
+        }
+
+        return res;
+    }
+
     public boolean changePassword(String oldPassword, String newPassword){
         return LoginManager.changePassword(student, oldPassword, newPassword);
     }
