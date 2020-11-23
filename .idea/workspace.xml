@@ -19,32 +19,19 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d87434b4-cd92-408d-aaa1-35a19395d41b" name="Default Changelist" comment="minor">
+    <list default="true" id="d87434b4-cd92-408d-aaa1-35a19395d41b" name="Default Changelist" comment="Change View structure.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/LoginManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/LoginManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/MyStarsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/MyStarsApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/RecordManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/RecordManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/TimeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/TimeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Faculty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Index.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Lesson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/TimeTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/TimeTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TestLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/TestLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/View/AdminView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/StudentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/View/StudentView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/View/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/util/PrettyPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/util/PrettyPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/MyStarsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/MyStarsApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +50,11 @@
       <list>
         <option value="Wei Xing &lt;weixingp5@gmail.com&gt;" />
       </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
@@ -104,7 +96,7 @@
       <recent name="C:\Users\ash\Desktop\OODP\CZ2002\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -112,6 +104,20 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sg.edu.ntu.cz2002.grp3.View.IView" />
+      <module name="CZ2002" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="CZ2002" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -130,22 +136,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="View" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sg.edu.ntu.cz2002.grp3.View.View" />
-      <module name="CZ2002" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.IView" />
         <item itemvalue="Application.MyStarsApp" />
-        <item itemvalue="Application.View" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -405,7 +406,28 @@
       <option name="project" value="LOCAL" />
       <updated>1605933856979</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="minor">
+      <created>1606061954442</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1606061954443</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Change View structure.">
+      <created>1606099804217</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1606099804217</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Change View structure.">
+      <created>1606100160249</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1606100160249</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,7 +438,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -425,7 +459,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added Courses" />
     <MESSAGE value="Implemented RecordManager for users, pending courses." />
     <MESSAGE value="Add FileManager for direct file rw via binary.Re-implemented RecordManager" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/RecordManager.java" />
@@ -450,7 +483,8 @@
     <MESSAGE value="Minor" />
     <MESSAGE value="Change folder structure" />
     <MESSAGE value="minor" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor" />
+    <MESSAGE value="Change View structure." />
+    <option name="LAST_COMMIT_MESSAGE" value="Change View structure." />
   </component>
   <component name="WindowStateProjectService">
     <state x="745" y="431" key="#Notifications" timestamp="1605371161609">
@@ -467,11 +501,11 @@
     </state>
     <state x="1169" y="576" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1605591814758" />
     <state x="765" y="443" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1536.882@0.23.1536.882" timestamp="1605366940549" />
-    <state x="574" y="160" key="#com.intellij.ide.util.MemberChooser" timestamp="1605935697598">
-      <screen x="0" y="23" width="1536" height="884" />
+    <state x="957" y="217" key="#com.intellij.ide.util.MemberChooser" timestamp="1606099162001">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603015308866" />
-    <state x="957" y="217" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1605723045764" />
+    <state x="957" y="217" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1606099162001" />
     <state x="574" y="160" key="#com.intellij.ide.util.MemberChooser/0.23.1536.884@0.23.1536.884" timestamp="1605935697598" />
     <state x="606" y="778" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1603080886606">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -481,10 +515,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1531" y="998" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.2560.1400@0.0.2560.1400" timestamp="1605759720758" />
-    <state x="685" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1605763739444">
+    <state x="685" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606097306111">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="685" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605763739444" />
+    <state x="685" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606097306111" />
     <state x="506" y="218" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605362670967">
       <screen x="0" y="23" width="1536" height="882" />
     </state>
@@ -498,35 +532,35 @@
     </state>
     <state x="549" y="130" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603008462284" />
     <state x="1282" y="721" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1603042397867" />
-    <state width="1494" height="232" key="GridCell.Tab.0.bottom" timestamp="1605935739870">
-      <screen x="0" y="23" width="1536" height="884" />
+    <state width="998" height="393" key="GridCell.Tab.0.bottom" timestamp="1606100252815">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
-    <state width="1767" height="340" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1605877847956" />
+    <state width="998" height="393" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1606100252815" />
     <state width="1494" height="232" key="GridCell.Tab.0.bottom/0.23.1536.882@0.23.1536.882" timestamp="1605370565875" />
     <state width="1494" height="232" key="GridCell.Tab.0.bottom/0.23.1536.884@0.23.1536.884" timestamp="1605935739870" />
     <state width="1494" height="232" key="GridCell.Tab.0.bottom/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
-    <state width="1494" height="232" key="GridCell.Tab.0.center" timestamp="1605935739870">
-      <screen x="0" y="23" width="1536" height="884" />
+    <state width="998" height="393" key="GridCell.Tab.0.center" timestamp="1606100252814">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
-    <state width="1767" height="340" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1605877847955" />
+    <state width="998" height="393" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1606100252814" />
     <state width="1494" height="232" key="GridCell.Tab.0.center/0.23.1536.882@0.23.1536.882" timestamp="1605370565874" />
     <state width="1494" height="232" key="GridCell.Tab.0.center/0.23.1536.884@0.23.1536.884" timestamp="1605935739870" />
     <state width="1494" height="232" key="GridCell.Tab.0.center/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
-    <state width="1494" height="232" key="GridCell.Tab.0.left" timestamp="1605935739869">
-      <screen x="0" y="23" width="1536" height="884" />
+    <state width="998" height="393" key="GridCell.Tab.0.left" timestamp="1606100252813">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536186" />
-    <state width="1767" height="340" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1605877847955" />
+    <state width="998" height="393" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1606100252813" />
     <state width="1494" height="232" key="GridCell.Tab.0.left/0.23.1536.882@0.23.1536.882" timestamp="1605370565874" />
     <state width="1494" height="232" key="GridCell.Tab.0.left/0.23.1536.884@0.23.1536.884" timestamp="1605935739869" />
     <state width="1494" height="232" key="GridCell.Tab.0.left/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
-    <state width="1494" height="232" key="GridCell.Tab.0.right" timestamp="1605935739870">
-      <screen x="0" y="23" width="1536" height="884" />
+    <state width="998" height="393" key="GridCell.Tab.0.right" timestamp="1606100252814">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
-    <state width="1767" height="340" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1605877847955" />
+    <state width="998" height="393" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1606100252814" />
     <state width="1494" height="232" key="GridCell.Tab.0.right/0.23.1536.882@0.23.1536.882" timestamp="1605370565874" />
     <state width="1494" height="232" key="GridCell.Tab.0.right/0.23.1536.884@0.23.1536.884" timestamp="1605935739870" />
     <state width="1494" height="232" key="GridCell.Tab.0.right/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
@@ -550,10 +584,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="772" y="358" key="Maven.ArtifactSearchDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605878072328" />
-    <state x="362" y="79" key="MergeDialog" timestamp="1605601361359">
+    <state x="-482" y="146" key="MergeDialog" timestamp="1606100243883">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="362" y="79" key="MergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605601361359" />
+    <state x="-482" y="146" key="MergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606100243883" />
+    <state x="1343" y="637" width="389" height="264" key="MultipleFileMergeDialog" timestamp="1606100247478">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1343" y="637" width="389" height="264" key="MultipleFileMergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606100247478" />
     <state x="559" y="115" key="RollbackChangesDialog" timestamp="1603020071478">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -568,16 +606,16 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1205" y="699" key="VCS.ChangelistChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1603043410729" />
-    <state x="592" y="499" width="513" height="313" key="Vcs.Push.Dialog.v2" timestamp="1605933858179">
-      <screen x="0" y="23" width="1536" height="884" />
+    <state x="986" y="754" width="513" height="313" key="Vcs.Push.Dialog.v2" timestamp="1606100270945">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="986" y="754" width="816" height="495" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1605777289124" />
+    <state x="986" y="754" width="816" height="495" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606100270945" />
     <state x="569" y="381" width="513" height="304" key="Vcs.Push.Dialog.v2/0.23.1536.882@0.23.1536.882" timestamp="1605372210052" />
     <state x="592" y="499" width="513" height="313" key="Vcs.Push.Dialog.v2/0.23.1536.884@0.23.1536.884" timestamp="1605933858179" />
-    <state x="658" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605935466531">
-      <screen x="0" y="23" width="1536" height="884" />
+    <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606100257364">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1605875923337" />
+    <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606100257364" />
     <state x="658" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1536.884@0.23.1536.884" timestamp="1605935466531" />
     <state x="658" y="412" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1536.886@0.23.1536.886" timestamp="1605925155481" />
     <state x="1197" y="672" key="git4idea.merge.GitPullDialog" timestamp="1603091655504">
@@ -593,10 +631,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1097" y="638" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1605592027138" />
-    <state x="1206" y="720" width="672" height="676" key="search.everywhere.popup" timestamp="1605770634270">
+    <state x="1206" y="720" width="672" height="676" key="search.everywhere.popup" timestamp="1606097945879">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1206" y="720" width="672" height="676" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1605770634270" />
+    <state x="1206" y="720" width="672" height="676" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606097945879" />
     <state x="724" y="477" width="670" height="426" key="search.everywhere.popup/0.23.1536.882@0.23.1536.882" timestamp="1605352272904" />
   </component>
 </project>

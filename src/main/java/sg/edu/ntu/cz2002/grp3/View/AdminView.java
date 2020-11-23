@@ -2,7 +2,7 @@ package sg.edu.ntu.cz2002.grp3.View;
 
 import sg.edu.ntu.cz2002.grp3.Controller.*;
 import sg.edu.ntu.cz2002.grp3.Entity.*;
-import sg.edu.ntu.cz2002.grp3.util.Input;
+import sg.edu.ntu.cz2002.grp3.util.IO;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -20,7 +20,7 @@ public class AdminView implements IView {
     /** 1. Edit student access period  */
     public void adminEditAccessPeriod() {
     	System.out.println("=== Edit Student Access Period ===");
-    	String facultyName = Input.getTextInput("Faculty name (SCSE, NBS etc.): ");
+    	String facultyName = IO.getTextInput("Faculty name (SCSE, NBS etc.): ");
     	Faculty faculty = AC.getFaculty(facultyName);
     	if (faculty != null) {
     		try {
@@ -35,8 +35,8 @@ public class AdminView implements IView {
 			return;
     	}
 
-    	String startDateTime = Input.getTextInput("New starting date and time (yyyy-MM-dd HH:mm:ss): ");
-    	String endDateTime = Input.getTextInput("New ending date and time (yyyy-MM-dd HH:mm:ss): ");
+    	String startDateTime = IO.getTextInput("New starting date and time (yyyy-MM-dd HH:mm:ss): ");
+    	String endDateTime = IO.getTextInput("New ending date and time (yyyy-MM-dd HH:mm:ss): ");
     	int result = AC.editAccessPeriod(faculty, startDateTime, endDateTime);
 		switch (result) {
 			case 1 -> System.out.println("Access period for " + facultyName + " successfully updated.");
@@ -48,14 +48,14 @@ public class AdminView implements IView {
     /** 2. Add a student */
     public void adminAddStudent() {
     	System.out.println("=== Add a Student ===");
-    	String username = Input.getTextInput("Username: ");
-    	String fullName = Input.getTextInput("Full name: ");
-    	String email = Input.getTextInput("Email: ");
-    	String gender = Input.getTextInput("Gender ('M' or 'F'): ");
-    	String nationality = Input.getTextInput("Nationality: ");
-    	String matricNum = Input.getTextInput("Matriculation number: ");
-    	String faculty = Input.getTextInput("Faculty (EEE, SCSE etc.): ");
-    	int yearOfStudy = Input.getIntInput("Year of study: ");
+    	String username = IO.getTextInput("Username: ");
+    	String fullName = IO.getTextInput("Full name: ");
+    	String email = IO.getTextInput("Email: ");
+    	String gender = IO.getTextInput("Gender ('M' or 'F'): ");
+    	String nationality = IO.getTextInput("Nationality: ");
+    	String matricNum = IO.getTextInput("Matriculation number: ");
+    	String faculty = IO.getTextInput("Faculty (EEE, SCSE etc.): ");
+    	int yearOfStudy = IO.getIntInput("Year of study: ");
     	int result = AC.addStudent(username, email, fullName, gender, nationality, matricNum, faculty, yearOfStudy);
 		switch (result) {
 			case 1 -> {
@@ -74,7 +74,7 @@ public class AdminView implements IView {
     	System.out.println("=== All Students ===");
         ArrayList<Student> studentList = AC.getAllStudents();
         if (studentList != null){
-            Input.printStudentList(studentList);
+            IO.printStudentList(studentList);
         } else {
             System.out.println("Student list is empty.");
         }
@@ -83,18 +83,18 @@ public class AdminView implements IView {
     /** 3.Add course */
     public void adminAddCourse() {
         System.out.println("=== Add a New Course ===");
-        String strFaculty = Input.getTextInput("Faculty name: ");
+        String strFaculty = IO.getTextInput("Faculty name: ");
         Faculty faculty = AC.getFaculty(strFaculty);
         if(faculty != null) {
-        	String courseCode = Input.getTextInput("Course code (e.g. CZ2002): ");
-        	String courseName = Input.getTextInput("Course name: ");
-        	String subjectType = Input.getTextInput("Subject type (CORE, GERPE-BM, UE, etc.): ");
-        	int AU = Input.getIntInput("Number of AUs: ");
+        	String courseCode = IO.getTextInput("Course code (e.g. CZ2002): ");
+        	String courseName = IO.getTextInput("Course name: ");
+        	String subjectType = IO.getTextInput("Subject type (CORE, GERPE-BM, UE, etc.): ");
+        	int AU = IO.getIntInput("Number of AUs: ");
         	int result = AC.addCourse(courseCode, courseName, subjectType, AU, faculty);
 			switch (result) {
 				case 1 -> {
 					System.out.println("Course " + courseCode + " " + courseName + " successfully added into system.");
-					char choice = Input.getConfInput("Add indexes now? y/n");
+					char choice = IO.getConfInput("Add indexes now? y/n");
 					if (choice == 'Y') {
 						Course course = AC.getCourse(courseCode);
 						adminAddIndex(course);
@@ -116,7 +116,7 @@ public class AdminView implements IView {
     	System.out.println("=== All Courses ===");
         ArrayList<Course> courseList = AC.getAllCourses();
         if (courseList != null){
-            Input.printCourseList(courseList);
+            IO.printCourseList(courseList);
         } else {
             System.out.println("Course list is empty.");
         }
@@ -127,14 +127,14 @@ public class AdminView implements IView {
     	System.out.println("=== Add Indexes to Course ===");
     	boolean loop = true;
     	while (loop) {
-    		String indexNo = Input.getTextInput("Index (e.g. 200201): ");
-    		int slots = Input.getIntInput("Total vacancy: ");
+    		String indexNo = IO.getTextInput("Index (e.g. 200201): ");
+    		int slots = IO.getIntInput("Total vacancy: ");
     		int result = AC.addIndex(indexNo, slots, course);
 			switch (result) {
 				case 1 -> {
 					System.out.println("Index " + indexNo + " successfully added to course " + course.getCourseName());
 					adminAddLesson(AC.getIndex(indexNo));
-					char choice = Input.getConfInput("Add another index? y/n");
+					char choice = IO.getConfInput("Add another index? y/n");
 					if (choice == 'N') {
 						printCourseListAll();
 						loop = false;
@@ -154,15 +154,15 @@ public class AdminView implements IView {
 	    	System.out.println("1. Lecture\n"
 	    					 + "2. Lab\n"
 	    					 + "3. Tutorial");
-	    	int option = Input.getIntInput("Your selection: ");
+	    	int option = IO.getIntInput("Your selection: ");
 	    	if (!(option == 1 || option == 2 || option == 3)) { 
 	    		System.out.println("Invalid option.");
 	    		continue; 
 	    	}
-	    	int day = Input.getIntInput("Day of week (1-6): ");
-			String start = Input.getTextInput("Start time (HH:mm): ");
-			String end = Input.getTextInput("End time (HH:mm): ");
-			String venue = Input.getTextInput("Venue: ");
+	    	int day = IO.getIntInput("Day of week (1-6): ");
+			String start = IO.getTextInput("Start time (HH:mm): ");
+			String end = IO.getTextInput("End time (HH:mm): ");
+			String venue = IO.getTextInput("Venue: ");
 			String type = null;
 	    	int result = 0;
 			switch (option) {
@@ -172,7 +172,7 @@ public class AdminView implements IView {
 				}
 				case 2 -> {
 					type = "Lab";
-					int oddEven = Input.getIntInput("0. Even week / 1. Odd week / 2. Every week: ");
+					int oddEven = IO.getIntInput("0. Even week / 1. Odd week / 2. Every week: ");
 					result = AC.addLesson(type, day, start, end, venue, oddEven, index);
 				}
 				case 3 -> {
@@ -186,7 +186,7 @@ public class AdminView implements IView {
 					System.out.println(type + " on " + TimeManager.numToDay(day) + " " + start + "-" + end
 							+ " successfully added to index " + index.getIndex() + ".");
 					printLessonsInIndex(index);
-					char choice = Input.getConfInput("Add another lesson? y/n");
+					char choice = IO.getConfInput("Add another lesson? y/n");
 					if (choice == 'N') {
 						loop = false;
 					}
@@ -207,7 +207,7 @@ public class AdminView implements IView {
     	System.out.println("=== Index " + index.getIndex() + " Lessons ===");
         ArrayList<Lesson> lessonList = index.getLessonList();
         if (lessonList != null){
-            Input.printLessonList(lessonList);
+            IO.printLessonList(lessonList);
         } else {
             System.out.println("Lesson list is empty.");
         }
@@ -217,7 +217,7 @@ public class AdminView implements IView {
     /** 4. Update course */
     public void adminUpdateCourse() {
     	System.out.println("=== Update a Course ===");
-    	String courseCode = Input.getTextInput("Course code: ");
+    	String courseCode = IO.getTextInput("Course code: ");
     	Course course = AC.getCourse(courseCode);
     	if (course == null) {
     		System.out.println("Course not found!");
@@ -241,12 +241,12 @@ public class AdminView implements IView {
         	System.out.println(courseCode + ", " + courseName + ", " + facultyName + ", "
     				+ subType + ", AU: " + AU);
         	String title = "=== Update " + courseCode + " ===";
-            int c = Input.getPrintOptions(title, "Exit", courseOptions);
+            int c = IO.getPrintOptions(title, "Exit", courseOptions);
             switch (c) {
             	case 0:
             		return;
             	case 1:
-            		String newCourseCode = Input.getTextInput("New course code: ");
+            		String newCourseCode = IO.getTextInput("New course code: ");
             		if (AC.updateCourseCode(course, newCourseCode)) {
             			System.out.println(courseCode + " successfully changed to " + newCourseCode);
             			courseCode = newCourseCode;
@@ -255,19 +255,19 @@ public class AdminView implements IView {
             		}
             		break;
             	case 2:
-            		String newCourseName = Input.getTextInput("New course name: ");
+            		String newCourseName = IO.getTextInput("New course name: ");
             		AC.updateCourseName(course, newCourseName);
             		System.out.println(courseName + " successfully changed to " + newCourseName);
             		courseName = newCourseName;
             		break;
             	case 3:
-            		String newSubType = Input.getTextInput("New subject type: ");
+            		String newSubType = IO.getTextInput("New subject type: ");
             		AC.updateCourseName(course, newSubType);
             		System.out.println(subType + " successfully changed to " + newSubType);
             		subType = newSubType;
             		break;
             	case 4:
-            		int newAU = Input.getIntInput("New AU: ");
+            		int newAU = IO.getIntInput("New AU: ");
             		if (AC.updateCourseAU(course, newAU)) {
             			System.out.println("AU successfully changed from " + AU + " to " + newAU + ".");
             			AU = newAU;
@@ -279,7 +279,7 @@ public class AdminView implements IView {
             		adminAddIndex(course);
             		break;
             	case 6:
-            		char confirm = Input.getConfInput("Removal cannot be undone. Are you sure you want to remove course? y/n");
+            		char confirm = IO.getConfInput("Removal cannot be undone. Are you sure you want to remove course? y/n");
             		if (confirm == 'Y') {
             			boolean result = AC.removeCourse(course);
             			if (result) {
@@ -299,15 +299,15 @@ public class AdminView implements IView {
                 default:
                 	System.out.println("Option not available...");
             }
-			Input.pressEnterKeyToGoBack();
+			IO.pressEnterKeyToGoBack();
     	}
     }
 
     /** update indexes */
     public void adminUpdateIndex(Course course) {
     	ArrayList<Index> indexList = course.getIndexList();
-    	Input.printIndexList(indexList);
-    	String indexNo = Input.getTextInput("Enter index: ");
+    	IO.printIndexList(indexList);
+    	String indexNo = IO.getTextInput("Enter index: ");
     	Index index = AC.getIndex(indexNo);
     	if (index == null) {
     		System.out.println("Index not found!");
@@ -323,12 +323,12 @@ public class AdminView implements IView {
 		while(loop) {
 	    	System.out.println(indexNo + ", Vacancy: " + vacancy);
 	    	String title = "=== Update " + indexNo + " ===";
-	        int c = Input.getPrintOptions(title, "Exit", indexOptions);
+	        int c = IO.getPrintOptions(title, "Exit", indexOptions);
 	        switch (c) {
 	        	case 0:
 	        		return;
 	        	case 1:
-	        		String newIndexNo = Input.getTextInput("New index: ");
+	        		String newIndexNo = IO.getTextInput("New index: ");
 	        		if (AC.updateIndexNo(index, newIndexNo)) {
 	        			System.out.println(indexNo + " successfully changed to " + newIndexNo);
 	        			indexNo = newIndexNo;
@@ -337,7 +337,7 @@ public class AdminView implements IView {
 	        		}
 	        		break;
 	        	case 2:
-	        		int newVacancy = Input.getIntInput("New vacancy: ");
+	        		int newVacancy = IO.getIntInput("New vacancy: ");
 	        		if (AC.updateIndexVac(index, newVacancy)) {
 	        			System.out.println("Vacancy successfully changed from " + vacancy + " to " + newVacancy + ".");
 	        			vacancy = newVacancy;
@@ -346,7 +346,7 @@ public class AdminView implements IView {
 	        		}
 	        		break;
 	        	case 3:
-	        		char confirm = Input.getConfInput("Removal cannot be undone. Are you sure you want to remove index? y/n");
+	        		char confirm = IO.getConfInput("Removal cannot be undone. Are you sure you want to remove index? y/n");
             		if (confirm == 'Y') {
             			if (AC.removeIndex(index)) {
             				System.out.println(indexNo + " has been successfully removed from the course.");
@@ -362,14 +362,14 @@ public class AdminView implements IView {
 	            default:
 	            	System.out.println("Option not available...");
 	        }
-			Input.pressEnterKeyToGoBack();
+			IO.pressEnterKeyToGoBack();
 		}
     }
     
     /** 4.Check available slot for an index number (vacancy in a class) -wx  */
     public void adminCheckVacancy(){
         System.out.println("=== Index Vacancy Checker ===");
-        String indexCode = Input.getTextInput("Index number: ");
+        String indexCode = IO.getTextInput("Index number: ");
         int vacancy = AC.checkVacancies(indexCode);
         if (vacancy != -1){
             System.out.println("Available slots: " + vacancy);
@@ -381,10 +381,10 @@ public class AdminView implements IView {
 	/** Print Student List by Index */
 	public void adminPrintStudentListByIndex() {
 		System.out.println("=== Student List By Index ===");
-		String indexCode = Input.getTextInput("Index number: ");
+		String indexCode = IO.getTextInput("Index number: ");
 		ArrayList<Student> studentList = AC.getStudentListByIndex(indexCode);
 		if (studentList != null) {
-			Input.printStudentList(studentList);
+			IO.printStudentList(studentList);
 		} else {
 			System.out.println("Index not found!");
 		}
@@ -393,10 +393,10 @@ public class AdminView implements IView {
 	/** Print student List by Course */
 	public void adminPrintStudentListByCourse() {
 		System.out.println("=== Student List By Course ===");
-		String courseCode = Input.getTextInput("Course code: ");
+		String courseCode = IO.getTextInput("Course code: ");
 		ArrayList<Student> studentList = AC.getStudentListByCourse(courseCode);
 		if (studentList != null) {
-			Input.printStudentList(studentList);
+			IO.printStudentList(studentList);
 		} else {
 			System.out.println("Course not found!");
 		}
@@ -406,9 +406,9 @@ public class AdminView implements IView {
 		System.out.println("=== Change account password (Console required) ===");
 		// need to change to console version later
 		System.out.print("Old ");
-		String oldPassword = Input.getPassword("Password: ");
+		String oldPassword = IO.getPassword("Password: ");
 		System.out.print("New ");
-		String newPassword = Input.getPassword("Password: ");
+		String newPassword = IO.getPassword("Password: ");
 		boolean result = LoginManager.changePassword(admin, oldPassword, newPassword);
 		if (result) {
 			System.out.println("Password successfully changed.");
@@ -449,7 +449,7 @@ public class AdminView implements IView {
         adminOptions.add("Print student list by course (all students registered for the selected course).");
         adminOptions.add("Change password.");
         while(true){
-            int c = Input.getPrintOptions(title, "Logout", adminOptions);
+            int c = IO.getPrintOptions(title, "Logout", adminOptions);
             switch (c) {
             	case 1 -> adminEditAccessPeriod();
             	case 2 -> adminAddStudent();
@@ -465,7 +465,7 @@ public class AdminView implements IView {
                 }
                 default -> System.out.println("Option not available...");
             }
-			Input.pressEnterKeyToGoBack();
+			IO.pressEnterKeyToGoBack();
 		}
 	}
 

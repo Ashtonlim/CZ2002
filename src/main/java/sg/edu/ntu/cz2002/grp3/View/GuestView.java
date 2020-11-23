@@ -5,7 +5,7 @@ import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
 import sg.edu.ntu.cz2002.grp3.Controller.RecordManager;
 import sg.edu.ntu.cz2002.grp3.Controller.TimeManager;
 import sg.edu.ntu.cz2002.grp3.Entity.User;
-import sg.edu.ntu.cz2002.grp3.util.Input;
+import sg.edu.ntu.cz2002.grp3.util.IO;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class GuestView implements IView {
         // Load dummy data
         ArrayList<String> options = new ArrayList<>();
         options.add("Yes");
-        int choice = Input.getPrintOptions("Load dummy data?", "No", options);
+        int choice = IO.getPrintOptions("Load dummy data?", "No", options);
         if (choice == 1) {
             try {
                 RM.loadDummyData();
@@ -31,8 +31,8 @@ public class GuestView implements IView {
         // Non terminal code, to be changed to terminal version lat
         System.out.println("Current System Time: " + TimeManager.currentDateTimeStr);
         System.out.println("=== User Login ===");
-        String username = Input.getTextInput("Username: ");
-        String password = Input.getTextInput("Password: ");
+        String username = IO.getTextInput("Username: ");
+        String password = IO.getTextInput("Password: ");
         System.out.println("Logging in........");
         User user = LM.login(username, password);
         boolean isAllowed = LM.isWithinPeriod(user);
@@ -51,7 +51,7 @@ public class GuestView implements IView {
     public void renderStartPage(MyStarsApp app) {
         ArrayList<String> options = new ArrayList<>();
         options.add("Login");
-        int choice = Input.getPrintOptions("* MyStarsApp *", "Exit Program", options);
+        int choice = IO.getPrintOptions("* MyStarsApp *", "Exit Program", options);
         app.setRunningStatus(choice != 0);
     }
 

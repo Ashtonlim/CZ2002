@@ -5,7 +5,7 @@ import sg.edu.ntu.cz2002.grp3.Controller.RecordManager;
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.Controller.StudentController;
 import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
-import sg.edu.ntu.cz2002.grp3.util.Input;
+import sg.edu.ntu.cz2002.grp3.util.IO;
 import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class StudentView implements IView {
     public void addCourse() {
         System.out.println("=== Add a course ===");
 
-        String indexCode = Input.getTextInput("Enter index of course to add");
+        String indexCode = IO.getTextInput("Enter index of course to add");
 
         Index index = SC.checkValidIndex(indexCode);
         if (index == null) {
@@ -63,7 +63,7 @@ public class StudentView implements IView {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringIndexList.add(string);
         }
-        int choice1 = Input.getPrintOptions("Which index would you like to drop?", "Back", stringIndexList);
+        int choice1 = IO.getPrintOptions("Which index would you like to drop?", "Back", stringIndexList);
         if (choice1 == 0)
             return;
         Index indexToDrop = indexList.get(choice1 - 1);
@@ -106,7 +106,7 @@ public class StudentView implements IView {
         System.out.println("=== Check vacancies of a course ===");
 
         System.out.println("Please input your CourseID to show indexes of the Course.");
-        String courseCode = Input.getTextInput("CourseID: ");
+        String courseCode = IO.getTextInput("CourseID: ");
         ArrayList<Index> indexList = SC.getVacanciesOfCourse(courseCode);
         if (indexList == null) {
             System.out.println("Course does not exist");
@@ -145,7 +145,7 @@ public class StudentView implements IView {
         TimeTable timeTable = student.getTimeTable();
         Lesson[][] evenWeek = timeTable.getEvenWeek();
         Lesson[][] oddWeek = timeTable.getOddWeek();
-        int choice = Input.getIntInput("Please choose: 1 - timetable of Odd weeks | 2 - timetable of Even weeks");
+        int choice = IO.getIntInput("Please choose: 1 - timetable of Odd weeks | 2 - timetable of Even weeks");
         String[][] tt;
 
         if (choice == 1) {
@@ -175,13 +175,13 @@ public class StudentView implements IView {
                 stringIndexList.add(string);
             }
 
-            int choice1 = Input.getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
+            int choice1 = IO.getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
             if (choice1 == 0)
                 return;
             Index sourceIndex = indexList.get(choice1 - 1);
 
-            String targetMatricNum = Input.getTextInput("Enter the matric number of student you are swopping with.");
-            String targetPassword = Input.getTextInput("Enter the password of student you are swopping with.");
+            String targetMatricNum = IO.getTextInput("Enter the matric number of student you are swopping with.");
+            String targetPassword = IO.getTextInput("Enter the password of student you are swopping with.");
             int res = SC.swopIndex(student, targetMatricNum, targetPassword, sourceIndex);
             switch (res) {
                 case 1 -> {
@@ -216,7 +216,7 @@ public class StudentView implements IView {
             String string = index.getCourseName() + " - " + index.getIndex();
             stringIndexList.add(string);
         }
-        int choice1 = Input.getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
+        int choice1 = IO.getPrintOptions("Which index would you like to change?", "Back", stringIndexList);
         if (choice1 == 0)
             return;
         Index oldIndex = indexList.get(choice1 - 1);
@@ -238,7 +238,7 @@ public class StudentView implements IView {
             stringOtherIndexList.add(string);
         }
 
-        int choice2 = Input.getPrintOptions("Which index would you like to change to?", "Back", stringOtherIndexList);
+        int choice2 = IO.getPrintOptions("Which index would you like to change to?", "Back", stringOtherIndexList);
         if (choice2 == 0)
             return;
         if (choice2 == currIndexPos + 1) {
@@ -277,9 +277,9 @@ public class StudentView implements IView {
         System.out.println("=== Change account password (Console required) ===");
         // need to change to console version later
         System.out.print("Old ");
-        String oldPassword = Input.getPassword("Password: ");
+        String oldPassword = IO.getPassword("Password: ");
         System.out.print("New ");
-        String newPassword = Input.getPassword("Password: ");
+        String newPassword = IO.getPassword("Password: ");
         boolean result = LoginManager.changePassword(student, oldPassword, newPassword);
         if (result) {
             System.out.println("Password successfully changed.");
@@ -303,7 +303,7 @@ public class StudentView implements IView {
         studentOptions.add("Change Password");
 
         while (true) {
-            int c = Input.getPrintOptions(title, "Logout", studentOptions);
+            int c = IO.getPrintOptions(title, "Logout", studentOptions);
             switch (c) {
                 case 1 -> addCourse();
                 case 2 -> dropCourse();
@@ -325,7 +325,7 @@ public class StudentView implements IView {
                 }
                 default -> System.out.println("Option not available...");
             }
-            Input.pressEnterKeyToGoBack();
+            IO.pressEnterKeyToGoBack();
         }
     }
 

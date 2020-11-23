@@ -13,7 +13,7 @@ public class MyStarsApp {
     private User activeUser;
     private boolean running;
 
-    public MyStarsApp() throws Exception {
+    public MyStarsApp() {
         RM = new RecordManager();
     }
 
@@ -24,7 +24,7 @@ public class MyStarsApp {
         running = true;
         // Main program
         while (running) {
-            IView activeView = new GuestView();
+            IView activeView = new GuestView(); //Started with guest view
             ((GuestView) activeView).renderDummyData(RM); //To be removed in production.
 
             activeView.renderStartPage(this);
@@ -43,10 +43,6 @@ public class MyStarsApp {
             System.out.println("Your data has been saved.");
             RM.save();
         }
-    }
-
-    public RecordManager getRM() {
-        return RM;
     }
 
     public void setRunningStatus(boolean running) {

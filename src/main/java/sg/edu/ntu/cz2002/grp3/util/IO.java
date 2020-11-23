@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Input {
+public class IO {
     /** Static methods */
 
     /** Print the options available and get choice from user */
