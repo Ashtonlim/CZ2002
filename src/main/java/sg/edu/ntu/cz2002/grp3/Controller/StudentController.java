@@ -27,7 +27,7 @@ public class StudentController {
     public int addIndexToStudent(String indexCode){
         Index index = RM.getIndex(indexCode);
         if (index == null) {
-            return 20;
+            return -20;
         }
 
         return index.addToStudentList(student);
