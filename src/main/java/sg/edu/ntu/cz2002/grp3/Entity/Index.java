@@ -1,6 +1,8 @@
 package sg.edu.ntu.cz2002.grp3.Entity;
 
 import sg.edu.ntu.cz2002.grp3.Controller.NotificationManager;
+import sg.edu.ntu.cz2002.grp3.Entity.notification.EmailNotification;
+import sg.edu.ntu.cz2002.grp3.Entity.notification.SMSNotification;
 import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
 
 import java.io.Serializable;
@@ -40,22 +42,20 @@ public class Index implements Serializable {
 
     public boolean removeFromStudentList(Student student) {
         if (!student.hasIndex(this)) {
-            System.out.println("Debug: Student does not have index " + getIndex());
             return false;
         }
 
         // if clashes when adding to timetable
         if (student.getTimeTable().removeIndex(this)) {
-            System.out.println("Debug: Removed index " + getIndex());
             studentList.remove(student);
             vacancy += 1;
 
             for (Student s : waitList) {
-                System.out.println("System: Removing " + s.getFullName()
-                        + " from waitlist and Sending notification email out... ");
                 if (addToStudentList(s) == 1) {
-                    NotificationManager.notifyEmail(s.getEmail(), "Waitlist Notification",
-                            "Congrats, you got into index " + getIndex());
+                    System.out.println("System: Removing " + s.getFullName()
+                            + " from waitlist and Sending notification email out... ");
+                    NotificationManager.sendNotification( new EmailNotification(s.getEmail(), "Waitlist Notification", "Congrats, you got into index " + getIndex()) );
+                    NotificationManager.sendNotification( new SMSNotification("+6596709488", "Congrats, you got into index " + getIndex()) );
                     System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
                     break;
                 }
@@ -63,7 +63,6 @@ public class Index implements Serializable {
 
             return true;
         }
-
         return false;
     }
 

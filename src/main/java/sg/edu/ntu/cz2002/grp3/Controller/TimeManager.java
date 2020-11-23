@@ -6,8 +6,8 @@ import java.time.format.DateTimeFormatter;
 
 public class TimeManager {
 	
-	private static DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	private static DateTimeFormatter tFormatter = DateTimeFormatter.ofPattern("HH:mm");
+	private static final DateTimeFormatter dtFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	private static final DateTimeFormatter tFormatter = DateTimeFormatter.ofPattern("HH:mm");
 	public static LocalDateTime currentDateTime = LocalDateTime.now();
 	public static String currentDateTimeStr = dateTimeToStr(currentDateTime);
 	
@@ -43,34 +43,25 @@ public class TimeManager {
 	
 	/** check for clash between 2 time periods */
     public static boolean checkTimeClash(LocalTime start1, LocalTime end1, LocalTime start2, LocalTime end2) {
-        if (start1.isBefore(end2) && end1.isAfter(start2)) {
-            return true;
-        }
-        return false;
-    }
+		return start1.isBefore(end2) && end1.isAfter(start2);
+	}
 
     public static boolean checkValidDate(String dateTime){
 		LocalTime check = strToTime(dateTime);
-		return check.getMinute() == 0 || check.getMinute() == 30;
+		return check.getMinute() != 0 && check.getMinute() != 30;
 	}
     
     /** convert int day to string */
 	public static String numToDay(int dayOfWeek) {
-		switch(dayOfWeek) {
-		case 1:
-			return "Monday"; 
-		case 2:
-			return "Tuesday"; 
-		case 3:
-			return "Wednesday"; 
-		case 4:
-			return "Thursday"; 
-		case 5:
-			return "Friday"; 
-		case 6:
-			return "Saturday"; 
-		}
-		return null;
+		return switch (dayOfWeek) {
+			case 1 -> "Monday";
+			case 2 -> "Tuesday";
+			case 3 -> "Wednesday";
+			case 4 -> "Thursday";
+			case 5 -> "Friday";
+			case 6 -> "Saturday";
+			default -> null;
+		};
 	}
 
 }

@@ -1,5 +1,6 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
 
+import sg.edu.ntu.cz2002.grp3.Entity.notification.SMSNotification;
 import sg.edu.ntu.cz2002.grp3.View.*;
 import sg.edu.ntu.cz2002.grp3.Entity.Admin;
 import sg.edu.ntu.cz2002.grp3.Entity.Student;
@@ -20,6 +21,7 @@ public class MyStarsApp {
         // Uncomment to send a test email when the application starts up
         // Email.sendMail("mystaroodp@gmail.com", "Waitlist Notification", "Congrats,
         // you got into index ");
+
         running = true;
 
         // Main program

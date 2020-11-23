@@ -180,7 +180,7 @@ public class AdminController {
     public int addLesson(String type, int day, String start, String end, String venue, int oddEven, String indexNo) {
     	Index index = RM.getIndex(indexNo);
 
-    	if (!TimeManager.checkValidDate(start) || !TimeManager.checkValidDate(end)){
+    	if (TimeManager.checkValidDate(start) || TimeManager.checkValidDate(end)){
     	    return -5;
         }
         if (day < 1 || day > 6) {
