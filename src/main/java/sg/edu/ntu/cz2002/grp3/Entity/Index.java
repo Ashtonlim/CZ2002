@@ -49,14 +49,16 @@ public class Index implements Serializable {
             System.out.println("Debug: Removed index " + getIndex());
             studentList.remove(student);
             vacancy += 1;
-            if (waitList.size() > 0) {
-                Student s = waitList.get(0);
+
+            for (Student s : waitList) {
                 System.out.println("System: Removing " + s.getFullName()
                         + " from waitlist and Sending notification email out... ");
-                addToStudentList(s);
-                NotificationManager.notifyEmail(s.getEmail(), "Waitlist Notification",
-                        "Congrats, you got into index " + getIndex());
-                System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
+                if (addToStudentList(s) == 1) {
+                    NotificationManager.notifyEmail(s.getEmail(), "Waitlist Notification",
+                            "Congrats, you got into index " + getIndex());
+                    System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
+                    break;
+                }
             }
 
             return true;
@@ -70,9 +72,8 @@ public class Index implements Serializable {
     }
 
     /**
-     * 1 - Success | -11 - Index already registered by this student.
-     * -12 - Already registered this course | -13 - No vacancies
-     * -14 - Clash
+     * 1 - Success | -11 - Index already registered by this student. -12 - Already
+     * registered this course | -13 - No vacancies -14 - Clash
      */
     public int addToStudentList(Student student) {
 
@@ -85,19 +86,20 @@ public class Index implements Serializable {
             return -12;
         }
 
-        if (getVacancy() == 0) {
-            addToWaitList(student);
-            return -13;
-        }
-
         // if clashes when adding to timetable
-        if (student.getTimeTable().addIndex(this)) {
+        if (!student.getTimeTable().checkClash(this)) {
+            if (getVacancy() == 0) {
+                addToWaitList(student);
+                return -13;
+            }
+            student.getTimeTable().addIndex(this);
             System.out.println("Debug: Added to timetable successfully.");
-            removeFromWaitList(student);
+            removeFromWaitList(student); // redundancy
             studentList.add(student);
             vacancy -= 1;
             return 1;
         } else {
+
             return -14;
         }
     }

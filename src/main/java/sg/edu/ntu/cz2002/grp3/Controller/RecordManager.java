@@ -45,7 +45,7 @@ public class RecordManager {
 
         Index i1 = new Index("200201", 10, c1);
         Index i2 = new Index("200202", 10, c1);
-        Index i3 = new Index("200301", 5, c2);
+        Index i3 = new Index("200301", 10, c2);
         Index i4 = new Index("100101", 10, c3);
         Index i5 = new Index("200302", 10, c2);
         // c4 does not have index.
@@ -74,7 +74,7 @@ public class RecordManager {
         students.add(new Student("weixing", "wxOODPtest@gmail.com", password, "WeiXing", "M", "SC", "U123", f1, 2, 0));
         students.add(new Student("zheming", "zmOODPtest@gmail.com", password, "ZheMing", "M", "SC", "U321", f1, 2, 0));
         students.add(new Student("ash", "mystaroodp@gmail.com", password, "Ashton", "M", "SC", "U195", f1, 3, 0));
-        students.add(new Student("bob", "bobOODPtest@gmail.com", password, "Bob", "M", "SC", "U461", f2, 2, 0));
+        students.add(new Student("bob", "bobOODPtest@gmail.com", password, "Bob", "M", "SC", "U461", f1, 2, 0));
         students.add(new Student("james", "U201@gmail.com", password, "James Law", "M", "SC", "U201", f1, 3, 0));
         students.add(new Student("Mike", "U202@gmail.com", password, "Mike Law", "M", "SC", "U202", f1, 2, 0));
         students.add(new Student("Gary", "U203@gmail.com", password, "Gary Law", "M", "SC", "U203", f1, 3, 0));
@@ -93,10 +93,10 @@ public class RecordManager {
 
         i1.addToStudentList((Student) users.get(0));
         i2.addToStudentList((Student) users.get(1));
-        i3.addToStudentList((Student) users.get(0));
+
         i3.addToStudentList((Student) users.get(1));
-        // i3.addToStudentList((Student) users.get(2));
         i3.addToStudentList((Student) users.get(3));
+        // i3.addToStudentList((Student) users.get(2));
         i3.addToStudentList((Student) users.get(4));
         i3.addToStudentList((Student) users.get(5));
         i3.addToStudentList((Student) users.get(6));
