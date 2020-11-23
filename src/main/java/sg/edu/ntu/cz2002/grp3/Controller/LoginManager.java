@@ -32,17 +32,19 @@ public class LoginManager {
 
 	/** check if login is within access period if user is student */
 	public boolean isWithinPeriod(User user) {
+
 		if (user instanceof Student) {
-			Faculty faculty = RM.getFaculty(((Student) user).getFacultyName());
-			if (TimeManager.currentDateTime.isBefore(faculty.getStartDate())
-					|| TimeManager.currentDateTime.isAfter(faculty.getEndDate())) {
+			Student student = (Student) user;
+			Faculty faculty = RM.getFaculty( student.getFacultyName() );
+			if (faculty.getStartDate() == null){
 				return false;
-			} else {
-				return true;
 			}
+			return !TimeManager.currentDateTime.isBefore(faculty.getStartDate())
+					&& !TimeManager.currentDateTime.isAfter(faculty.getEndDate());
 		} else {
 			return true;
 		}
+
 	}
 
 	public static String generateHash(String password) {

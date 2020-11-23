@@ -45,7 +45,7 @@ public class RecordManager {
 	    
         Index i1 = new Index("200201", 10, c1);
         Index i2 = new Index("200202", 10, c1);
-        Index i3 = new Index("200301", 10, c2);
+        Index i3 = new Index("200301", 1, c2);
         Index i4 = new Index("100101",10, c3);
         Index i5 = new Index("200302", 10, c2);
         //c4 does not have index.
