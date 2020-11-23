@@ -339,9 +339,11 @@ public class AdminController {
     /** 6. Print student list by index number. -wx */
     public void printStudentListByIndex(String indexCode) {
         Index index = RM.getIndex(indexCode);
-        ArrayList<Student> studentList = index.getStudentList();
         if (index != null) {
+        	ArrayList<Student> studentList = index.getStudentList();
         	IO.printStudentList(studentList);
+        } else {
+        	System.out.println("Invalid index.");
         }
     }
     
@@ -350,9 +352,13 @@ public class AdminController {
      * course */
     public void printStudentListByCourse(String courseCode) {
     	Course course = RM.getCourse(courseCode);
-        ArrayList<Student> studentList = getStudentList(course);
-		if (studentList != null) {
-			IO.printStudentList(studentList);
+    	if (course != null) {
+    		ArrayList<Student> studentList = getStudentList(course);
+			if (studentList != null) {
+				IO.printStudentList(studentList);
+			}
+		} else {
+			System.out.println("Invalid course.");
 		}
     }
     
