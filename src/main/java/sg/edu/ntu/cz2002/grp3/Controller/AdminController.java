@@ -361,7 +361,19 @@ public class AdminController {
 			System.out.println("Invalid course.");
 		}
     }
-    
+
+//    public String[][] getStudentListForPrinting(String courseCode){
+//        Course course = RM.getCourse(courseCode);
+//        if (course == null){
+//            return null;
+//        }
+//
+//
+//
+//
+//        return getStudentList(course);
+//    }
+
     
     /** Get student list from course */
     private ArrayList<Student> getStudentList(Course course) {

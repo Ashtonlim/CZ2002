@@ -48,6 +48,7 @@ public class Index implements Serializable {
         if (student.getTimeTable().removeIndex(this)) {
             System.out.println("Debug: Removed index " + getIndex());
             studentList.remove(student);
+            vacancy += 1;
             if (waitList.size() > 0) {
                 Student s = waitList.get(0);
                 System.out.println("System: Removing " + s.getFullName()
@@ -94,6 +95,7 @@ public class Index implements Serializable {
             System.out.println("Debug: Added to timetable successfully.");
             removeFromWaitList(student);
             studentList.add(student);
+            vacancy -= 1;
             return 1;
         } else {
             return -14;

@@ -349,12 +349,14 @@ public class AdminView implements IView {
 	}
 
 	
-	/** 7.Print student List by Course */
-	public void adminPrintStudentListByCourse() {
-		System.out.println("=== Student List By Course ===");
-		String courseCode = IO.getTextInput("Course code: ");
-		AC.printStudentListByCourse(courseCode);
-	}
+//	/** 7.Print student List by Course */
+//	public void adminPrintStudentListByCourse() {
+//		System.out.println("=== Student List By Course ===");
+//		String courseCode = IO.getTextInput("Course code: ");
+//		AC.getStudentListByCourse();
+//		Printer.print();
+//		AC.printStudentListByCourse(courseCode);
+//	}
 	
 
     /** 8.print course list by faculty */
@@ -428,7 +430,7 @@ public class AdminView implements IView {
             	case 4 -> adminUpdateCourse();
                 case 5 -> adminCheckVacancy();
                 case 6 -> adminPrintStudentListByIndex();
-                case 7 -> adminPrintStudentListByCourse();
+//                case 7 -> adminPrintStudentListByCourse();
                 case 8 -> changePassword();
                 case 9 -> printCourseListFaculty();
                 case 0 -> {
