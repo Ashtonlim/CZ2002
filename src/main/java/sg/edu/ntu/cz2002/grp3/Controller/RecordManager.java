@@ -156,11 +156,6 @@ public class RecordManager {
         return null;
     }
 
-    public ArrayList<Index> getIndexListByCourse(String couseCode) {
-        Course course = getCourse(couseCode);
-        return (course != null) ? course.getIndexList() : null;
-    }
-
     /** return all courses */
     public ArrayList<Course> getAllCourses() {
         ArrayList<Course> temp = new ArrayList<>();
@@ -208,7 +203,7 @@ public class RecordManager {
     }
 
     /** Add user */
-    public boolean addUser(User user) throws Exception {
+    public boolean addUser(User user) {
 
         for (User temp : this.users) {
             if (temp.getUserName().equals(user.getUserName())) {
@@ -218,34 +213,6 @@ public class RecordManager {
         users.add(user);
         save();
         return true;
-    }
-
-    /** Remove user */
-    public boolean removeUser(User user) throws Exception {
-
-        for (int i = 0; i < this.users.size(); i++) {
-            User temp = users.get(i);
-            if (temp.getUserName().equals(user.getUserName())) {
-                users.remove(user);
-                save();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /** Check if the courseName is available */
-    public boolean checkCourseName(String courseCode) {
-
-        for (Faculty faculty : facultyList) {
-            for (Course course : faculty.getCourseList()) {
-                if (courseCode.equals(course.getCourseCode())) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
     }
 
     /** Remove course */

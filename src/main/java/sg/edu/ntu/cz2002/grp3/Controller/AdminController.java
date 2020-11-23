@@ -1,6 +1,13 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
 
-import sg.edu.ntu.cz2002.grp3.Entity.*;
+
+import sg.edu.ntu.cz2002.grp3.Entity.Admin;
+import sg.edu.ntu.cz2002.grp3.Entity.Student;
+import sg.edu.ntu.cz2002.grp3.Entity.Faculty;
+import sg.edu.ntu.cz2002.grp3.Entity.Course;
+import sg.edu.ntu.cz2002.grp3.Entity.Index;
+import sg.edu.ntu.cz2002.grp3.Entity.Lesson;
+
 import sg.edu.ntu.cz2002.grp3.util.IO;
 
 import java.util.*;
@@ -70,7 +77,6 @@ public class AdminController {
         res.put("AU", Integer.toString(course.getAU()));
         return res;
     }
-    
 
     public void printAllStudents() {
     	ArrayList<Student> studentList = RM.getAllStudents();
@@ -164,7 +170,7 @@ public class AdminController {
             return -1;
         } else {
         	Course course = RM.getCourse(courseCode);
-            Index index = new Index(indexNo, slots, course);
+            new Index(indexNo, slots, course);
             return 1;
         }
     }
@@ -173,6 +179,10 @@ public class AdminController {
     /** Add lesson to index */
     public int addLesson(String type, int day, String start, String end, String venue, int oddEven, String indexNo) {
     	Index index = RM.getIndex(indexNo);
+
+    	if (!TimeManager.checkValidDate(start) || !TimeManager.checkValidDate(end)){
+    	    return -5;
+        }
         if (day < 1 || day > 6) {
             // invalid day
             return -1;
@@ -181,12 +191,14 @@ public class AdminController {
             return -2;
         }
 
+        day = day -1; // 0 -> Mon, 1 -> Tues
+
         try {
             // if weekly lessons
             if (oddEven == 2) {
                 boolean isClashEven = checkLessonClash(index, day, 0, start, end);
                 boolean isClashOdd = checkLessonClash(index, day, 1, start, end);
-                if (isClashEven == false && isClashOdd == false) {
+                if (!isClashEven && !isClashOdd) {
                     Lesson l1 = new Lesson(type, day, 0, start, end, venue, index);
                     Lesson l2 = new Lesson(type, day, 1, start, end, venue, index);
                     return 1;
@@ -197,7 +209,7 @@ public class AdminController {
                 // not weekly lessons
             } else {
                 boolean isClash = checkLessonClash(index, day, oddEven, start, end);
-                if (isClash == false) {
+                if (!isClash) {
                     Lesson l1 = new Lesson(type, day, oddEven, start, end, venue, index);
                     return 1;
                 } else {
@@ -222,7 +234,7 @@ public class AdminController {
                     LocalTime startTemp = tempLesson.getStartTime();
                     LocalTime endTemp = tempLesson.getEndTime();
                     isClash = TimeManager.checkTimeClash(startLT, endLT, startTemp, endTemp);
-                    if (isClash == true) {
+                    if (isClash) {
                         return isClash;
                     }
                 }
@@ -230,6 +242,7 @@ public class AdminController {
         }
         return isClash;
     }
+
     
     
     /** print all lessons in the index */
@@ -326,9 +339,11 @@ public class AdminController {
     /** 6. Print student list by index number. -wx */
     public void printStudentListByIndex(String indexCode) {
         Index index = RM.getIndex(indexCode);
-        ArrayList<Student> studentList = index.getStudentList();
         if (index != null) {
+        	ArrayList<Student> studentList = index.getStudentList();
         	IO.printStudentList(studentList);
+        } else {
+        	System.out.println("Invalid index.");
         }
     }
     
@@ -337,9 +352,13 @@ public class AdminController {
      * course */
     public void printStudentListByCourse(String courseCode) {
     	Course course = RM.getCourse(courseCode);
-        ArrayList<Student> studentList = getStudentList(course);
-		if (studentList != null) {
-			IO.printStudentList(studentList);
+    	if (course != null) {
+    		ArrayList<Student> studentList = getStudentList(course);
+			if (studentList != null) {
+				IO.printStudentList(studentList);
+			}
+		} else {
+			System.out.println("Invalid course.");
 		}
     }
     

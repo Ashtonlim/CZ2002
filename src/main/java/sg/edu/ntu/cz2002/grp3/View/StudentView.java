@@ -49,7 +49,7 @@ public class StudentView implements IView {
         int choice1 = IO.getPrintOptions("Which index would you like to drop?", "Back", options);
         if (choice1 == 0) return;
         SC.dropIndex(choice1);
-        System.out.println(options.get(choice1) + " dropped.");
+        System.out.println(options.get(choice1 - 1) + " dropped.");
     }
 
     /** Print courses registered */
@@ -72,7 +72,9 @@ public class StudentView implements IView {
         String courseCode = IO.getTextInput("CourseID: ");
         String[][] res = SC.getVacanciesForPrinting(courseCode);
 
-        if (res.length == 0) {
+        if (res.length == 0){
+            System.out.println(" - Course does not exist - ");
+        } else if (res.length == 1) {
             System.out.println(" - There is no index in this course. - ");
         } else {
             System.out.println("Index vacancies for courseCode.");
@@ -174,7 +176,7 @@ public class StudentView implements IView {
         Dictionary<String, String> res = SC.getStudentDetails();
         System.out.println("Welcome " + res.get("fullName") + " | Account type: Student.");
         System.out.println("School: " + res.get("faculty") + " | AU Registered: " + res.get("regAU")
-                + " | Number of Registered Courses: " + res.get("course"));
+                + " | Number of Registered Courses: " + res.get("courses"));
     }
 
     public void changePassword() {

@@ -82,7 +82,7 @@ public class AdminView implements IView {
 					System.out.println("Course " + courseCode + " " + courseName + " successfully added into system.");
 					char choice = IO.getConfInput("Add indexes now? y/n");
 					if (choice == 'Y') {
-						adminAddIndex(courseName);
+						adminAddIndex(courseCode);
 					} else {
 						AC.printAllCourses();
 					}
@@ -172,6 +172,10 @@ public class AdminView implements IView {
 					System.out.println("Lesson clashes with existing lessons.");
 					AC.printLessonsInIndex(indexNo);
 				}
+				case -5 -> {
+					System.out.println("Invalid time provided, enter time at interval of 30mins only.");
+					System.out.println("Eg. 08:00, 08:30");
+				}
 			}
     	}
     }
@@ -253,7 +257,7 @@ public class AdminView implements IView {
             		}
             		break;
             	case 7:
-            		adminUpdateIndex();
+            		adminUpdateIndex(courseCode);
             		break;
                 default:
                 	System.out.println("Option not available...");
@@ -263,7 +267,7 @@ public class AdminView implements IView {
     }
 
     /** update indexes */
-    public void adminUpdateIndex() {
+    public void adminUpdateIndex(String courseCode) {
     	
     	String indexNo = IO.getTextInput("Enter index: ");
     	if (!AC.checkIndexExists(indexNo)) {
@@ -349,7 +353,7 @@ public class AdminView implements IView {
 	public void adminPrintStudentListByCourse() {
 		System.out.println("=== Student List By Course ===");
 		String courseCode = IO.getTextInput("Course code: ");
-		
+		AC.printStudentListByCourse(courseCode);
 	}
 	
 
