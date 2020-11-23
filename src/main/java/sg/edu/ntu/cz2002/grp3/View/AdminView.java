@@ -82,7 +82,7 @@ public class AdminView implements IView {
 					System.out.println("Course " + courseCode + " " + courseName + " successfully added into system.");
 					char choice = IO.getConfInput("Add indexes now? y/n");
 					if (choice == 'Y') {
-						adminAddIndex(courseName);
+						adminAddIndex(courseCode);
 					} else {
 						AC.printAllCourses();
 					}

@@ -164,7 +164,7 @@ public class AdminController {
             return -1;
         } else {
         	Course course = RM.getCourse(courseCode);
-            Index index = new Index(indexNo, slots, course);
+            new Index(indexNo, slots, course);
             return 1;
         }
     }
