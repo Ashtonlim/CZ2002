@@ -1,6 +1,7 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
 
 import sg.edu.ntu.cz2002.grp3.Entity.*;
+import sg.edu.ntu.cz2002.grp3.util.IO;
 
 import java.util.*;
 import java.time.LocalDateTime;
@@ -9,122 +10,169 @@ import java.time.LocalTime;
 public class AdminController {
     private final RecordManager RM;
     private final Admin admin;
+    
     public AdminController(RecordManager RM, Admin admin) {
         this.admin = admin;
         this.RM = RM;
     }
 
-    /** Get all student list */
-    public ArrayList<Student> getAllStudents() {
-        return RM.getAllStudents();
-    }
 
-    /** Get student list from faculty */
-    private ArrayList<Student> getStudentList(Faculty faculty) {
-        ArrayList<Student> studentList = new ArrayList<>();
-        for (Course course : faculty.getCourseList()) {
-            for (Index index : course.getIndexList()) {
-                studentList.addAll(index.getStudentList());
-            }
-        }
-        return studentList;
-    }
-
-    /** Get student list from course */
-    private ArrayList<Student> getStudentList(Course course) {
-        ArrayList<Student> studentList = new ArrayList<>();
-        for (Index index : course.getIndexList()) {
-            studentList.addAll(index.getStudentList());
-        }
-        return studentList;
-    }
-
-    /** Get student list from index */
-    private ArrayList<Student> getStudentList(Index index) {
-        return index.getStudentList();
-    }
-
-    /** Check if faculty exists */
-    public Faculty getFaculty(String facultyName) {
-        return RM.getFaculty(facultyName);
-    }
-
-    /** Get course */
-    public Course getCourse(String courseCode) {
-        return RM.getCourse(courseCode);
+    public boolean checkFacultyExists(String facultyName) {
+    	if (RM.getFaculty(facultyName) != null) {
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
     
-    /** get faculty courses */
-    public ArrayList<Course> getFacultyCourses(String facultyName) {
-        Faculty faculty = RM.getFaculty(facultyName);
-        if (faculty != null) {
-        	return faculty.getCourseList();
-        } else {
-        	return null;
+    
+    public boolean checkCourseExists(String courseCode) {
+    	if (RM.getCourse(courseCode) != null) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    
+    public boolean checkIndexExists(String indexNo) {
+    	if (RM.getIndex(indexNo) != null) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    
+    /** get faculty details */
+    public Dictionary<String, String> getFacultyPeriod(String facultyName){
+    	Faculty faculty = RM.getFaculty(facultyName);
+    	Dictionary<String, String> res = new Hashtable<>();
+    	if (faculty == null) return null;
+        try {
+        	res.put("startDate", TimeManager.dateTimeToStr(faculty.getStartDate()));
+        	res.put("endDate", TimeManager.dateTimeToStr(faculty.getEndDate()));
+        } catch (NullPointerException e) {
+        	res.put("0", "0");
+        	return res;
         }
-    } 
-
-    /** Get all course list */
-    public ArrayList<Course> getAllCourses() {
-        return RM.getAllCourses();
+        return res;
     }
-
-    /** Get index */
-    public Index getIndex(String index) {
-        return RM.getIndex(index);
-    }
-
-    /** 4.Check available slot for an index number (vacancy in a class) -wx */
-    public int checkVacancies(String indexCode) {
-        Index index = RM.getIndex(indexCode);
-        return (index != null) ? index.getVacancy() : -1;
-    }
-
-    /** 5. Print student list by index number. -wx */
-    public ArrayList<Student> getStudentListByIndex(String indexCode) {
-        Index index = RM.getIndex(indexCode);
-        return (index != null) ? getStudentList(index) : null;
-    }
-
-    /**
-     * 6.Print student list by course (all students registered for the selected
-     * course). -wx
-     */
-    public ArrayList<Student> getStudentListByCourse(String courseCode) {
+    
+    /** get course details */
+    public Dictionary<String, String> getCourseDetails(String courseCode){
+        Dictionary<String, String> res = new Hashtable<>();
         Course course = RM.getCourse(courseCode);
-        return (course != null) ? getStudentList(course) : null;
+        res.put("courseCode", course.getCourseCode());
+        res.put("courseName", course.getCourseName());
+        res.put("faculty", course.getFaculty().getName());
+        res.put("subjectType", course.getSubjectType());
+        res.put("AU", Integer.toString(course.getAU()));
+        return res;
+    }
+    
+
+    public void printAllStudents() {
+    	ArrayList<Student> studentList = RM.getAllStudents();
+    	if (studentList != null) {
+    		IO.printStudentList(studentList);
+    	}
+    }
+    
+    public void printAllCourses() {
+    	ArrayList<Course> courseList = RM.getAllCourses();
+    	if (courseList != null) {
+    		IO.printCourseList(courseList);
+    	}
+    }
+    
+    public void printIndexList(String courseCode) {
+    	Course course = RM.getCourse(courseCode);
+    	ArrayList<Index> indexList = course.getIndexList();
+    	IO.printIndexList(indexList);
     }
 
-    /** 7.Add a course */
-    public int addCourse(String courseCode, String courseName, String subjectType, int AU, Faculty faculty) {
-        if (RM.getCourse(courseCode) != null) {
+    
+    /** 1.Edit student access period */
+    public int editAccessPeriod(String facultyName, String startDateTime, String endDateTime) {
+    	Faculty faculty = RM.getFaculty(facultyName);
+        LocalDateTime start = TimeManager.strToDateTime(startDateTime);
+        LocalDateTime end = TimeManager.strToDateTime(endDateTime);
+        if (start == null || end == null) {
+            // DateTime string not in correct format
+            return 0;
+        } else if (start.isAfter(end) || start.equals(end)) {
+            // start > end
+            return -1;
+        } else {
+            faculty.setRegistrationTime(start, end);
+            return 1;
+        }
+    }
+    
+    
+    /** 2.add a student */
+    public int addStudent(String username, String email, String fullName, String gender, String nationality,
+            String matricNum, String faculty, int yearOfStudy) {
+        Faculty fac = RM.getFaculty(faculty);
+        if (RM.getUser(username) != null) {
+            // username exists
+            return 0;
+        } else if (!gender.equalsIgnoreCase("m") && !gender.equalsIgnoreCase("f")) {
+            // invalid gender
+            return -1;
+        } else if (fac == null) {
+            // faculty not found
+            return -2;
+        } else if (yearOfStudy < 1 || yearOfStudy > 4) {
+            // invalid year
+            return -3;
+        } else {
+            Student student = new Student(username, email, fullName, gender, nationality, matricNum, fac, yearOfStudy);
+            try {
+                RM.addUser(student);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 1;
+        }
+    }
+
+    
+    /** 3.Add a course */
+    public int addCourse(String courseCode, String courseName, String subjectType, int AU, String facultyName) {
+        if (checkCourseExists(courseCode)) {
             // course exists
             return 0;
         } else if (AU < 1) {
             // AU 0 or below
             return -1;
         } else {
+        	Faculty faculty = RM.getFaculty(facultyName);
             Course course = new Course(courseCode, courseName, subjectType, AU, faculty);
             return 1;
         }
     }
 
     /** Add an Index */
-    public int addIndex(String strIndex, int slots, Course course) {
-        if (RM.getIndex(strIndex) != null) {
+    public int addIndex(String indexNo, int slots, String courseCode) {
+        if (checkIndexExists(indexNo)) {
             // index exists
             return 0;
         } else if (slots < 0) {
             // negative slots
             return -1;
         } else {
-            Index index = new Index(strIndex, slots, course);
+        	Course course = RM.getCourse(courseCode);
+            Index index = new Index(indexNo, slots, course);
             return 1;
         }
     }
 
+    
     /** Add lesson to index */
-    public int addLesson(String type, int day, String start, String end, String venue, int oddEven, Index index) {
+    public int addLesson(String type, int day, String start, String end, String venue, int oddEven, String indexNo) {
+    	Index index = RM.getIndex(indexNo);
         if (day < 1 || day > 6) {
             // invalid day
             return -1;
@@ -162,8 +210,9 @@ public class AdminController {
         }
     }
 
+    
     /** check if lessons in an index clashes */
-    public boolean checkLessonClash(Index index, int day, int oddEven, String start, String end) {
+    private boolean checkLessonClash(Index index, int day, int oddEven, String start, String end) {
         boolean isClash = false;
         for (Lesson tempLesson : index.getLessonList()) {
             if (day == tempLesson.getDayOfWeek()) {
@@ -181,10 +230,26 @@ public class AdminController {
         }
         return isClash;
     }
+    
+    
+    /** print all lessons in the index */
+    public void printLessonsInIndex(String indexNo) {
+    	System.out.println("=== Index " + indexNo + " Lessons ===");
+    	Index index = RM.getIndex(indexNo);
+        ArrayList<Lesson> lessonList = index.getLessonList();
+        if (lessonList != null){
+            IO.printLessonList(lessonList);
+        } else {
+            System.out.println("Lesson list is empty.");
+        }
+        System.out.println(" ");
+    }
+    
 
-    /** 8.Update Course info */
-    public boolean updateCourseCode(Course course, String newCourseCode) {
-        if (RM.getCourse(newCourseCode) == null) {
+    /** 4.Update Course info */
+    public boolean updateCourseCode(String courseCode, String newCourseCode) {
+    	Course course = RM.getCourse(courseCode);
+        if (!checkCourseExists(newCourseCode)) {
             course.setCourseCode(newCourseCode);
             return true;
         } else {
@@ -192,15 +257,21 @@ public class AdminController {
         }
     }
 
-    public void updateCourseName(Course course, String newName) {
-        	course.setCourseCode(newName);
+    
+    public void updateCourseName(String courseCode, String newName) {
+    	Course course = RM.getCourse(courseCode);
+        course.setCourseName(newName);
     }
 
-    public void updateSubjectType(Course course, String newSubjectType){
+    
+    public void updateSubjectType(String courseCode, String newSubjectType){
+    	Course course = RM.getCourse(courseCode);
         course.setSubjectType(newSubjectType);
     }
 
-    public boolean updateCourseAU(Course course, int newAU){
+    
+    public boolean updateCourseAU(String courseCode, int newAU){
+    	Course course = RM.getCourse(courseCode);
     	if (newAU > 0) {
     		course.setAU(newAU);
     		return true;
@@ -210,14 +281,16 @@ public class AdminController {
     }
 
 
-    public boolean removeCourse(Course course) {
+    public boolean removeCourse(String courseCode) {
+    	Course course = RM.getCourse(courseCode);
     	return RM.removeCourse(course);
     }
 
 
-    /** 10.Update Index info */
-    public boolean updateIndexNo(Index index, String newIndex) {
-    	if (RM.getIndex(newIndex) == null) {
+    /** Update Index info */
+    public boolean updateIndexNo(String indexNo, String newIndex) {
+    	Index index = RM.getIndex(indexNo);
+    	if (!checkIndexExists(newIndex)) {
         	index.setIndex(newIndex);
         	return true;
         } else {
@@ -225,7 +298,9 @@ public class AdminController {
         }
     }
 
-    public boolean updateIndexVac(Index index, int newVacancy) {
+    
+    public boolean updateIndexVac(String indexNo, int newVacancy) {
+    	Index index = RM.getIndex(indexNo);
         if (newVacancy >= 0) {
         	index.setVacancy(newVacancy);
         	return true;
@@ -234,54 +309,95 @@ public class AdminController {
         }
     }
 
-    public boolean removeIndex(Index index) {
+    
+    public boolean removeIndex(String indexNo) {
+    	Index index = RM.getIndex(indexNo);
     	return RM.removeIndex(index);
     }
 
 
-    /** 11.add a student */
-    public int addStudent(String username, String email, String fullName, String gender, String nationality,
-            String matricNum, String faculty, int yearOfStudy) {
-        Faculty fac = RM.getFaculty(faculty);
-        if (RM.getUser(username) != null) {
-            // username exists
-            return 0;
-        } else if (!gender.equalsIgnoreCase("m") && !gender.equalsIgnoreCase("f")) {
-            // invalid gender
-            return -1;
-        } else if (fac == null) {
-            // faculty not found
-            return -2;
-        } else if (yearOfStudy < 1 || yearOfStudy > 4) {
-            // invalid year
-            return -3;
-        } else {
-            Student student = new Student(username, email, fullName, gender, nationality, matricNum, fac, yearOfStudy);
-            try {
-                RM.addUser(student);
-            } catch (Exception e) {
-                e.printStackTrace();
+    /** 5.Check available slot for an index number (vacancy in a class) -wx */
+    public int checkVacancies(String indexCode) {
+        Index index = RM.getIndex(indexCode);
+        return (index != null) ? index.getVacancy() : -1;
+    }
+
+    
+    /** 6. Print student list by index number. -wx */
+    public void printStudentListByIndex(String indexCode) {
+        Index index = RM.getIndex(indexCode);
+        ArrayList<Student> studentList = index.getStudentList();
+        if (index != null) {
+        	IO.printStudentList(studentList);
+        }
+    }
+    
+    
+    /** 7. Print student list by course (all students registered for the selected
+     * course */
+    public void printStudentListByCourse(String courseCode) {
+    	Course course = RM.getCourse(courseCode);
+        ArrayList<Student> studentList = getStudentList(course);
+		if (studentList != null) {
+			IO.printStudentList(studentList);
+		}
+    }
+    
+    
+    /** Get student list from course */
+    private ArrayList<Student> getStudentList(Course course) {
+        ArrayList<Student> studentList = new ArrayList<>();
+        for (Index index : course.getIndexList()) {
+            studentList.addAll(index.getStudentList());
+        }
+        return studentList;
+    }
+    
+    
+    /** 8. change password */
+    public boolean changePassword(String oldPassword, String newPassword) {
+        return LoginManager.changePassword(admin, oldPassword, newPassword);
+    }
+    
+    
+    /** 9.return string matrix for printing all courses and indexes */
+    public String[][] getIndexListFromFacultyForPrinting(String facultyName){
+        Faculty faculty = RM.getFaculty(facultyName);
+
+        ArrayList<ArrayList<String>> temp = new ArrayList<>();
+        if (faculty == null){
+            return new String[0][0];
+        }
+
+        int row = 0;
+        for (Course course : faculty.getCourseList()){
+            for (Index index : course.getIndexList()){
+                ArrayList<String> temp2 = new ArrayList<>();
+                temp2.add(" " + index.getCourseCode() + " ");
+                temp2.add(" " + index.getCourseName() + " ");
+                temp2.add(" " + index.getIndex() + " ");
+                temp.add(temp2);
             }
-            return 1;
+            if (course.getIndexList().size() != 0){
+                row += 1;
+            }
         }
+
+        String[][] res = new String[row+1][3];
+        res[0][0] = " Course Code ";
+        res[0][1] = " Course Name ";
+        res[0][2] = " Index No. ";
+
+        for (int i = 1; i < row + 1; i++){
+            for (int j = 0; j < 3; j++){
+                res[i][j] = temp.get(i-1).get(j);
+            }
+        }
+
+        return res;
     }
 
-    /** 12.Edit student access period */
-    public int editAccessPeriod(Faculty faculty, String startDateTime, String endDateTime) {
-        LocalDateTime start = TimeManager.strToDateTime(startDateTime);
-        LocalDateTime end = TimeManager.strToDateTime(endDateTime);
-        if (start == null || end == null) {
-            // DateTime string not in correct format
-            return 0;
-        } else if (start.isAfter(end) || start.equals(end)) {
-            // start > end
-            return -1;
-        } else {
-            faculty.setRegistrationTime(start, end);
-            return 1;
-        }
-    }
-
+        
     /** Get db info */
     public Dictionary<String, String> getWelcomeInfo() {
         Dictionary<String, String> dbInfo = new Hashtable<>();
@@ -292,8 +408,6 @@ public class AdminController {
         return dbInfo;
     }
 
-    public boolean changePassword(String oldPassword, String newPassword) {
-        return LoginManager.changePassword(admin, oldPassword, newPassword);
-    }
+
 
 }

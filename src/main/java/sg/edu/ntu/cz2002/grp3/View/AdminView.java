@@ -1,14 +1,15 @@
 package sg.edu.ntu.cz2002.grp3.View;
 
 import sg.edu.ntu.cz2002.grp3.Controller.*;
-import sg.edu.ntu.cz2002.grp3.Entity.*;
 import sg.edu.ntu.cz2002.grp3.util.IO;
+import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
 
 public class AdminView implements IView {
 	private final AdminController AC;
+	protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
 
 	public AdminView(AdminController AC) {
 		this.AC = AC;
@@ -18,23 +19,21 @@ public class AdminView implements IView {
     public void adminEditAccessPeriod() {
     	System.out.println("=== Edit Student Access Period ===");
     	String facultyName = IO.getTextInput("Faculty name (SCSE, NBS etc.): ");
-    	Faculty faculty = AC.getFaculty(facultyName);
-    	if (faculty != null) {
-    		try {
-    			String currStart = TimeManager.dateTimeToStr(faculty.getStartDate());
-	    		String currEnd = TimeManager.dateTimeToStr(faculty.getEndDate());
-	    		System.out.println("Current access period for " + facultyName + ": " + currStart + " - " + currEnd);
-    		} catch (NullPointerException e) {
-    			System.out.println("Current access period for " + facultyName + ": None");
-    		}
-    	} else {
-			System.out.println("Faculty not found.");
+    	Dictionary<String, String> faculty = AC.getFacultyPeriod(facultyName);
+    	if (faculty == null) {
+    		System.out.println("Faculty not found.");
 			return;
+    	} else if (faculty.size() > 1) {
+			String currStart = faculty.get("startDate");
+    		String currEnd = faculty.get("endDate");
+    		System.out.println("Current access period for " + facultyName + ": " + currStart + " - " + currEnd);		
+    	} else {
+    		System.out.println("Current access period for " + facultyName + ": None");
     	}
 
     	String startDateTime = IO.getTextInput("New starting date and time (yyyy-MM-dd HH:mm:ss): ");
     	String endDateTime = IO.getTextInput("New ending date and time (yyyy-MM-dd HH:mm:ss): ");
-    	int result = AC.editAccessPeriod(faculty, startDateTime, endDateTime);
+    	int result = AC.editAccessPeriod(facultyName, startDateTime, endDateTime);
 		switch (result) {
 			case 1 -> System.out.println("Access period for " + facultyName + " successfully updated.");
 			case 0 -> System.out.println("Invalid date and time. Please ensure format is strictly followed.");
@@ -57,8 +56,9 @@ public class AdminView implements IView {
 		switch (result) {
 			case 1 -> {
 				System.out.println("Student " + username + " successfully added into system.");
-				adminPrintStudentListAll();
-			}
+				System.out.println("=== All Students ===");
+		    	AC.printAllStudents();
+		    }
 			case 0 -> System.out.println("The username already exists");
 			case -1 -> System.out.println("Invalid gender. Please input either 'M' or 'F'.");
 			case -2 -> System.out.println("Faculty cannot be found.");
@@ -66,37 +66,25 @@ public class AdminView implements IView {
 		}
     }
     
-    /** print full student list */
-    public void adminPrintStudentListAll() {
-    	System.out.println("=== All Students ===");
-        ArrayList<Student> studentList = AC.getAllStudents();
-        if (studentList != null){
-            IO.printStudentList(studentList);
-        } else {
-            System.out.println("Student list is empty.");
-        }
-    }
     
     /** 3.Add course */
     public void adminAddCourse() {
         System.out.println("=== Add a New Course ===");
-        String strFaculty = IO.getTextInput("Faculty name: ");
-        Faculty faculty = AC.getFaculty(strFaculty);
-        if(faculty != null) {
+        String facultyName = IO.getTextInput("Faculty name: ");
+        if(AC.checkFacultyExists(facultyName)) {
         	String courseCode = IO.getTextInput("Course code (e.g. CZ2002): ");
         	String courseName = IO.getTextInput("Course name: ");
         	String subjectType = IO.getTextInput("Subject type (CORE, GERPE-BM, UE, etc.): ");
         	int AU = IO.getIntInput("Number of AUs: ");
-        	int result = AC.addCourse(courseCode, courseName, subjectType, AU, faculty);
+        	int result = AC.addCourse(courseCode, courseName, subjectType, AU, facultyName);
 			switch (result) {
 				case 1 -> {
 					System.out.println("Course " + courseCode + " " + courseName + " successfully added into system.");
 					char choice = IO.getConfInput("Add indexes now? y/n");
 					if (choice == 'Y') {
-						Course course = AC.getCourse(courseCode);
-						adminAddIndex(course);
+						adminAddIndex(courseName);
 					} else {
-						IO.printCourseList(AC.getAllCourses());
+						AC.printAllCourses();
 					}
 				}
 				case 0 -> System.out.println("Course already exists.");
@@ -105,25 +93,24 @@ public class AdminView implements IView {
         } else {
         	System.out.println("Faculty not found!");
         }
-
     }
 
 
     /** add indexes to course */
-    public void adminAddIndex(Course course) {
+    public void adminAddIndex(String courseCode) {
     	System.out.println("=== Add Indexes to Course ===");
     	boolean loop = true;
     	while (loop) {
     		String indexNo = IO.getTextInput("Index (e.g. 200201): ");
     		int slots = IO.getIntInput("Total vacancy: ");
-    		int result = AC.addIndex(indexNo, slots, course);
+    		int result = AC.addIndex(indexNo, slots, courseCode);
 			switch (result) {
 				case 1 -> {
-					System.out.println("Index " + indexNo + " successfully added to course " + course.getCourseName());
-					adminAddLesson(AC.getIndex(indexNo));
+					System.out.println("Index " + indexNo + " successfully added to course " + courseCode);
+					adminAddLesson(indexNo);
 					char choice = IO.getConfInput("Add another index? y/n");
 					if (choice == 'N') {
-						IO.printCourseList(AC.getAllCourses());
+						AC.printAllCourses();
 						loop = false;
 					}
 				}
@@ -134,7 +121,7 @@ public class AdminView implements IView {
     }
 
     /** add lessons to index */
-    public void adminAddLesson(Index index) {
+    public void adminAddLesson(String indexNo) {
     	boolean loop = true;
     	while (loop) {
     		System.out.println("=== Add Lessons to Index ===");
@@ -155,24 +142,24 @@ public class AdminView implements IView {
 			switch (option) {
 				case 1 -> {
 					type = "Lecture";
-					result = AC.addLesson(type, day, start, end, venue, 2, index); //default weekly
+					result = AC.addLesson(type, day, start, end, venue, 2, indexNo); //default weekly
 				}
 				case 2 -> {
 					type = "Lab";
 					int oddEven = IO.getIntInput("0. Even week / 1. Odd week / 2. Every week: ");
-					result = AC.addLesson(type, day, start, end, venue, oddEven, index);
+					result = AC.addLesson(type, day, start, end, venue, oddEven, indexNo);
 				}
 				case 3 -> {
 					type = "Tutorial";
-					result = AC.addLesson(type, day, start, end, venue, 2, index);    //default weekly
+					result = AC.addLesson(type, day, start, end, venue, 2, indexNo);    //default weekly
 				}
 			}
 
 			switch (result) {
 				case 1 -> {
 					System.out.println(type + " on " + TimeManager.numToDay(day) + " " + start + "-" + end
-							+ " successfully added to index " + index.getIndex() + ".");
-					printLessonsInIndex(index);
+							+ " successfully added to index " + indexNo + ".");
+					AC.printLessonsInIndex(indexNo);
 					char choice = IO.getConfInput("Add another lesson? y/n");
 					if (choice == 'N') {
 						loop = false;
@@ -183,38 +170,23 @@ public class AdminView implements IView {
 				case -3 -> System.out.println("Invalid time range.");
 				case -4 -> {
 					System.out.println("Lesson clashes with existing lessons.");
-					printLessonsInIndex(index);
+					AC.printLessonsInIndex(indexNo);
 				}
 			}
     	}
     }
 
-    /** print lessons in index */
-    public void printLessonsInIndex(Index index) {
-    	System.out.println("=== Index " + index.getIndex() + " Lessons ===");
-        ArrayList<Lesson> lessonList = index.getLessonList();
-        if (lessonList != null){
-            IO.printLessonList(lessonList);
-        } else {
-            System.out.println("Lesson list is empty.");
-        }
-        System.out.println(" ");
-    }
 
     /** 4. Update course */
     public void adminUpdateCourse() {
     	System.out.println("=== Update a Course ===");
     	String courseCode = IO.getTextInput("Course code: ");
-    	Course course = AC.getCourse(courseCode);
-    	if (course == null) {
+    	if (!AC.checkCourseExists(courseCode)) {
     		System.out.println("Course not found!");
     		return;
     	}
-    	String courseName = course.getCourseName();
-    	String facultyName = course.getFaculty().getName();
-    	String subType = course.getSubjectType();
-    	int AU = course.getAU();
-
+    	Dictionary<String, String> res = AC.getCourseDetails(courseCode);
+    	
     	ArrayList<String> courseOptions = new ArrayList<>();
     	courseOptions.add("Change course code");
     	courseOptions.add("Change course name");
@@ -225,8 +197,8 @@ public class AdminView implements IView {
     	courseOptions.add("Update indexes (Index no, vacancies, remove)");
     	boolean loop = true;
     	while(loop) {
-        	System.out.println(courseCode + ", " + courseName + ", " + facultyName + ", "
-    				+ subType + ", AU: " + AU);
+        	System.out.println(courseCode + ", " + res.get("courseName") + ", " + res.get("faculty") + ", "
+    				+ res.get("subjectType") + ", AU: " + res.get("AU"));
         	String title = "=== Update " + courseCode + " ===";
             int c = IO.getPrintOptions(title, "Exit", courseOptions);
             switch (c) {
@@ -234,7 +206,7 @@ public class AdminView implements IView {
             		return;
             	case 1:
             		String newCourseCode = IO.getTextInput("New course code: ");
-            		if (AC.updateCourseCode(course, newCourseCode)) {
+            		if (AC.updateCourseCode(courseCode, newCourseCode)) {
             			System.out.println(courseCode + " successfully changed to " + newCourseCode);
             			courseCode = newCourseCode;
             		} else {
@@ -243,34 +215,34 @@ public class AdminView implements IView {
             		break;
             	case 2:
             		String newCourseName = IO.getTextInput("New course name: ");
-            		AC.updateCourseName(course, newCourseName);
-            		System.out.println(courseName + " successfully changed to " + newCourseName);
-            		courseName = newCourseName;
+            		AC.updateCourseName(courseCode, newCourseName);
+            		System.out.println(res.get("courseName") + " successfully changed to " + newCourseName);
+            		res.put("courseName", newCourseName);
             		break;
             	case 3:
             		String newSubType = IO.getTextInput("New subject type: ");
-            		AC.updateCourseName(course, newSubType);
-            		System.out.println(subType + " successfully changed to " + newSubType);
-            		subType = newSubType;
+            		AC.updateCourseName(courseCode, newSubType);
+            		System.out.println(res.get("subjectType") + " successfully changed to " + newSubType);
+            		res.put("subjectType", newSubType);
             		break;
             	case 4:
             		int newAU = IO.getIntInput("New AU: ");
-            		if (AC.updateCourseAU(course, newAU)) {
-            			System.out.println("AU successfully changed from " + AU + " to " + newAU + ".");
-            			AU = newAU;
+            		if (AC.updateCourseAU(courseCode, newAU)) {
+            			System.out.println("AU successfully changed from " + res.get("AU") + " to " + newAU + ".");
+            			res.put("AU", Integer.toString(newAU));
             		} else {
             			System.out.println("AU cannot be less than 1.");
             		}
             		break;
             	case 5:
-            		adminAddIndex(course);
+            		adminAddIndex(courseCode);
             		break;
             	case 6:
             		char confirm = IO.getConfInput("Removal cannot be undone. Are you sure you want to remove course? y/n");
             		if (confirm == 'Y') {
-            			boolean result = AC.removeCourse(course);
+            			boolean result = AC.removeCourse(courseCode);
             			if (result) {
-            				System.out.println(courseName + " has been successfully removed from the database.");
+            				System.out.println(courseCode + " has been successfully removed from the database.");
             				loop = false;
             			} else {
             				System.out.println("Error removing course from the database.");
@@ -281,7 +253,7 @@ public class AdminView implements IView {
             		}
             		break;
             	case 7:
-            		adminUpdateIndex(course);
+            		adminUpdateIndex(courseCode);
             		break;
                 default:
                 	System.out.println("Option not available...");
@@ -291,16 +263,14 @@ public class AdminView implements IView {
     }
 
     /** update indexes */
-    public void adminUpdateIndex(Course course) {
-    	ArrayList<Index> indexList = course.getIndexList();
-    	IO.printIndexList(indexList);
+    public void adminUpdateIndex(String courseCode) {
+    	
     	String indexNo = IO.getTextInput("Enter index: ");
-    	Index index = AC.getIndex(indexNo);
-    	if (index == null) {
+    	if (!AC.checkIndexExists(indexNo)) {
     		System.out.println("Index not found!");
     		return;
     	}
-    	int vacancy = index.getVacancy();
+    	int vacancy = AC.checkVacancies(indexNo);
 
 		ArrayList<String> indexOptions = new ArrayList<>();
 		indexOptions.add("Change index number");
@@ -316,7 +286,7 @@ public class AdminView implements IView {
 	        		return;
 	        	case 1:
 	        		String newIndexNo = IO.getTextInput("New index: ");
-	        		if (AC.updateIndexNo(index, newIndexNo)) {
+	        		if (AC.updateIndexNo(indexNo, newIndexNo)) {
 	        			System.out.println(indexNo + " successfully changed to " + newIndexNo);
 	        			indexNo = newIndexNo;
 	        		} else {
@@ -325,7 +295,7 @@ public class AdminView implements IView {
 	        		break;
 	        	case 2:
 	        		int newVacancy = IO.getIntInput("New vacancy: ");
-	        		if (AC.updateIndexVac(index, newVacancy)) {
+	        		if (AC.updateIndexVac(indexNo, newVacancy)) {
 	        			System.out.println("Vacancy successfully changed from " + vacancy + " to " + newVacancy + ".");
 	        			vacancy = newVacancy;
 	        		} else {
@@ -335,7 +305,7 @@ public class AdminView implements IView {
 	        	case 3:
 	        		char confirm = IO.getConfInput("Removal cannot be undone. Are you sure you want to remove index? y/n");
             		if (confirm == 'Y') {
-            			if (AC.removeIndex(index)) {
+            			if (AC.removeIndex(indexNo)) {
             				System.out.println(indexNo + " has been successfully removed from the course.");
             				loop = false;
             			} else {
@@ -353,7 +323,8 @@ public class AdminView implements IView {
 		}
     }
     
-    /** 4.Check available slot for an index number (vacancy in a class) -wx  */
+    
+    /** 5.Check available slot for an index number (vacancy in a class) -wx  */
     public void adminCheckVacancy(){
         System.out.println("=== Index Vacancy Checker ===");
         String indexCode = IO.getTextInput("Index number: ");
@@ -365,30 +336,36 @@ public class AdminView implements IView {
         }
     }
 
-	/** Print Student List by Index */
+    
+	/** 6.Print Student List by Index */
 	public void adminPrintStudentListByIndex() {
 		System.out.println("=== Student List By Index ===");
 		String indexCode = IO.getTextInput("Index number: ");
-		ArrayList<Student> studentList = AC.getStudentListByIndex(indexCode);
-		if (studentList != null) {
-			IO.printStudentList(studentList);
-		} else {
-			System.out.println("Index not found!");
-		}
+		AC.printStudentListByIndex(indexCode);
 	}
 
-	/** Print student List by Course */
+	
+	/** 7.Print student List by Course */
 	public void adminPrintStudentListByCourse() {
 		System.out.println("=== Student List By Course ===");
 		String courseCode = IO.getTextInput("Course code: ");
-		ArrayList<Student> studentList = AC.getStudentListByCourse(courseCode);
-		if (studentList != null) {
-			IO.printStudentList(studentList);
-		} else {
-			System.out.println("Course not found!");
-		}
+		
 	}
+	
 
+    /** 8.print course list by faculty */
+    public void printCourseListFaculty() {
+    	String facultyName = IO.getTextInput("Enter Faculty: ");
+        String[][] res = AC.getIndexListFromFacultyForPrinting(facultyName);
+        if (res.length != 0) {
+            Printer.print(res);
+        } else {
+            System.out.println("Course list is empty or faculty does not exist");
+        }
+    }
+    
+
+	/** 9.change password */
 	public void changePassword() {
 		System.out.println("=== Change account password (Console required) ===");
 		// need to change to console version later
@@ -403,18 +380,6 @@ public class AdminView implements IView {
 			System.out.println("Old password is incorrect.");
 		}
 	}
-	
-	
-    /** print school course list */
-    public void printCourseListFaculty() {
-    	String facultyName = IO.getTextInput("Enter Faculty: ");
-    	ArrayList<Course> courseList = AC.getFacultyCourses(facultyName);
-        if (courseList != null) {
-            IO.printCourseList(courseList);
-        } else {
-            System.out.println("Course list is empty or faculty does not exist");
-        }
-    }
     
 
 	@Override
