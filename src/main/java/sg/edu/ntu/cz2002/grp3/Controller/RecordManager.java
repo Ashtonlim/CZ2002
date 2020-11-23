@@ -41,15 +41,15 @@ public class RecordManager {
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Course c3 = new Course("NB1001", "Econs", "Core", 3, f2);
-	    Course c4 = new Course("NB1002","Accounting","Core",2, f2);
-	    
+        Course c4 = new Course("NB1002", "Accounting", "Core", 2, f2);
+
         Index i1 = new Index("200201", 10, c1);
         Index i2 = new Index("200202", 10, c1);
-        Index i3 = new Index("200301", 10, c2);
-        Index i4 = new Index("100101",10, c3);
+        Index i3 = new Index("200301", 5, c2);
+        Index i4 = new Index("100101", 10, c3);
         Index i5 = new Index("200302", 10, c2);
-        //c4 does not have index.
-	    
+        // c4 does not have index.
+
         Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
         Lesson lab2002 = new Lesson("lab", 2, 0, "09:30", "11:30", "SPL", i1);
         Lesson lec2002 = new Lesson("lec", 5, 1, "14:30", "15:30", "LT12", i1);
@@ -61,7 +61,7 @@ public class RecordManager {
         Lesson lec2003 = new Lesson("lec", 3, 1, "13:30", "14:30", "LT4", i3);
 
         Lesson tut200302 = new Lesson("tut", 1, 1, "12:30", "13:30", "HWL1", i5);
-	    
+
         facultyList.add(f1);
         facultyList.add(f2);
 
@@ -83,7 +83,7 @@ public class RecordManager {
         students.add(new Student("Tina", "U206@gmail.com", password, "Tina Tan", "F", "SC", "U206", f1, 3, 0));
         students.add(new Student("Jess", "U207@gmail.com", password, "Jess Tan", "F", "SC", "U207", f1, 3, 0));
         students.add(new Student("Claire", "U208@gmail.com", password, "Claire Tan", "F", "SC", "U208", f1, 2, 0));
-	    students.add(new Student("Amy", "U209@gmail.com", password, "Amy Tan", "F", "SC", "U209", f2, 1, 0));
+        students.add(new Student("Amy", "U209@gmail.com", password, "Amy Tan", "F", "SC", "U209", f2, 1, 0));
         students.add(new Student("Helen", "U210@gmail.com", password, "Helen Tan", "F", "SC", "U210", f2, 2, 0));
         students.add(new Student("Monica", "U211@gmail.com", password, "Monica Tan", "F", "SC", "U211", f2, 1, 0));
         admins.add(new Admin("guat", password, "Guat", "M", "SC"));
@@ -93,9 +93,9 @@ public class RecordManager {
 
         i1.addToStudentList((Student) users.get(0));
         i2.addToStudentList((Student) users.get(1));
-        // i3.addToStudentList((Student) users.get(0));
-//        i3.addToStudentList((Student) users.get(1));
-        i3.addToStudentList((Student) users.get(2));
+        i3.addToStudentList((Student) users.get(0));
+        i3.addToStudentList((Student) users.get(1));
+        // i3.addToStudentList((Student) users.get(2));
         i3.addToStudentList((Student) users.get(3));
         i3.addToStudentList((Student) users.get(4));
         i3.addToStudentList((Student) users.get(5));
@@ -104,7 +104,8 @@ public class RecordManager {
         i3.addToStudentList((Student) users.get(8));
         i3.addToStudentList((Student) users.get(9));
         i3.addToStudentList((Student) users.get(10));
-	    
+        i3.addToStudentList((Student) users.get(11));
+
         save();
         System.out.println("Dummy data loaded.");
     }
@@ -155,7 +156,7 @@ public class RecordManager {
         return null;
     }
 
-    public ArrayList<Index> getIndexListByCourse(String couseCode){
+    public ArrayList<Index> getIndexListByCourse(String couseCode) {
         Course course = getCourse(couseCode);
         return (course != null) ? course.getIndexList() : null;
     }
@@ -267,7 +268,7 @@ public class RecordManager {
             if (course.getIndexList().contains(index)) {
                 course.getIndexList().remove(index);
                 return true;
-        }
+            }
         return false;
     }
 
