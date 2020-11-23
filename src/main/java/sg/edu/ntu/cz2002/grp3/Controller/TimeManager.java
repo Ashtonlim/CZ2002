@@ -48,6 +48,11 @@ public class TimeManager {
         }
         return false;
     }
+
+    public static boolean checkValidDate(String dateTime){
+		LocalTime check = strToTime(dateTime);
+		return check.getMinute() == 0 || check.getMinute() == 30;
+	}
     
     /** convert int day to string */
 	public static String numToDay(int dayOfWeek) {

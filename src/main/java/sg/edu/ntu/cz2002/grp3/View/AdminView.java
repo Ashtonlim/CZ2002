@@ -172,6 +172,10 @@ public class AdminView implements IView {
 					System.out.println("Lesson clashes with existing lessons.");
 					AC.printLessonsInIndex(indexNo);
 				}
+				case -5 -> {
+					System.out.println("Invalid time provided, enter time at interval of 30mins only.");
+					System.out.println("Eg. 08:00, 08:30");
+				}
 			}
     	}
     }

@@ -66,7 +66,6 @@ public class StudentController {
         ArrayList<Index> indexList = getVacanciesOfCourse(courseCode);
 
         if (indexList == null) {
-            System.out.println("Course does not exist");
             return new String[0][0];
         }
 
