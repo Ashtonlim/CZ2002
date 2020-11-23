@@ -44,8 +44,9 @@ public class View {
         // Non terminal code, to be changed to terminal version lat
         System.out.println("Current System Time: " + TimeManager.currentDateTimeStr);
         System.out.println("=== User Login ===");
-        String username = View.getTextInput("Username: ");
-        String password = View.getTextInput("Password: ");
+        String username = getTextInput("Username: ");
+        String password = getTextInput("Password: ");
+//        String password = getPassword("Password: ");
         System.out.println("Logging in........");
         User user = LM.login(username, password);
         boolean isAllowed = LM.isWithinPeriod(user);

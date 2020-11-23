@@ -24,9 +24,18 @@ public class AdminView extends View {
     /** 1. Edit student access period  */
     public void adminEditAccessPeriod() {
     	System.out.println("=== Edit Student Access Period ===");
-    	String facultyName = View.getTextInput("Faculty name (EEE, SCSE etc.): ");
-    	String startDateTime = View.getTextInput("Period starting date and time (yyyy-MM-dd HH:mm:ss): ");
-    	String endDateTime = View.getTextInput("Period ending date and time (yyyy-MM-dd HH:mm:ss): ");
+    	String facultyName = View.getTextInput("Faculty name (SCSE, NBS etc.): ");
+    	Faculty faculty = AC.getFaculty(facultyName);
+    	try {
+    		String currStart = TimeManager.dateTimeToStr(faculty.getStartDate());
+    		String currEnd = TimeManager.dateTimeToStr(faculty.getEndDate());
+    		System.out.println("Current access period for " + facultyName + ": " + currStart + " - " + currEnd);
+    	} catch (NullPointerException e) {
+    		System.out.println("Current access period for " + facultyName + ": None");
+    	}
+
+    	String startDateTime = View.getTextInput("New starting date and time (yyyy-MM-dd HH:mm:ss): ");
+    	String endDateTime = View.getTextInput("New ending date and time (yyyy-MM-dd HH:mm:ss): ");
     	int result = AC.editAccessPeriod(facultyName, startDateTime, endDateTime);
     	switch(result) {
     		case 1:
@@ -373,7 +382,7 @@ public class AdminView extends View {
             				System.out.println(indexNo + " has been successfully removed from the course.");
             				loop = false;
             			} else {
-            				System.out.println("Error removing course from the database.");
+            				System.out.println("Error removing index from the database.");
             			}
             		} else {
             			System.out.println("Index removal cancelled.");
