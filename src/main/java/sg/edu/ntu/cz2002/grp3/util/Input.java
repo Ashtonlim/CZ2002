@@ -1,66 +1,17 @@
-package sg.edu.ntu.cz2002.grp3.View;
+package sg.edu.ntu.cz2002.grp3.util;
 
-import sg.edu.ntu.cz2002.grp3.Entity.*;
-import sg.edu.ntu.cz2002.grp3.Controller.MyStarsApp;
 import sg.edu.ntu.cz2002.grp3.Controller.TimeManager;
-import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
-import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
+import sg.edu.ntu.cz2002.grp3.Entity.Course;
+import sg.edu.ntu.cz2002.grp3.Entity.Index;
+import sg.edu.ntu.cz2002.grp3.Entity.Lesson;
+import sg.edu.ntu.cz2002.grp3.Entity.Student;
 
 import java.io.Console;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class View {
-    protected MyStarsApp app;
-    protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
-
-    public View(MyStarsApp app) {
-        this.app = app;
-    }
-
-    /** Common View.View */
-
-    public void renderUserInfo() {
-        System.out.println("Welcome guest! | Account type: Guest.");
-        System.out.println("Please login!");
-    }
-
-    public void renderMainMenu() {
-        System.out.println("Nothing to show here...");
-    }
-
-    /** Landing Page */
-    public void renderStartPage() {
-        ArrayList<String> options = new ArrayList<>();
-        options.add("Login");
-        int choice = View.getPrintOptions("* MyStarsApp *", "Exit Program", options);
-        app.setRunningStatus(choice != 0);
-    }
-
-    /** Login page */
-    public void renderLoginPage() {
-        LoginManager LM = new LoginManager(app.getRM());
-        // Non terminal code, to be changed to terminal version lat
-        System.out.println("Current System Time: " + TimeManager.currentDateTimeStr);
-        System.out.println("=== User Login ===");
-        String username = getTextInput("Username: ");
-        String password = getTextInput("Password: ");
-//        String password = getPassword("Password: ");
-        System.out.println("Logging in........");
-        User user = LM.login(username, password);
-        boolean isAllowed = LM.isWithinPeriod(user);
-        if (user != null && isAllowed) {
-            System.out.println("Login successfully.");
-        } else if (user != null && !isAllowed){
-            System.out.println("Login not allowed outside of access period.");
-            user = null;
-        } else {
-        	System.out.println("Invalid username or password.");
-        }
-        app.setActiveUser(user);
-    }
-
+public class Input {
     /** Static methods */
 
     /** Print the options available and get choice from user */
@@ -89,20 +40,7 @@ public class View {
         return choice;
     }
 
-    public static void changePassword(User user) {
-        System.out.println("=== Change account password (Console required) ===");
-        // need to change to console version later
-        System.out.print("Old ");
-        String oldPassword = View.getPassword("Password: ");
-        System.out.print("New ");
-        String newPassword = View.getPassword("Password: ");
-        boolean result = LoginManager.changePassword(user, oldPassword, newPassword);
-        if (result) {
-            System.out.println("Password successfully changed.");
-        } else {
-            System.out.println("Old password is incorrect.");
-        }
-    }
+
 
     /** Get int input from user */
     public static int getIntInput(String prompt) {
@@ -192,15 +130,15 @@ public class View {
 
     /** print index list */
     public static void printIndexList(ArrayList<Index> indexList) {
-    	if (indexList.size() != 0) {
+        if (indexList.size() != 0) {
             System.out.print("Indexes: | ");
-        	for (int j = 0; j < indexList.size(); j++) {
-            	Index index = indexList.get(j);
-            	System.out.print(index.getIndex() + " | ");
-        	}
-        	System.out.println("");
+            for (int j = 0; j < indexList.size(); j++) {
+                Index index = indexList.get(j);
+                System.out.print(index.getIndex() + " | ");
+            }
+            System.out.println("");
         } else {
-        	System.out.println("None");
+            System.out.println("None");
         }
     }
 
@@ -226,7 +164,7 @@ public class View {
         }
     }
 
-    protected static void pressEnterKeyToGoBack() {
+    public static void pressEnterKeyToGoBack() {
         System.out.println("Press Enter key to go back...");
         try {
             System.in.read();
@@ -234,14 +172,4 @@ public class View {
         }
         ;
     }
-    // public static void main(String[] args){
-    // ArrayList<String> options = new ArrayList<>();
-    //
-    // options.add("option 1");
-    // options.add("option 2");
-    // options.add("option 3");
-    //
-    // System.out.println(getTextInput("What is the name?"));
-    //// System.out.println(getOptions("=== WeiXing ===", options));
-    // }
 }
