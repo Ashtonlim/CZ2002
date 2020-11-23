@@ -99,7 +99,7 @@ public class AdminView implements IView {
 						Course course = AC.getCourse(courseCode);
 						adminAddIndex(course);
 					} else {
-						printCourseListAll();
+						IO.printCourseList(AC.getAllCourses());
 					}
 				}
 				case 0 -> System.out.println("Course already exists.");
@@ -111,16 +111,6 @@ public class AdminView implements IView {
 
     }
 
-    /** print full course list */
-    public void printCourseListAll() {
-    	System.out.println("=== All Courses ===");
-        ArrayList<Course> courseList = AC.getAllCourses();
-        if (courseList != null){
-            IO.printCourseList(courseList);
-        } else {
-            System.out.println("Course list is empty.");
-        }
-    }
 
     /** add indexes to course */
     public void adminAddIndex(Course course) {
@@ -136,7 +126,7 @@ public class AdminView implements IView {
 					adminAddLesson(AC.getIndex(indexNo));
 					char choice = IO.getConfInput("Add another index? y/n");
 					if (choice == 'N') {
-						printCourseListAll();
+						IO.printCourseList(AC.getAllCourses());
 						loop = false;
 					}
 				}
@@ -416,6 +406,19 @@ public class AdminView implements IView {
 			System.out.println("Old password is incorrect.");
 		}
 	}
+	
+	
+    /** print school course list */
+    public void printCourseListFaculty() {
+    	String facultyName = IO.getTextInput("Enter Faculty: ");
+    	ArrayList<Course> courseList = AC.getFacultyCourses(facultyName);
+        if (courseList != null) {
+            IO.printCourseList(courseList);
+        } else {
+            System.out.println("Course list is empty or faculty does not exist");
+        }
+    }
+    
 
 	@Override
 	public void renderStartPage(MyStarsApp app) {
@@ -448,6 +451,7 @@ public class AdminView implements IView {
         adminOptions.add("Print student list by index number.");
         adminOptions.add("Print student list by course (all students registered for the selected course).");
         adminOptions.add("Change password.");
+        adminOptions.add("Print courses from a faculty.");
         while(true){
             int c = IO.getPrintOptions(title, "Logout", adminOptions);
             switch (c) {
@@ -459,6 +463,7 @@ public class AdminView implements IView {
                 case 6 -> adminPrintStudentListByIndex();
                 case 7 -> adminPrintStudentListByCourse();
                 case 8 -> changePassword();
+                case 9 -> printCourseListFaculty();
                 case 0 -> {
                     System.out.println("Logging out...");
                     return;

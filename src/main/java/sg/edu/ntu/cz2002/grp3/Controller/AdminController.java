@@ -52,6 +52,16 @@ public class AdminController {
     public Course getCourse(String courseCode) {
         return RM.getCourse(courseCode);
     }
+    
+    /** get faculty courses */
+    public ArrayList<Course> getFacultyCourses(String facultyName) {
+        Faculty faculty = RM.getFaculty(facultyName);
+        if (faculty != null) {
+        	return faculty.getCourseList();
+        } else {
+        	return null;
+        }
+    } 
 
     /** Get all course list */
     public ArrayList<Course> getAllCourses() {

@@ -287,6 +287,17 @@ public class StudentView implements IView {
             System.out.println("Old password is incorrect.");
         }
     }
+    
+    /** print school course list */
+    public void printCourseListFaculty() {
+    	String facultyName = IO.getTextInput("Enter Faculty: ");
+    	ArrayList<Course> courseList = SC.getFacultyCourses(facultyName);
+        if (courseList != null) {
+            IO.printCourseList(courseList);
+        } else {
+            System.out.println("Course list is empty or faculty does not exist");
+        }
+    }
 
     @Override
     public void renderMainMenu() {
@@ -301,6 +312,7 @@ public class StudentView implements IView {
         studentOptions.add("Swap Index Number with Another Student");
         studentOptions.add("Print Time Table");
         studentOptions.add("Change Password");
+        studentOptions.add("Print courses from a faculty.");
 
         while (true) {
             int c = IO.getPrintOptions(title, "Logout", studentOptions);
@@ -319,6 +331,7 @@ public class StudentView implements IView {
                 }
                 case 7 -> printTimeTable();
                 case 8 -> changePassword();
+                case 9 -> printCourseListFaculty();
                 case 0 -> {
                     System.out.println("Logging out...");
                     return;

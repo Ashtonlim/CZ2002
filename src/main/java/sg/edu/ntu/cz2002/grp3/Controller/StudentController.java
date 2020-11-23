@@ -14,6 +14,16 @@ public class StudentController {
     public ArrayList<Index> getCourseReg(Student student) {
         return student.getIndexList();
     }
+    
+    /** get faculty courses */
+    public ArrayList<Course> getFacultyCourses(String facultyName) {
+        Faculty faculty = RM.getFaculty(facultyName);
+        if (faculty != null) {
+        	return faculty.getCourseList();
+        } else {
+        	return null;
+        }
+    } 
 
     public Index checkValidIndex(String indexCode) {
         ArrayList<Course> courses = RM.getAllCourses();
