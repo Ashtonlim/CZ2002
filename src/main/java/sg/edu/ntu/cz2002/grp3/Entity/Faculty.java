@@ -39,7 +39,7 @@ public class Faculty implements Serializable {
 
 	public void addCourse(Course course) throws IllegalMethodAccessException {
 		//Only callable when instantiating a new course;
-		if (course.hasFaulty()){
+		if (course.hasFaculty()){
 			throw new IllegalMethodAccessException("Directly calling addCourse() from faculty is not allowed.");
 		} else {
 			courseList.add(course);

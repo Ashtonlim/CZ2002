@@ -119,6 +119,14 @@ public class Course implements Serializable {
     	this.subjectType=newSubjectType; 
     }
 
+    /**
+     * Checks whether course has a faculty
+     *
+     * @return true, if faculty exists
+     */
+    public boolean hasFaculty(){
+        return faculty != null;
+    }
 }
 
 
