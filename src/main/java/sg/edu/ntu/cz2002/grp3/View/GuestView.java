@@ -58,7 +58,7 @@ public class GuestView {
         System.out.println("Current System Time: " + TimeManager.currentDateTimeStr);
         System.out.println("=== User Login ===");
         String username = IO.getTextInput("Username: ");
-        String password = IO.getTextInput("Password: ");
+        String password = IO.getPassword("Password: ");
         System.out.println("Logging in........");
         User user = LM.login(username, password);
         boolean isAllowed = LM.isWithinPeriod(user);
