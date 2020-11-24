@@ -13,7 +13,7 @@ import java.util.Dictionary;
  * respective functions in adminController.
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
-public class AdminView implements IView {
+public class AdminView implements UserView {
 	
 	/** The admin controller. */
 	private final AdminController AC;
@@ -191,8 +191,8 @@ public class AdminView implements IView {
 					AC.printLessonsInIndex(indexNo);
 				}
 				case -5 -> {
-					System.out.println("Invalid time provided, enter time at interval of 30mins only.");
-					System.out.println("Eg. 08:00, 08:30");
+					System.out.println("Invalid time provided, must be in 30 minunte blocks.");
+					System.out.println("E.g. 08:00, 08:30");
 				}
 			}
     	}
@@ -399,22 +399,6 @@ public class AdminView implements IView {
 		} else {
 			System.out.println("Old password is incorrect.");
 		}
-	}
-
-	/**
-	 * Render start page.
-	 */
-	@Override
-	public void renderStartPage() {
-		System.out.println("Please Logout first.");
-	}
-
-	/**
-	 * Render login page.
-	 */
-	@Override
-	public void renderLoginPage() {
-		System.out.println("You have already logged-in.");
 	}
 
 	/**

@@ -1,11 +1,7 @@
 package sg.edu.ntu.cz2002.grp3.View;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Interface IView.
- */
-public interface IView {
-    
+public interface UserView {
+	
     /**
      * Render user info.
      */
@@ -20,14 +16,5 @@ public interface IView {
      * Change password.
      */
     void changePassword();
-    
-    /**
-     * Render start page.
-     */
-    void renderStartPage();
-    
-    /**
-     * Render login page.
-     */
-    void renderLoginPage();
+
 }

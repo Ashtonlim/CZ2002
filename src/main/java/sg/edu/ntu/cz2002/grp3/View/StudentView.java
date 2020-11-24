@@ -12,7 +12,7 @@ import java.util.Dictionary;
 /**
  * The Class StudentView.
  */
-public class StudentView implements IView {
+public class StudentView implements UserView {
     
     /** The sc. */
     private final StudentController SC;
@@ -68,7 +68,6 @@ public class StudentView implements IView {
     /**
      *  Print courses registered.
      */
-
     public void printCoursesRegistered() {
         System.out.println("=== Courses Registered ===");
         String[][] res = SC.getProcessedIndexListForPrinting();
@@ -175,22 +174,6 @@ public class StudentView implements IView {
             }
         }
 
-    }
-    
-    /**
-     * Render start page.
-     */
-    @Override
-    public void renderStartPage() {
-        System.out.println("Please Logout first.");
-    }
-
-    /**
-     * Render login page.
-     */
-    @Override
-    public void renderLoginPage() {
-        System.out.println("You have already logged-in.");
     }
 
     /**

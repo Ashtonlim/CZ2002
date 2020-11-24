@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * The Class GuestView.
  */
-public class GuestView implements IView {
+public class GuestView {
     
     /** The rm. */
     RecordManager RM;
@@ -83,25 +83,4 @@ public class GuestView implements IView {
         app.setRunningStatus(choice != 0);
     }
 
-    /**
-     * Render user info.
-     */
-    public void renderUserInfo() {
-        System.out.println("Welcome guest! | Account type: Guest.");
-        System.out.println("Please login!");
-    }
-
-    /**
-     * Render main menu.
-     */
-    public void renderMainMenu() {
-        System.out.println("Nothing to show here, please Login!");
-    }
-
-    /**
-     * Change password.
-     */
-    public void changePassword() {
-        System.out.println("Nothing to show here, please Login!");
-    }
 }

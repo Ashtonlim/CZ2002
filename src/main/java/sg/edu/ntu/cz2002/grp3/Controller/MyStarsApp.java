@@ -44,20 +44,20 @@ public class MyStarsApp {
 
         // Main program
         while (running) {
-            IView activeView = new GuestView(this); // Started with guest view
-            ((GuestView) activeView).renderDummyData(RM); // To be removed in production.
+            GuestView gv = new GuestView(this); // Started with guest view
+            gv.renderDummyData(RM); // To be removed in production.
 
-            activeView.renderStartPage();
+            gv.renderStartPage();
             if (!running) break;
 
-            activeView.renderLoginPage();
+            gv.renderLoginPage();
             if (activeUser == null) continue;
 
-            activeView = (activeUser instanceof Admin) ? new AdminView( new AdminController(RM, (Admin) activeUser) )
+            UserView uv = (activeUser instanceof Admin) ? new AdminView( new AdminController(RM, (Admin) activeUser) )
                     : new StudentView( new StudentController(RM, (Student) activeUser) );
 
-            activeView.renderUserInfo();
-            activeView.renderMainMenu();
+            uv.renderUserInfo();
+            uv.renderMainMenu();
 
             // Save database after logout.
             System.out.println("System: Your data has been saved.");
