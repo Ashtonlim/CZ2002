@@ -12,16 +12,17 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * The Class providing static functions for getting various 
- * user input and printing of lists.
+ * The Class providing static functions for getting various user input and
+ * printing of lists.
+ * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class IO {
 
     /**
-     *  Prints the options available and get choice from user.
+     * Prints the options available and get choice from user.
      *
-     * @param title the title of the menu
+     * @param title   the title of the menu
      * @param endText the text representing the final option
      * @param options the list of options to print
      * @return the user's choice
@@ -52,7 +53,7 @@ public class IO {
     }
 
     /**
-     *  Get an integer input from the user.
+     * Get an integer input from the user.
      *
      * @param prompt the message to prompt
      * @return the user's input
@@ -76,7 +77,7 @@ public class IO {
     }
 
     /**
-     *  Get a string input from the user.
+     * Get a string input from the user.
      *
      * @param prompt the message to prompt
      * @return the user's input
@@ -88,7 +89,7 @@ public class IO {
             try {
                 System.out.println(prompt);
                 input = sc.nextLine();
-                if (input.equals("")){
+                if (input.equals("")) {
                     throw new InputMismatchException();
                 }
                 break;
@@ -102,8 +103,8 @@ public class IO {
     }
 
     /**
-     *  Get yes/no confirmation from user.
-     *  
+     * Get yes/no confirmation from user.
+     * 
      * @param prompt the message to prompt
      * @return the user's input
      */
@@ -124,7 +125,7 @@ public class IO {
     }
 
     /**
-     *  Get password form user with hidden fields.
+     * Get password form user with hidden fields.
      *
      * @param prompt the messageto prompt
      * @return the password
@@ -137,7 +138,7 @@ public class IO {
     }
 
     /**
-     *  Print the details of students in a student list.
+     * Print the details of students in a student list.
      *
      * @param studentList the student list
      */
@@ -151,7 +152,7 @@ public class IO {
     }
 
     /**
-     *  Print the details of courses in a course list.
+     * Print the details of courses in a course list.
      *
      * @param courseList the course list
      */
@@ -159,7 +160,8 @@ public class IO {
         System.out.println("Total Courses: " + courseList.size() + "\n");
         for (int i = 0; i < courseList.size(); i++) {
             Course course = courseList.get(i);
-            System.out.println( (i+1) + ". " + course.getCourseCode() + ", " + course.getCourseName() + ", " + course.getFaculty().getName());
+            System.out.println((i + 1) + ". " + course.getCourseCode() + ", " + course.getCourseName() + ", "
+                    + course.getFaculty().getName());
             ArrayList<Index> indexList = course.getIndexList();
             printIndexList(indexList);
             System.out.println("");
@@ -167,7 +169,7 @@ public class IO {
     }
 
     /**
-     *  Print the indexes in an index list.
+     * Print the indexes in an index list.
      *
      * @param indexList the index list
      */
@@ -185,7 +187,7 @@ public class IO {
     }
 
     /**
-     *  Print the details of lessons in a lesson list.
+     * Print the details of lessons in a lesson list.
      *
      * @param lessonList the lesson list
      */

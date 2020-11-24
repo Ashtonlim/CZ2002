@@ -19,13 +19,14 @@ public class RecordManager {
     private ArrayList<Faculty> facultyList;
 
     /**
-     * Instantiates a new record manager.
+     * Instantiates a new record manager with all the required data. Note that data
+     * lives within the hierachy of arrays.
      */
     public RecordManager() {
         try {
             ArrayList<?> db = FileManager.readSerializedObject(); // [0] -> Users, [1] -> Faculties
-            users = (ArrayList<User>) db.get(0); // Safe cast, checked in Controller.FileManager
-            facultyList = (ArrayList<Faculty>) db.get(1); // Safe cast, checked in Controller.FileManager
+            users = (ArrayList<User>) db.get(0);
+            facultyList = (ArrayList<Faculty>) db.get(1);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             System.out.println("Unable to get data from database, loading empty db. You should load dummy data once.");

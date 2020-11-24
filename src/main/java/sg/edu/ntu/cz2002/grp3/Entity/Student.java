@@ -17,7 +17,7 @@ public class Student extends User implements Serializable {
      * Used for versioning when serializing. Not necessary but added to remove
      * warning
      */
-    private static final long serialVersionID = 5384355877278730456L;
+    private static final long serialVersionUID = 7661529072599104428L;
 
     /** The matriculation number. */
     private final String matricNum;

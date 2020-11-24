@@ -16,7 +16,8 @@ public class NotificationManager {
     private static final ArrayList<INotification> queue = new ArrayList<>();
 
     /**
-     * Send notification.
+     * Send notification by taking in a notification object of some type e.g. Email,
+     * SMS, etc.
      *
      * @param notification the notification
      */

@@ -32,6 +32,14 @@ public class Admin extends User implements Serializable {
      */
     public Admin(int staffID, String username, String password, String fullName, String gender, String nationality) {
         super(username, password, fullName, gender, nationality);
+        this.setStaffID(staffID);
+    }
+
+    public int getStaffID() {
+        return staffID;
+    }
+
+    public void setStaffID(int staffID) {
         this.staffID = staffID;
     }
 

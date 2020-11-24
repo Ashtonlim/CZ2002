@@ -71,13 +71,14 @@ public class Index implements Serializable {
             return false;
         }
 
-        this.vacancy = vacancy;
-
-        // decrease vacancy
+        // if increasing vacancy, add students from waitlist to student list
         if (this.vacancy < vacancy) {
+            this.vacancy = vacancy;
             waitlistToStudentList();
+            return true;
         }
 
+        this.vacancy = vacancy;
         return true;
     }
 
