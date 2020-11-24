@@ -174,7 +174,7 @@ public class AdminController {
     public int addLesson(String type, int day, String start, String end, String venue, int oddEven, String indexNo) {
     	Index index = RM.getIndex(indexNo);
 
-    	if (TimeManager.checkValidDate(start) || TimeManager.checkValidDate(end)){
+    	if (!TimeManager.checkValidTimeInterval(start) || !TimeManager.checkValidTimeInterval(end)){
     	    return -5;
         }
         if (day < 1 || day > 6) {
@@ -222,7 +222,7 @@ public class AdminController {
         boolean isClash = false;
         for (Lesson tempLesson : index.getLessonList()) {
             if (day == tempLesson.getDayOfWeek()) {
-                if (oddEven == tempLesson.getOddEvenWeek()) {
+                if (oddEven == tempLesson.getWeekType()) {
                     LocalTime startLT = TimeManager.strToTime(start);
                     LocalTime endLT = TimeManager.strToTime(end);
                     LocalTime startTemp = tempLesson.getStartTime();

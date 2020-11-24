@@ -4,17 +4,38 @@ import java.util.ArrayList;
 
 import sg.edu.ntu.cz2002.grp3.Entity.notification.INotification;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NotificationManager.
+ */
 public class NotificationManager {
+    
+    /** The Constant queue. */
     private static final ArrayList<INotification> queue = new ArrayList<>();
 
+    /**
+     * Send notification.
+     *
+     * @param notification the notification
+     */
     public static void sendNotification(INotification notification){
         notification.send();
     }
 
+    /**
+     * Adds the to queue.
+     *
+     * @param notification the notification
+     */
     public static void addToQueue(INotification notification){
         queue.add(notification);
     }
 
+    /**
+     * Send queue.
+     *
+     * @param number the number
+     */
     public static void sendQueue(int number){
         if (number == 0){
             number = queue.size();

@@ -7,20 +7,42 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * The Class TimeTable.
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
+ */
 public class TimeTable implements Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = -282722565573449812L;
+    
+    /** The odd week. */
     private final Lesson[][] oddWeek;
+    
+    /** The even week. */
     private final Lesson[][] evenWeek;
+    
+    /** The row. */
     private final int row = 32;
+    
+    /** The col. */
     private final int col = 6;
 
+    /**
+     * Instantiates a new time table.
+     */
     public TimeTable() {
         // 32 * 6 matrix timetable (1 row is 30 mins)
         this.oddWeek = new Lesson[row][col];
         this.evenWeek = new Lesson[row][col];
     }
 
+    /**
+     * Adds the index.
+     *
+     * @param index the index
+     * @return true, if successful
+     */
     public boolean addIndex(Index index) {
         if (checkClash(index))
             return false;
@@ -32,6 +54,12 @@ public class TimeTable implements Serializable {
         return true;
     }
 
+    /**
+     * Removes the index.
+     *
+     * @param index the index
+     * @return true, if successful
+     */
     public boolean removeIndex(Index index) {
         if (checkClash(index)) {
             for (Lesson lesson : index.getLessonList()) {
@@ -44,6 +72,11 @@ public class TimeTable implements Serializable {
 
     }
 
+    /**
+     * Adds the to time table.
+     *
+     * @param lesson the lesson
+     */
     private void addToTimeTable(Lesson lesson) {
         int evenOddWeek = lesson.getWeekType();
         int dayOfWeek = lesson.getDayOfWeek();
@@ -66,6 +99,11 @@ public class TimeTable implements Serializable {
         }
     }
 
+    /**
+     * Removes the from time table.
+     *
+     * @param lesson the lesson
+     */
     private void removeFromTimeTable(Lesson lesson) {
         int evenOddWeek = lesson.getWeekType();
         int dayOfWeek = lesson.getDayOfWeek();
@@ -86,6 +124,12 @@ public class TimeTable implements Serializable {
         }
     }
 
+    /**
+     * Check clash.
+     *
+     * @param index the index
+     * @return true, if successful
+     */
     public boolean checkClash(Index index) {
         LocalTime startTime, endTime;
         int evenOddWeek, dayOfWeek, slotNo, weight;
@@ -114,6 +158,15 @@ public class TimeTable implements Serializable {
         return false;
     }
 
+    /**
+     * Check clash.
+     *
+     * @param dayOfWeek the day of week
+     * @param slotNo the slot no
+     * @param weight the weight
+     * @param temp the temp
+     * @return true, if successful
+     */
     private static boolean checkClash(int dayOfWeek, int slotNo, int weight, Lesson[][] temp) {
         for (int i = 0; i < weight; i++) {
             if (temp[slotNo + i][dayOfWeek] != null)
@@ -122,6 +175,14 @@ public class TimeTable implements Serializable {
         return false;
     }
 
+    /**
+     * Cal weight.
+     *
+     * @param startTime the start time
+     * @param endTime the end time
+     * @return the int
+     * @throws Exception the exception
+     */
     private static int calWeight(LocalTime startTime, LocalTime endTime) throws Exception {
         if ((startTime.getMinute() != 0 && startTime.getMinute() != 30)
                 || (endTime.getMinute() != 0 && endTime.getMinute() != 30)) {
@@ -131,6 +192,13 @@ public class TimeTable implements Serializable {
         return (int) (duration.toMinutes() / 30);
     }
 
+    /**
+     * Time to slot no.
+     *
+     * @param startTime the start time
+     * @return the int
+     * @throws Exception the exception
+     */
     private static int timeToSlotNo(LocalTime startTime) throws Exception {
         if (startTime.getMinute() != 0 && startTime.getMinute() != 30) {
             throw new Exception("Critical - Invalid time format for index");
@@ -143,14 +211,29 @@ public class TimeTable implements Serializable {
         return slotNo;
     }
 
+    /**
+     * Gets the even week.
+     *
+     * @return the even week
+     */
     public Lesson[][] getEvenWeek() {
         return evenWeek;
     }
 
+    /**
+     * Gets the odd week.
+     *
+     * @return the odd week
+     */
     public Lesson[][] getOddWeek() {
         return oddWeek;
     }
 
+    /**
+     * Gets the index list.
+     *
+     * @return the index list
+     */
     public ArrayList<Index> getIndexList() {
         ArrayList<Index> indexList = new ArrayList<>();
         for (int i = 0; i < row; i++) {
@@ -170,6 +253,12 @@ public class TimeTable implements Serializable {
         return indexList;
     }
 
+    /**
+     * Process time table.
+     *
+     * @param oddEven the odd even
+     * @return the string[][]
+     */
     public String[][] processTimeTable(int oddEven) {
         Lesson[][] timeTable;
 

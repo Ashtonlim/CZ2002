@@ -9,13 +9,33 @@ import sg.edu.ntu.cz2002.grp3.util.IO;
 
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GuestView.
+ */
 public class GuestView implements IView {
+    
+    /** The rm. */
     RecordManager RM;
+    
+    /** The app. */
     MyStarsApp app;
+    
+    /**
+     * Instantiates a new guest view.
+     *
+     * @param app the app
+     */
     public GuestView(MyStarsApp app){
         this.app = app;
         this.RM = app.getRM();
     }
+    
+    /**
+     * Render dummy data.
+     *
+     * @param RM the rm
+     */
     public void renderDummyData(RecordManager RM){
         // Load dummy data
         ArrayList<String> options = new ArrayList<>();
@@ -29,7 +49,9 @@ public class GuestView implements IView {
         // End of load dummy data
     }
 
-    /** Login page */
+    /**
+     *  Login page.
+     */
     public void renderLoginPage() {
         LoginManager LM = new LoginManager(RM);
         // Non terminal code, to be changed to terminal version lat
@@ -51,7 +73,9 @@ public class GuestView implements IView {
         app.setActiveUser(user);
     }
 
-    /** Landing Page */
+    /**
+     *  Landing Page.
+     */
     public void renderStartPage() {
         ArrayList<String> options = new ArrayList<>();
         options.add("Login");
@@ -59,15 +83,24 @@ public class GuestView implements IView {
         app.setRunningStatus(choice != 0);
     }
 
+    /**
+     * Render user info.
+     */
     public void renderUserInfo() {
         System.out.println("Welcome guest! | Account type: Guest.");
         System.out.println("Please login!");
     }
 
+    /**
+     * Render main menu.
+     */
     public void renderMainMenu() {
         System.out.println("Nothing to show here, please Login!");
     }
 
+    /**
+     * Change password.
+     */
     public void changePassword() {
         System.out.println("Nothing to show here, please Login!");
     }

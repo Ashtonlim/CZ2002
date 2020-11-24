@@ -5,10 +5,21 @@ import sg.edu.ntu.cz2002.grp3.Entity.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RecordManager.
+ */
 public class RecordManager {
+    
+    /** The users. */
     private ArrayList<User> users;
+    
+    /** The faculty list. */
     private ArrayList<Faculty> facultyList;
 
+    /**
+     * Instantiates a new record manager.
+     */
     public RecordManager() {
         try {
             ArrayList<?> db = FileManager.readSerializedObject(); // [0] -> Users, [1] -> Faculties
@@ -25,6 +36,8 @@ public class RecordManager {
     /**
      * One-click dummy data importer After running this function, you need to copy
      * the database file(target/classes/db/database) from production folder to main.
+     *
+     * @throws Exception the exception
      */
     public void loadDummyData() throws Exception {
         users = new ArrayList<>();
@@ -110,7 +123,12 @@ public class RecordManager {
         System.out.println("Dummy data loaded.");
     }
 
-    /** get faculty by facultyName */
+    /**
+     *  get faculty by facultyName.
+     *
+     * @param facultyName the faculty name
+     * @return the faculty
+     */
     public Faculty getFaculty(String facultyName) {
 
         for (Faculty faculty : facultyList) {
@@ -122,11 +140,21 @@ public class RecordManager {
         return null;
     }
 
+    /**
+     * Gets the all faculties.
+     *
+     * @return the all faculties
+     */
     public ArrayList<Faculty> getAllFaculties() {
         return facultyList;
     }
 
-    /** get course by course code */
+    /**
+     *  get course by course code.
+     *
+     * @param courseCode the course code
+     * @return the course
+     */
     public Course getCourse(String courseCode) {
 
         for (Faculty faculty : facultyList) {
@@ -141,7 +169,12 @@ public class RecordManager {
         return null;
     }
 
-    /** get index by index number */
+    /**
+     *  get index by index number.
+     *
+     * @param index the index
+     * @return the index
+     */
     public Index getIndex(String index) {
 
         for (Course tempCourse : getAllCourses()) {
@@ -156,7 +189,11 @@ public class RecordManager {
         return null;
     }
 
-    /** return all courses */
+    /**
+     *  return all courses.
+     *
+     * @return the all courses
+     */
     public ArrayList<Course> getAllCourses() {
         ArrayList<Course> temp = new ArrayList<>();
 
@@ -167,7 +204,12 @@ public class RecordManager {
         return temp;
     }
 
-    /** search a user by username */
+    /**
+     *  search a user by username.
+     *
+     * @param username the username
+     * @return the user
+     */
     public User getUser(String username) {
         User user = null;
 
@@ -182,6 +224,12 @@ public class RecordManager {
         return user;
     }
 
+    /**
+     * Gets the student.
+     *
+     * @param matricNum the matric num
+     * @return the student
+     */
     public Student getStudent(String matricNum) {
         for (Student student : getAllStudents()) {
             if (student.getMatricNum().equals(matricNum)) {
@@ -191,7 +239,11 @@ public class RecordManager {
         return null;
     }
 
-    /** return all students */
+    /**
+     *  return all students.
+     *
+     * @return the all students
+     */
     public ArrayList<Student> getAllStudents() {
         ArrayList<Student> temp = new ArrayList<>();
         for (User user : users) {
@@ -202,7 +254,12 @@ public class RecordManager {
         return temp;
     }
 
-    /** Add user */
+    /**
+     *  Add user.
+     *
+     * @param user the user
+     * @return true, if successful
+     */
     public boolean addUser(User user) {
 
         for (User temp : this.users) {
@@ -215,7 +272,12 @@ public class RecordManager {
         return true;
     }
 
-    /** Remove course */
+    /**
+     *  Remove course.
+     *
+     * @param course the course
+     * @return true, if successful
+     */
     public boolean removeCourse(Course course) {
 
         for (Faculty faculty : facultyList) {
@@ -229,7 +291,12 @@ public class RecordManager {
         return false;
     }
 
-    /** Remove index */
+    /**
+     *  Remove index.
+     *
+     * @param index the index
+     * @return true, if successful
+     */
     public boolean removeIndex(Index index) {
         for (Course course : getAllCourses())
             if (course.getIndexList().contains(index)) {
@@ -239,6 +306,9 @@ public class RecordManager {
         return false;
     }
 
+    /**
+     * Save.
+     */
     public void save() {
         ArrayList<Object> temp = new ArrayList<>();
         temp.add(users);

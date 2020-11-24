@@ -6,17 +6,35 @@ import sg.edu.ntu.cz2002.grp3.Entity.Admin;
 import sg.edu.ntu.cz2002.grp3.Entity.Student;
 import sg.edu.ntu.cz2002.grp3.Entity.User;
 
+// TODO: Auto-generated Javadoc
 // import java.util.*;
 
+/**
+ * The Class MyStarsApp.
+ */
 public class MyStarsApp {
+    
+    /** The rm. */
     private final RecordManager RM;
+    
+    /** The active user. */
     private User activeUser;
+    
+    /** The running. */
     private boolean running;
 
+    /**
+     * Instantiates a new my stars app.
+     */
     public MyStarsApp() {
         RM = new RecordManager();
     }
 
+    /**
+     * Start.
+     *
+     * @throws Exception the exception
+     */
     public void start() throws Exception {
         // Uncomment to send a test email when the application starts up
         // Email.sendMail("mystaroodp@gmail.com", "Waitlist Notification", "Congrats,
@@ -48,14 +66,29 @@ public class MyStarsApp {
         }
     }
 
+    /**
+     * Sets the running status.
+     *
+     * @param running the new running status
+     */
     public void setRunningStatus(boolean running) {
         this.running = running;
     }
 
+    /**
+     * Sets the active user.
+     *
+     * @param activeUser the new active user
+     */
     public void setActiveUser(User activeUser) {
         this.activeUser = activeUser;
     }
 
+    /**
+     * Gets the rm.
+     *
+     * @return the rm
+     */
     public RecordManager getRM(){
         return RM;
     }

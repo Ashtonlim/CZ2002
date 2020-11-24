@@ -11,9 +11,19 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EmailNotification.
+ */
 public class EmailNotification implements INotification {
+    
+    /** The usr. */
     private static String usr = "oopmystarapp@gmail.com";
+    
+    /** The pwd. */
     private static String pwd = "myStarApp1";
+    
+    /** The Constant props. */
     private static final Properties props;
     static {
         props = new Properties();
@@ -22,16 +32,34 @@ public class EmailNotification implements INotification {
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
     }
+    
+    /** The to. */
     private final String to;
+    
+    /** The subject. */
     private final String subject;
+    
+    /** The body. */
     private final String body;
 
+    /**
+     * Instantiates a new email notification.
+     *
+     * @param to the to
+     * @param subject the subject
+     * @param body the body
+     */
     public EmailNotification(String to, String subject, String body){
         this.to = to;
         this.subject = subject;
         this.body = body;
     }
 
+    /**
+     * Send.
+     *
+     * @return true, if successful
+     */
     @Override
     public boolean send() {
         if (sendMail(to, subject, body)) {
@@ -43,6 +71,14 @@ public class EmailNotification implements INotification {
         return false;
     }
 
+    /**
+     * Notify all email.
+     *
+     * @param tos the tos
+     * @param subjects the subjects
+     * @param bodys the bodys
+     * @return true, if successful
+     */
     private static boolean notifyAllEmail(ArrayList<String> tos, ArrayList<String> subjects, ArrayList<String> bodys) {
         if (tos.size() == subjects.size() && tos.size() == bodys.size()) {
             for (int i = 0; i < tos.size(); i++) {
@@ -58,19 +94,43 @@ public class EmailNotification implements INotification {
         return false;
     }
 
+    /**
+     * Sets the usr.
+     *
+     * @param usr the new usr
+     */
     public static void setUsr(String usr) {
         EmailNotification.usr = usr;
     }
 
+    /**
+     * Sets the pwd.
+     *
+     * @param pwd the new pwd
+     */
     public static void setPwd(String pwd) {
         EmailNotification.pwd = pwd;
     }
 
+    /**
+     * Sets the from.
+     *
+     * @param usr the usr
+     * @param pwd the pwd
+     */
     public static void setFrom(String usr, String pwd) {
         setUsr(usr);
         setPwd(pwd);
     }
 
+    /**
+     * Send mail.
+     *
+     * @param to the to
+     * @param subject the subject
+     * @param body the body
+     * @return true, if successful
+     */
     private static boolean sendMail(String to, String subject, String body) {
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {

@@ -7,10 +7,23 @@ import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 import java.util.ArrayList;
 import java.util.Dictionary;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AdminView.
+ */
 public class AdminView implements IView {
+	
+	/** The ac. */
 	private final AdminController AC;
+	
+	/** The Printer. */
 	protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
 
+	/**
+	 * Instantiates a new admin view.
+	 *
+	 * @param AC the ac
+	 */
 	public AdminView(AdminController AC) {
 		this.AC = AC;
 	}
@@ -96,7 +109,11 @@ public class AdminView implements IView {
     }
 
 
-    /** add indexes to course */
+    /**
+     *  add indexes to course.
+     *
+     * @param courseCode the course code
+     */
     public void adminAddIndex(String courseCode) {
     	System.out.println("=== Add Indexes to Course ===");
     	boolean loop = true;
@@ -120,7 +137,11 @@ public class AdminView implements IView {
     	}
     }
 
-    /** add lessons to index */
+    /**
+     *  add lessons to index.
+     *
+     * @param indexNo the index no
+     */
     public void adminAddLesson(String indexNo) {
     	boolean loop = true;
     	while (loop) {
@@ -266,7 +287,11 @@ public class AdminView implements IView {
     	}
     }
 
-    /** update indexes */
+    /**
+     *  update indexes.
+     *
+     * @param courseCode the course code
+     */
     public void adminUpdateIndex(String courseCode) {
     	
     	String indexNo = IO.getTextInput("Enter index: ");
@@ -388,16 +413,25 @@ public class AdminView implements IView {
 	}
     
 
+	/**
+	 * Render start page.
+	 */
 	@Override
 	public void renderStartPage() {
 		System.out.println("Please Logout first.");
 	}
 
+	/**
+	 * Render login page.
+	 */
 	@Override
 	public void renderLoginPage() {
 		System.out.println("You have already logged-in.");
 	}
 
+	/**
+	 * Render user info.
+	 */
 	@Override
 	public void renderUserInfo() {
 
@@ -407,6 +441,9 @@ public class AdminView implements IView {
 				+ " students and " + info.get("courseSize") + " courses in the system.");
 	}
 
+	/**
+	 * Render main menu.
+	 */
 	@Override
     public void renderMainMenu() {
         //Construct menu

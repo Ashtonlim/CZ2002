@@ -8,11 +8,24 @@ import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 import java.util.ArrayList;
 import java.util.Dictionary;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StudentView.
+ */
 public class StudentView implements IView {
+    
+    /** The sc. */
     private final StudentController SC;
+    
+    /** The Printer. */
     protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
 
 
+    /**
+     * Instantiates a new student view.
+     *
+     * @param SC the sc
+     */
     public StudentView(StudentController SC) {
         this.SC = SC;
     }
@@ -52,7 +65,9 @@ public class StudentView implements IView {
         System.out.println(options.get(choice1 - 1) + " dropped.");
     }
 
-    /** Print courses registered */
+    /**
+     *  Print courses registered.
+     */
 
     public void printCoursesRegistered() {
         System.out.println("=== Courses Registered ===");
@@ -161,16 +176,26 @@ public class StudentView implements IView {
         }
 
     }
+    
+    /**
+     * Render start page.
+     */
     @Override
     public void renderStartPage() {
         System.out.println("Please Logout first.");
     }
 
+    /**
+     * Render login page.
+     */
     @Override
     public void renderLoginPage() {
         System.out.println("You have already logged-in.");
     }
 
+    /**
+     * Render user info.
+     */
     @Override
     public void renderUserInfo() {
         Dictionary<String, String> res = SC.getStudentDetails();
@@ -179,6 +204,9 @@ public class StudentView implements IView {
                 + " | Number of Registered Courses: " + res.get("courses"));
     }
 
+    /**
+     * Change password.
+     */
     public void changePassword() {
         System.out.println("=== Change account password (Console required) ===");
         // need to change to console version later
@@ -194,7 +222,9 @@ public class StudentView implements IView {
         }
     }
     
-    /** print school course list */
+    /**
+     *  print school course list.
+     */
     public void printCourseListFaculty() {
     	String facultyName = IO.getTextInput("Enter Faculty: ");
         String[][] res = SC.getIndexListFromFacultyForPrinting(facultyName);
@@ -205,6 +235,9 @@ public class StudentView implements IView {
         }
     }
 
+    /**
+     * Render main menu.
+     */
     @Override
     public void renderMainMenu() {
         // Construct menu

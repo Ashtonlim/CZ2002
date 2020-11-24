@@ -5,9 +5,15 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+// TODO: Auto-generated Javadoc
 // Note : When structure of the Object type (the class file) in the list changed
+/**
+ * The Class FileManager.
+ */
 // the Serialized file may fail.
 public class FileManager {
+    
+    /** The DB path. */
     private static String DBPath;
     static {
 
@@ -19,6 +25,12 @@ public class FileManager {
 
     }
 
+    /**
+     * Read serialized object.
+     *
+     * @return the array list
+     * @throws Exception the exception
+     */
     public static ArrayList<?> readSerializedObject() throws Exception{
         ArrayList<?> read = new ArrayList<Object>();
         System.out.println(DBPath);
@@ -34,6 +46,11 @@ public class FileManager {
 
     }
 
+    /**
+     * Write serialized object.
+     *
+     * @param list the list
+     */
     public static void writeSerializedObject(ArrayList<Object> list) {
 
         try {
@@ -46,7 +63,13 @@ public class FileManager {
         }
     }
 
-    /** Get absolute path. */
+    /**
+     *  Get absolute path.
+     *
+     * @param filename the filename
+     * @return the file path
+     * @throws Exception the exception
+     */
     public static String getFilePath(String filename) throws Exception {
 
         URL res = new Object() {
@@ -61,6 +84,12 @@ public class FileManager {
 
     }
 
+    /**
+     * Load users.
+     *
+     * @param temp the temp
+     * @return the array list
+     */
     public static ArrayList<User> loadUsers(ArrayList<Object> temp) {
         ArrayList<User> list = new ArrayList<User>();
         try {
@@ -77,6 +106,12 @@ public class FileManager {
         return list;
     }
 
+    /**
+     * Load faculties.
+     *
+     * @param temp the temp
+     * @return the array list
+     */
     public ArrayList<Faculty> loadFaculties(ArrayList<Faculty> temp) {
         ArrayList<Faculty> list = new ArrayList<Faculty>();
         try {
