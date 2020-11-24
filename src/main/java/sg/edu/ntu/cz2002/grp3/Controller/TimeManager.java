@@ -92,15 +92,19 @@ public class TimeManager {
 	/**
 	 * Check whether a time is in interval of 30 min.
 	 *
-	 * @param dateTime the date time
+	 * @param time the date time
 	 * @return true, if time interval is valid
 	 */
 	public static boolean checkValidTimeInterval(String time) {
-		LocalTime check = strToTime(time);
-		if (check.getMinute() != 0 && check.getMinute() != 30) {
+		try {
+			LocalTime check = strToTime(time);
+			if (check.getMinute() != 0 && check.getMinute() != 30) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception ignored){
 			return false;
-		} else {
-			return true;
 		}
 	}
 
