@@ -42,7 +42,7 @@ public class StudentView implements IView {
                 printCoursesRegistered();
             }
             case -11 -> System.out.println("Already registered index: " + indexCode);
-            case -12 -> System.out.println("You already have an index under this course.");
+            case -22 -> System.out.println("You already have an index under this course.");
             case -13 -> System.out.println("The index does not have a vacancy. Adding you to waitlist instead...");
             case -14 -> System.out.println("This index clashes with your timetable.");
             case -20 -> System.out.println("Invalid Index");

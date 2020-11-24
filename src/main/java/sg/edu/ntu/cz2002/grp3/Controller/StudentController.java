@@ -57,8 +57,8 @@ public class StudentController {
             return -20;
         }
 
-        if (student.hasIndex(index)){
-            return -12;
+        if (student.hasCourse(index.getCourseCode())) {
+            return -22;
         }
 
         return index.addToStudentList(student);
