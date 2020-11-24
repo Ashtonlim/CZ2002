@@ -55,13 +55,15 @@ public class RecordManager {
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Course c3 = new Course("NB1001", "Econs", "Core", 3, f2);
         Course c4 = new Course("NB1002", "Accounting", "Core", 2, f2);
-
+        Course c5  = new Course("NB1003", "Finance", "Core", 2, f2);
+        
         Index i1 = new Index("200201", 10, c1);
         Index i2 = new Index("200202", 10, c1);
         Index i3 = new Index("200301", 10, c2);
         Index i4 = new Index("100101", 10, c3);
         Index i5 = new Index("200302", 10, c2);
         Index i6 = new Index("100102", 10, c3);
+        Index i7 = new Index("100301", 10, c5);
         // c4 does not have index.
 
         Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
