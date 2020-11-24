@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import sg.edu.ntu.cz2002.grp3.Entity.notification.INotification;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class NotificationManager.
+ * The Class NotificationManager is an abstraction for the notification
+ * packages.
+ * 
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class NotificationManager {
-    
+
     /** The Constant queue. */
     private static final ArrayList<INotification> queue = new ArrayList<>();
 
@@ -18,7 +20,7 @@ public class NotificationManager {
      *
      * @param notification the notification
      */
-    public static void sendNotification(INotification notification){
+    public static void sendNotification(INotification notification) {
         notification.send();
     }
 
@@ -27,7 +29,7 @@ public class NotificationManager {
      *
      * @param notification the notification
      */
-    public static void addToQueue(INotification notification){
+    public static void addToQueue(INotification notification) {
         queue.add(notification);
     }
 
@@ -36,15 +38,15 @@ public class NotificationManager {
      *
      * @param number the number
      */
-    public static void sendQueue(int number){
-        if (number == 0){
+    public static void sendQueue(int number) {
+        if (number == 0) {
             number = queue.size();
         } else if (number > queue.size()) {
             number = queue.size();
         }
 
-        for (int i = 0; i < number; i++){
-            sendNotification( queue.remove(0) );
+        for (int i = 0; i < number; i++) {
+            sendNotification(queue.remove(0));
         }
     }
 

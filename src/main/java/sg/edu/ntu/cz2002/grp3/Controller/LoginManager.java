@@ -9,14 +9,15 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * The Class for handling login related functions.
+ * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class LoginManager {
-	
+
 	/** The Record Manager for accessing database. */
 	private final RecordManager RM;
 
-	/**  default password for when new account is created by admin. */
+	/** default password for when new account is created by admin. */
 	public static String defPassword = generateHash("p@ssw0rd!");
 
 	public LoginManager(RecordManager RM) {
@@ -24,9 +25,8 @@ public class LoginManager {
 	}
 
 	/**
-	 * Retrieves user from database and verifies 
-	 * username and password. Returns null if user 
-	 * does not exist or password does not match.
+	 * Retrieves user from database and verifies username and password. Returns null
+	 * if user does not exist or password does not match.
 	 *
 	 * @param username the username
 	 * @param password the password
@@ -39,12 +39,11 @@ public class LoginManager {
 		boolean authenticated = verifyLogin(user, password);
 		return (authenticated) ? user : null;
 	}
-	
 
 	/**
 	 * Verify input password against user's password
 	 *
-	 * @param user the user
+	 * @param user     the user
 	 * @param password the password
 	 * @return true, if successful
 	 */
@@ -64,7 +63,7 @@ public class LoginManager {
 	}
 
 	/**
-	 *  Check if login is within access period if user is student.
+	 * Check if login is within access period if user is student.
 	 *
 	 * @param user the user
 	 * @return true, if it is within access period
@@ -73,8 +72,8 @@ public class LoginManager {
 
 		if (user instanceof Student) {
 			Student student = (Student) user;
-			Faculty faculty = RM.getFaculty( student.getFacultyName() );
-			if (faculty.getStartDate() == null){
+			Faculty faculty = RM.getFaculty(student.getFacultyName());
+			if (faculty.getStartDate() == null) {
 				return false;
 			}
 			return !TimeManager.currentDateTime.isBefore(faculty.getStartDate())
@@ -112,9 +111,9 @@ public class LoginManager {
 	}
 
 	/**
-	 *  Function for changing password of account.
+	 * Function for changing password of account.
 	 *
-	 * @param user the user
+	 * @param user        the user
 	 * @param oldPassword the old password
 	 * @param newPassword the new password
 	 * @return true, if successful

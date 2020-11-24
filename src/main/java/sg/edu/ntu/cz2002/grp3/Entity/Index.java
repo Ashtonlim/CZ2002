@@ -55,6 +55,12 @@ public class Index implements Serializable {
         return index;
     }
 
+    /**
+     * Triggers the method to move students from the waitlist if necessary.
+     * 
+     * @param vacancy the new vacancy
+     * @return true, if successful
+     */
     public boolean setVacancy(int vacancy) {
 
         if (vacancy < 0) {
@@ -72,6 +78,12 @@ public class Index implements Serializable {
         return true;
     }
 
+    /**
+     * Moves a student from the waitlist to the studentList every time the vacancies
+     * change
+     * 
+     * @return true, if successful
+     */
     public boolean waitlistToStudentList() {
 
         int availSlots = vacancy;
@@ -168,7 +180,7 @@ public class Index implements Serializable {
             System.out.println("Debug: Added to timetable successfully.");
             removeFromWaitList(student); // redundancy
             studentList.add(student);
-            vacancy -= 1;
+            setVacancy(vacancy - 1);
             return 1;
         } else {
 

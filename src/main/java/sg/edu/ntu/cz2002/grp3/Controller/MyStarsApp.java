@@ -1,25 +1,23 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
 
-import sg.edu.ntu.cz2002.grp3.Entity.notification.SMSNotification;
 import sg.edu.ntu.cz2002.grp3.View.*;
 import sg.edu.ntu.cz2002.grp3.Entity.Admin;
 import sg.edu.ntu.cz2002.grp3.Entity.Student;
 import sg.edu.ntu.cz2002.grp3.Entity.User;
 
-// TODO: Auto-generated Javadoc
-// import java.util.*;
-
 /**
- * The Class MyStarsApp.
+ * The Class starts the application and intitialises the necessary objects.
+ * 
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class MyStarsApp {
-    
+
     /** The rm. */
     private final RecordManager RM;
-    
+
     /** The active user. */
     private User activeUser;
-    
+
     /** The running. */
     private boolean running;
 
@@ -48,13 +46,15 @@ public class MyStarsApp {
             gv.renderDummyData(RM); // To be removed in production.
 
             gv.renderStartPage();
-            if (!running) break;
+            if (!running)
+                break;
 
             gv.renderLoginPage();
-            if (activeUser == null) continue;
+            if (activeUser == null)
+                continue;
 
-            UserView uv = (activeUser instanceof Admin) ? new AdminView( new AdminController(RM, (Admin) activeUser) )
-                    : new StudentView( new StudentController(RM, (Student) activeUser) );
+            UserView uv = (activeUser instanceof Admin) ? new AdminView(new AdminController(RM, (Admin) activeUser))
+                    : new StudentView(new StudentController(RM, (Student) activeUser));
 
             uv.renderUserInfo();
             uv.renderMainMenu();
@@ -89,7 +89,7 @@ public class MyStarsApp {
      *
      * @return the rm
      */
-    public RecordManager getRM(){
+    public RecordManager getRM() {
         return RM;
     }
 }

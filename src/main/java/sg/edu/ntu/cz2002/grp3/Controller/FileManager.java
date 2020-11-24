@@ -1,18 +1,21 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
+
 import sg.edu.ntu.cz2002.grp3.Entity.*;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
-// Note : When structure of the Object type (the class file) in the list changed
 /**
- * The Class FileManager.
+ * The Class for handling the connecting to, writing to and reading from the
+ * database.
+ * 
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
+
 // the Serialized file may fail.
 public class FileManager {
-    
+
     /** The DB path. */
     private static String DBPath;
     static {
@@ -31,17 +34,17 @@ public class FileManager {
      * @return the array list
      * @throws Exception the exception
      */
-    public static ArrayList<?> readSerializedObject() throws Exception{
+    public static ArrayList<?> readSerializedObject() throws Exception {
         ArrayList<?> read = new ArrayList<Object>();
         System.out.println(DBPath);
-//        try {
+        // try {
         FileInputStream fis = new FileInputStream(DBPath);
         ObjectInputStream in = new ObjectInputStream(fis);
         read = (ArrayList<?>) in.readObject();
         in.close();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
         return read;
 
     }
@@ -64,7 +67,7 @@ public class FileManager {
     }
 
     /**
-     *  Get absolute path.
+     * Get absolute path.
      *
      * @param filename the filename
      * @return the file path
