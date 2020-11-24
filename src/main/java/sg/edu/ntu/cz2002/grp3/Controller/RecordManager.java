@@ -93,14 +93,14 @@ public class RecordManager {
         students.add(new Student("bob", "bobOODPtest@gmail.com", password, "Bob", "M", "SC", "U461", f1, 2, 0));
         students.add(new Student("james", "U201@gmail.com", password, "James Law", "M", "SC", "U201", f1, 3, 0));
         students.add(new Student("Mike", "U202@gmail.com", password, "Mike Law", "M", "SC", "U202", f1, 2, 0));
-        students.add(new Student("Gary", "U203@gmail.com", password, "Gary Law", "M", "SC", "U203", f1, 3, 0));
-        students.add(new Student("Jack", "U204@gmail.com", password, "Jack Law", "M", "SC", "U204", f1, 1, 0));
-        students.add(new Student("Tim", "U205@gmail.com", password, "Tim Law", "M", "SC", "U205", f1, 2, 0));
+        students.add(new Student("Gary", "U203@gmail.com", password, "Gary Law", "M", "SC", "U203", f2, 3, 0));
+        students.add(new Student("Jack", "U204@gmail.com", password, "Jack Law", "M", "SC", "U204", f2, 1, 0));
+        students.add(new Student("Tim", "U205@gmail.com", password, "Tim Law", "M", "SC", "U205", f2, 2, 0));
         students.add(new Student("Tina", "U206@gmail.com", password, "Tina Tan", "F", "SC", "U206", f1, 3, 0));
         students.add(new Student("Jess", "U207@gmail.com", password, "Jess Tan", "F", "SC", "U207", f1, 3, 0));
         students.add(new Student("Claire", "U208@gmail.com", password, "Claire Tan", "F", "SC", "U208", f1, 2, 0));
-        students.add(new Student("Amy", "U209@gmail.com", password, "Amy Tan", "F", "SC", "U209", f2, 1, 0));
-        students.add(new Student("Helen", "U210@gmail.com", password, "Helen Tan", "F", "SC", "U210", f2, 2, 0));
+        students.add(new Student("Amy", "U209@gmail.com", password, "Amy Tan", "F", "SC", "U209", f1, 1, 0));
+        students.add(new Student("Helen", "U210@gmail.com", password, "Helen Tan", "F", "SC", "U210", f1, 2, 0));
         students.add(new Student("Monica", "U211@gmail.com", password, "Monica Tan", "F", "SC", "U211", f2, 1, 0));
         admins.add(new Admin(1, "guat", password, "Guat", "M", "SC"));
 
