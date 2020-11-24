@@ -91,23 +91,24 @@ public class Index implements Serializable {
     public boolean waitlistToStudentList() {
 
         int availSlots = vacancy;
-
+        ArrayList<Student> toBeRemoved = new ArrayList<>();
         for (Student s : waitList) {
             if (addToStudentList(s) == 1) {
-
+                toBeRemoved.add(s);
                 System.out.println("System: Removing " + s.getFullName()
                         + " from waitlist and Sending notification email out... ");
                 NotificationManager.sendNotification(new EmailNotification(s.getEmail(), "Waitlist Notification",
                         "Congrats, you got into index " + getIndex()));
-                NotificationManager.sendNotification(
-                        new SMSNotification("+6596709488", "Congrats, you got into index " + getIndex()));
+//                NotificationManager.sendNotification(
+//                        new SMSNotification("+6596709488", "Congrats, you got into index " + getIndex()));
                 System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
                 availSlots -= 1;
                 if (availSlots == 0) {
-                    return true;
+                    break;
                 }
             }
         }
+        waitList.removeAll(toBeRemoved);
         return true;
     }
 
@@ -181,7 +182,6 @@ public class Index implements Serializable {
                 return -13;
             }
             student.getTimeTable().addIndex(this);
-            removeFromWaitList(student); // redundancy
             studentList.add(student);
             setVacancy(vacancy - 1);
             return 1;

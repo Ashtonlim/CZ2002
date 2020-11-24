@@ -119,7 +119,7 @@ public class StudentView implements UserView {
             if (choice1 == 0) return;
 
             String targetMatricNum = IO.getTextInput("Enter the matric number of student you are swopping with.");
-            String targetPassword = IO.getTextInput("Enter the password of student you are swopping with.");
+            String targetPassword = IO.getPassword("Enter the password of student you are swopping with.");
 
             int res = SC.swopIndex(targetMatricNum, targetPassword, choice1);
 

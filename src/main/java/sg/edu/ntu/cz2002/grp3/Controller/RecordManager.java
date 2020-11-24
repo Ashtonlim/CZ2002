@@ -52,7 +52,7 @@ public class RecordManager {
         LocalDateTime scseStart = LocalDateTime.of(2020, 11, 23, 9, 0, 0);
         LocalDateTime scseEnd = LocalDateTime.of(2020, 11, 30, 9, 0, 0);
         f1.setRegistrationTime(scseStart, scseEnd);
-
+        f3.setRegistrationTime(LocalDateTime.of(2020, 12, 23, 9, 0, 0), LocalDateTime.of(2020, 12, 30, 9, 0, 0));
         // Entity.Course
         Course c1 = new Course("CZ2002", "Data Science", "Core", 3, f1);
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
@@ -95,6 +95,7 @@ public class RecordManager {
 
         facultyList.add(f1);
         facultyList.add(f2);
+        facultyList.add(f3);
 
         ArrayList<Student> students = new ArrayList<Student>();
         ArrayList<Admin> admins = new ArrayList<Admin>();
@@ -117,6 +118,7 @@ public class RecordManager {
         students.add(new Student("Amy", "U209@gmail.com", password, "Amy Tan", "F", "SC", "U209", f1, 1, 0));
         students.add(new Student("Helen", "U210@gmail.com", password, "Helen Tan", "F", "SC", "U210", f1, 2, 0));
         students.add(new Student("Monica", "U211@gmail.com", password, "Monica Tan", "F", "SC", "U211", f2, 1, 0));
+        students.add(new Student("John", "U211@gmail.com", password, "John Tan", "F", "SC", "U211", f3, 1, 0));
         admins.add(new Admin(1, "admin", password, "GuatKwan", "M", "SC"));
 
         users.addAll(students);

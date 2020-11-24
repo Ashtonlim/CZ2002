@@ -44,7 +44,7 @@ public class MyStarsApp {
         // Main program
         while (running) {
             GuestView gv = new GuestView(this); // Started with guest view
-            gv.renderDummyData(RM); // To be removed in production.
+//            gv.renderDummyData(RM); // To be removed in production.
 
             gv.renderStartPage();
             if (!running)
