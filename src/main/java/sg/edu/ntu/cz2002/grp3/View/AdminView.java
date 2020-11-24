@@ -7,28 +7,26 @@ import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 import java.util.ArrayList;
 import java.util.Dictionary;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AdminView.
+ * The Class that display admin options and receive 
+ * input from the admin. Relays the user input to the
+ * respective functions in adminController.
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class AdminView implements IView {
 	
-	/** The ac. */
+	/** The admin controller. */
 	private final AdminController AC;
 	
-	/** The Printer. */
+	/** The printer for printing neat rows and columns. */
 	protected final PrettyPrinter Printer = new PrettyPrinter(System.out);
 
-	/**
-	 * Instantiates a new admin view.
-	 *
-	 * @param AC the ac
-	 */
 	public AdminView(AdminController AC) {
 		this.AC = AC;
 	}
 
-    /** 1. Edit student access period  */
+    /** Display and input handler for editing student access period.
+     */
     public void adminEditAccessPeriod() {
     	System.out.println("=== Edit Student Access Period ===");
     	String facultyName = IO.getTextInput("Faculty name (SCSE, NBS etc.): ");
@@ -54,7 +52,7 @@ public class AdminView implements IView {
 		}
     }
     
-    /** 2. Add a student */
+    /** Display and input handler for adding a student. */
     public void adminAddStudent() {
     	System.out.println("=== Add a Student ===");
     	String username = IO.getTextInput("Username: ");
@@ -80,7 +78,7 @@ public class AdminView implements IView {
     }
     
     
-    /** 3.Add course */
+    /** Display and input handler for adding a course */
     public void adminAddCourse() {
         System.out.println("=== Add a New Course ===");
         String facultyName = IO.getTextInput("Faculty name: ");
@@ -110,7 +108,7 @@ public class AdminView implements IView {
 
 
     /**
-     *  add indexes to course.
+     *  Display and input handler for adding indexes to course.
      *
      * @param courseCode the course code
      */
@@ -138,9 +136,9 @@ public class AdminView implements IView {
     }
 
     /**
-     *  add lessons to index.
+     *  Display and input handler for adding lessons to index.
      *
-     * @param indexNo the index no
+     * @param indexNo the index number
      */
     public void adminAddLesson(String indexNo) {
     	boolean loop = true;
@@ -201,8 +199,7 @@ public class AdminView implements IView {
     	}
     }
 
-
-    /** 4. Update course */
+    /**Display and input handler for updating a course. */
     public void adminUpdateCourse() {
     	System.out.println("=== Update a Course ===");
     	String courseCode = IO.getTextInput("Course code: ");
@@ -288,7 +285,7 @@ public class AdminView implements IView {
     }
 
     /**
-     *  update indexes.
+     *  Display and input handler for updating indexes.
      *
      * @param courseCode the course code
      */
@@ -352,8 +349,7 @@ public class AdminView implements IView {
 		}
     }
     
-    
-    /** 5.Check available slot for an index number (vacancy in a class) -wx  */
+    /** Display and input handler for checking vacancies of an index number. */
     public void adminCheckVacancy(){
         System.out.println("=== Index Vacancy Checker ===");
         String indexCode = IO.getTextInput("Index number: ");
@@ -365,26 +361,14 @@ public class AdminView implements IView {
         }
     }
 
-    
-	/** 6.Print Student List by Index */
+	/** Display and input handler for printing students by Index. */
 	public void adminPrintStudentListByIndex() {
 		System.out.println("=== Student List By Index ===");
 		String indexCode = IO.getTextInput("Index number: ");
 		AC.printStudentListByIndex(indexCode);
 	}
 
-	
-//	/** 7.Print student List by Course */
-//	public void adminPrintStudentListByCourse() {
-//		System.out.println("=== Student List By Course ===");
-//		String courseCode = IO.getTextInput("Course code: ");
-//		AC.getStudentListByCourse();
-//		Printer.print();
-//		AC.printStudentListByCourse(courseCode);
-//	}
-	
-
-    /** 8.print course list by faculty */
+    /** Display and input handler for printing courses by faculty. */
     public void printCourseListFaculty() {
     	String facultyName = IO.getTextInput("Enter Faculty: ");
         String[][] res = AC.getIndexListFromFacultyForPrinting(facultyName);
@@ -394,9 +378,8 @@ public class AdminView implements IView {
             System.out.println("Course list is empty or faculty does not exist");
         }
     }
-    
 
-	/** 9.change password */
+	/** Display and input handler for changing password. */
 	public void changePassword() {
 		System.out.println("=== Change account password (Console required) ===");
 		// need to change to console version later
@@ -411,7 +394,6 @@ public class AdminView implements IView {
 			System.out.println("Old password is incorrect.");
 		}
 	}
-    
 
 	/**
 	 * Render start page.
@@ -430,7 +412,7 @@ public class AdminView implements IView {
 	}
 
 	/**
-	 * Render user info.
+	 * Render welcome message.
 	 */
 	@Override
 	public void renderUserInfo() {

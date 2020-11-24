@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * The static Class that provides time handling related functions.
+ * The Class that provides time handling related static functions.
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class TimeManager {
