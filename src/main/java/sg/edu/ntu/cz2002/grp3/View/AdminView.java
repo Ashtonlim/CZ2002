@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 
 /**
- * The Class that display admin options and receive 
+ * The Class that displays admin options and receive 
  * input from the admin. Relays the user input to the
  * respective functions in adminController.
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
@@ -25,8 +25,7 @@ public class AdminView implements IView {
 		this.AC = AC;
 	}
 
-    /** Display and input handler for editing student access period.
-     */
+    /** Display and input handler for editing student access period. */
     public void adminEditAccessPeriod() {
     	System.out.println("=== Edit Student Access Period ===");
     	String facultyName = IO.getTextInput("Faculty name (SCSE, NBS etc.): ");
