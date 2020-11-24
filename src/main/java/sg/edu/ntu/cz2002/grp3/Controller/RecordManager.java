@@ -71,25 +71,25 @@ public class RecordManager {
         Index i11 = new Index("200303", 10, c2);
         // c4 does not have index.
 
-        Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
-        Lesson lab2002 = new Lesson("lab", 2, 0, "09:30", "11:30", "SPL", i1);
-        Lesson lec2002 = new Lesson("lec", 5, 1, "14:30", "15:30", "LT12", i1);
+        Lesson tut2002 = new Lesson("Tutorial", 1, 0, "14:30", "16:30", "TR-20", i1);
+        Lesson lab2002 = new Lesson("Lab", 2, 0, "09:30", "11:30", "SPL", i1);
+        Lesson lec2002 = new Lesson("Lecture", 5, 1, "14:30", "15:30", "LT12", i1);
 
-        Lesson tut200202 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-21", i2);
+        Lesson tut200202 = new Lesson("Tutorial", 1, 0, "14:30", "16:30", "TR-21", i2);
 
-        Lesson tut2003 = new Lesson("tut", 5, 1, "14:30", "16:30", "TR-18", i3);
-        Lesson lab2003 = new Lesson("lab", 1, 1, "10:30", "12:30", "HWL1", i3);
-        Lesson lec2003 = new Lesson("lec", 3, 1, "13:30", "14:30", "LT4", i3);
+        Lesson tut2003 = new Lesson("Tutorial", 5, 1, "14:30", "16:30", "TR-18", i3);
+        Lesson lab2003 = new Lesson("Lab", 1, 1, "10:30", "12:30", "HWL1", i3);
+        Lesson lec2003 = new Lesson("Lecture", 3, 1, "13:30", "14:30", "LT4", i3);
 
-        Lesson tut200302 = new Lesson("tut", 1, 1, "12:30", "13:30", "HWL1", i5);
+        Lesson tut200302 = new Lesson("Tutorial", 1, 1, "12:30", "13:30", "HWL1", i5);
         
-        Lesson tut100101 = new Lesson("tut", 4, 1, "15:30", "16:30", "TR-22", i4);
-        Lesson tut100102 = new Lesson("tut", 4, 1, "16:30", "17:30", "TR-23", i6);
-        Lesson tut100301 = new Lesson("tut", 4, 1, "17:30", "18:30", "TR-24", i7);
-        Lesson tut200203 = new Lesson("tut", 4, 1, "18:30", "19:30", "TR-25", i8);
-        Lesson tut200204 = new Lesson("tut", 4, 1, "20:30", "21:30", "TR-26", i9);
-        Lesson tut200205 = new Lesson("tut", 4, 1, "19:30", "20:30", "TR-27", i10);
-        Lesson tut200303 = new Lesson("tut", 4, 1, "19:30", "20:30", "TR-28", i11);
+        Lesson tut100101 = new Lesson("Tutorial", 4, 1, "15:30", "16:30", "TR-22", i4);
+        Lesson tut100102 = new Lesson("Tutorial", 4, 1, "16:30", "17:30", "TR-23", i6);
+        Lesson tut100301 = new Lesson("Tutorial", 4, 1, "17:30", "18:30", "TR-24", i7);
+        Lesson tut200203 = new Lesson("Tutorial", 4, 1, "18:30", "19:30", "TR-25", i8);
+        Lesson tut200204 = new Lesson("Tutorial", 4, 1, "20:30", "21:30", "TR-26", i9);
+        Lesson tut200205 = new Lesson("Tutorial", 4, 1, "19:30", "20:30", "TR-27", i10);
+        Lesson tut200303 = new Lesson("Tutorial", 4, 1, "19:30", "20:30", "TR-28", i11);
 
         facultyList.add(f1);
         facultyList.add(f2);
