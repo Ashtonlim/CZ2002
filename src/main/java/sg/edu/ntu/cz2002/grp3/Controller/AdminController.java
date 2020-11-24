@@ -91,12 +91,6 @@ public class AdminController {
     		IO.printCourseList(courseList);
     	}
     }
-    
-    public void printIndexList(String courseCode) {
-    	Course course = RM.getCourse(courseCode);
-    	ArrayList<Index> indexList = course.getIndexList();
-    	IO.printIndexList(indexList);
-    }
 
     
     /** 1.Edit student access period */
@@ -361,18 +355,6 @@ public class AdminController {
 			System.out.println("Invalid course.");
 		}
     }
-
-//    public String[][] getStudentListForPrinting(String courseCode){
-//        Course course = RM.getCourse(courseCode);
-//        if (course == null){
-//            return null;
-//        }
-//
-//
-//
-//
-//        return getStudentList(course);
-//    }
 
     
     /** Get student list from course */

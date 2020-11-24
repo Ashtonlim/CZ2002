@@ -86,7 +86,7 @@ public class RecordManager {
         students.add(new Student("Amy", "U209@gmail.com", password, "Amy Tan", "F", "SC", "U209", f2, 1, 0));
         students.add(new Student("Helen", "U210@gmail.com", password, "Helen Tan", "F", "SC", "U210", f2, 2, 0));
         students.add(new Student("Monica", "U211@gmail.com", password, "Monica Tan", "F", "SC", "U211", f2, 1, 0));
-        admins.add(new Admin("guat", password, "Guat", "M", "SC"));
+        admins.add(new Admin(1, "guat", password, "Guat", "M", "SC"));
 
         users.addAll(students);
         users.addAll(admins);

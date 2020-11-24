@@ -225,7 +225,7 @@ public class AdminView implements IView {
             		break;
             	case 3:
             		String newSubType = IO.getTextInput("New subject type: ");
-            		AC.updateCourseName(courseCode, newSubType);
+            		AC.updateSubjectType(courseCode, newSubType);
             		System.out.println(res.get("subjectType") + " successfully changed to " + newSubType);
             		res.put("subjectType", newSubType);
             		break;

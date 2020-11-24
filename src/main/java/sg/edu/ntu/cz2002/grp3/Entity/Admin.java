@@ -2,11 +2,32 @@ package sg.edu.ntu.cz2002.grp3.Entity;
 
 import java.io.Serializable;
 
+/**
+ * Represents an admin in the system.
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
+ */
 public class Admin extends User implements Serializable {
-
-    public Admin(String username, String password, String fullName, String gender, String nationality){
+	
+	/**
+	 * the unique ID of the admin
+	 */
+	private int staffID;
+	
+    /**
+     * Instantiates a new admin.
+     *
+     * @param username the username
+     * @param password the password
+     * @param fullName the full name
+     * @param gender the gender
+     * @param nationality the nationality
+     * @param staffID
+     */
+    public Admin(int staffID, String username, String password, String fullName, String gender, String nationality){
         super(username, password, fullName, gender, nationality);
+        this.staffID = staffID;
     }
+
 
     @Override
     public String getUserName() {
