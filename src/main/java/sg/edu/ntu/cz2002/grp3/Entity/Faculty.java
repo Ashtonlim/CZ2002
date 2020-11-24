@@ -7,26 +7,30 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
- * Represents a faculty in the university. 
- * Contains lists of its students and courses.
+ * Represents a faculty in the university. Contains lists of its students and
+ * courses.
+ * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class Faculty implements Serializable {
-
+	/**
+	 * Used for versioning when serializing. Not necessary but added to remove
+	 * warning
+	 */
 	private static final long serialVersionUID = 7182542381768041711L;
-	
+
 	/** The faculty name. */
 	private String facultyName;
-	
+
 	/** The starting date and time of access period. */
 	private LocalDateTime regStartDate;
-	
+
 	/** The ending date and time of access period. */
 	private LocalDateTime regEndDate;
-	
+
 	/** List of students under the faculty. */
 	private ArrayList<Student> studentList = new ArrayList<>();
-	
+
 	/** List of courses under the faculty. */
 	private ArrayList<Course> courseList = new ArrayList<>();
 
@@ -39,7 +43,6 @@ public class Faculty implements Serializable {
 		this.facultyName = facultyName;
 	}
 
-
 	public ArrayList<Course> getCourseList() {
 		return courseList;
 	}
@@ -51,8 +54,8 @@ public class Faculty implements Serializable {
 	 * @throws IllegalMethodAccessException the illegal method access exception
 	 */
 	public void addStudent(Student student) throws IllegalMethodAccessException {
-		//Only callable when instantiating a new student;
-		if (student.hasFaculty()){
+		// Only callable when instantiating a new student;
+		if (student.hasFaculty()) {
 			throw new IllegalMethodAccessException("Directly calling addStudent() from faculty is not allowed.");
 		} else {
 			studentList.add(student);
@@ -64,10 +67,9 @@ public class Faculty implements Serializable {
 	 *
 	 * @param student the student
 	 */
-	public void removeStudent(Student student){
+	public void removeStudent(Student student) {
 		studentList.remove(student);
 	}
-
 
 	/**
 	 * Add a course to the faculty.
@@ -76,8 +78,8 @@ public class Faculty implements Serializable {
 	 * @throws IllegalMethodAccessException the illegal method access exception
 	 */
 	public void addCourse(Course course) throws IllegalMethodAccessException {
-		//Only callable when instantiating a new course;
-		if (course.hasFaculty()){
+		// Only callable when instantiating a new course;
+		if (course.hasFaculty()) {
 			throw new IllegalMethodAccessException("Directly calling addCourse() from faculty is not allowed.");
 		} else {
 			courseList.add(course);
@@ -97,16 +99,13 @@ public class Faculty implements Serializable {
 		return facultyName;
 	}
 
-
 	public LocalDateTime getStartDate() {
 		return regStartDate;
 	}
 
-
 	public LocalDateTime getEndDate() {
 		return regEndDate;
 	}
-
 
 	public void setName(String facultyName) {
 		this.facultyName = facultyName;
@@ -116,7 +115,7 @@ public class Faculty implements Serializable {
 	 * Sets the access period for STARS
 	 *
 	 * @param regStartDate the start date
-	 * @param regEndDate the end date
+	 * @param regEndDate   the end date
 	 */
 	public void setRegistrationTime(LocalDateTime regStartDate, LocalDateTime regEndDate) {
 		this.regStartDate = regStartDate;

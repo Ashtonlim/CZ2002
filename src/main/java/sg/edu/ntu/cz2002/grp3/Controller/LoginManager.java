@@ -8,7 +8,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * The Class for handling login related functions.
+ * The Class LoginManager handles login related functions.
  * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */

@@ -9,22 +9,26 @@ import java.util.ArrayList;
 
 /**
  * The Class TimeTable.
+ * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class TimeTable implements Serializable {
 
-    /** The Constant serialVersionUID. */
+    /**
+     * Used for versioning when serializing. Not necessary but added to remove
+     * warning
+     */
     private static final long serialVersionUID = -282722565573449812L;
-    
+
     /** The odd week. */
     private final Lesson[][] oddWeek;
-    
+
     /** The even week. */
     private final Lesson[][] evenWeek;
-    
+
     /** The row. */
     private final int row = 32;
-    
+
     /** The col. */
     private final int col = 6;
 
@@ -162,9 +166,9 @@ public class TimeTable implements Serializable {
      * Check clash.
      *
      * @param dayOfWeek the day of week
-     * @param slotNo the slot no
-     * @param weight the weight
-     * @param temp the temp
+     * @param slotNo    the slot no
+     * @param weight    the weight
+     * @param temp      the temp
      * @return true, if successful
      */
     private static boolean checkClash(int dayOfWeek, int slotNo, int weight, Lesson[][] temp) {
@@ -179,7 +183,7 @@ public class TimeTable implements Serializable {
      * Cal weight.
      *
      * @param startTime the start time
-     * @param endTime the end time
+     * @param endTime   the end time
      * @return the int
      * @throws Exception the exception
      */
@@ -262,7 +266,7 @@ public class TimeTable implements Serializable {
     public String[][] processTimeTable(int oddEven) {
         Lesson[][] timeTable;
 
-        if (oddEven == 0){
+        if (oddEven == 0) {
             timeTable = evenWeek;
         } else {
             timeTable = oddWeek;

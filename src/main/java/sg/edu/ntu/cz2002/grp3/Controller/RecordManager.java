@@ -5,15 +5,16 @@ import sg.edu.ntu.cz2002.grp3.Entity.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RecordManager.
+ * The Class RecordManager handles of re.
+ * 
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class RecordManager {
-    
+
     /** The users. */
     private ArrayList<User> users;
-    
+
     /** The faculty list. */
     private ArrayList<Faculty> facultyList;
 
@@ -56,8 +57,8 @@ public class RecordManager {
         Course c2 = new Course("CZ2003", "Algor", "Core", 3, f1);
         Course c3 = new Course("NB1001", "Econs", "Core", 3, f2);
         Course c4 = new Course("NB1002", "Accounting", "Core", 2, f2);
-        Course c5  = new Course("NB1003", "Finance", "Core", 2, f2);
-        
+        Course c5 = new Course("NB1003", "Finance", "Core", 2, f2);
+
         Index i1 = new Index("200201", 10, c1);
         Index i2 = new Index("200202", 10, c1);
         Index i3 = new Index("200301", 10, c2);
@@ -82,7 +83,7 @@ public class RecordManager {
         Lesson lec2003 = new Lesson("Lecture", 3, 1, "13:30", "14:30", "LT4", i3);
 
         Lesson tut200302 = new Lesson("Tutorial", 1, 1, "12:30", "13:30", "HWL1", i5);
-        
+
         Lesson tut100101 = new Lesson("Tutorial", 4, 1, "15:30", "16:30", "TR-22", i4);
         Lesson tut100102 = new Lesson("Tutorial", 4, 1, "16:30", "17:30", "TR-23", i6);
         Lesson tut100301 = new Lesson("Tutorial", 4, 1, "17:30", "18:30", "TR-24", i7);
@@ -121,14 +122,13 @@ public class RecordManager {
         users.addAll(admins);
 
         i1.addToStudentList((Student) users.get(0));
-     
+
         i2.addToStudentList((Student) users.get(1));
         i2.addToStudentList((Student) users.get(12));
         i2.addToStudentList((Student) users.get(13));
-        
+
         i3.addToStudentList((Student) users.get(12));
-        
-        
+
         i4.addToStudentList((Student) users.get(1));
         i4.addToStudentList((Student) users.get(3));
         // i4.addToStudentList((Student) users.get(2));
@@ -142,18 +142,18 @@ public class RecordManager {
         i4.addToStudentList((Student) users.get(11));
 
         i6.addToStudentList((Student) users.get(12));
-        
+
         i7.addToStudentList((Student) users.get(13));
         i7.addToStudentList((Student) users.get(0));
-        
+
         i11.addToStudentList((Student) users.get(13));
-        
+
         save();
         System.out.println("Dummy data loaded.");
     }
 
     /**
-     *  get faculty by facultyName.
+     * get faculty by facultyName.
      *
      * @param facultyName the faculty name
      * @return the faculty
@@ -179,7 +179,7 @@ public class RecordManager {
     }
 
     /**
-     *  get course by course code.
+     * get course by course code.
      *
      * @param courseCode the course code
      * @return the course
@@ -199,7 +199,7 @@ public class RecordManager {
     }
 
     /**
-     *  get index by index number.
+     * get index by index number.
      *
      * @param index the index
      * @return the index
@@ -219,7 +219,7 @@ public class RecordManager {
     }
 
     /**
-     *  return all courses.
+     * return all courses.
      *
      * @return the all courses
      */
@@ -234,7 +234,7 @@ public class RecordManager {
     }
 
     /**
-     *  search a user by username.
+     * search a user by username.
      *
      * @param username the username
      * @return the user
@@ -269,7 +269,7 @@ public class RecordManager {
     }
 
     /**
-     *  return all students.
+     * return all students.
      *
      * @return the all students
      */
@@ -284,7 +284,7 @@ public class RecordManager {
     }
 
     /**
-     *  Add user.
+     * Add user.
      *
      * @param user the user
      * @return true, if successful
@@ -302,7 +302,7 @@ public class RecordManager {
     }
 
     /**
-     *  Remove course.
+     * Remove course.
      *
      * @param course the course
      * @return true, if successful
@@ -321,7 +321,7 @@ public class RecordManager {
     }
 
     /**
-     *  Remove index.
+     * Remove index.
      *
      * @param index the index
      * @return true, if successful

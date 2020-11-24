@@ -7,8 +7,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * The Class for handling the connecting to, writing to and reading from the
- * database.
+ * The Class FileManager handles the connecting to, writing to and reading from
+ * the database.
  * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */

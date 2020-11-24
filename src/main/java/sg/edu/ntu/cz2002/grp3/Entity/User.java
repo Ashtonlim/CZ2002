@@ -4,34 +4,38 @@ import java.io.Serializable;
 
 /**
  * Represents a user in the system. User can be a student or admin.
+ * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public abstract class User implements Serializable {
-    
+    /**
+     * Used for versioning when serializing. Not necessary but added to remove
+     * warning
+     */
     private static final long serialVersionUID = 6694048940285488599L;
-    
+
     /** The username. */
     protected String username;
-    
+
     /** The password. */
     protected String password;
-    
+
     /** The full name. */
     protected String fullName;
-    
+
     /** The gender. */
     protected String gender;
-    
+
     /** The nationality. */
     protected String nationality;
 
     /**
      * Instantiates a new user.
      *
-     * @param username the username
-     * @param password the password
-     * @param fullName the full name
-     * @param gender the gender
+     * @param username    the username
+     * @param password    the password
+     * @param fullName    the full name
+     * @param gender      the gender
      * @param nationality the nationality
      */
     public User(String username, String password, String fullName, String gender, String nationality) {
@@ -52,7 +56,7 @@ public abstract class User implements Serializable {
     public abstract String getUserName();
 
     public abstract String getFullName();
-    
+
     public abstract String getPassword();
 
     public abstract void setPassword(String password);

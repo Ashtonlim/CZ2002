@@ -7,45 +7,49 @@ import sg.edu.ntu.cz2002.grp3.Controller.LoginManager;
 import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
 
 /**
- * Represents a student in the school. Contains student's
- * details and a timetable to show their current registered
- * schedule.
+ * Represents a student in the school. Contains student's details and a
+ * timetable to show their current registered schedule.
+ * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class Student extends User implements Serializable {
-    
+    /**
+     * Used for versioning when serializing. Not necessary but added to remove
+     * warning
+     */
+    private static final long serialVersionID = 5384355877278730456L;
+
     /** The matriculation number. */
     private final String matricNum;
-    
+
     /** The email for receiving notification from the system. */
     private final String email;
-    
+
     /** The year of study. */
-    private final int yearOfStudy;
-    
+    private int yearOfStudy;
+
     /** The faculty of the student. */
     private final Faculty faculty;
-    
+
     /** The total number of AUs registered. */
-    private final int regAU;
-    
+    private int regAU;
+
     /** The timetable to show currently registered indexes. */
     private final TimeTable timeTable = new TimeTable();
 
     /**
-     *  Constructor for loading dummy data. 
-     *  Takes in all fields including password.
+     * Constructor for loading dummy data. Takes in all fields including password.
      *
-     * @param username the username
-     * @param email the email
-     * @param password the password
-     * @param fullName the full name
-     * @param gender the gender
+     * @param username    the username
+     * @param email       the email
+     * @param password    the password
+     * @param fullName    the full name
+     * @param gender      the gender
      * @param nationality the nationality
-     * @param matricNum the matriculation number
-     * @param faculty the faculty
+     * @param matricNum   the matriculation number
+     * @param faculty     the faculty
      * @param yearOfStudy the year of study
-     * @param regAU the total registered AU
+     * @param regAU       the total registered AU
      */
     public Student(String username, String email, String password, String fullName, String gender, String nationality,
             String matricNum, Faculty faculty, int yearOfStudy, int regAU) {
@@ -56,33 +60,35 @@ public class Student extends User implements Serializable {
         this.regAU = regAU;
         try {
             faculty.addStudent(this);
-        } catch (Exception ignored){}
+        } catch (Exception ignored) {
+        }
         this.faculty = faculty;
     }
 
     /**
-     * Constructor for admin to add new student. 
-     * Password will be set to system's default and AU set to 0.
+     * Constructor for admin to add new student. Password will be set to system's
+     * default and AU set to 0.
      *
-     * @param username the username
-     * @param email the email
-     * @param fullName the full name
-     * @param gender the gender
+     * @param username    the username
+     * @param email       the email
+     * @param fullName    the full name
+     * @param gender      the gender
      * @param nationality the nationality
-     * @param matricNum the matriculation number
-     * @param faculty the faculty
+     * @param matricNum   the matriculation number
+     * @param faculty     the faculty
      * @param yearOfStudy the year of study
      */
     public Student(String username, String email, String fullName, String gender, String nationality, String matricNum,
-            Faculty faculty, int yearOfStudy){
+            Faculty faculty, int yearOfStudy) {
         super(username, LoginManager.defPassword, fullName, gender, nationality);
         this.matricNum = matricNum;
         this.email = email;
         this.yearOfStudy = yearOfStudy;
-        this.regAU = 0;
+
         try {
             faculty.addStudent(this);
-        } catch (IllegalMethodAccessException ignored){}
+        } catch (IllegalMethodAccessException ignored) {
+        }
         this.faculty = faculty;
     }
 
@@ -138,7 +144,7 @@ public class Student extends User implements Serializable {
      *
      * @return true, if successful
      */
-    public boolean hasFaculty(){
+    public boolean hasFaculty() {
         return faculty != null;
     }
 
@@ -152,7 +158,7 @@ public class Student extends User implements Serializable {
      * @param oddEven odd or even week
      * @return the timetable for printing
      */
-    public String[][] getTableTimeForPrinting(int oddEven){
+    public String[][] getTableTimeForPrinting(int oddEven) {
         return timeTable.processTimeTable(oddEven);
     }
 

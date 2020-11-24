@@ -1,13 +1,14 @@
 package sg.edu.ntu.cz2002.grp3.Entity.notification;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface INotification.
+ * 
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public interface INotification {
-    
+
     /**
-     * Send.
+     * Ensure send implementation.
      *
      * @return true, if successful
      */

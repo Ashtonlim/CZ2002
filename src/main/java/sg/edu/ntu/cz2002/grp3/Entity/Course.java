@@ -7,37 +7,42 @@ import java.util.ArrayList;
 
 /**
  * Represents a course in a faculty.
+ * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class Course implements Serializable {
-	
-	/** The course code. */
-	private String courseCode;
-    
+    /**
+     * Used for versioning when serializing. Not necessary but added to remove
+     * warning
+     */
+    private static final long serialVersionUID = -4776852943526251550L;
+
+    /** The course code. */
+    private String courseCode;
+
     /** The course name. */
     private String courseName;
-    
+
     /** The faculty which the course belongs to. */
     private Faculty faculty;
-    
-    /** The subject type. Core, UE etc.*/
+
+    /** The subject type. Core, UE etc. */
     private String subjectType;
-    
+
     /** Its list of indexes */
     private ArrayList<Index> indexList = new ArrayList<>();
-    
+
     /** The number of academic units. */
     private int AU;
 
     /**
-     * Creates a new course and adds 
-     * itself to its faculty's course list
+     * Creates a new course and adds itself to its faculty's course list
      *
-     * @param courseCode the course code
-     * @param courseName the course name
+     * @param courseCode  the course code
+     * @param courseName  the course name
      * @param subjectType the subject type
-     * @param AU the number of AUs
-     * @param faculty the faculty that the course falls under
+     * @param AU          the number of AUs
+     * @param faculty     the faculty that the course falls under
      */
     public Course(String courseCode, String courseName, String subjectType, int AU, Faculty faculty) {
         this.courseCode = courseCode;
@@ -46,41 +51,41 @@ public class Course implements Serializable {
         this.AU = AU;
         try {
             faculty.addCourse(this);
-        } catch (IllegalMethodAccessException ignored){}
+        } catch (IllegalMethodAccessException ignored) {
+        }
         this.faculty = faculty;
     }
 
     /**
-     *  get the list of indexes the course has
+     * get the list of indexes the course has
      *
      * @return the index list
      */
-    public ArrayList<Index> getIndexList(){
+    public ArrayList<Index> getIndexList() {
         return indexList;
     }
 
-
-    public String getCourseCode(){
+    public String getCourseCode() {
         return courseCode;
     }
 
-    public String getCourseName(){
+    public String getCourseName() {
         return courseName;
     }
 
-    public Faculty getFaculty(){
+    public Faculty getFaculty() {
         return faculty;
     }
 
     public String getSubjectType() {
-    	return subjectType;
+        return subjectType;
     }
-    
-    public int getAU(){
+
+    public int getAU() {
         return AU;
     }
 
-    public void setCourseCode(String courseCode){
+    public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
 
@@ -91,13 +96,13 @@ public class Course implements Serializable {
      * @throws IllegalMethodAccessException
      */
     public void addIndex(Index index) throws IllegalMethodAccessException {
-        if (index.hasCourse()){
+        if (index.hasCourse()) {
             throw new IllegalMethodAccessException("Directly calling addIndex() from Course is not allowed.");
         } else {
             indexList.add(index);
         }
     }
-    
+
     /**
      * Removes an index from the index list..
      *
@@ -107,16 +112,16 @@ public class Course implements Serializable {
         indexList.remove(index);
     }
 
-    public void setCourseName(String courseName){
+    public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
-    public void setAU(int AU) { 
-    	this.AU = AU; 
+    public void setAU(int AU) {
+        this.AU = AU;
     }
 
-    public void setSubjectType(String newSubjectType) { 
-    	this.subjectType=newSubjectType; 
+    public void setSubjectType(String newSubjectType) {
+        this.subjectType = newSubjectType;
     }
 
     /**
@@ -124,9 +129,7 @@ public class Course implements Serializable {
      *
      * @return true, if faculty exists
      */
-    public boolean hasFaculty(){
+    public boolean hasFaculty() {
         return faculty != null;
     }
 }
-
-

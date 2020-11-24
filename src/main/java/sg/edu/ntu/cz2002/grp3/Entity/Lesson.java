@@ -6,48 +6,50 @@ import java.io.Serializable;
 import java.time.LocalTime;
 
 /**
- * Represents the lessons that an index can have.
- * Lesson shouldn't be modified after StarsWar 
- * has begun, due to clash handling.
+ * Represents the lessons that an index can have. Lesson shouldn't be modified
+ * after StarsWar has begun, due to clash handling.
+ * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class Lesson implements Serializable {
-	
+	/**
+	 * Used for versioning when serializing. Not necessary but added to remove
+	 * warning
+	 */
 	private static final long serialVersionUID = 3962835452663198474L;
-	
+
 	/** The lesson type. Can be lab, tutorial or lecture */
 	private String type;
-	
+
 	/** The start time. */
 	private final LocalTime startTime; // time: HH:MM
-	
+
 	/** The end time. */
 	private final LocalTime endTime;
-	
+
 	/** The venue. */
 	private String venue;
-	
+
 	/** The index the lesson belongs to. */
 	private final Index index;
-	
+
 	/** The day of the week. 0-5 | 0 -> Mon, 1 -> Tues (Time Standard) */
 	private final int dayOfWeek;
-	
+
 	/** Whether the lesson is odd or even. 0 -> even, 1 -> odd */
 	private final int oddEvenWeek;
 
 	/**
 	 *
-	 * @param type the type of lesson
-	 * @param day the day
+	 * @param type        the type of lesson
+	 * @param day         the day
 	 * @param oddEvenWeek whether odd or even week
-	 * @param startTime the start time
-	 * @param endTime the end time
-	 * @param venue the venue
-	 * @param index the index it belongs to
-	 * @throws Exception the exception that prevents 
-	 * 			the start and end time from updating
-	 * 			when start time is after end time.
+	 * @param startTime   the start time
+	 * @param endTime     the end time
+	 * @param venue       the venue
+	 * @param index       the index it belongs to
+	 * @throws Exception the exception that prevents the start and end time from
+	 *                   updating when start time is after end time.
 	 */
 	public Lesson(String type, int day, int oddEvenWeek, String startTime, String endTime, String venue, Index index)
 			throws Exception {
@@ -70,7 +72,8 @@ public class Lesson implements Serializable {
 
 		try {
 			index.addToLessonList(this);
-		} catch (IllegalMethodAccessException ignored){}
+		} catch (IllegalMethodAccessException ignored) {
+		}
 		this.index = index;
 	}
 
@@ -99,8 +102,7 @@ public class Lesson implements Serializable {
 	}
 
 	/**
-	 * Gets the course name of the course 
-	 * which the lesson's index belong to.
+	 * Gets the course name of the course which the lesson's index belong to.
 	 *
 	 * @return the course name
 	 */
@@ -115,7 +117,7 @@ public class Lesson implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
 	public void setVenue(String venue) {
 		this.venue = venue;
 	}
@@ -129,16 +131,15 @@ public class Lesson implements Serializable {
 	 *
 	 * @return true, if successful
 	 */
-	public boolean hasIndex(){
+	public boolean hasIndex() {
 		return index != null;
 	}
 
 	/**
-	 * Checks if start time is before end time.
-	 * Used when instantiating lesson.
+	 * Checks if start time is before end time. Used when instantiating lesson.
 	 *
 	 * @param start the starting time
-	 * @param end the ending time
+	 * @param end   the ending time
 	 * @return true, if start time is before end time
 	 */
 	private boolean isValidTime(LocalTime start, LocalTime end) {

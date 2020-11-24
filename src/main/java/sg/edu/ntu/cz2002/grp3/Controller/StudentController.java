@@ -1,6 +1,5 @@
 package sg.edu.ntu.cz2002.grp3.Controller;
 
-
 // import java.time.LocalTime;
 import sg.edu.ntu.cz2002.grp3.Entity.Course;
 import sg.edu.ntu.cz2002.grp3.Entity.Faculty;
@@ -11,22 +10,25 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class StudentController.
+ * The Class StudentController handles the logic for the options selected in
+ * student view, which includes adding, chaning, dropping indexes, checking
+ * vacancies, and more.
+ * 
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class StudentController {
-    
+
     /** The rm. */
     private final RecordManager RM;
-    
+
     /** The student. */
     private final Student student;
-    
+
     /**
      * Instantiates a new student controller.
      *
-     * @param RM the rm
+     * @param RM      the rm
      * @param student the student
      */
     public StudentController(RecordManager RM, Student student) {
@@ -44,14 +46,13 @@ public class StudentController {
         return student.getIndexList();
     }
 
-
     /**
      * Adds the index to student.
      *
      * @param indexCode the index code
      * @return the int
      */
-    public int addIndexToStudent(String indexCode){
+    public int addIndexToStudent(String indexCode) {
         Index index = RM.getIndex(indexCode);
         if (index == null) {
             return -20;
@@ -63,7 +64,6 @@ public class StudentController {
 
         return index.addToStudentList(student);
     }
-
 
     /**
      * Gets the vacancies of course.
@@ -85,7 +85,7 @@ public class StudentController {
      *
      * @return the index list for printing
      */
-    public ArrayList<String> getIndexListForPrinting(){
+    public ArrayList<String> getIndexListForPrinting() {
         ArrayList<Index> indexList = getCourseReg(student);
         ArrayList<String> stringIndexList = new ArrayList<>();
 
@@ -103,7 +103,7 @@ public class StudentController {
      *
      * @param pos the pos
      */
-    public void dropIndex(int pos){
+    public void dropIndex(int pos) {
         ArrayList<Index> indexList = getCourseReg(student);
         Index indexToDrop = indexList.get(pos - 1);
         indexToDrop.removeFromStudentList(student);
@@ -115,7 +115,7 @@ public class StudentController {
      * @param courseCode the course code
      * @return the vacancies for printing
      */
-    public String[][] getVacanciesForPrinting(String courseCode){
+    public String[][] getVacanciesForPrinting(String courseCode) {
         ArrayList<Index> indexList = getVacanciesOfCourse(courseCode);
 
         if (indexList == null) {
@@ -147,17 +147,16 @@ public class StudentController {
      * @param oddEven the odd even
      * @return the time table for printing
      */
-    public String[][] getTimeTableForPrinting(int oddEven){
+    public String[][] getTimeTableForPrinting(int oddEven) {
         return student.getTableTimeForPrinting(oddEven);
     }
-
 
     /**
      * Gets the processed index list for printing.
      *
      * @return the processed index list for printing
      */
-    public String[][] getProcessedIndexListForPrinting(){
+    public String[][] getProcessedIndexListForPrinting() {
         ArrayList<Index> indexList = student.getIndexList();
         String[][] res = new String[indexList.size() + 1][4];
         res[0][0] = " No. ";
@@ -191,7 +190,7 @@ public class StudentController {
         Index oldIndex = student.getIndexList().get(oldIndexPos);
         Index newIndex = oldIndex.getIndexesOfCourse().get(newIndexPos);
 
-        if (oldIndex == newIndex){
+        if (oldIndex == newIndex) {
             return -22;
         }
 
@@ -200,13 +199,12 @@ public class StudentController {
         }
 
         int status = newIndex.addToStudentList(student);
-        if (status != 1) { //Did not add successfully.
+        if (status != 1) { // Did not add successfully.
             return status;
         } else {
             oldIndex.removeFromStudentList(student);
             return 1;
         }
-
 
     }
 
@@ -215,12 +213,12 @@ public class StudentController {
      *
      * @return the student details
      */
-    public Dictionary<String, String> getStudentDetails(){
+    public Dictionary<String, String> getStudentDetails() {
         Dictionary<String, String> res = new Hashtable<>();
         res.put("fullName", student.getFullName());
         res.put("faculty", student.getFacultyName());
         res.put("regAU", Integer.toString(student.getRegAU()));
-        res.put("courses", Integer.toString( student.getIndexList().size() ));
+        res.put("courses", Integer.toString(student.getIndexList().size()));
         return res;
     }
 
@@ -228,8 +226,8 @@ public class StudentController {
      * Swop index.
      *
      * @param targetMatricNum the target matric num
-     * @param targetPassword the target password
-     * @param indexPos the index pos
+     * @param targetPassword  the target password
+     * @param indexPos        the index pos
      * @return the int
      */
     public int swopIndex(String targetMatricNum, String targetPassword, int indexPos) {
@@ -254,7 +252,7 @@ public class StudentController {
         }
         if (!found)
             return -22; // Target student does not have the Specific course index source student trying
-                       // to swop.
+                        // to swop.
         if (sourceIndex == targetIndex)
             return -25; // both same index
         if (source.getTimeTable().checkClash(targetIndex))
@@ -272,14 +270,13 @@ public class StudentController {
 
     }
 
-
     /**
      * Gets the course indexes for printing.
      *
      * @param pos the pos
      * @return the course indexes for printing
      */
-    public ArrayList<String> getCourseIndexesForPrinting(int pos){
+    public ArrayList<String> getCourseIndexesForPrinting(int pos) {
         ArrayList<Index> indexList = student.getIndexList();
         Index oldIndex = indexList.get(pos);
 
@@ -306,17 +303,17 @@ public class StudentController {
      * @param facultyName the faculty name
      * @return the index list from faculty for printing
      */
-    public String[][] getIndexListFromFacultyForPrinting(String facultyName){
+    public String[][] getIndexListFromFacultyForPrinting(String facultyName) {
         Faculty faculty = RM.getFaculty(facultyName);
 
         ArrayList<ArrayList<String>> temp = new ArrayList<>();
-        if (faculty == null){
+        if (faculty == null) {
             return new String[0][0];
         }
 
         int row = 0;
-        for (Course course : faculty.getCourseList()){
-            for (Index index : course.getIndexList()){
+        for (Course course : faculty.getCourseList()) {
+            for (Index index : course.getIndexList()) {
                 ArrayList<String> temp2 = new ArrayList<>();
                 temp2.add(" " + index.getCourseCode() + " ");
                 temp2.add(" " + index.getCourseName() + " ");
@@ -326,15 +323,15 @@ public class StudentController {
                 row += 1;
             }
         }
-        String[][] res = new String[row+1][4];
+        String[][] res = new String[row + 1][4];
         res[0][0] = " Course Code ";
         res[0][1] = " Course Name ";
         res[0][2] = " Index No. ";
         res[0][3] = " Vacancies ";
 
-        for (int i = 1; i < row + 1; i++){
-            for (int j = 0; j < 4; j++){
-                res[i][j] = temp.get(i-1).get(j);
+        for (int i = 1; i < row + 1; i++) {
+            for (int j = 0; j < 4; j++) {
+                res[i][j] = temp.get(i - 1).get(j);
             }
         }
 
@@ -348,7 +345,7 @@ public class StudentController {
      * @param newPassword the new password
      * @return true, if successful
      */
-    public boolean changePassword(String oldPassword, String newPassword){
+    public boolean changePassword(String oldPassword, String newPassword) {
         return LoginManager.changePassword(student, oldPassword, newPassword);
     }
 }

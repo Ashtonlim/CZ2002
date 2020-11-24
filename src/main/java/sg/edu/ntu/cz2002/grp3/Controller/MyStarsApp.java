@@ -6,7 +6,8 @@ import sg.edu.ntu.cz2002.grp3.Entity.Student;
 import sg.edu.ntu.cz2002.grp3.Entity.User;
 
 /**
- * The Class starts the application and intitialises the necessary objects.
+ * The Class MyStarsApp starts the application and intitialises the necessary
+ * objects.
  * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */

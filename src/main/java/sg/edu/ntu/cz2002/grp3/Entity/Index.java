@@ -13,7 +13,10 @@ import java.util.ArrayList;
  * track of students registered under it and students waiting to be registered
  */
 public class Index implements Serializable {
-
+    /**
+     * Used for versioning when serializing. Not necessary but added to remove
+     * warning
+     */
     private static final long serialVersionUID = 1659216272267144237L;
 
     /** The index. */

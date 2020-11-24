@@ -11,18 +11,20 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class EmailNotification.
+ * The Class EmailNotification initializes email settings and account details.
+ * Uses the javax.mail package included in pom.xml as a dependency.
+ * 
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class EmailNotification implements INotification {
-    
+
     /** The usr. */
     private static String usr = "oopmystarapp@gmail.com";
-    
+
     /** The pwd. */
     private static String pwd = "myStarApp1";
-    
+
     /** The Constant props. */
     private static final Properties props;
     static {
@@ -32,24 +34,24 @@ public class EmailNotification implements INotification {
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
     }
-    
+
     /** The to. */
     private final String to;
-    
+
     /** The subject. */
     private final String subject;
-    
+
     /** The body. */
     private final String body;
 
     /**
      * Instantiates a new email notification.
      *
-     * @param to the to
+     * @param to      the to
      * @param subject the subject
-     * @param body the body
+     * @param body    the body
      */
-    public EmailNotification(String to, String subject, String body){
+    public EmailNotification(String to, String subject, String body) {
         this.to = to;
         this.subject = subject;
         this.body = body;
@@ -74,9 +76,9 @@ public class EmailNotification implements INotification {
     /**
      * Notify all email.
      *
-     * @param tos the tos
+     * @param tos      the tos
      * @param subjects the subjects
-     * @param bodys the bodys
+     * @param bodys    the bodys
      * @return true, if successful
      */
     private static boolean notifyAllEmail(ArrayList<String> tos, ArrayList<String> subjects, ArrayList<String> bodys) {
@@ -126,9 +128,9 @@ public class EmailNotification implements INotification {
     /**
      * Send mail.
      *
-     * @param to the to
+     * @param to      the to
      * @param subject the subject
-     * @param body the body
+     * @param body    the body
      * @return true, if successful
      */
     private static boolean sendMail(String to, String subject, String body) {

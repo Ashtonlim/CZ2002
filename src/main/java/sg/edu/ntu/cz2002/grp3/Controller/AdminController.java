@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
- * The Class which handles all the functions available to the admin.
+ * The Class AdminController which handles all the functions available to the
+ * admin.
  * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
