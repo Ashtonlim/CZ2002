@@ -63,14 +63,12 @@ public class IO {
         while (true) {
             try {
                 System.out.println(prompt);
-                choice = sc.nextInt();
+                choice = Integer.parseInt(sc.nextLine());
                 break;
             } catch (InputMismatchException ex) {
                 System.out.println("Invalid character(s) entered, please enter numbers/integers only.");
             } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            } finally {
-                sc.nextLine();
+                System.out.println("Invalid character(s) entered.");
             }
         }
 
