@@ -90,6 +90,9 @@ public class IO {
             try {
                 System.out.println(prompt);
                 input = sc.nextLine();
+                if (input.equals("")){
+                    throw new InputMismatchException();
+                }
                 break;
             } catch (InputMismatchException ex) {
                 System.out.println("Invalid character(s) entered, please enter text only.");
