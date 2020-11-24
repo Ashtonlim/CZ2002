@@ -70,7 +70,7 @@ public class RecordManager {
         Lesson lab2002 = new Lesson("lab", 2, 0, "09:30", "11:30", "SPL", i1);
         Lesson lec2002 = new Lesson("lec", 5, 1, "14:30", "15:30", "LT12", i1);
 
-        Lesson tut200202 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i2);
+        Lesson tut200202 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-21", i2);
 
         Lesson tut2003 = new Lesson("tut", 5, 1, "14:30", "16:30", "TR-18", i3);
         Lesson lab2003 = new Lesson("lab", 1, 1, "10:30", "12:30", "HWL1", i3);
