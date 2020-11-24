@@ -67,7 +67,7 @@ public class EmailNotification implements INotification {
             return true;
         }
 
-        System.out.println("System log: Email failed to send");
+        System.out.println("System log: Email failed to send.");
         return false;
     }
 

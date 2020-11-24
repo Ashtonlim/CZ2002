@@ -60,7 +60,7 @@ public class MyStarsApp {
             activeView.renderMainMenu();
 
             // Save database after logout.
-            System.out.println("Your data has been saved.");
+            System.out.println("System: Your data has been saved.");
             RM.save();
             activeUser = null;
         }

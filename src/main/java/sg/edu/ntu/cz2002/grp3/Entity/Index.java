@@ -91,15 +91,19 @@ public class Index implements Serializable {
         if (student.getTimeTable().removeIndex(this)) {
             studentList.remove(student);
             vacancy += 1;
-
+            int availSlots = vacancy;
             for (Student s : waitList) {
                 if (addToStudentList(s) == 1) {
+
                     System.out.println("System: Removing " + s.getFullName()
                             + " from waitlist and Sending notification email out... ");
                     NotificationManager.sendNotification( new EmailNotification(s.getEmail(), "Waitlist Notification", "Congrats, you got into index " + getIndex()) );
                     NotificationManager.sendNotification( new SMSNotification("+6596709488", "Congrats, you got into index " + getIndex()) );
                     System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
-                    break;
+                    availSlots -= 1;
+                    if (availSlots == 0){
+                        break;
+                    }
                 }
             }
 
