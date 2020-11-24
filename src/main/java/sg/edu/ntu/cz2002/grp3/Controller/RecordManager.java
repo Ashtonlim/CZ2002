@@ -64,6 +64,9 @@ public class RecordManager {
         Index i5 = new Index("200302", 10, c2);
         Index i6 = new Index("100102", 10, c3);
         Index i7 = new Index("100301", 10, c5);
+        Index i8 = new Index("200203", 10, c1);
+        Index i9 = new Index("200204", 10, c1);
+        Index i10 = new Index("200205", 10, c1);
         // c4 does not have index.
 
         Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
