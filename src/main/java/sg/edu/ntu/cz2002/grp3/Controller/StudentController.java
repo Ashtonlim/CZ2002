@@ -316,23 +316,24 @@ public class StudentController {
 
         int row = 0;
         for (Course course : faculty.getCourseList()){
-            System.out.println("debug: IndexList size is: " + course.getIndexList().size());
             for (Index index : course.getIndexList()){
                 ArrayList<String> temp2 = new ArrayList<>();
                 temp2.add(" " + index.getCourseCode() + " ");
                 temp2.add(" " + index.getCourseName() + " ");
                 temp2.add(" " + index.getIndex() + " ");
+                temp2.add(" " + index.getVacancy() + "/" + index.getTotalSlots() + " ");
                 temp.add(temp2);
                 row += 1;
             }
         }
-        String[][] res = new String[row+1][3];
+        String[][] res = new String[row+1][4];
         res[0][0] = " Course Code ";
         res[0][1] = " Course Name ";
         res[0][2] = " Index No. ";
+        res[0][3] = " Vacancies ";
 
         for (int i = 1; i < row + 1; i++){
-            for (int j = 0; j < 3; j++){
+            for (int j = 0; j < 4; j++){
                 res[i][j] = temp.get(i-1).get(j);
             }
         }

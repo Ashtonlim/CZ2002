@@ -225,7 +225,7 @@ public class StudentView implements IView {
     /**
      *  print school course list.
      */
-    public void printCourseListFaculty() {
+    public void printIndexListFromFaculty() {
     	String facultyName = IO.getTextInput("Enter Faculty: ");
         String[][] res = SC.getIndexListFromFacultyForPrinting(facultyName);
         if (res.length != 0) {
@@ -251,7 +251,7 @@ public class StudentView implements IView {
         studentOptions.add("Swap Index Number with Another Student");
         studentOptions.add("Print Time Table");
         studentOptions.add("Change Password");
-        studentOptions.add("Print courses from a faculty.");
+        studentOptions.add("Print available indexes from a faculty.");
 
         while (true) {
             int c = IO.getPrintOptions(title, "Logout", studentOptions);
@@ -269,7 +269,7 @@ public class StudentView implements IView {
                 }
                 case 7 -> printTimeTable();
                 case 8 -> changePassword();
-                case 9 -> printCourseListFaculty();
+                case 9 -> printIndexListFromFaculty();
                 case 0 -> {
                     System.out.println("Logging out...");
                     return;
