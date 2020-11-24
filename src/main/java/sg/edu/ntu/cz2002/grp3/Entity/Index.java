@@ -180,7 +180,6 @@ public class Index implements Serializable {
                 return -13;
             }
             student.getTimeTable().addIndex(this);
-            System.out.println("Debug: Added to timetable successfully.");
             removeFromWaitList(student); // redundancy
             studentList.add(student);
             setVacancy(vacancy - 1);
