@@ -140,6 +140,8 @@ public class RecordManager {
 
         i6.addToStudentList((Student) users.get(12));
         
+        i7.addToStudentList((Student) users.get(13));
+        i7.addToStudentList((Student) users.get(0));
         save();
         System.out.println("Dummy data loaded.");
     }
