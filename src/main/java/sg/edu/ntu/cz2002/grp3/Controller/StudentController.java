@@ -57,6 +57,10 @@ public class StudentController {
             return -20;
         }
 
+        if (student.hasIndex(index)){
+            return -12;
+        }
+
         return index.addToStudentList(student);
     }
 
@@ -195,8 +199,15 @@ public class StudentController {
             return -21;
         }
 
-        oldIndex.removeFromStudentList(student);
-        return newIndex.addToStudentList(student);
+        int status = newIndex.addToStudentList(student);
+        if (status != 1) { //Did not add successfully.
+            return status;
+        } else {
+            oldIndex.removeFromStudentList(student);
+            return 1;
+        }
+
+
     }
 
     /**

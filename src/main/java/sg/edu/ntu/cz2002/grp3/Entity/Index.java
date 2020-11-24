@@ -130,9 +130,9 @@ public class Index implements Serializable {
             return -11;
         }
 
-        if (student.hasCourse(getCourseCode())) {
-            return -12;
-        }
+//        if (student.hasCourse(getCourseCode())) {
+//            return -12;
+//        }
 
         // if clashes when adding to timetable
         if (!student.getTimeTable().checkClash(this)) {

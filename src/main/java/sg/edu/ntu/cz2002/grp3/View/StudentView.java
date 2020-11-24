@@ -170,7 +170,7 @@ public class StudentView implements IView {
                         printCoursesRegistered();
                         return;
                     }
-                    default -> System.out.println("Unknown status, operation unsuccessful.");
+                    default -> System.out.println("Unknown status code: " + res +", operation unsuccessful.");
                 }
             }
         }
