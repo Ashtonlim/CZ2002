@@ -80,6 +80,13 @@ public class RecordManager {
         Lesson lec2003 = new Lesson("lec", 3, 1, "13:30", "14:30", "LT4", i3);
 
         Lesson tut200302 = new Lesson("tut", 1, 1, "12:30", "13:30", "HWL1", i5);
+        
+        Lesson tut100101 = new Lesson("tut", 4, 1, "15:30", "16:30", "TR-22", i4);
+        Lesson tut100102 = new Lesson("tut", 4, 1, "16:30", "17:30", "TR-23", i6);
+        Lesson tut100301 = new Lesson("tut", 4, 1, "17:30", "18:30", "TR-24", i7);
+        Lesson tut200203 = new Lesson("tut", 4, 1, "18:30", "19:30", "TR-25", i8);
+        Lesson tut200204 = new Lesson("tut", 4, 1, "20:30", "21:30", "TR-26", i9);
+        Lesson tut200205 = new Lesson("tut", 4, 1, "19:30", "20:30", "TR-27", i10);
 
         facultyList.add(f1);
         facultyList.add(f2);
