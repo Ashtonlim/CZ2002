@@ -61,6 +61,7 @@ public class RecordManager {
         Index i3 = new Index("200301", 10, c2);
         Index i4 = new Index("100101", 10, c3);
         Index i5 = new Index("200302", 10, c2);
+        Index i6 = new Index("100102", 10, c3);
         // c4 does not have index.
 
         Lesson tut2002 = new Lesson("tut", 1, 0, "14:30", "16:30", "TR-20", i1);
@@ -123,6 +124,8 @@ public class RecordManager {
         i4.addToStudentList((Student) users.get(10));
         i4.addToStudentList((Student) users.get(11));
 
+        i6.addToStudentList((Student) users.get(12));
+        
         save();
         System.out.println("Dummy data loaded.");
     }
