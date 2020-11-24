@@ -46,6 +46,7 @@ public class RecordManager {
         // Entity.Faculty
         Faculty f1 = new Faculty("SCSE");
         Faculty f2 = new Faculty("NBS");
+        Faculty f3 = new Faculty("EEE");
         LocalDateTime scseStart = LocalDateTime.of(2020, 11, 23, 9, 0, 0);
         LocalDateTime scseEnd = LocalDateTime.of(2020, 11, 30, 9, 0, 0);
         f1.setRegistrationTime(scseStart, scseEnd);
