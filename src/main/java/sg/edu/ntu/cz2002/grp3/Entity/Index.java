@@ -9,38 +9,37 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Represents an index of a course. Contains a list of its lessons.
- * Also keeps track of students registered under it and 
- * students waiting to be registered
+ * Represents an index of a course. Contains a list of its lessons. Also keeps
+ * track of students registered under it and students waiting to be registered
  */
 public class Index implements Serializable {
 
     private static final long serialVersionUID = 1659216272267144237L;
-    
+
     /** The index. */
     private String index;
-    
+
     /** The number of slots available to students. */
     private int vacancy;
-    
+
     /** Contains students on hold due to no vacancy. */
     private ArrayList<Student> waitList = new ArrayList<>();
-    
+
     /** Contains all students registered under the index. */
     private ArrayList<Student> studentList = new ArrayList<>();
-    
+
     /** Contains all its scheduled lessons. */
     private ArrayList<Lesson> lessonList = new ArrayList<>();
-    
+
     /** The course it belongs to. */
     private Course course;
 
     /**
      * Instantiates a new index.
      *
-     * @param index the index
+     * @param index   the index
      * @param vacancy the vacancy
-     * @param course the course
+     * @param course  the course
      */
     public Index(String index, int vacancy, Course course) {
         this.index = index;
@@ -54,6 +53,46 @@ public class Index implements Serializable {
 
     public String getIndex() {
         return index;
+    }
+
+    public boolean setVacancy(int vacancy) {
+
+        if (vacancy < 0) {
+            System.out.println("cannot set vacancy less than 0");
+            return false;
+        }
+
+        this.vacancy = vacancy;
+
+        // decrease vacancy
+        if (this.vacancy < vacancy) {
+            waitlistToStudentList();
+        }
+
+        return true;
+    }
+
+    public boolean waitlistToStudentList() {
+
+        int availSlots = vacancy;
+
+        for (Student s : waitList) {
+            if (addToStudentList(s) == 1) {
+
+                System.out.println("System: Removing " + s.getFullName()
+                        + " from waitlist and Sending notification email out... ");
+                NotificationManager.sendNotification(new EmailNotification(s.getEmail(), "Waitlist Notification",
+                        "Congrats, you got into index " + getIndex()));
+                NotificationManager.sendNotification(
+                        new SMSNotification("+6596709488", "Congrats, you got into index " + getIndex()));
+                System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
+                availSlots -= 1;
+                if (availSlots == 0) {
+                    return true;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -90,22 +129,7 @@ public class Index implements Serializable {
         // if clashes when adding to timetable
         if (student.getTimeTable().removeIndex(this)) {
             studentList.remove(student);
-            vacancy += 1;
-            int availSlots = vacancy;
-            for (Student s : waitList) {
-                if (addToStudentList(s) == 1) {
-
-                    System.out.println("System: Removing " + s.getFullName()
-                            + " from waitlist and Sending notification email out... ");
-                    NotificationManager.sendNotification( new EmailNotification(s.getEmail(), "Waitlist Notification", "Congrats, you got into index " + getIndex()) );
-                    NotificationManager.sendNotification( new SMSNotification("+6596709488", "Congrats, you got into index " + getIndex()) );
-                    System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
-                    availSlots -= 1;
-                    if (availSlots == 0){
-                        break;
-                    }
-                }
-            }
+            setVacancy(vacancy + 1);
 
             return true;
         }
@@ -130,9 +154,9 @@ public class Index implements Serializable {
             return -11;
         }
 
-//        if (student.hasCourse(getCourseCode())) {
-//            return -12;
-//        }
+        // if (student.hasCourse(getCourseCode())) {
+        // return -12;
+        // }
 
         // if clashes when adding to timetable
         if (!student.getTimeTable().checkClash(this)) {
@@ -170,7 +194,7 @@ public class Index implements Serializable {
         }
 
     }
-    
+
     public int getVacancy() {
         return vacancy;
     }
@@ -182,7 +206,7 @@ public class Index implements Serializable {
     public String getCourseCode() {
         return course.getCourseCode();
     }
-    
+
     public String getCourseName() {
         return course.getCourseName();
     }
@@ -218,9 +242,9 @@ public class Index implements Serializable {
         return studentList.size() + vacancy;
     }
 
-    public void setVacancy(int vacancy) {
-        this.vacancy = vacancy;
-    }
+    // public void cy(int vacancy) {
+    // this.vacancy = vacancy;
+    // }
 
     public void setIndex(String newIndex) {
         this.index = newIndex;
