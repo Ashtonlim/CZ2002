@@ -109,8 +109,10 @@ public class RecordManager {
      
         i2.addToStudentList((Student) users.get(1));
         i2.addToStudentList((Student) users.get(12));
+        i2.addToStudentList((Student) users.get(13));
         
         i3.addToStudentList((Student) users.get(12));
+        i3.addToStudentList((Student) users.get(13));
         
         i4.addToStudentList((Student) users.get(1));
         i4.addToStudentList((Student) users.get(3));
