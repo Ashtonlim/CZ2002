@@ -28,10 +28,10 @@ public class Lesson implements Serializable {
 	/** The index the lesson belongs to. */
 	private final Index index;
 
-	/** The day of the week. 0-5 | 0 -> Mon, 1 -> Tues (Time Standard) */
+	/** The day of the week. 0-5 | 0 = Mon, 1 = Tues (Time Standard) */
 	private final int dayOfWeek;
 
-	/** Whether the lesson is odd or even. 0 -> even, 1 -> odd */
+	/** Whether the lesson is odd or even. 0 = even, 1 = odd */
 	private final int oddEvenWeek;
 
 	/**

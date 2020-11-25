@@ -97,8 +97,11 @@ public class Index implements Serializable {
                         + " from waitlist and Sending notification email out... ");
                 NotificationManager.sendNotification(new EmailNotification(s.getEmail(), "Waitlist Notification",
                         "Congrats, you got into index " + getIndex()));
-                NotificationManager.sendNotification(
-                        new SMSNotification("+6596709488", "Congrats, you got into index " + getIndex()));
+                // uncomment to send SMS notification with twilio
+                // please use your own auth tokens from twilio
+                // NotificationManager.sendNotification(
+                // new SMSNotification("+6596709488", "Congrats, you got into index " +
+                // getIndex()));
                 System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
                 availSlots -= 1;
                 if (availSlots == 0) {

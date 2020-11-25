@@ -10,8 +10,8 @@ public class Main {
     /**
      * The main method.
      *
-     * @param args
-     * @throws Exception
+     * @param args CLI args
+     * @throws Exception throws exception
      */
     public static void main(String[] args) throws Exception {
         MyStarsApp program = new MyStarsApp();

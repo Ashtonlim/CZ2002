@@ -64,7 +64,7 @@ public class IO {
         while (true) {
             try {
                 System.out.println(prompt);
-//                choice = Integer.parseInt(sc.nextLine());
+                // choice = Integer.parseInt(sc.nextLine());
                 choice = sc.nextInt();
                 break;
             } catch (InputMismatchException ex) {

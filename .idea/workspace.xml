@@ -34,8 +34,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d87434b4-cd92-408d-aaa1-35a19395d41b" name="Default Changelist" comment="minor">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Index.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CZ2002.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2002.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/MyStarsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/MyStarsApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Lesson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/util/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/util/IO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +74,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.2\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -101,17 +109,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JAR Application.CZ2002.jar">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="IView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sg.edu.ntu.cz2002.grp3.View.IView" />
       <module name="CZ2002" />
@@ -154,7 +151,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -168,6 +165,7 @@
       <workItem from="1603008406071" duration="1553000" />
       <workItem from="1603009993735" duration="7000" />
       <workItem from="1603013678284" duration="5767000" />
+      <workItem from="1606283404732" duration="1154000" />
     </task>
     <task id="LOCAL-00015" summary="Added indexList attribute for Student.">
       <created>1605611205657</created>
@@ -616,39 +614,48 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1189" y="481" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605605599925" />
-    <state x="1282" y="721" key="FileChooserDialogImpl" timestamp="1603042397867">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="-1213" y="306" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606283860620">
+      <screen x="-1920" y="77" width="1920" height="1040" />
+    </state>
+    <state x="-1213" y="306" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824/-1920.77.1920.1040@-1920.77.1920.1040" timestamp="1606283860620" />
+    <state x="-958" y="613" key="FileChooserDialogImpl" timestamp="1606283851971">
+      <screen x="-1920" y="77" width="1920" height="1040" />
     </state>
     <state x="549" y="130" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603008462284" />
+    <state x="-958" y="613" key="FileChooserDialogImpl/0.0.1536.824/-1920.77.1920.1040@-1920.77.1920.1040" timestamp="1606283851971" />
     <state x="1282" y="721" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1603042397867" />
-    <state width="1997" height="283" key="GridCell.Tab.0.bottom" timestamp="1606273330304">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1877" height="344" key="GridCell.Tab.0.bottom" timestamp="1606283860676">
+      <screen x="-1920" y="77" width="1920" height="1040" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
+    <state width="1877" height="344" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.77.1920.1040@-1920.77.1920.1040" timestamp="1606283860676" />
     <state width="1997" height="283" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1606273330304" />
     <state width="1494" height="232" key="GridCell.Tab.0.bottom/0.23.1536.882@0.23.1536.882" timestamp="1605370565875" />
     <state width="1494" height="232" key="GridCell.Tab.0.bottom/0.23.1536.884@0.23.1536.884" timestamp="1605935739870" />
     <state width="1494" height="232" key="GridCell.Tab.0.bottom/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
-    <state width="1997" height="283" key="GridCell.Tab.0.center" timestamp="1606273330304">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1877" height="344" key="GridCell.Tab.0.center" timestamp="1606283860676">
+      <screen x="-1920" y="77" width="1920" height="1040" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
+    <state width="1877" height="344" key="GridCell.Tab.0.center/0.0.1536.824/-1920.77.1920.1040@-1920.77.1920.1040" timestamp="1606283860676" />
     <state width="1997" height="283" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1606273330304" />
     <state width="1494" height="232" key="GridCell.Tab.0.center/0.23.1536.882@0.23.1536.882" timestamp="1605370565874" />
     <state width="1494" height="232" key="GridCell.Tab.0.center/0.23.1536.884@0.23.1536.884" timestamp="1605935739870" />
     <state width="1494" height="232" key="GridCell.Tab.0.center/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
-    <state width="1997" height="283" key="GridCell.Tab.0.left" timestamp="1606273330304">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1877" height="344" key="GridCell.Tab.0.left" timestamp="1606283860675">
+      <screen x="-1920" y="77" width="1920" height="1040" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536186" />
+    <state width="1877" height="344" key="GridCell.Tab.0.left/0.0.1536.824/-1920.77.1920.1040@-1920.77.1920.1040" timestamp="1606283860675" />
     <state width="1997" height="283" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1606273330304" />
     <state width="1494" height="232" key="GridCell.Tab.0.left/0.23.1536.882@0.23.1536.882" timestamp="1605370565874" />
     <state width="1494" height="232" key="GridCell.Tab.0.left/0.23.1536.884@0.23.1536.884" timestamp="1605935739869" />
     <state width="1494" height="232" key="GridCell.Tab.0.left/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
-    <state width="1997" height="283" key="GridCell.Tab.0.right" timestamp="1606273330304">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1877" height="344" key="GridCell.Tab.0.right" timestamp="1606283860676">
+      <screen x="-1920" y="77" width="1920" height="1040" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
+    <state width="1877" height="344" key="GridCell.Tab.0.right/0.0.1536.824/-1920.77.1920.1040@-1920.77.1920.1040" timestamp="1606283860676" />
     <state width="1997" height="283" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1606273330304" />
     <state width="1494" height="232" key="GridCell.Tab.0.right/0.23.1536.882@0.23.1536.882" timestamp="1605370565874" />
     <state width="1494" height="232" key="GridCell.Tab.0.right/0.23.1536.884@0.23.1536.884" timestamp="1605935739870" />

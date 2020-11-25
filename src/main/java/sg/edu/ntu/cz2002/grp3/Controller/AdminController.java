@@ -474,6 +474,7 @@ public class AdminController {
      * Print students registered under an index number.
      *
      * @param indexNo the index number
+     * @return the students in an index
      */
     public String[][] printStudentListByIndex(String indexNo) {
         Index index = RM.getIndex(indexNo);
@@ -484,7 +485,7 @@ public class AdminController {
             int row = 0;
             for (Student s : studentList) {
                 ArrayList<String> temp2 = new ArrayList<>();
-                temp2.add(" " + s.getMatricNum()+ " ");
+                temp2.add(" " + s.getMatricNum() + " ");
                 temp2.add(" " + s.getFullName() + " ");
                 temp2.add(" " + s.getFacultyName() + " ");
                 temp.add(temp2);
@@ -523,7 +524,7 @@ public class AdminController {
             int row = 0;
             for (Student s : studentList) {
                 ArrayList<String> temp2 = new ArrayList<>();
-                temp2.add(" " + s.getMatricNum()+ " ");
+                temp2.add(" " + s.getMatricNum() + " ");
                 temp2.add(" " + s.getFullName() + " ");
                 temp2.add(" " + s.getFacultyName() + " ");
                 temp.add(temp2);
@@ -545,7 +546,6 @@ public class AdminController {
             return new String[0][0];
         }
     }
-
 
     /**
      * Get student list from a course.

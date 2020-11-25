@@ -28,7 +28,7 @@ public class Admin extends User implements Serializable {
      * @param fullName    the full name
      * @param gender      the gender
      * @param nationality the nationality
-     * @param staffID
+     * @param staffID     the staffID
      */
     public Admin(int staffID, String username, String password, String fullName, String gender, String nationality) {
         super(username, password, fullName, gender, nationality);

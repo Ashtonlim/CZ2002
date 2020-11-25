@@ -89,7 +89,7 @@ public class Course implements Serializable {
      * Adds an index to the index list
      *
      * @param index the index to be added
-     * @throws IllegalMethodAccessException
+     * @throws IllegalMethodAccessException throw exception
      */
     public void addIndex(Index index) throws IllegalMethodAccessException {
         if (index.hasCourse()) {
