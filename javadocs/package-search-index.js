@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"sg.edu.ntu.cz2002.grp3"},{"l":"sg.edu.ntu.cz2002.grp3.Controller"},{"l":"sg.edu.ntu.cz2002.grp3.Entity"},{"l":"sg.edu.ntu.cz2002.grp3.Entity.notification"},{"l":"sg.edu.ntu.cz2002.grp3.exceptions"},{"l":"sg.edu.ntu.cz2002.grp3.util"},{"l":"sg.edu.ntu.cz2002.grp3.View"}]
