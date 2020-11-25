@@ -1,8 +1,10 @@
+# CZ2002 myStar App
+
 1. CD to current path
 
 2. exec java Main
 
-\*If you want load the dummy data again, copy database file from /db/backup/database to /db/
+- If you want load the dummy data again, copy database file from /db/backup/database to /db/
 
 ---
 
