@@ -20,7 +20,7 @@ public class Index implements Serializable {
      * Used for versioning when serializing. Not necessary but added to remove
      * warning
      */
-    private static final long serialVersionUID = 1659216272267144237L;
+    private static final long serialVersionUID = 1659216272267144238L;
 
     /** The index. */
     private String index;
