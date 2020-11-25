@@ -76,7 +76,7 @@ public class FileManager {
             File file = Paths.get(res.toURI()).toFile();
             return file.getAbsolutePath();
         } else {
-            throw new Exception("DB file not found on the system");
+            throw new Exception("DB file not found on the system. Copy db/backup/database file into db/");
         }
 
     }

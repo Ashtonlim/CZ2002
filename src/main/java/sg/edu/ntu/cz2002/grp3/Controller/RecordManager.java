@@ -29,7 +29,7 @@ public class RecordManager {
             facultyList = (ArrayList<Faculty>) db.get(1);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            System.out.println("Unable to get data from database, loading empty db. You should load dummy data once.");
+            System.out.println("Unable to get data from database, loading empty db. You need to exec loadDummyData() once to populate the db again.");
             users = new ArrayList<>();
             facultyList = new ArrayList<>();
         }
