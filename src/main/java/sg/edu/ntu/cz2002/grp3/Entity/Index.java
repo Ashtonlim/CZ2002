@@ -11,7 +11,10 @@ import java.util.ArrayList;
 /**
  * Represents an index of a course. Contains a list of its lessons. Also keeps
  * track of students registered under it and students waiting to be registered
+
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
+
 public class Index implements Serializable {
     /**
      * Used for versioning when serializing. Not necessary but added to remove

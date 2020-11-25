@@ -13,13 +13,13 @@ import sg.edu.ntu.cz2002.grp3.Entity.User;
  */
 public class MyStarsApp {
 
-    /** The rm. */
+    /** The record manager. */
     private final RecordManager RM;
 
     /** The active user. */
     private User activeUser;
 
-    /** The running. */
+    /** The running state. */
     private boolean running;
 
     /**
@@ -30,7 +30,7 @@ public class MyStarsApp {
     }
 
     /**
-     * Start.
+     * Start the app.
      *
      * @throws Exception the exception
      */
@@ -67,29 +67,14 @@ public class MyStarsApp {
         }
     }
 
-    /**
-     * Sets the running status.
-     *
-     * @param running the new running status
-     */
     public void setRunningStatus(boolean running) {
         this.running = running;
     }
 
-    /**
-     * Sets the active user.
-     *
-     * @param activeUser the new active user
-     */
     public void setActiveUser(User activeUser) {
         this.activeUser = activeUser;
     }
 
-    /**
-     * Gets the rm.
-     *
-     * @return the rm
-     */
     public RecordManager getRM() {
         return RM;
     }

@@ -8,13 +8,15 @@ import sg.edu.ntu.cz2002.grp3.util.PrettyPrinter;
 import java.util.ArrayList;
 import java.util.Dictionary;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class StudentView.
+ * The Class that displays student options and receive 
+ * input from the student. Relays the user input to the
+ * respective functions in studentController.
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class StudentView implements UserView {
     
-    /** The sc. */
+    /** The student controller. */
     private final StudentController SC;
     
     /** The Printer. */
@@ -30,7 +32,7 @@ public class StudentView implements UserView {
         this.SC = SC;
     }
 
-    /** 1.Add course */
+    /** Display and input handler for adding course */
     public void addCourse() {
         System.out.println("=== Add a course ===");
         String indexCode = IO.getTextInput("Enter index of course to add");
@@ -50,7 +52,7 @@ public class StudentView implements UserView {
         }
     }
 
-    /** 2.Drop course */
+    /** Display and input handler for dropping course */
     public void dropCourse() {
         System.out.println("=== Drop a course ===");
         ArrayList<String> options = SC.getIndexListForPrinting();
@@ -78,7 +80,7 @@ public class StudentView implements UserView {
         }
     }
 
-    /** 3. Check vacancies of a course */
+    /** Display and input handler for checking vacancies of a course */
     public void printVacanciesOfCourse() {
         System.out.println("=== Check vacancies of a course ===");
 
@@ -96,7 +98,7 @@ public class StudentView implements UserView {
         }
     }
 
-    /** 4. Print Timetable */
+    /** Display and input handler for printing Timetable */
     public void printTimeTable() {
         System.out.println("=== Print Timetable ===");
         System.out.println("*Please maximize your console window to display timetable in correct format.");
@@ -105,7 +107,7 @@ public class StudentView implements UserView {
         Printer.print(res);
     }
 
-    /** 6. Swop index */
+    /** Display and input handler for swapping index */
     public void swopIndex() {
         while (true) {
             System.out.println("=== Swop index ===");
@@ -140,7 +142,7 @@ public class StudentView implements UserView {
         }
     }
 
-    /** 5. Change index */
+    /**Display and input handler for changing index */
     public void changeIndex() {
         while(true) {
             System.out.println("=== Change index ===");
@@ -177,7 +179,7 @@ public class StudentView implements UserView {
     }
 
     /**
-     * Render user info.
+     * Render welcome message.
      */
     @Override
     public void renderUserInfo() {
@@ -188,7 +190,7 @@ public class StudentView implements UserView {
     }
 
     /**
-     * Change password.
+     * Display and input handler for changing password.
      */
     public void changePassword() {
         System.out.println("=== Change account password (Console required) ===");

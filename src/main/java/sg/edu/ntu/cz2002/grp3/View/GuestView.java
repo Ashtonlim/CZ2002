@@ -9,13 +9,13 @@ import sg.edu.ntu.cz2002.grp3.util.IO;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GuestView.
+ * The Class for displaying the view before user login
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming.
  */
 public class GuestView {
     
-    /** The rm. */
+    /** The record manager. */
     RecordManager RM;
     
     /** The app. */

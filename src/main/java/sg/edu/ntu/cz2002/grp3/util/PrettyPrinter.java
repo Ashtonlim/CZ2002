@@ -6,9 +6,8 @@ import java.io.PrintStream;
 
 import static java.lang.String.format;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PrettyPrinter.
+ * The Class for printing neat rows and columns.
  */
 public final class PrettyPrinter {
 
@@ -30,11 +29,6 @@ public final class PrettyPrinter {
     /** The as null. */
     private final String asNull;
 
-    /**
-     * Instantiates a new pretty printer.
-     *
-     * @param out the out
-     */
     public PrettyPrinter(PrintStream out) {
         this(out, DEFAULT_AS_NULL);
     }
@@ -57,7 +51,7 @@ public final class PrettyPrinter {
     }
 
     /**
-     * Prints the.
+     * Prints the table.
      *
      * @param table the table
      */

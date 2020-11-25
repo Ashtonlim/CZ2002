@@ -16,7 +16,7 @@ import java.util.ArrayList;
 // the Serialized file may fail.
 public class FileManager {
 
-    /** The DB path. */
+    /** The database path. */
     private static String DBPath;
     static {
 
@@ -37,22 +37,17 @@ public class FileManager {
     public static ArrayList<?> readSerializedObject() throws Exception {
         ArrayList<?> read = new ArrayList<Object>();
         System.out.println(DBPath);
-        // try {
         FileInputStream fis = new FileInputStream(DBPath);
         ObjectInputStream in = new ObjectInputStream(fis);
         read = (ArrayList<?>) in.readObject();
         in.close();
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
         return read;
-
     }
 
     /**
      * Write serialized object.
      *
-     * @param list the list
+     * @param list the object list
      */
     public static void writeSerializedObject(ArrayList<Object> list) {
 
