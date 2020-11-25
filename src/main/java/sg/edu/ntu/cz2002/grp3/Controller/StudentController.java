@@ -12,14 +12,14 @@ import java.util.Hashtable;
 
 /**
  * The Class StudentController handles the logic for the options selected in
- * student view, which includes adding, chaning, dropping indexes, checking
+ * student view, which includes adding, changing, dropping indexes, checking
  * vacancies, and more.
  * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class StudentController {
 
-    /** The rm. */
+    /** The record manager. */
     private final RecordManager RM;
 
     /** The student. */

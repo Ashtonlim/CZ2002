@@ -1,8 +1,8 @@
 package sg.edu.ntu.cz2002.grp3.exceptions;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class IllegalMethodAccessException.
+ * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class IllegalMethodAccessException extends Exception {
 

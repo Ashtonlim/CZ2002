@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
- * The Class RecordManager handles of re.
+ * The Class RecordManager handles the database records.
  * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
@@ -20,7 +20,7 @@ public class RecordManager {
 
     /**
      * Instantiates a new record manager with all the required data. Note that data
-     * lives within the hierachy of arrays.
+     * lives within the hierarchy of arrays.
      */
     public RecordManager() {
         try {
@@ -173,7 +173,7 @@ public class RecordManager {
     }
 
     /**
-     * Gets the all faculties.
+     * Gets all faculties.
      *
      * @return the all faculties
      */
@@ -257,7 +257,7 @@ public class RecordManager {
     }
 
     /**
-     * Gets the student.
+     * Gets the student by matriculation number.
      *
      * @param matricNum the matric num
      * @return the student

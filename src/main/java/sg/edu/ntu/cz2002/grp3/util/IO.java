@@ -127,7 +127,7 @@ public class IO {
     /**
      * Get password form user with hidden fields.
      *
-     * @param prompt the messageto prompt
+     * @param prompt the message to prompt
      * @return the password
      */
     public static String getPassword(String prompt) {

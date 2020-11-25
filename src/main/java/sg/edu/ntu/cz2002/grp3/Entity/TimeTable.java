@@ -8,7 +8,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * The Class TimeTable.
+ * The Class containing student's schedule.
  * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
@@ -20,10 +20,10 @@ public class TimeTable implements Serializable {
      */
     private static final long serialVersionUID = -282722565573449812L;
 
-    /** The odd week. */
+    /** Lessons in odd week. */
     private final Lesson[][] oddWeek;
 
-    /** The even week. */
+    /** Lessons in even week. */
     private final Lesson[][] evenWeek;
 
     /** The row. */
@@ -215,20 +215,10 @@ public class TimeTable implements Serializable {
         return slotNo;
     }
 
-    /**
-     * Gets the even week.
-     *
-     * @return the even week
-     */
     public Lesson[][] getEvenWeek() {
         return evenWeek;
     }
 
-    /**
-     * Gets the odd week.
-     *
-     * @return the odd week
-     */
     public Lesson[][] getOddWeek() {
         return oddWeek;
     }

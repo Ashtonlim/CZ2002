@@ -23,7 +23,7 @@ public class FileManager {
         try {
             DBPath = getFilePath("db/database");
         } catch (Exception e) {
-            System.out.println("Error: DB file not found  on system. Place the DB at db/database");
+            e.printStackTrace();
         }
 
     }
@@ -36,22 +36,17 @@ public class FileManager {
      */
     public static ArrayList<?> readSerializedObject() throws Exception {
         ArrayList<?> read = new ArrayList<Object>();
-        // try {
         FileInputStream fis = new FileInputStream(DBPath);
         ObjectInputStream in = new ObjectInputStream(fis);
         read = (ArrayList<?>) in.readObject();
         in.close();
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
         return read;
-
     }
 
     /**
      * Write serialized object.
      *
-     * @param list the list
+     * @param list the object list
      */
     public static void writeSerializedObject(ArrayList<Object> list) {
 
