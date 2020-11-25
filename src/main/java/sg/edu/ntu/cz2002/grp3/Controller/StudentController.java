@@ -50,7 +50,8 @@ public class StudentController {
      * Adds the index to student.
      *
      * @param indexCode the index code
-     * @return the int
+     * @return -20: index not found, -22: student has the course already
+     * 1: success
      */
     public int addIndexToStudent(String indexCode) {
         Index index = RM.getIndex(indexCode);
@@ -101,7 +102,7 @@ public class StudentController {
     /**
      * Drop index.
      *
-     * @param pos the pos
+     * @param pos the pos of index in indexList to drop.
      */
     public void dropIndex(int pos) {
         ArrayList<Index> indexList = getCourseReg(student);
@@ -113,7 +114,7 @@ public class StudentController {
      * Gets the vacancies for printing.
      *
      * @param courseCode the course code
-     * @return the vacancies for printing
+     * @return the vacancies for printing in 2D array.
      */
     public String[][] getVacanciesForPrinting(String courseCode) {
         ArrayList<Index> indexList = getVacanciesOfCourse(courseCode);
@@ -145,7 +146,7 @@ public class StudentController {
      * Gets the time table for printing.
      *
      * @param oddEven the odd even
-     * @return the time table for printing
+     * @return the time table for printing in 2D array.
      */
     public String[][] getTimeTableForPrinting(int oddEven) {
         return student.getTableTimeForPrinting(oddEven);
@@ -154,7 +155,7 @@ public class StudentController {
     /**
      * Gets the processed index list for printing.
      *
-     * @return the processed index list for printing
+     * @return the processed index list for printing in 2D array.
      */
     public String[][] getProcessedIndexListForPrinting() {
         ArrayList<Index> indexList = student.getIndexList();
@@ -179,12 +180,11 @@ public class StudentController {
     }
 
     /**
-     * Status code: 1 - success | 0 - Clash | -1 = oldIndex not in the same course
-     * as new index. -2 - no vacancy in new index
      *
      * @param oldIndexPos the old index pos
      * @param newIndexPos the new index pos
-     * @return the int
+     * @return 1: success | 0: Clash | -1: oldIndex not in the same course
+     * as new index. -2: no vacancy in new index
      */
     public int changeIndex(int oldIndexPos, int newIndexPos) {
         Index oldIndex = student.getIndexList().get(oldIndexPos);
@@ -228,7 +228,9 @@ public class StudentController {
      * @param targetMatricNum the target matric num
      * @param targetPassword  the target password
      * @param indexPos        the index pos
-     * @return the int
+     * @return -20: The matric number is invalid | -21: Invalid password | -22: partner has not registered for course.
+     * -23: Index clash with student timetable | =24: Index clashes with partner timetable | -25 Both have same index.
+     * 1: swop successful.
      */
     public int swopIndex(String targetMatricNum, String targetPassword, int indexPos) {
         Student source = student;
@@ -261,8 +263,8 @@ public class StudentController {
             return -24; // Target student clashes with new index
 
         // Swop;
-        sourceIndex.removeFromStudentList(source);
-        targetIndex.removeFromStudentList(target);
+        sourceIndex.removeStudentWithoutFillingWithWaitList(source);
+        targetIndex.removeStudentWithoutFillingWithWaitList(target);
         sourceIndex.addToStudentList(target);
         targetIndex.addToStudentList(source);
 
@@ -274,7 +276,7 @@ public class StudentController {
      * Gets the course indexes for printing.
      *
      * @param pos the pos
-     * @return the course indexes for printing
+     * @return the course indexes in 2D array for printing
      */
     public ArrayList<String> getCourseIndexesForPrinting(int pos) {
         ArrayList<Index> indexList = student.getIndexList();
@@ -301,7 +303,7 @@ public class StudentController {
      * Gets the index list from faculty for printing.
      *
      * @param facultyName the faculty name
-     * @return the index list from faculty for printing
+     * @return the index list in 2D array from faculty for printing
      */
     public String[][] getIndexListFromFacultyForPrinting(String facultyName) {
         Faculty faculty = RM.getFaculty(facultyName);

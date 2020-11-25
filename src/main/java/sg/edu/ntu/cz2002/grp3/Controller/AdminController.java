@@ -15,7 +15,7 @@ import java.time.LocalTime;
 
 /**
  * The Class AdminController which handles all the functions available to the
- * admin.
+ * adminView.
  * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
@@ -475,32 +475,77 @@ public class AdminController {
      *
      * @param indexNo the index number
      */
-    public void printStudentListByIndex(String indexNo) {
+    public String[][] printStudentListByIndex(String indexNo) {
         Index index = RM.getIndex(indexNo);
+
         if (index != null) {
             ArrayList<Student> studentList = index.getStudentList();
-            IO.printStudentList(studentList);
+            ArrayList<ArrayList<String>> temp = new ArrayList<>();
+            int row = 0;
+            for (Student s : studentList) {
+                ArrayList<String> temp2 = new ArrayList<>();
+                temp2.add(" " + s.getMatricNum()+ " ");
+                temp2.add(" " + s.getFullName() + " ");
+                temp2.add(" " + s.getFacultyName() + " ");
+                temp.add(temp2);
+                row += 1;
+            }
+
+            String[][] res = new String[row + 1][3];
+            res[0][0] = " Matric Number ";
+            res[0][1] = " Full Name ";
+            res[0][2] = " Faculty ";
+
+            for (int i = 1; i < row + 1; i++) {
+                for (int j = 0; j < 3; j++) {
+                    res[i][j] = temp.get(i - 1).get(j);
+                }
+            }
+            return res;
         } else {
-            System.out.println("Invalid index.");
+            return new String[0][0];
         }
+
     }
 
     /**
      * Print all students registered under a course
      *
      * @param courseCode the course code
+     * @return the 2D array to be printed
      */
-    public void printStudentListByCourse(String courseCode) {
+    public String[][] printStudentListByCourse(String courseCode) {
         Course course = RM.getCourse(courseCode);
+
         if (course != null) {
             ArrayList<Student> studentList = getStudentList(course);
-            if (studentList != null) {
-                IO.printStudentList(studentList);
+            ArrayList<ArrayList<String>> temp = new ArrayList<>();
+            int row = 0;
+            for (Student s : studentList) {
+                ArrayList<String> temp2 = new ArrayList<>();
+                temp2.add(" " + s.getMatricNum()+ " ");
+                temp2.add(" " + s.getFullName() + " ");
+                temp2.add(" " + s.getFacultyName() + " ");
+                temp.add(temp2);
+                row += 1;
             }
+
+            String[][] res = new String[row + 1][3];
+            res[0][0] = " Matric Number ";
+            res[0][1] = " Full Name ";
+            res[0][2] = " Faculty ";
+
+            for (int i = 1; i < row + 1; i++) {
+                for (int j = 0; j < 3; j++) {
+                    res[i][j] = temp.get(i - 1).get(j);
+                }
+            }
+            return res;
         } else {
-            System.out.println("Invalid course.");
+            return new String[0][0];
         }
     }
+
 
     /**
      * Get student list from a course.

@@ -112,6 +112,20 @@ public class Index implements Serializable {
         return true;
     }
 
+    public void addToFrontOfWaitList(Student s){
+        waitList.add(0, s);
+    }
+
+    /**
+     * Remove a student from studentList without filling the slot with wait list
+     *
+     * @param s the student
+     */
+
+    public void removeStudentWithoutFillingWithWaitList(Student s){
+        waitList.remove(s);
+    }
+
     /**
      * Adds a student to the wait list.
      *
@@ -186,7 +200,6 @@ public class Index implements Serializable {
             setVacancy(vacancy - 1);
             return 1;
         } else {
-
             return -14;
         }
     }

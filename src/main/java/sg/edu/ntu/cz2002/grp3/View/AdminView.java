@@ -364,14 +364,28 @@ public class AdminView implements UserView {
 	public void adminPrintStudentListByIndex() {
 		System.out.println("=== Student List By Index ===");
 		String indexCode = IO.getTextInput("Index number: ");
-		AC.printStudentListByIndex(indexCode);
+		String[][] res = AC.printStudentListByIndex(indexCode);
+		if (res.length == 0){
+			System.out.println("Index not found");
+		} else if (res.length == 1){
+			System.out.println("- No student in this index -");
+		} else {
+			Printer.print(res);
+		}
 	}
 	
 	/** Display and input handler for printing students by Course. */
 	public void adminPrintStudentListByCourse() {
 		System.out.println("=== Student List By Course ===");
 		String courseCode = IO.getTextInput("Course code: ");
-		AC.printStudentListByCourse(courseCode);
+		String[][] res = AC.printStudentListByCourse(courseCode);
+		if (res.length == 0){
+			System.out.println("Course not found");
+		} else if (res.length == 1){
+			System.out.println("- No student in this course -");
+		} else {
+			Printer.print(res);
+		}
 	}
 
     /** Display and input handler for printing courses by faculty. */
@@ -429,7 +443,7 @@ public class AdminView implements UserView {
         adminOptions.add("Print student list by index number.");
         adminOptions.add("Print student list by course (all students registered for the selected course).");
         adminOptions.add("Change password.");
-        adminOptions.add("Print courses from a faculty.");
+        adminOptions.add("Print available indexes/courses from a faculty.");
         while(true){
             int c = IO.getPrintOptions(title, "Logout", adminOptions);
             switch (c) {
