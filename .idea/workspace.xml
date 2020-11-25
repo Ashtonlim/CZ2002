@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="CZ2002:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
@@ -22,16 +27,15 @@
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d87434b4-cd92-408d-aaa1-35a19395d41b" name="Default Changelist" comment="Change View structure.">
+    <list default="true" id="d87434b4-cd92-408d-aaa1-35a19395d41b" name="Default Changelist" comment="minor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/MyStarsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/MyStarsApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Index.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +57,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="weixing" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -82,7 +86,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
@@ -96,7 +100,7 @@
       <recent name="C:\Users\ash\Desktop\OODP\CZ2002\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main (1)">
+  <component name="RunManager" selected="JAR Application.CZ2002.jar">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -136,13 +140,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CZ2002.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/CZ2002_jar/CZ2002.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.CZ2002.jar" />
         <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.IView" />
         <item itemvalue="Application.MyStarsApp" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.IView" />
       </list>
     </recent_temporary>
   </component>
@@ -160,104 +168,6 @@
       <workItem from="1603008406071" duration="1553000" />
       <workItem from="1603009993735" duration="7000" />
       <workItem from="1603013678284" duration="5767000" />
-    </task>
-    <task id="LOCAL-00001" summary="added Database class and plain text db files">
-      <created>1603043175953</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1603043175953</updated>
-    </task>
-    <task id="LOCAL-00002" summary="added Database class and plain text db files">
-      <created>1603043347746</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1603043347746</updated>
-    </task>
-    <task id="LOCAL-00003" summary="added Courses">
-      <created>1603086270698</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1603086270698</updated>
-    </task>
-    <task id="LOCAL-00004" summary="added Courses">
-      <created>1603086295661</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1603086295661</updated>
-    </task>
-    <task id="LOCAL-00005" summary="added Courses">
-      <created>1603087884584</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1603087884584</updated>
-    </task>
-    <task id="LOCAL-00006" summary="added Courses">
-      <created>1603087917738</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1603087917738</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Implemented RecordManager for users, pending courses.">
-      <created>1603106391820</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1603106391820</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Add FileManager for direct file rw via binary.Re-implemented RecordManager">
-      <created>1605370053438</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1605370053438</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Add FileManager for direct file rw via binary.Re-implemented RecordManager">
-      <created>1605370715184</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1605370715184</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added faculty to database, added faculty to RecordManager.&#10;Updated methods in RecordManager to fit faculty class.">
-      <created>1605589286341</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1605589286341</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Renamed some confusing terms. &#10;Remove vacancy from Course class.">
-      <created>1605589879450</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1605589879450</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Added View class, implemented 4,5,6 for AdminController.">
-      <created>1605606739041</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1605606739041</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Added View class, implemented 4,5,6 for AdminController.">
-      <created>1605610243375</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1605610243375</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Changed of relation between Faculty, Courses and Indexes&#10;From faculty -&gt; course -&gt; index&#10;to Faculty &lt;-&gt; course &lt;-&gt; index">
-      <created>1605610309773</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1605610309773</updated>
     </task>
     <task id="LOCAL-00015" summary="Added indexList attribute for Student.">
       <created>1605611205657</created>
@@ -427,7 +337,182 @@
       <option name="project" value="LOCAL" />
       <updated>1606100160249</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Renamed Input class">
+      <created>1606100601497</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1606100601497</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Move some functions from studentView to StudentController.">
+      <created>1606113920435</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1606113920435</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Minor">
+      <created>1606116796384</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1606116796384</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Minor">
+      <created>1606117991137</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1606117991137</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Clean up code">
+      <created>1606133401309</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1606133401309</updated>
+    </task>
+    <task id="LOCAL-00044" summary="m">
+      <created>1606134019552</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1606134019552</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Clean up code">
+      <created>1606134027369</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1606134027369</updated>
+    </task>
+    <task id="LOCAL-00046" summary="minor">
+      <created>1606134568016</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1606134568016</updated>
+    </task>
+    <task id="LOCAL-00047" summary="minor">
+      <created>1606134812663</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1606134812663</updated>
+    </task>
+    <task id="LOCAL-00048" summary="minor">
+      <created>1606135484494</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1606135484494</updated>
+    </task>
+    <task id="LOCAL-00049" summary="minor">
+      <created>1606136537076</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1606136537076</updated>
+    </task>
+    <task id="LOCAL-00050" summary="minor">
+      <created>1606143177522</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1606143177523</updated>
+    </task>
+    <task id="LOCAL-00051" summary="minor">
+      <created>1606145417807</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1606145417807</updated>
+    </task>
+    <task id="LOCAL-00052" summary="minor">
+      <created>1606151401943</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1606151401943</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Modified notification api, added SMS to test.">
+      <created>1606160725630</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1606160725630</updated>
+    </task>
+    <task id="LOCAL-00054" summary="minor">
+      <created>1606195412243</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1606195412243</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Fixed some logic issues.">
+      <created>1606214879247</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1606214879247</updated>
+    </task>
+    <task id="LOCAL-00056" summary="modified print indexList from faculty">
+      <created>1606218063559</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1606218063559</updated>
+    </task>
+    <task id="LOCAL-00057" summary="minor">
+      <created>1606224492503</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1606224492503</updated>
+    </task>
+    <task id="LOCAL-00058" summary="minor">
+      <created>1606224749016</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1606224749016</updated>
+    </task>
+    <task id="LOCAL-00059" summary="minor">
+      <created>1606225069774</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1606225069775</updated>
+    </task>
+    <task id="LOCAL-00060" summary="minor">
+      <created>1606227391601</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1606227391601</updated>
+    </task>
+    <task id="LOCAL-00061" summary="minor">
+      <created>1606235519782</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1606235519782</updated>
+    </task>
+    <task id="LOCAL-00062" summary="minor">
+      <created>1606242911371</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1606242911371</updated>
+    </task>
+    <task id="LOCAL-00063" summary="minor">
+      <created>1606274685566</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1606274685566</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -444,7 +529,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -459,13 +544,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Implemented RecordManager for users, pending courses." />
-    <MESSAGE value="Add FileManager for direct file rw via binary.Re-implemented RecordManager" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/RecordManager.java" />
-    <MESSAGE value="Added faculty to database, added faculty to RecordManager.&#10;Updated methods in RecordManager to fit faculty class." />
-    <MESSAGE value="Renamed some confusing terms. &#10;Remove vacancy from Course class." />
-    <MESSAGE value="Added View class, implemented 4,5,6 for AdminController." />
-    <MESSAGE value="Changed of relation between Faculty, Courses and Indexes&#10;From faculty -&gt; course -&gt; index&#10;to Faculty &lt;-&gt; course &lt;-&gt; index" />
     <MESSAGE value="Added indexList attribute for Student." />
     <MESSAGE value="Final update to Student, Faculty, Course and index relationship." />
     <MESSAGE value="Final final update to Student, Faculty, Course and index relationship." />
@@ -480,11 +558,18 @@
     <MESSAGE value="Added attributes for lesson" />
     <MESSAGE value="Added TimeTable class. Added PrettyPrinter for matrix." />
     <MESSAGE value="Removed direct object access of related classes." />
-    <MESSAGE value="Minor" />
     <MESSAGE value="Change folder structure" />
-    <MESSAGE value="minor" />
     <MESSAGE value="Change View structure." />
-    <option name="LAST_COMMIT_MESSAGE" value="Change View structure." />
+    <MESSAGE value="Renamed Input class" />
+    <MESSAGE value="Move some functions from studentView to StudentController." />
+    <MESSAGE value="Minor" />
+    <MESSAGE value="minori" />
+    <MESSAGE value="Clean up code" />
+    <MESSAGE value="Modified notification api, added SMS to test." />
+    <MESSAGE value="Fixed some logic issues." />
+    <MESSAGE value="modified print indexList from faculty" />
+    <MESSAGE value="minor" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor" />
   </component>
   <component name="WindowStateProjectService">
     <state x="745" y="431" key="#Notifications" timestamp="1605371161609">
@@ -501,20 +586,24 @@
     </state>
     <state x="1169" y="576" key="#com.intellij.fileTypes.FileTypeChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1605591814758" />
     <state x="765" y="443" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1536.882@0.23.1536.882" timestamp="1605366940549" />
-    <state x="957" y="217" key="#com.intellij.ide.util.MemberChooser" timestamp="1606099162001">
+    <state x="957" y="217" key="#com.intellij.ide.util.MemberChooser" timestamp="1606158954886">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603015308866" />
-    <state x="957" y="217" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1606099162001" />
+    <state x="957" y="217" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1606158954886" />
     <state x="574" y="160" key="#com.intellij.ide.util.MemberChooser/0.23.1536.884@0.23.1536.884" timestamp="1605935697598" />
+    <state x="1464" y="636" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1606239693848">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1464" y="636" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606239693848" />
     <state x="606" y="778" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1603080886606">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="606" y="778" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1603080886606" />
-    <state x="1531" y="998" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1605759720759">
+    <state x="1531" y="998" width="469" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606248465852">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1531" y="998" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.2560.1400@0.0.2560.1400" timestamp="1605759720758" />
+    <state x="1531" y="998" width="469" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.2560.1400@0.0.2560.1400" timestamp="1606248465852" />
     <state x="685" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606097306111">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -532,35 +621,35 @@
     </state>
     <state x="549" y="130" key="FileChooserDialogImpl/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603008462284" />
     <state x="1282" y="721" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1603042397867" />
-    <state width="998" height="393" key="GridCell.Tab.0.bottom" timestamp="1606100252815">
+    <state width="1997" height="283" key="GridCell.Tab.0.bottom" timestamp="1606273330304">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.bottom/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
-    <state width="998" height="393" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1606100252815" />
+    <state width="1997" height="283" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1606273330304" />
     <state width="1494" height="232" key="GridCell.Tab.0.bottom/0.23.1536.882@0.23.1536.882" timestamp="1605370565875" />
     <state width="1494" height="232" key="GridCell.Tab.0.bottom/0.23.1536.884@0.23.1536.884" timestamp="1605935739870" />
     <state width="1494" height="232" key="GridCell.Tab.0.bottom/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
-    <state width="998" height="393" key="GridCell.Tab.0.center" timestamp="1606100252814">
+    <state width="1997" height="283" key="GridCell.Tab.0.center" timestamp="1606273330304">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.center/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
-    <state width="998" height="393" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1606100252814" />
+    <state width="1997" height="283" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1606273330304" />
     <state width="1494" height="232" key="GridCell.Tab.0.center/0.23.1536.882@0.23.1536.882" timestamp="1605370565874" />
     <state width="1494" height="232" key="GridCell.Tab.0.center/0.23.1536.884@0.23.1536.884" timestamp="1605935739870" />
     <state width="1494" height="232" key="GridCell.Tab.0.center/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
-    <state width="998" height="393" key="GridCell.Tab.0.left" timestamp="1606100252813">
+    <state width="1997" height="283" key="GridCell.Tab.0.left" timestamp="1606273330304">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.left/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536186" />
-    <state width="998" height="393" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1606100252813" />
+    <state width="1997" height="283" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1606273330304" />
     <state width="1494" height="232" key="GridCell.Tab.0.left/0.23.1536.882@0.23.1536.882" timestamp="1605370565874" />
     <state width="1494" height="232" key="GridCell.Tab.0.left/0.23.1536.884@0.23.1536.884" timestamp="1605935739869" />
     <state width="1494" height="232" key="GridCell.Tab.0.left/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
-    <state width="998" height="393" key="GridCell.Tab.0.right" timestamp="1606100252814">
+    <state width="1997" height="283" key="GridCell.Tab.0.right" timestamp="1606273330304">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1493" height="259" key="GridCell.Tab.0.right/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603022536187" />
-    <state width="998" height="393" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1606100252814" />
+    <state width="1997" height="283" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1606273330304" />
     <state width="1494" height="232" key="GridCell.Tab.0.right/0.23.1536.882@0.23.1536.882" timestamp="1605370565874" />
     <state width="1494" height="232" key="GridCell.Tab.0.right/0.23.1536.884@0.23.1536.884" timestamp="1605935739870" />
     <state width="1494" height="232" key="GridCell.Tab.0.right/0.23.1536.886@0.23.1536.886" timestamp="1605926760516" />
@@ -584,40 +673,44 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="772" y="358" key="Maven.ArtifactSearchDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1605878072328" />
-    <state x="-482" y="146" key="MergeDialog" timestamp="1606100243883">
+    <state x="496" y="191" key="MergeDialog" timestamp="1606274727253">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="-482" y="146" key="MergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606100243883" />
-    <state x="1343" y="637" width="389" height="264" key="MultipleFileMergeDialog" timestamp="1606100247478">
+    <state x="496" y="191" key="MergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606274727253" />
+    <state x="1343" y="637" width="389" height="264" key="MultipleFileMergeDialog" timestamp="1606274727258">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1343" y="637" width="389" height="264" key="MultipleFileMergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606100247478" />
+    <state x="1343" y="637" width="389" height="264" key="MultipleFileMergeDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1606274727258" />
     <state x="559" y="115" key="RollbackChangesDialog" timestamp="1603020071478">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="559" y="115" key="RollbackChangesDialog/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603020071478" />
-    <state x="247" y="150" key="SettingsEditor" timestamp="1605371425332">
-      <screen x="0" y="23" width="1536" height="882" />
+    <state x="771" y="396" key="SettingsEditor" timestamp="1606240281532">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="249" y="0" key="SettingsEditor/0.0.1536.824/-1920.0.1920.1040@0.0.1536.824" timestamp="1603008712709" />
-    <state x="904" y="443" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1603086046433" />
+    <state x="771" y="396" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1606240281532" />
     <state x="247" y="150" key="SettingsEditor/0.23.1536.882@0.23.1536.882" timestamp="1605371425332" />
     <state x="1205" y="699" key="VCS.ChangelistChooser" timestamp="1603043410729">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1205" y="699" key="VCS.ChangelistChooser/0.0.2560.1400@0.0.2560.1400" timestamp="1603043410729" />
-    <state x="986" y="754" width="513" height="313" key="Vcs.Push.Dialog.v2" timestamp="1606100270945">
+    <state x="986" y="754" width="513" height="313" key="Vcs.Push.Dialog.v2" timestamp="1606274741843">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="986" y="754" width="816" height="495" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606100270945" />
+    <state x="986" y="754" width="816" height="495" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606274741843" />
     <state x="569" y="381" width="513" height="304" key="Vcs.Push.Dialog.v2/0.23.1536.882@0.23.1536.882" timestamp="1605372210052" />
     <state x="592" y="499" width="513" height="313" key="Vcs.Push.Dialog.v2/0.23.1536.884@0.23.1536.884" timestamp="1605933858179" />
-    <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606100257364">
+    <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606242832561">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606100257364" />
+    <state x="1097" y="614" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2560.1400@0.0.2560.1400" timestamp="1606242832561" />
     <state x="658" y="411" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1536.884@0.23.1536.884" timestamp="1605935466531" />
     <state x="658" y="412" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1536.886@0.23.1536.886" timestamp="1605925155481" />
+    <state x="976" y="451" width="585" height="534" key="find.popup" timestamp="1606226247666">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="976" y="451" width="585" height="534" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606226247666" />
     <state x="1197" y="672" key="git4idea.merge.GitPullDialog" timestamp="1603091655504">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -631,10 +724,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1097" y="638" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1605592027138" />
-    <state x="1206" y="720" width="672" height="676" key="search.everywhere.popup" timestamp="1606097945879">
+    <state x="1206" y="720" width="672" height="676" key="search.everywhere.popup" timestamp="1606226240770">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1206" y="720" width="672" height="676" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606097945879" />
+    <state x="1206" y="720" width="672" height="676" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1606226240770" />
     <state x="724" y="477" width="670" height="426" key="search.everywhere.popup/0.23.1536.882@0.23.1536.882" timestamp="1605352272904" />
   </component>
 </project>

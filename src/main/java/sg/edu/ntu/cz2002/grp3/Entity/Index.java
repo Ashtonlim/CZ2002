@@ -124,9 +124,8 @@ public class Index implements Serializable {
      *
      * @param s the student
      */
-
     public void removeStudentWithoutFillingWithWaitList(Student s){
-        waitList.remove(s);
+        studentList.remove(s);
     }
 
     /**
