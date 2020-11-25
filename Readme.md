@@ -46,8 +46,6 @@ John: a
 
 admin: a
 
----
-
 ## Email notification info (email: password)
 
 myStarOODP - mystaroodp@gmail.com (Student ash's email to receive the notification)
