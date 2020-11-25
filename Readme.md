@@ -8,29 +8,48 @@
 
 Login info (username: password)
 
-Student user (16 students) -
+Student users (16 students) -
+
 weixing: a
+
 zheming: a
+
 ash: a
+
 bob: a
+
 james: a
+
 Mike: a
+
 Gary: a
+
 Jack: a
+
 Tim: a
+
 Tina: a
+
 Jess: a
+
 Claire: a
+
 Amy: a
+
 Helen: a
+
 Monica: a
+
 John: a
-Admin user (1 admin) -
+
+Admin users (1 admin) -
+
 admin: a
 
 ---
 
 Email notification info (email: password)
 
-mystaroodp@gmail.com: myStarOODP (Student ash's email to receive the notification)
-oopmystarapp@gmail.com: myStarApp1 (Official ntu email that send out the notification)
+myStarOODP - mystaroodp@gmail.com (Student ash's email to receive the notification)
+
+myStarApp1 - oopmystarapp@gmail.com ("Official" ntu email that sends out notifications)
