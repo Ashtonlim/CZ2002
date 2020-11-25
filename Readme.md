@@ -8,9 +8,9 @@
 
 ---
 
-Login info (username: password)
+## Login info (username: password)
 
-Student users (16 students) -
+### Student users (16 students) -
 
 weixing: a
 
@@ -44,13 +44,13 @@ Monica: a
 
 John: a
 
-Admin users (1 admin) -
+### Admin users (1 admin) -
 
 admin: a
 
 ---
 
-Email notification info (email: password)
+## Email notification info (email: password)
 
 myStarOODP - mystaroodp@gmail.com (Student ash's email to receive the notification)
 
