@@ -6,8 +6,6 @@
 
 - If you want load the dummy data again, copy database file from /db/backup/database to /db/
 
----
-
 ## Login info (username: password)
 
 ### Student users (16 students) -
