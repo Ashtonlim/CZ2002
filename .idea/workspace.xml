@@ -34,16 +34,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d87434b4-cd92-408d-aaa1-35a19395d41b" name="Default Changelist" comment="minor">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/javax.mail.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CZ2002.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CZ2002.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/MyStarsApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Controller/MyStarsApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/Entity/Lesson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/util/IO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sg/edu/ntu/cz2002/grp3/util/IO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,17 +100,16 @@
       <recent name="C:\Users\ash\Desktop\OODP\CZ2002\src" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.CZ2002.jar">
-    <configuration name="IView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sg.edu.ntu.cz2002.grp3.View.IView" />
+  <component name="RunManager" selected="Application.Main (2)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="CZ2002" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="CZ2002" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -137,17 +128,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CZ2002.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/CZ2002_jar/CZ2002.jar" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (2)" />
         <item itemvalue="JAR Application.CZ2002.jar" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.MyStarsApp" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.IView" />
       </list>
     </recent_temporary>
   </component>
@@ -166,6 +168,7 @@
       <workItem from="1603009993735" duration="7000" />
       <workItem from="1603013678284" duration="5767000" />
       <workItem from="1606283404732" duration="1154000" />
+      <workItem from="1606284594342" duration="2009000" />
     </task>
     <task id="LOCAL-00015" summary="Added indexList attribute for Student.">
       <created>1605611205657</created>
