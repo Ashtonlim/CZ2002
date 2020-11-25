@@ -1,6 +1,6 @@
 # CZ2002 myStar App
 
-1. CD to current path
+1. CD to main
 
 2. exec java Main
 
