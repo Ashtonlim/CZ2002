@@ -13,11 +13,6 @@ import sg.edu.ntu.cz2002.grp3.exceptions.IllegalMethodAccessException;
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class Student extends User implements Serializable {
-    /**
-     * Used for versioning when serializing. Not necessary but added to remove
-     * warning
-     */
-    private static final long serialVersionUID = 7661529072599104428L;
 
     /** The matriculation number. */
     private final String matricNum;

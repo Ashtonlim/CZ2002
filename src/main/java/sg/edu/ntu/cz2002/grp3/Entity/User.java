@@ -8,11 +8,6 @@ import java.io.Serializable;
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public abstract class User implements Serializable {
-    /**
-     * Used for versioning when serializing. Not necessary but added to remove
-     * warning
-     */
-    private static final long serialVersionUID = 6694048940285488599L;
 
     /** The username. */
     protected String username;

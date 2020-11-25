@@ -12,11 +12,6 @@ import java.time.LocalTime;
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class Lesson implements Serializable {
-	/**
-	 * Used for versioning when serializing. Not necessary but added to remove
-	 * warning
-	 */
-	private static final long serialVersionUID = 3962835452663198474L;
 
 	/** The lesson type. Can be lab, tutorial or lecture */
 	private String type;

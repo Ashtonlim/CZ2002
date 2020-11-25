@@ -14,12 +14,6 @@ import java.util.ArrayList;
  */
 public class TimeTable implements Serializable {
 
-    /**
-     * Used for versioning when serializing. Not necessary but added to remove
-     * warning
-     */
-    private static final long serialVersionUID = -282722565573449812L;
-
     /** Lessons in odd week. */
     private final Lesson[][] oddWeek;
 

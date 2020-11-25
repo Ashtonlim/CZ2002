@@ -11,16 +11,11 @@ import java.util.ArrayList;
 /**
  * Represents an index of a course. Contains a list of its lessons. Also keeps
  * track of students registered under it and students waiting to be registered
-
+ * 
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 
 public class Index implements Serializable {
-    /**
-     * Used for versioning when serializing. Not necessary but added to remove
-     * warning
-     */
-    private static final long serialVersionUID = 1659216272267144237L;
 
     /** The index. */
     private String index;
@@ -102,8 +97,8 @@ public class Index implements Serializable {
                         + " from waitlist and Sending notification email out... ");
                 NotificationManager.sendNotification(new EmailNotification(s.getEmail(), "Waitlist Notification",
                         "Congrats, you got into index " + getIndex()));
-//                NotificationManager.sendNotification(
-//                        new SMSNotification("+6596709488", "Congrats, you got into index " + getIndex()));
+                NotificationManager.sendNotification(
+                        new SMSNotification("+6596709488", "Congrats, you got into index " + getIndex()));
                 System.out.println("System: Email sent to " + s.getFullName() + " - " + s.getEmail());
                 availSlots -= 1;
                 if (availSlots == 0) {
@@ -115,7 +110,7 @@ public class Index implements Serializable {
         return true;
     }
 
-    public void addToFrontOfWaitList(Student s){
+    public void addToFrontOfWaitList(Student s) {
         waitList.add(0, s);
     }
 
@@ -125,7 +120,7 @@ public class Index implements Serializable {
      * @param s the student
      */
 
-    public void removeStudentWithoutFillingWithWaitList(Student s){
+    public void removeStudentWithoutFillingWithWaitList(Student s) {
         waitList.remove(s);
     }
 

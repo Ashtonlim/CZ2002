@@ -13,11 +13,6 @@ import java.util.ArrayList;
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class Faculty implements Serializable {
-	/**
-	 * Used for versioning when serializing. Not necessary but added to remove
-	 * warning
-	 */
-	private static final long serialVersionUID = 7182542381768041711L;
 
 	/** The faculty name. */
 	private String facultyName;

@@ -12,11 +12,6 @@ import java.util.ArrayList;
  * @author Guat Kwan, Wei Xing, Ashton, Yi Bai, Zhe Ming
  */
 public class Course implements Serializable {
-    /**
-     * Used for versioning when serializing. Not necessary but added to remove
-     * warning
-     */
-    private static final long serialVersionUID = -4776852943526251550L;
 
     /** The course code. */
     private String courseCode;
